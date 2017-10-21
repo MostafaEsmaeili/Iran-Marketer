@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pikad.Framework</RootNamespace>
+    <AssemblyName>Pikad.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\ThirdPartyLib\Utility\AutoMapper\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\ThirdPartyLib\Utility\AutoMapper\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Lib\Castle.Core\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Transactions">
+      <HintPath>..\Lib\Castle.Facilities\Castle.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\Lib\Castle.Windsor\3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\Lib\Dapper\1.50.2\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FastCrud">
+      <HintPath>..\Lib\Dapper.FastCrud\2.4.1\lib\net46\Dapper.FastCrud.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\Lib\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Extended">
+      <HintPath>..\Lib\NLog\NLog.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infra\Annotations\Resharper.cs" />
+    <Compile Include="Infra\Exception\AppException.cs" />
+    <Compile Include="Infra\Helpers\PathHelper.cs" />
+    <Compile Include="Infra\IoC\RepositoriesInstaller.cs" />
+    <Compile Include="Infra\IoC\ServicesInstaller.cs" />
+    <Compile Include="Infra\Logging\CustomLogger.cs" />
+    <Compile Include="Infra\Logging\Log.cs" />
+    <Compile Include="Infra\Provider\AbstractProvider.cs" />
+    <Compile Include="Infra\Provider\IProvider.cs" />
+    <Compile Include="Infra\Service\IService.cs" />
+    <Compile Include="Infra\Service\Service.cs" />
+    <Compile Include="Infra\Utility\Extention.cs" />
+    <Compile Include="Infra\Utility\ObjectMapper.cs" />
+    <Compile Include="Infra\Validation\BRule.cs" />
+    <Compile Include="Infra\Validation\BusinessRuleException%27.cs" />
+    <Compile Include="Infra\Validation\BusinessRuleException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Command\CustomCommand.cs" />
+    <Compile Include="Repository\Containers\RepositoryContainer.cs" />
+    <Compile Include="Repository\Containers\SqlDialectContainer.cs" />
+    <Compile Include="Repository\DataContext\DataContext.cs" />
+    <Compile Include="Repository\DataContext\IDataContext.cs" />
+    <Compile Include="Repository\Entity.cs" />
+    <Compile Include="Repository\Exceptions\NoPkException.cs" />
+    <Compile Include="Repository\Extensions\SessionExtensions.cs" />
+    <Compile Include="Repository\Extensions\UnitOfWorkExtensions.cs" />
+    <Compile Include="Repository\FluentQuery\IQueryFluent.cs" />
+    <Compile Include="Repository\FluentQuery\IQueryObject.cs" />
+    <Compile Include="Repository\FluentQuery\QueryFluent.cs" />
+    <Compile Include="Repository\FluentQuery\QueryObject.cs" />
+    <Compile Include="Repository\Helpers\SqlDialectHelper.cs" />
+    <Compile Include="Repository\Helpers\SqlInstance.cs" />
+    <Compile Include="Infra\IoC\CastleWindsorInstaller.cs" />
+    <Compile Include="Infra\IoC\CoreContainer.cs" />
+    <Compile Include="Infra\IoC\FacilityHelper.cs" />
+    <Compile Include="Infra\IoC\NoIoCFluentRegistration.cs" />
+    <Compile Include="Repository\IRepository%27.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IRepositoryBase.cs" />
+    <Compile Include="Repository\Mapper\BaseMapper.cs" />
+    <Compile Include="Repository\Mapper\IResultSetMapper.cs" />
+    <Compile Include="Repository\Mapper\IRowMapper.cs" />
+    <Compile Include="Repository\Pagination\PageCollection.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\RepositoryCount.cs" />
+    <Compile Include="Repository\RepositoryDelete.cs" />
+    <Compile Include="Repository\RepositoryGet.cs" />
+    <Compile Include="Repository\RepositoryGetAll.cs" />
+    <Compile Include="Repository\RepositorySaveOrUpdate.cs" />
+    <Compile Include="UnitOfWork\DbConnection.cs" />
+    <Compile Include="UnitOfWork\DbTransaction.cs" />
+    <Compile Include="UnitOfWork\Helpers\ConnectionStringHelper.cs" />
+    <Compile Include="UnitOfWork\Helpers\CreateInstanceHelper.cs" />
+    <Compile Include="UnitOfWork\Helpers\EnumHelper.cs" />
+    <Compile Include="UnitOfWork\IDbFactory.cs" />
+    <Compile Include="UnitOfWork\IEntity.cs" />
+    <Compile Include="UnitOfWork\ISession.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\Session.cs" />
+    <Compile Include="UnitOfWork\SqlDialect.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

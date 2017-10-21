@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <!-- Global stylesheets -->
+    @*<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">*@
+    <link href="~/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/pnotify.css" rel="stylesheet" />
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/assets/js/plugins/loaders/pace.min.js"></script>
+    <script src="~/assets/lastkendo/jquery.min.js"></script>
+<script type="text/javascript" src="~/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+
+    <script type="text/javascript" src="~/assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/ui/prism.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="~/assets/js/pages/sidebar_dual.js"></script>
+    <script src="~/assets/js/plugins/notifications/pnotify.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/ui/ripple.min.js"></script>
+    <script src="~/assets/js/pages/components_notifications_pnotify.js"></script>
+    <link href="~/assets/css/pnotify.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script src="~/assets/js/plugins/NumbericTextBox.js"></script>
+    <script src="~/assets/js/plugins/jquery.serializejson.min.js"></script>
+    <script src="~/Scripts/jszip.js"></script>
+    <script src="~/assets/js/plugins/jquery.loadJSON.min.js"></script>
+    <script src="~/assets/js/plugins/KendoJsonBinder.js"></script>
+
+    <!-- /theme JS files -->
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+    <script>
+        //$(document).ready(function () {
+        //    $('.mask').mask("#,##0", { reverse: true });
+        //});
+        //$(document).ready(function () {
+        //    $('.maskForFloat').mask('##0.0000', { reverse: false });
+        //});
+
+        $.ajaxSetup({
+            statusCode: {
+                401: function() {
+                    window.location.href = '/Account/Login/';
+                },
+                302:function() {
+                    window.location.href = '/Account/Login/';
+
+                }
+
+            }
+        });
+    </script>
+    <script src="~/assets/lastkendo/jszip.min.js"></script>
+</head>
+
+<body class="navbar-bottom">
+
+<!-- Main navbar -->
+@Html.Partial("_MainNavbar")
+<!-- /main navbar -->
+<!-- Page header -->
+@Html.Partial("_Header")
+<!-- /page header -->
+<!-- Page container -->
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main sidebar -->
+        @Html.Partial("_MainSidebar")
+        <!-- /main sidebar -->
+        <!-- Main content -->
+        <div class="content-wrapper">
+            @RenderBody()
+            <!-- /main content -->
+        </div>
+    </div>
+    <!-- /page content -->
+</div>
+<!-- /page container -->
+<!-- Footer -->
+@Html.Partial("_Footer")
+<!-- /footer -->
+</body>
+</html>

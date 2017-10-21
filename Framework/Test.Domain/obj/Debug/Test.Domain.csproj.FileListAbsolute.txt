@@ -1,0 +1,41 @@
+F:\FundProject\Framework\Test.Domain\bin\Debug\Test.Domain.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\Test.Domain.pdb
+F:\FundProject\Framework\Test.Domain\bin\Debug\Dapper.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\Dapper.FastCrud.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\Pikad.Framework.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\Castle.Windsor.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\NLog.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\Castle.Core.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\Pikad.Framework.pdb
+F:\FundProject\Framework\Test.Domain\bin\Debug\Dapper.xml
+F:\FundProject\Framework\Test.Domain\bin\Debug\Dapper.FastCrud.xml
+F:\FundProject\Framework\Test.Domain\bin\Debug\Castle.Windsor.xml
+F:\FundProject\Framework\Test.Domain\bin\Debug\NLog.xml
+F:\FundProject\Framework\Test.Domain\bin\Debug\Castle.Core.xml
+F:\FundProject\Framework\Test.Domain\obj\Debug\Test.Domain.csprojResolveAssemblyReference.cache
+F:\FundProject\Framework\Test.Domain\obj\Debug\Test.Domain.dll
+F:\FundProject\Framework\Test.Domain\obj\Debug\Test.Domain.pdb
+F:\FundProject\Framework\Test.Domain\bin\Debug\AutoMapper.dll
+F:\FundProject\Framework\Test.Domain\bin\Debug\AutoMapper.pdb
+F:\FundProject\Framework\Test.Domain\bin\Debug\AutoMapper.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Test.Domain.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Test.Domain.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Dapper.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Dapper.FastCrud.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Pikad.Framework.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Castle.Windsor.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\AutoMapper.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\NLog.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Castle.Core.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Pikad.Framework.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Dapper.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Dapper.FastCrud.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Castle.Windsor.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\AutoMapper.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\AutoMapper.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\NLog.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\bin\Debug\Castle.Core.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\obj\Debug\Test.Domain.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\obj\Debug\Test.Domain.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\obj\Debug\Test.Domain.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Domain\obj\Debug\Test.Domain.pdb

@@ -1,0 +1,233 @@
+﻿@using IranMarketer.Domain.DTO
+<div class="sidebar sidebar-main sidebar-default">
+    <div class="sidebar-content">
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="sidebar-user-material">
+                <div class="category-content">
+                    <div class="sidebar-user-material-content">
+                        <a href="#"><img src="~/assets/images/placeholder.jpg" class="img-circle img-responsive" alt=""></a>
+                        <h6></h6>
+                        <span id="NavBarBranchTitle" class="text-size-small"></span>
+                    </div>
+
+                    <div class="sidebar-user-material-menu">
+                        <a href="#user-nav" data-toggle="collapse"><span>حساب کاربری</span> <i class="caret"></i></a>
+                    </div>
+                </div>
+
+                <div class="navigation-wrapper collapse" id="user-nav">
+                    <ul class="navigation">
+                        <li><a href="#"><i class="icon-user-plus"></i> <span>پروفایل من</span></a></li>
+                        @*<li><a href="#"><i class="icon-coins"></i> <span>My balance</span></a></li>*@
+                        <li><a href="#"><i class="icon-comment-discussion"></i> <span><span class="badge bg-teal-400 pull-right">58</span> پیغام های من</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-cog5"></i> <span>تنظیمات کاربری</span></a></li>
+                        <li><a href="#"><i class="icon-switch2"></i> <span>خروج</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+                    <!-- Main -->
+
+                    <li><a href="@Url.Action("Index", "Home")"><i class="icon-home4"></i> <span>داشبورد</span></a></li>
+                    <li class="navigation-header"><span>مدیریت درخواست ها</span> <i class="icon-menu" title="requestmanagement"></i></li>
+                    <li tname="requests">
+                        <a href="#"><i class="icon-stack2"></i> <span>مدیریت درخواست ها</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("SubscriptionRequest", "Requests")">درخواست صدور</a></li>
+                            <li><a href="@Url.Action("RedemptionRequest", "Requests")">درخواست ابطال</a></li>
+                            <li><a href="@Url.Action("AllRequests", "Requests")">فهرست درخواست ها</a></li>
+                        </ul>
+                    </li>
+                    <li class="navigation-header"><span>حسابداری</span><i class="icon-menu" title="accounting"></i></li>
+                    <li tname="voucher">
+                        <a href="#"><i class="icon-stack2"></i><span>حسابداری</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("Vouchers", "Voucher")">فهرست اسناد</a></li>
+                            <li><a href="@Url.Action("ManualVoucher", "Voucher")"> سند دستی</a></li>
+                        </ul>
+                    </li>
+                    <li tname="ledgers">
+                        <a href="#"><i class="icon-copy"></i><span>گزارش های حسابداری</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("AccountBookReport", "Ledgers")">دفتر حساب</a></li>
+                            <li><a href="@Url.Action("GeneralLedgers", "Ledgers")">تراز آزمایشی  کل</a></li>
+                            <li><a href="@Url.Action("SubsidiaryLedgers", "Ledgers")">تراز آزمایشی معین</a></li>
+                            <li><a href="@Url.Action("DetailLedgers", "Ledgers")">تراز آزمایشی تفصیلی</a></li>
+                        </ul>
+                    </li>
+                
+
+                    <li class="navigation-header"><span>دریافت و پرداخت</span> <i class="icon-menu" title="accounting"></i></li>
+                    <li tname="cashflow">
+                        <a href="#"><i class="icon-stack2"></i> <span>دریافت و پرداخت</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("CashFlows", "CashFlow")">فهرست دریافت و پرداخت</a></li>
+                            <li><a href="@Url.Action("CustomerPayments", "CashFlow")">پرداخت به سرمایه گذاران</a></li>
+                            <li><a href="@Url.Action("BankTransfer", "CashFlow")">انتقال وجه بین بانکی</a></li>
+                            <li><a href="@Url.Action("BankDepositProfit", "CashFlow")">دریافت سود بانکی</a></li>
+                        </ul>
+                    </li>
+                    <li class="navigation-header"><span>خالص دارایی ها</span> <i class="icon-menu" title="accounting"></i></li>
+                    <li tname="nav">
+                        <a href="#"><i class="icon-stack2"></i> <span>خالص دارایی ها</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("NAVList", "NAV")">ارزش خالص دارایی روزانه</a></li>
+                            <li><a href="@Url.Action("CloseNAV", "NAV")">محاسبه NAV</a></li>
+                        </ul>
+                    </li>
+                    <li class="navigation-header"><span>معاملات</span> <i class="icon-menu" title="accounting"></i></li>
+                    <li tname="trade">
+                        <a href="#"><i class="icon-stack2"></i> <span>معاملات</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("Trades", "Trade")">فهرست معاملات</a></li>
+                            <li><a href="@Url.Action("Index", "AdjustedPrice")">قیمت کارشناسی</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="navigation-header"><span>اطلاعات پایه</span> <i class="icon-menu" title="basicinfo"></i></li>
+                    <li tname="party">
+                        <a href="#"><i class="icon-stack2"></i> <span>مدیریت اشخاص</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("RetailInvestor", "Party")">ثبت مشتری حقیقی</a></li>
+                            <li><a href="@Url.Action("InstitutionalInvestor", "Party")">ثبت مشتری حقوقی</a></li>
+                            <li><a href="@Url.Action("Customers", "Party")">فهرست مشتریان</a></li>
+                            <li><a href="@Url.Action("PartyRoles", "Party")">ثبت ارکان</a></li>
+                            <li><a href="@Url.Action("Index", "PartyAccount")">مدیریت حساب مشتری</a></li>
+                        </ul>
+                    </li>
+                    <li tname="usermanagement">
+                        <a href="#"><i class="icon-stack2"></i> <span>مدیریت کاربران</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("AllUsers", "UserManagement")">کاربران سیستم</a></li>
+                            <li><a href="@Url.Action("AddUser", "UserManagement")">افزودن کاربر</a></li>
+                            <li><a href="@Url.Action("AddServiceAccessByRoleIdAndPage", "UserManagement")">تنظیمات دسترسی</a></li>
+                        </ul>
+                    </li>
+                    <li tname="branch">
+                        <a href="#"><i class="icon-copy"></i> <span>مدیریت شعب</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("CreateBranch", "Branch")">ایجاد شعبه</a></li>
+                            <li><a href="@Url.Action("Branches", "Branch")">فهرست شعب</a></li>
+                        </ul>
+                    </li>
+                    <li tname="bankdeposit">
+                        <a href="#"><i class="icon-droplet2"></i> <span>سپرده های بانکی صندوق</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("AddBankDeposits", "BankDeposit")">تعریف سپرده</a></li>
+                            <li><a href="@Url.Action("BankDeposits", "BankDeposit")">فهرست سپرده ها</a></li>
+                        </ul>
+                    </li>
+                    <li tname="expensesetting">
+                        <a href="#"><i class="icon-stack"></i> <span>مدیریت تنظیمات</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("SettingManagement", "GeneralFundSetting")">تنظیمات پایه</a></li>
+                            <li><a href="@Url.Action("Index", "ExpenseSetting")">تنظیمات ارکان</a></li>
+                            <li><a href="@Url.Action("OtherExpense", "ExpenseSetting")">سایر تنظیمات و هزینه ها</a></li>
+                            <li><a href="@Url.Action("TradeFee", "TradeFeeSetting")">کارمزد معاملات</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+
+        var party = "party";
+        setActiveMenuBar(party);
+        var usermanagement = "usermanagement";
+        setActiveMenuBar(usermanagement);
+        var branch = "branch";
+        setActiveMenuBar(branch);
+        var bankdeposit = "bankdeposit";
+        setActiveMenuBar(bankdeposit);
+        var voucher = "voucher";
+        setActiveMenuBar(voucher);
+        var cashflow = "cashflow";
+        setActiveMenuBar(cashflow);
+        var nav = "nav";
+        setActiveMenuBar(nav);
+        var requests = "requests";
+        setActiveMenuBar(requests);
+        var trades = "trade";
+        setActiveMenuBar(trades);
+        var expensesetting = "expensesetting";
+        setActiveMenuBar(expensesetting);
+        var ledgers = "ledgers";
+        setActiveMenuBar(ledgers);
+
+
+
+        //SET Active & Open
+
+    });
+
+    function setActiveMenuBar(param) {
+
+        var lis = $('.navigation-accordion');
+        //var lis = $(ulacc).find('li');
+        var k = window.location.href;
+        if (k.toLowerCase().indexOf(param) > 0) {
+            $('.navigation-accordion li.active').removeClass('active');
+            $('.navigation-accordion li.active').removeClass('active');
+            $('.hidden-ul').css('style', 'hidden');
+
+            var x = $(lis).find('[tname= "' + param + '"  ]');
+            var hidul = $(x).find('.hidden-ul');
+            $(hidul).css('display', 'block');
+            $(x).addClass('active');
+            $(x).addClass('active');
+            x = $(location).attr('href');
+
+            var z = x.split("?");
+            var y = z[0].split("/");
+            var url = "/" + y[3] + "/";
+            for (var index = 4; index < y.length; index++) {
+                url = url + y[index] + "/";
+            }
+            var items = $(".navigation-accordion").children().children("ul").children().children("a");
+            for (i = 0; i <= $(items).length; i++) {
+                if ($(items).eq(i)[0] != null) {
+                    if (url.toLowerCase() === ($(items).eq(i)[0].pathname).toLowerCase() + "/") {
+                        var xxx = $(items).eq(i)[0];
+                        var lip = $(xxx).parent();
+                        $(lip).addClass('active');
+                        //$(xxx).css('background-color', '#d9d9d9');
+                        //$(xxx).css('color', '#000');
+                    }
+                }
+            }
+
+        }
+    }
+
+</script>
+<script>
+    $.ajax({
+        url: "/Account/ValidateToken",
+        type: "Post",
+        dataType: "json",
+
+        contentType: "application/json; charset=utf-8",
+        401: function () {
+       //     var url = '@Url.Action("Login", "Account")';
+          //  window.location.href = url;
+        },
+        error: function (response) {
+       
+        },
+        success: function (response) {
+       
+            $("#NavBarBranchTitle").html(response.BranchTitle);
+            //  g.hideColumn(16);
+        }
+
+    });
+
+</script>

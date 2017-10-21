@@ -1,0 +1,48 @@
+2017-06-18 09:50:27.8975 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-18 09:50:34.6285 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider User Name and/or Password  are incorrect TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 87
+2017-06-18 09:50:34.8125 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController User Name and/or Password  are incorrect TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 111
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 84
+2017-06-20 12:16:15.4534 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryDao Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories DeleteAllPageRepositories System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.DoExecuteNonQuery(DbCommand command)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteNonQuery(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories()
+ClientConnectionId:b2e878d3-3e95-4d06-859f-3ca15355b91f
+Error Number:2812,State:62,Class:16
+2017-06-20 12:16:15.8488 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryService Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories DeleteAllPageRepositories System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories()
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories()
+ClientConnectionId:b2e878d3-3e95-4d06-859f-3ca15355b91f
+Error Number:2812,State:62,Class:16
+2017-06-20 12:16:15.9028 Error TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository AddAllApiToServiceRepository System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories()
+   at TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository() in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 201
+ClientConnectionId:b2e878d3-3e95-4d06-859f-3ca15355b91f
+Error Number:2812,State:62,Class:16
+2017-06-20 12:16:56.5526 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-20 12:16:56.6435 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-20 12:18:35.4461 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-20 12:18:35.5531 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-20 12:19:23.6816 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider User Name and/or Password  are incorrect TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 87

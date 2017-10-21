@@ -1,0 +1,53 @@
+2017-06-24 11:55:02.5263 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider User Name and/or Password  are incorrect TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 80
+2017-06-24 11:55:02.6203 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController User Name and/or Password  are incorrect TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 104
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 79
+2017-06-24 11:55:28.3506 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider User Name and/or Password  are incorrect TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 80
+2017-06-24 11:55:28.4036 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController User Name and/or Password  are incorrect TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 104
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 79
+2017-06-24 13:14:18.1682 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryDao Invalid column name 'PageType'. TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.GetServiceRepositories GetServiceRepositories System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PageType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteReader(DbCommand command)
+   at TadbirPardaz.Infrastructure.DataAccess.Entlib.CustomSprocAccessor`1.ExecutePagedCollection() in C:\Workspace\ATS\AMSConstant\Framework\Src\DataAccess\Entlib\CustomSprocAccessor.cs:line 31
+   at TadbirPardaz.Infrastructure.DataAccess.Entlib.CustomSprocAccessor`1.Execute(Object[] parameterValues) in C:\Workspace\ATS\AMSConstant\Framework\Src\DataAccess\Entlib\CustomSprocAccessor.cs:line 24
+   at TadbirPardaz.Infrastructure.DataAccess.Entlib.EntlibExtensions.ExecuteCommandAccessor[TResult](Database database, DbCommand command, IRowMapper`1 rowMapper) in C:\Workspace\ATS\AMSConstant\Framework\Src\DataAccess\Entlib\EntlibExtensions.cs:line 38
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.GetServiceRepositories()
+ClientConnectionId:ddf58184-e595-4554-b157-dc683ca699ac
+Error Number:207,State:1,Class:16
+2017-06-24 13:14:18.6162 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryService Invalid column name 'PageType'. TadbirPardaz.AM.UserManagement.ServiceRepositoryService.GetServiceRepositories GetServiceRepositories System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PageType'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.GetServiceRepositories()
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.GetServiceRepositories()
+ClientConnectionId:ddf58184-e595-4554-b157-dc683ca699ac
+Error Number:207,State:1,Class:16
+2017-06-24 13:14:18.6982 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider Invalid column name 'PageType'. TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.GetAllServiceAccess GetAllServiceAccess System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'PageType'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.GetServiceRepositories()
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.<GetAllServiceAccess>b__16_0(ServiceAccess t) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 181
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.GetAllServiceAccess(BaseReportFilter`1 filter) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 206
+ClientConnectionId:ddf58184-e595-4554-b157-dc683ca699ac
+Error Number:207,State:1,Class:16

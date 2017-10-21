@@ -1,0 +1,72 @@
+2017-06-13 12:27:00.1000 Error TadbirPardaz.AM.UserManagement.ServiceAccessDao Could not find stored procedure 'am.GetAccessiblePagesByUsername'. TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'am.GetAccessiblePagesByUsername'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteReader(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username)
+ClientConnectionId:089e42a0-6b0d-4811-89c8-d07d49175492
+Error Number:2812,State:62,Class:16
+2017-06-13 12:27:00.2621 Error TadbirPardaz.AM.UserManagement.ServiceAccessService Could not find stored procedure 'am.GetAccessiblePagesByUsername'. TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'am.GetAccessiblePagesByUsername'.
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername(String username)
+ClientConnectionId:089e42a0-6b0d-4811-89c8-d07d49175492
+Error Number:2812,State:62,Class:16
+2017-06-13 12:39:09.2123 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider StartIndex cannot be less than zero.
+Parameter name: startIndex TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository AddApiToServiceRepository System.ArgumentOutOfRangeException: StartIndex cannot be less than zero.
+Parameter name: startIndex
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository(ServiceRepository repository) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 37
+2017-06-13 12:39:09.5204 Error TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker StartIndex cannot be less than zero.
+Parameter name: startIndex TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository AddAllApiToServiceRepository System.ArgumentOutOfRangeException: StartIndex cannot be less than zero.
+Parameter name: startIndex
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository(ServiceRepository repository) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 56
+   at TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository() in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 205
+2017-06-13 12:39:32.6788 Error TadbirPardaz.AM.UserManagement.ServiceAccessDao Procedure or function 'GetAccessiblePagesByUsername' expects parameter '@applicationId', which was not supplied. TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'GetAccessiblePagesByUsername' expects parameter '@applicationId', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteReader(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username)
+ClientConnectionId:dd3790db-58e2-4e2e-b086-e7ee798fc2ef
+Error Number:201,State:4,Class:16
+2017-06-13 12:39:32.8249 Error TadbirPardaz.AM.UserManagement.ServiceAccessService Procedure or function 'GetAccessiblePagesByUsername' expects parameter '@applicationId', which was not supplied. TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'GetAccessiblePagesByUsername' expects parameter '@applicationId', which was not supplied.
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername(String username)
+ClientConnectionId:dd3790db-58e2-4e2e-b086-e7ee798fc2ef
+Error Number:201,State:4,Class:16
+2017-06-13 13:04:26.9914 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider StartIndex cannot be less than zero.
+Parameter name: startIndex TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository AddApiToServiceRepository System.ArgumentOutOfRangeException: StartIndex cannot be less than zero.
+Parameter name: startIndex
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository(ServiceRepository repository) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 37
+2017-06-13 13:04:27.1604 Error TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker StartIndex cannot be less than zero.
+Parameter name: startIndex TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository AddAllApiToServiceRepository System.ArgumentOutOfRangeException: StartIndex cannot be less than zero.
+Parameter name: startIndex
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository(ServiceRepository repository) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 56
+   at TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository() in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 205

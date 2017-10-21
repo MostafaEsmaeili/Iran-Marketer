@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2CA3D45-884D-40D9-B204-1AD71E475D03}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.SharedData.Service</RootNamespace>
+    <AssemblyName>IranMarketer.SharedData.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Core\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Windsor\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Dapper\1.50.2\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FastCrud, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Dapper.FastCrud\2.4.1\Dapper.FastCrud.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcademicField\AcademicFieldService.cs" />
+    <Compile Include="AcademicField\IAcademicFieldRepository.cs" />
+    <Compile Include="AccountType\AccountTypeService.cs" />
+    <Compile Include="AccountType\IAccountTypeRepository.cs" />
+    <Compile Include="AttachmentCategory\AttachmentCategoryService.cs" />
+    <Compile Include="AttachmentCategory\IAttachmentCategoryRepository.cs" />
+    <Compile Include="Attachment\AttachmentService.cs" />
+    <Compile Include="Attachment\IAttachmentRepository.cs" />
+    <Compile Include="Auditing\AuditingService.cs" />
+    <Compile Include="Auditing\IAuditingRepository.cs" />
+    <Compile Include="BankName\BankNameService.cs" />
+    <Compile Include="BankName\IBankNameRepository.cs" />
+    <Compile Include="Borker\BrokerService.cs" />
+    <Compile Include="Borker\IBrokerRepository.cs" />
+    <Compile Include="Branch\BranchService.cs" />
+    <Compile Include="Branch\IBranchRepository.cs" />
+    <Compile Include="ClosePrice\ClosePriceService.cs" />
+    <Compile Include="ClosePrice\IClosePriceRepository.cs" />
+    <Compile Include="CorporateAction\CorporateActionService.cs" />
+    <Compile Include="CorporateAction\ICorporateActionRepository.cs" />
+    <Compile Include="Document\DocumentService.cs" />
+    <Compile Include="Document\IDocumentRepository.cs" />
+    <Compile Include="Holiday\HolidayService.cs" />
+    <Compile Include="Holiday\IHolidayRepository.cs" />
+    <Compile Include="Industries\IIndustryRepository.cs" />
+    <Compile Include="Industries\IndustryService.cs" />
+    <Compile Include="JobCategory\IJobCategoryRepository.cs" />
+    <Compile Include="JobCategory\JobCategoryService.cs" />
+    <Compile Include="JobPrefer\IJobPreferRepository.cs" />
+    <Compile Include="JobPrefer\JobPreferService.cs" />
+    <Compile Include="Product\IProductRepository.cs" />
+    <Compile Include="Product\ProductService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region\IRegionRepository.cs" />
+    <Compile Include="Region\RegionService.cs" />
+    <Compile Include="Sector\ISectorRepository.cs" />
+    <Compile Include="Sector\SectorService.cs" />
+    <Compile Include="Setting\AllOtherExpensesService.cs" />
+    <Compile Include="Setting\AuditorSettingService.cs" />
+    <Compile Include="Setting\ClubMembershipCostSettingService.cs" />
+    <Compile Include="Setting\CommonTaxAndTollFactorSettingService.cs" />
+    <Compile Include="Setting\CustodianSettingService.cs" />
+    <Compile Include="Setting\BranchManagerSettingService.cs" />
+    <Compile Include="Setting\EstablishmentCostSettingService.cs" />
+    <Compile Include="Setting\FundSettlementCostSettingService.cs" />
+    <Compile Include="Setting\GAMCostSettingService.cs" />
+    <Compile Include="Setting\GeneralSettingService.cs" />
+    <Compile Include="Setting\LiquidityGuaranteeSettingService.cs" />
+    <Compile Include="Setting\ManagementSettingService.cs" />
+    <Compile Include="Setting\MarketMakarSettingService.cs" />
+    <Compile Include="Setting\OtherExpensesMaxSettingService.cs" />
+    <Compile Include="Setting\ProfitGuaranteeSettingService.cs" />
+    <Compile Include="Setting\RequestCalculationProcessSettingService.cs" />
+    <Compile Include="Setting\RequestFeeSettingService.cs" />
+    <Compile Include="Setting\SettingService.cs" />
+    <Compile Include="Setting\ISettingRepository.cs" />
+    <Compile Include="Setting\SoftwareAndAccessCostSettingService.cs" />
+    <Compile Include="Setting\IFBEquityFeeSettingService.cs" />
+    <Compile Include="Setting\IFBBondFeeSettingService.cs" />
+    <Compile Include="Setting\TseBondFeeSettingService.cs" />
+    <Compile Include="Setting\TseEquityFeeSettingService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Src\IranMarketer.Common.csproj">
+      <Project>{4adf8319-95d5-4352-ac2a-aa2bf6ffa984}</Project>
+      <Name>IranMarketer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\Src\IranMarketer.Domain.csproj">
+      <Project>{cf384560-b8c1-48a1-b753-2f771b4613c0}</Project>
+      <Name>IranMarketer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IranMarketer.SharedData.Interface\IranMarketer.SharedData.Interface.csproj">
+      <Project>{3a5bc7cf-4cff-4769-8d89-7bd3ff1fc3b8}</Project>
+      <Name>IranMarketer.SharedData.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AccruedInterest\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

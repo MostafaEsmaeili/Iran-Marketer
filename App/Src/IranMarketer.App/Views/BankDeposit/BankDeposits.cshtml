@@ -1,0 +1,157 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "لیست حساب های بانکی";
+}
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">لیست حساب های بانکی</h5>
+
+    </div>
+    @*<div class="panel-body">
+
+        </div>*@
+    <div class="panel-body">
+        <div class="k-rtl">
+            
+            
+            
+
+            @(Html.Kendo().Grid<IranMarketer.Domain.DTO.BankDeposit>()
+                  .Name("grid")
+                  .Columns(column =>
+                  {
+
+                      column.Bound(x => x.BankTitle).Title("نام بانک").ClientTemplate("<a href='" + Url.Action("UpdateBankDeposit", "BankDeposit", new {Id = "#=Id#"}) + "'>#=BankTitle#</a>").HtmlAttributes("id=RowClick");
+                      column.Bound(x => x.AccountCode).Title("کد تفصیل");
+                      column.Bound(x => x.BranchName).Title("نام شعبه");
+                      column.Bound(x => x.BranchCode).Title("کد شعبه");
+                      column.Bound(x => x.AccountNumber).Title("شماره حساب");
+                      column.Bound(x => x.Iban).Title("تاریخ ثبت");
+                      column.Bound(x => x.Interest).Title("نرخ سود");
+                      column.Bound(x => x.ProfitStartDate).Title("موعد دریافت سود");
+                      column.Bound(x => x.Iban).Title("شبا");
+                      column.Bound(x => x.StateTitle).Title("وضعیت");
+                      //   column.Command(command => command.Custom("ویرایش").Click("showDetails")).Width(180);
+
+
+                  })
+                  .Excel(excel => excel
+                      .FileName("BankDeposit.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "BankDeposit"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] {10, 20, 50, 100}))
+                  .ToolBar(toolbar =>
+                  {
+                      toolbar.Template(@<text>
+                                           <div class="toolbar" style="direction: ltr !important;">
+
+                                               <div class="row pull-right ">
+                                                   <div style="display: inline-block;">
+                                                       <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                                   </div>
+                                                   <div class="" style="width: 400px; margin-right: 15px; display: inline-block;">
+                                                       <div class="input-group">
+                                                           <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                           <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                                           <span class="input-group-btn">
+                                                               <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                                           </span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                        </text>);
+                  })
+                  .AllowCopy(true)
+                  .Selectable()
+                  .Scrollable()
+                  .HtmlAttributes(new {style = "height:600px;"})
+                  .DataSource(dataSource => dataSource
+                      .Ajax()
+                      .PageSize(20).Read(read => read.Action("GetAllBankDeposits", "BankDeposit"))
+                  )
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+</div>
+<script>
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#FieldFilter").keyup(function () {
+
+            var value = $("#FieldFilter").val();
+            var grids = $("#grid").data("kendoGrid");
+
+
+            if (value) {
+                //   grid.dataSource.filter({ field: "UserName", operator: "contains", value: value }, { field: "DisplayName", operator: "contains", value: value });
+                grids.dataSource.filter([
+                    {
+                        "logic": "or",
+                        "filters": [
+                            {
+                                "field": "BankTitle",
+                                "operator": "contains",
+                                "value": value
+                            },
+                            //{
+                            //    "field": "BranchCode",
+                            //    "operator": "contains",
+                            //    "value": value
+                            //},
+                            {
+                                "field": "BranchName",
+                                "operator": "contains",
+                                "value": value
+                            },
+                            {
+                                "field": "AccountNumber",
+                                "operator": "contains",
+                                "value": value
+                            },
+                            //{
+                            //    "field": "DetailLedgerCode",
+                            //    "operator": "contains",
+                            //    "value": value
+                            //}
+                        ]
+                    }
+                ]);
+
+            } else {
+                grids.dataSource.filter({});
+            }
+        });
+
+    });
+
+
+
+
+
+</script>

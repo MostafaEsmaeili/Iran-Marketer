@@ -1,0 +1,66 @@
+2017-06-18 09:48:42.1205 Error TadbirPardaz.AM.UserManagement.ServiceAccessService Could not find stored procedure 'sec.GetAccessiblePagesByUsername'. TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.GetAccessiblePagesByUsername'.
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username, Applications application)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername(String username, Applications application)
+ClientConnectionId:f2774650-9330-4c8a-9033-dd34a87356fd
+Error Number:2812,State:62,Class:16
+2017-06-18 09:48:42.2745 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider Could not find stored procedure 'sec.GetAccessiblePagesByUsername'. TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.GetAccessiblePagesByUsername'.
+   at TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername(String username, Applications application)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 66
+ClientConnectionId:f2774650-9330-4c8a-9033-dd34a87356fd
+Error Number:2812,State:62,Class:16
+2017-06-18 09:48:42.4205 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController Could not find stored procedure 'sec.GetAccessiblePagesByUsername'. TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.GetAccessiblePagesByUsername'.
+   at TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername(String username, Applications application)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 111
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 84
+ClientConnectionId:f2774650-9330-4c8a-9033-dd34a87356fd
+Error Number:2812,State:62,Class:16
+2017-06-18 09:49:12.3754 Error TadbirPardaz.AM.UserManagement.ServiceAccessDao Could not find stored procedure 'sec.GetAccessiblePagesByUsername'. TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.GetAccessiblePagesByUsername'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteReader(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username, Applications application)
+ClientConnectionId:f2774650-9330-4c8a-9033-dd34a87356fd
+Error Number:2812,State:62,Class:16
+2017-06-18 09:49:12.5414 Error TadbirPardaz.AM.UserManagement.ServiceAccessService Could not find stored procedure 'sec.GetAccessiblePagesByUsername'. TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.GetAccessiblePagesByUsername'.
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username, Applications application)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessService.GetAccessiblePagesByUsername(String username, Applications application)
+ClientConnectionId:f2774650-9330-4c8a-9033-dd34a87356fd
+Error Number:2812,State:62,Class:16
+2017-06-18 09:50:20.7294 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryDao Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories DeleteAllPageRepositories System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.DoExecuteNonQuery(DbCommand command)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteNonQuery(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories()
+ClientConnectionId:00a71dcc-7fbe-487f-bd45-f17cedf9f3e3
+Error Number:2812,State:62,Class:16
+2017-06-18 09:50:21.0514 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryService Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories DeleteAllPageRepositories System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories()
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories()
+ClientConnectionId:00a71dcc-7fbe-487f-bd45-f17cedf9f3e3
+Error Number:2812,State:62,Class:16
+2017-06-18 09:50:21.2129 Error TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository AddAllApiToServiceRepository System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories()
+   at TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository() in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 201
+ClientConnectionId:00a71dcc-7fbe-487f-bd45-f17cedf9f3e3
+Error Number:2812,State:62,Class:16
+2017-06-18 09:50:27.6639 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124

@@ -1,0 +1,310 @@
+﻿@using Kendo.Mvc.UI
+@using IranMarketer.Domain.Entity
+@using PersonalityRole = IranMarketer.Domain.Enum.PersonalityRole
+@model IranMarketer.Domain.DTO.ProfitGuaranteeSetting
+<form id="ProfitGuaranteeSettingForm">
+    <div class="panel panel-flat">
+        <div class="panel-body" style="display: block;">
+            <fieldset id="fielsSet2">
+                <div class="form-group">
+                    <label>ضامن سودآوری</label>
+                    @(Html.Kendo().MultiSelect()
+                          .DataValueField("NationalId").MaxSelectedItems(1)
+                          .Name("ProfitGuarantor")
+                          .DataTextField("FullName").Placeholder("ضامن سودآوری")
+                          .HtmlAttributes(new
+                          {
+                              style = "width:400px;margin-right: 1px;",
+                              data_required_msg = " الزامی است",
+                              required = "required"
+                          })
+           
+                          
+                          .Filter("contains")
+                          .MinLength(3)
+                          .DataSource(
+                              source => source.Read(read => read.Action("GetPartyByFilter", "Party",new{roleId=(int)PersonalityRole.ProfitGuarantor})
+                    ).ServerFiltering(true))
+                          .Enable(true))
+                    @Html.Hidden("OperatinalAdministratorData")
+
+                </div>
+                <div class="form-group">
+                    <label>نرخ سود تضمینی سالانه</label>
+                    <input type="number" min="0" class="form-control" placeholder="نرخ سود تضمینی سالانه" name="GuaranteedAnnualProfitRate" data-bind="value: GuaranteedAnnualProfitRate" value="@Model.GuaranteedAnnualProfitRate">
+                </div>
+                <div class="form-group">
+                    <label>دوره تضمین از تاریخ</label>
+                    @Html.Kendo().DatePicker().Name("GuaranteePeriodFromDate").HtmlAttributes(new {style = "width:250px", type = "text"}).Format("yyyy/MM/dd")
+                    <span class="text-danger">*</span>
+
+                </div>
+                <div class="form-group">
+                    <label>دوره تضمین تا تاریخ</label>
+                    @Html.Kendo().DatePicker().Name("GuaranteePeriodToDate").HtmlAttributes(new {style = "width:250px", type = "text"}).Format("yyyy/MM/dd")
+                    <span class="text-danger">*</span>
+
+                </div>
+
+                <div class="form-group">
+                    <label>ضریب سالانه کارمزد ضامن سودآوری (سهم و حق تقدم)</label>
+                    <input type="number" min="0" class="form-control" placeholder="درصد کارمزد از محل سهم و حق تقدم" name="ProfitGuarantorFeeOnEquity" data-bind="value: ProfitGuarantorFeeOnEquity">
+                </div>
+                <div class="form-group">
+                    <label>ضریب سالانه کارمزد ضامن سودآوری (داراییها بدون سهم و حق تقدم)</label>
+                    <input type="number" min="0" class="form-control" placeholder="درصد کارمزد از محل داراییها بدون سهم و حق تقدم" name="ProfitGuarantorFeeOnOtherAssetWithOutEquity" data-bind="value: ProfitGuarantorFeeOnOtherAssetWithOutEquity" >
+                </div>
+                <div class="form-group">
+                    <label>ضریب سالانه کارمزد ضامن سود آوری (ارزش روزانه ی اوراق بهادار بادرآمد ثابت)</label>
+                    <input type="number" min="0" class="form-control" placeholder="درصد کارمزد از محل ارزش روزانه ی اوراق بهادار بادرآمد ثابت" name="ProfitGuarantorFeeOnFixedIncome" data-bind="value: ProfitGuarantorFeeOnFixedIncome" >
+                </div>
+                <div class="form-group">
+                    <label>ضریب سالانه کارمزد ضامن سودآوری (داراییهاِ اوراق بادرآمد ثابت و سپرده بانکی بدون سهم و حق تقدم)</label>
+                    <input type="number" min="0" class="form-control" placeholder="درصد کارمزد از محل داراییهاِ اوراق بادرآمد ثابت و سپرده بانکی بدون سهم و حق تقدم" name="ProfitGuarantorFeeOnFixedIncomeAndBankDepositOnly" data-bind="value: ProfitGuarantorFeeOnFixedIncomeAndBankDepositOnly" >
+                </div>  
+                <div class="form-group">
+                    <label>شامل مالیات و عوارض</label>
+                    <input type="checkbox" name="profitConsiderTaxAndToll" id="profitConsiderTaxAndToll"/>
+                </div>
+
+            </fieldset>
+
+
+
+
+
+            <div class="text-right">
+                <button id="addProfitGuaranteeSetting" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="panel panel-flat panel-collapsed">
+    <div class="panel-heading">
+        <h5 class="panel-title">تاریخچه تنظیمات<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<IranMarketer.Domain.DTO.ProfitGuaranteeSetting>()
+                  .Name("ProfitGuaranteeSettingGrid")
+                  .Columns(column =>
+                  {
+
+                      column.Bound(x => x.ProfitGuarantor.FullName).Title("نام مدیر");
+                      column.Bound(x => x.GuaranteePeriodFromDate).Title("دوره تضمین از تاریخ");
+                      column.Bound(x => x.GuaranteePeriodToDate).Title("دوره تضمین از تاریخ");
+
+                      column.Bound(x => x.ValidFromJalali).Title("تاریخ");
+
+                      //.ClientTemplate("<a href='" + Url.Action("UpdateUser", "UserManagement", new { UserName = "#=UserName#" }) + "'>#=UserName#</a>").HtmlAttributes("id=RowClick");
+                      //.ClientTemplate("<a href='" + Url.Action("GetLogDetails", "Monitoring", new { Id = "#=Id#"}) + "'>#=EventDateTime#</a>").HtmlAttributes("id=RowClick");
+                      column.Command(command => command.Custom("ویرایش").Click("ProfitGuaranteeSettingGridshowDetails")).Width(180);
+
+
+                  })
+                  .Excel(excel => excel
+                      .FileName("ProfitGuaranteeSetting.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "ExpenseSetting"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] {10, 20, 50, 100}))       .Selectable(x =>
+                      {
+                          x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                      }).Events(c=>c.Change("ProfitGuaranteeSettingGridonChenge"))
+                  .ToolBar(toolbar =>
+                  {
+                      toolbar.Template(@<text>
+                                           <div class="toolbar" style="direction: ltr !important;">
+
+                                               <div class="row pull-right ">
+                                                   <div style="display: inline-block;">
+                                                       <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                                   </div>
+                                                   <div class="" style="width: 400px; margin-right: 15px; display: inline-block;">
+                                                       <div class="input-group">
+                                                           <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                           <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                                           <span class="input-group-btn">
+                                                               <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                                           </span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                        </text>);
+                  })
+                  .AllowCopy(true)
+                  .Selectable()
+                  .Scrollable()
+                  .HtmlAttributes(new {style = "height:500px;"})
+                  .DataSource(dataSource => dataSource
+                      .Ajax().Sort(x=>x.Add(a=>a.ValidFrom).Descending())
+                      .PageSize(20).Read(read => read.Action("GetHistoricalProfitGuaranteeSettings", "ProfitGuaranteeSetting"))
+                  )
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+
+</div>
+
+
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $("#addProfitGuaranteeSetting").click(function() {
+
+        if ($("#ProfitGuaranteeSettingForm").valid() === false || $("#ProfitGuaranteeSettingForm").kendoValidator().data("kendoValidator").validate()===false) {
+            return;
+        } else {
+
+            debugger;
+            //var dataa = @Html.Raw(Json.Encode(Model));
+
+            var data = {
+                "ProfitGuarantor": $('#ProfitGuarantor').data("kendoMultiSelect").dataItems()[0],
+                "GuaranteedAnnualProfitRate": $('[name=GuaranteedAnnualProfitRate]').val(),
+                "GuaranteePeriodFromDate": $("#GuaranteePeriodFromDate").val(),
+                "GuaranteePeriodToDate": $("#GuaranteePeriodToDate").val(),
+                "ProfitGuarantorFeeOnEquity": $('[name=ProfitGuarantorFeeOnEquity]').val(),
+                "ProfitGuarantorFeeOnOtherAssetWithOutEquity": $('[name=ProfitGuarantorFeeOnOtherAssetWithOutEquity]')
+                    .val(),
+                "ProfitGuarantorFeeOnFixedIncome": $('[name=ProfitGuarantorFeeOnFixedIncome]').val(),
+                "ProfitGuarantorFeeOnFixedIncomeAndBankDepositOnly": $(
+                    '[name=ProfitGuarantorFeeOnFixedIncomeAndBankDepositOnly]').val(),
+                "ConsiderTaxAndToll": $("#profitConsiderTaxAndToll").prop('checked'),
+
+            };
+
+            $.ajax({
+                url: '@Url.Action("SaveSetting", "ProfitGuaranteeSetting")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#ProfitGuaranteeSettingForm')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+                        $('#ProfitGuaranteeSettingGrid').data('kendoGrid').dataSource.read();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function ProfitGuaranteeSettingGridshowDetails(e) {
+        e.preventDefault();
+        $("#fielsSet2").removeAttr('disabled');
+
+    }
+
+    function ProfitGuaranteeSettingGridonChenge(e) {
+        debugger;
+        $("#fielsSet2").attr('disabled', 'disabled');
+        var grid = $("#ProfitGuaranteeSettingGrid").data("kendoGrid");
+        var dataItem = grid.dataItem(grid.select());
+
+        $('#ProfitGuarantor').data("kendoMultiSelect").value([dataItem.ProfitGuarantor.NationalId]);
+        //$('#ProfitGuarantor').data("kendoAutoComplete").search(dataItem.ProfitGuarantor.FullName);
+        //setTimeout(function() {
+        //    $('#ProfitGuarantor').data("kendoAutoComplete").select(0);
+
+        //}, 500);
+        //setTimeout(function() {
+        //    $('#ProfitGuarantor').data("kendoAutoComplete").close();
+
+        //}, 500);
+
+        $('[name=GuaranteedAnnualProfitRate]').val(dataItem.GuaranteedAnnualProfitRate);
+        $("#GuaranteePeriodFromDate").val(dataItem.GuaranteePeriodFromDate);
+        $("#GuaranteePeriodToDate").val(dataItem.GuaranteePeriodToDate);
+        $('[name=ProfitGuarantorFeeOnEquity]').val(dataItem.ProfitGuarantorFeeOnEquity);
+
+        $('[name=ProfitGuarantorFeeOnOtherAssetWithOutEquity]')
+            .val(dataItem.ProfitGuarantorFeeOnOtherAssetWithOutEquity);
+        $('[name=ProfitGuarantorFeeOnFixedIncome]').val(dataItem.ProfitGuarantorFeeOnFixedIncome);
+        $('[name=ProfitGuarantorFeeOnFixedIncomeAndBankDepositOnly]')
+            .val(dataItem.ProfitGuarantorFeeOnFixedIncomeAndBankDepositOnly);
+
+        $("#profitConsiderTaxAndToll").prop('checked', dataItem.ConsiderTaxAndToll);
+
+
+        // var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        //var legalInvestmentManagersIds = $.map(dataItem.LegalInvestmentManagers, function (v){
+        //    return v.NationalId;
+        //});
+
+        //var naturalInvestmentManagersIds = $.map(dataItem.NaturalInvestmentManagers, function (v){
+        //    return v.NationalId;
+        //});
+
+
+        //$('[name=OperatinalAdministratorData]').val(kendo.stringify(dataItem.OperatinalAdministrator));
+        //$('[name=FundManagerData]').val(kendo.stringify(dataItem.FundManager));
+
+
+        //$("#DocumentGrid").data("kendoGrid").dataSource.read();
+        //$('[name=MinManagerUnit]').val(dataItem.MinManagerUnit);
+        //$('[name=MaxManagerUnit]').val(dataItem.MaxManagerUnit);
+        //$('[name=ConsiderTaxAndToll]').prop('checked', dataItem.ConsiderTaxAndToll);
+        //$('#OperatinalAdministrator').data("kendoAutoComplete").value(dataItem.OperatinalAdministrator.FullName);
+        //$('#FundManager').data("kendoAutoComplete").value(dataItem.FundManager.FullName);
+
+    }
+
+</script>
+

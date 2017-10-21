@@ -1,0 +1,412 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.App.Component.Model
+@model CustomerModel
+@{
+    ViewBag.Title = "ویرایش مشتری حقیقی";
+}
+
+
+<div class="k-rtl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">ویرایش مشتری حقیقی</h5>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="retailinvestorform" novalidate class="form-horizontal form-validate-jquery" action="@Url.Action("UpdateRetailInvestors", "Party")" method="POST">
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.Customer.Party.Id)
+
+                        <fieldset class="content-group">
+                            <legend class="text-bold">اطلاعات اصلی</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="نام (فارسی)" required="required" id="firstname" data-bind="value: customer.party.firstname" name="Customer.Party.FirstName" value="@Model.Customer.Party.FirstName">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="نام خانوادگی (فارسی)" required="required" id="lastname" data-bind="value: customer.party.lastname" name="Customer.Party.LastName" value="@Model.Customer.Party.LastName">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="نام (انگلیسی)" id="enfirstname" data-bind="value: customer.party.enfirstname" name="Customer.Party.EnFirstName" value="@Model.Customer.Party.EnFirstName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="نام خانوادگی (انگلیسی)" id="enlastname" data-bind="value: customer.party.enlastname" name="Customer.Party.EnLastName" value="@Model.Customer.Party.EnLastName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="نام پدر (فارسی)" required="required" id="fathername" data-bind="value: customer.party.fathername" name="Customer.Party.FatherName" value="@Model.Customer.Party.FatherName">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="نام پدر (انگلیسی)" id="enfathername" data-bind="value: customer.party.enfathername" name="Customer.Party.EnFatherName" value="@Model.Customer.Party.EnFatherName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="کد ملی" required="required" id="nationalid" data-bind="value: customer.party.nationalid" name="Customer.Party.NationalId" value="@Model.Customer.Party.NationalId">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="شماره شناسنامه" required="required" id="identitycard" data-bind="value: customer.party.identitycard" name="Customer.Party.IdentityCard" value="@Model.Customer.Party.IdentityCard">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="سریال شناسنامه" required="required" id="IdentitySerialNumber" data-bind="value: customer.party.identitySerialNumber" name="Customer.Party.IdentitySerialNumber" value="@Model.Customer.Party.IdentitySerialNumber">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+
+                                        <label class="control-label">تاریخ تولد</label>
+                                        @Html.Kendo().DatePickerFor(x => x.Customer.Party.BirthDateJalali).HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">جنسیت</label>
+                                        <label class="radio-inline radio-right">
+                                            @Html.RadioButtonFor(m => m.Customer.Party.Gender, "1")
+                                            مرد
+                                        </label>
+                                        <label class="radio-inline radio-right">
+                                            @Html.RadioButtonFor(m => m.Customer.Party.Gender, "2")
+                                            زن
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group form-group-material col-md-6">
+
+                                    <label class="control-label"> معرف</label>
+                                    @Html.TextBoxFor(x => x.Customer.Party.IssuerName, new { @class = "form-control" })
+                                </div>
+
+                            </div>
+                        </fieldset>
+                        <fieldset class="content-group">
+                            <legend class="text-bold">اطلاعات تماس</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="تلفن (02188888888)" required="required" id="homephone" data-bind="value: customer.contact.homephone" name="Customer.Contact.HomePhone" value="@Model.Customer.Contact.HomePhone">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="فکس" id="fax" data-bind="value: customer.contact.fax" name="Customer.Contact.Fax" value="@Model.Customer.Contact.Fax">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="تلفن همراه" required="required" id="mobile" data-bind="value: customer.contact.mobile" name="Customer.Contact.Mobile" value="@Model.Customer.Contact.Mobile">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="email" class="form-control" placeholder="ایمیل" id="email1" data-bind="value: customer.contact.email1" name="Customer.Contact.Email1" value="@Model.Customer.Contact.Email1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        @(Html.Kendo().ComboBoxFor(model => model.Customer.Contact.RegionId)
+                      //.Name("roles")
+                      .DataTextField("Title").Placeholder("انتخاب شهر سکونت ...")
+                      .DataValueField("Id")
+                      .HtmlAttributes(new
+                      {
+                          style = "width:400px;margin-right: 1px;",
+                          data_required_msg = "شهر الزامی است",
+                          required = "required"
+                      })
+
+                      .Filter("contains")
+                      .AutoBind(true)
+                      .MinLength(3)
+                      .DataSource(
+                          source => source.Read(read => read.Action("GetCities", "UIComponent")
+                              .Data("onAdditionalData")
+                              ).ServerFiltering(true))
+                                        //.Enable(!Model.IsEditMode)
+                                        )
+
+                                        @*@Html.ValidationMessageFor(m => m.BondDetailDto.ProductDto.Isin, null, new { @class = "  k-tooltip-validation ", style = "" })*@
+                                        <input type="hidden" id="regionid" data-bind="value: regionid" name="regionid" value="@Model.Customer.Contact.RegionId">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="آدرس محل سکونت" required="required" id="homeaddress" data-bind="value: customer.contact.homeaddress" name="Customer.Contact.HomeAddress" value="@Model.Customer.Contact.HomeAddress">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="content-group">
+                            <legend class="text-bold">حساب بانکی پیش فرض</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        @(Html.Kendo().ComboBoxFor(model => model.Customer.PartyBankAccount.BankId)
+                      //.Name("roles")
+                      .DataTextField("Title").Placeholder("انتخاب  بانک ...")
+                      .DataValueField("CodeId")
+                      .HtmlAttributes(new
+                      {
+                          style = "width:400px;margin-right: 1px;",
+                          data_required_msg = "شهر الزامی است",
+                          required = "required"
+                      })
+                       .Filter("contains")
+                      .AutoBind(true)
+                      .MinLength(3)
+                      .DataSource(
+                          source => source.Read(read => read.Action("GetBankNames", "UIComponent")
+                              .Data("onAdditionalDataBankName")
+                              ).ServerFiltering(true))
+                                        //.Enable(!Model.IsEditMode)
+                                        )
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <label>شعبه</label>
+
+                                        @Html.TextBoxFor(x => x.Customer.PartyBankAccount.BranchName, new { @class = "form-control" })
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <label>کد شعبه</label>
+
+                                        @Html.TextBoxFor(x => x.Customer.PartyBankAccount.BranchCode, new { @class = "form-control" })
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        @Html.Kendo().DropDownListFor(x => x.Customer.PartyBankAccount.AccountType).DataTextField("Title").DataValueField("Code").Filter(FilterType.Contains).DataSource(source =>
+                                        {
+                                            source.Custom()
+                                                .ServerFiltering(false)
+                                                .ServerPaging(false)
+                                                .PageSize(100)
+                                                .Type("aspnetmvc-ajax")
+                                                .Transport(t =>
+                                                {
+                                                    t.Read(r =>
+                                                    {
+                                                        r.Action("GetBankAccountTypes", "UIComponent");
+                                                    });
+                                                });
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <label>شماره حساب</label>
+
+                                        @Html.TextBoxFor(x => x.Customer.PartyBankAccount.AccountNumber, new { required = "required", @class = "form-control" })
+                                        <span class="text-danger">*</span>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <input type="text" class="form-control" placeholder="IR999999999999999999999999" id="iban" required="required" data-bind="value: customer.partybankaccount.iban" name="Customer.PartyBankAccount.IBAN" value="@Model.Customer.PartyBankAccount.IBAN">
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="content-group">
+                            <legend class="text-bold">اطلاعات تکمیلی</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <label class="display-block text-semibold">مدرک تحصیلی</label>
+                                        @Html.Kendo().DropDownListFor(x => x.Customer.Party.EducationDegree).DataTextField("Title").DataValueField("Code").Filter(FilterType.Contains).DataSource(source =>
+                {
+                    source.Custom()
+                        .ServerFiltering(false)
+                        .ServerPaging(false)
+                        .PageSize(100)
+                        .Type("aspnetmvc-ajax")
+                        .Transport(t =>
+                        {
+                            t.Read(r =>
+                            {
+                                r.Action("GetEducationDegrees", "UIComponent");
+                            });
+                        });
+                })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <label class="display-block text-semibold">عنوان شغلی</label>
+                                        @Html.Kendo().DropDownListFor(x => x.Customer.Party.JobTitle).DataTextField("Title").DataValueField("Code").Filter(FilterType.Contains).DataSource(source =>
+                {
+                    source.Custom()
+                        .ServerFiltering(false)
+                        .ServerPaging(false)
+                        .PageSize(100)
+                        .Type("aspnetmvc-ajax")
+                        .Transport(t =>
+                        {
+                            t.Read(r =>
+                            {
+                                r.Action("GetJobTitles", "UIComponent");
+                            });
+                        });
+                })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+                                        <label class="display-block text-semibold">موقعیت سازمانی</label>
+                                        @Html.Kendo().DropDownListFor(x => x.Customer.Party.Position).DataTextField("Title").DataValueField("Code").Filter(FilterType.Contains).DataSource(source =>
+                {
+                    source.Custom()
+                        .ServerFiltering(false)
+                        .ServerPaging(false)
+                        .PageSize(100)
+                        .Type("aspnetmvc-ajax")
+                        .Transport(t =>
+                        {
+                            t.Read(r =>
+                            {
+                                r.Action("GetJobPositions", "UIComponent");
+                            });
+                        });
+                })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-material">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">ذخیره <i class="icon-arrow-left13 position-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[name="Customer.PartyBankAccount.IBAN"]').formatter({
+            pattern: 'IR{{999999999999999999999999}}'
+        });
+        $('[name="Customer.Party.NationalId"]').formatter({
+            pattern: '{{999}}-{{999999}}-{{9}}'
+        });
+        $('[name="Customer.Contact.Mobile"]').formatter({
+            pattern: '{{99999999999}}'
+        });
+
+    });
+    function onAdditionalData() {
+        return {
+            text: $('[name="Customer.Contact.RegionId_input"]').val()
+        };
+    }
+    function onAdditionalDataBankName() {
+        return {
+            text: $('[name="Customer.PartyBankAccount.BankId_input"]').val()
+        };
+    }
+
+</script>
+
+
+
+@if (@TempData["Success"] != null)
+{
+    <script>
+        $(document).ready(function() {
+
+
+            showNotification('@TempData["Success"]', 's');
+
+
+        });
+    </script>
+}
+@if (@TempData["Error"] != null)
+{
+    <script>
+
+        $(document).ready(function() {
+            showNotification('@TempData["Error"]', 'e');
+
+        });
+    </script>
+}

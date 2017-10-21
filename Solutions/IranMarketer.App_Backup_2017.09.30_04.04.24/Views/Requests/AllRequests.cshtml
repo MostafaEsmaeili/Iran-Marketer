@@ -1,0 +1,939 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using Pikad.Framework.Infra.Utility
+@using IranMarketer.Common.Utility
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@using IranMarketer.Domain.Enum
+@model IranMarketer.App.Component.Model.AllRequestModel
+
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "فهرست درخواست ها";
+}
+<div>
+@*<div class="panel-heading">
+            <h5 class="panel-title">لیست درخواست ها</h5>
+
+        </div>*@
+<div id="filterPanel" class="panel panel-flat">
+<div class="panel-heading">
+    <h5 class="panel-title">فیلتر جستجو</h5>
+    <div class="heading-elements">
+        <ul class="icons-list">
+            <li><a data-action="collapse"></a></li>
+
+        </ul>
+    </div>
+</div>
+<div id="loadingDiv" style="display: none"></div>
+<div class="panel-body k-rtl">
+    <div class="row">
+
+        <div class="col-md-12 form-group">
+            <label class="display-block text-semibold">مشتری</label>
+            @(Html.Kendo().AutoComplete().Name("PartyName")
+                  .DataTextField("FullName")
+                  .Filter(FilterType.Contains)
+                  .MinLength(3)
+                  .HtmlAttributes(new
+                  {
+                      style = "width:630px;",
+                      //data_required_msg = "اطلاعات مشتری الزامی است",
+                      //required = "required"
+                  })
+                  .HeaderTemplate("<div style=\"width:630px !important;\" class=\"dropdown-header\">" +
+                                  "<span style=\"width:290px;\" class=\"k-widget k-header\" >عنوان</span>" +
+                                  "<span class=\"k-widget k-header\" >کد ملی</span>" +
+                                  "<span class=\"k-widget k-header\" >نام پدر</span>" +
+                                  "</div>")
+                  .Template("<div  class=\"dropdown-header\">" +
+                            "<span style=\"width:290px;\" class=\"k-state-default\">#: data.FullName #</span>" +
+                            "<span class=\"k-state-default\">#: data.NationalId #</span>" +
+                            "<span class=\"k-state-default\">#: data.FatherName #</span>" +
+                            "</div>").HtmlAttributes(new { style = "width:50%;" })
+                  .Placeholder("جستجوی مشتری بر اساس  نام و نام خانوادگی و کد ملی")
+                  .DataSource(source =>
+                  {
+                      source
+                          .Custom()
+                          .ServerFiltering(true)
+                          .ServerPaging(true)
+                          .PageSize(100)
+                          .Type("aspnetmvc-ajax")
+                          .Transport(t =>
+                          {
+                              t.Read(r =>
+                              {
+                                  r.Action("GetCustomerAutoCompleteFilter", "Party");
+                              });
+                          })
+
+                          .Schema(s =>
+                          {
+                              s.Data("Data").Total("Total");
+                          });
+                      ;
+
+                  }).Events(e =>
+                  {
+                      e.Change("onChange");
+                  })
+                  .Virtual(v => v.ItemHeight(26))
+                  )
+            <input type="hidden" id="PartyId" name="PartyId" data-bind="value: getPartyId" />
+
+
+        </div>
+        <div class="col-md-2 form-group">
+            <label class="display-block text-semibold">نوع مشتری</label>
+            @(Html.Kendo().ComboBox().Name("PartyType").HtmlAttributes(new { @class = "form-control k-rtl" })
+                  .DataTextField("PartyTypeTitle")
+                  .Filter(FilterType.Contains)
+                  .DataValueField("PartyTypeValue")
+                  .AutoBind(true)
+                  .Value("-1")
+                  .DataSource(source => source.Read(read => read.Action("GetPartyType", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+
+        </div>
+
+        <div class="col-md-2 form-group">
+
+            <label class="display-block text-semibold">نوع درخواست</label>
+            @(Html.Kendo().ComboBox().Name("RequestTransactionType").HtmlAttributes(new { @class = "form-control k-rtl" })
+                  .DataTextField("RequestTransactionTypeTitle")
+                  .Filter(FilterType.Contains)
+                  .DataValueField("RequestTransactionTypeValue")
+                  .AutoBind(true)
+                  .Value("-1")
+                  .DataSource(source => source.Read(read => read.Action("GetRequestTransactionType", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+        </div>
+
+        <div class="col-md-2 form-group">
+            <label class="display-block text-semibold">وضعیت</label>
+            @(Html.Kendo().ComboBox().Name("RequestTransactionState").HtmlAttributes(new { @class = "form-control k-rtl" })
+                  .DataTextField("RequestTransactionStateTitle")
+                  .Filter(FilterType.Contains)
+                  .DataValueField("RequestTransactionStateValue")
+                  .AutoBind(true)
+                  .Value("همه")
+                  .DataSource(source => source.Read(read => read.Action("GetRequestTransactionStateType", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+
+        </div>
+
+        <div class="col-md-2 form-group">
+            <label class="display-block text-semibold">شعبه</label>
+            @if (!Model.IsBranchManager)
+            {
+                @(Html.Kendo().ComboBox().Name("BranchId").HtmlAttributes(new { @class = "form-control k-rtl" })
+                      .DataTextField("BranchTitle")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("BranchValue")
+                      .AutoBind(true)
+                      .Value("-1")
+                      .DataSource(source => source.Read(read => read.Action("GetBranchesDropDownListById", "UIComponent", new { addAll = true }).Data("onadditionalBranch")).ServerFiltering(false)))
+            }
+
+
+        </div>
+
+        <div class="col-md-2 form-group">
+            <label class="display-block text-semibold">محل تامین صدور</label>
+            @(Html.Kendo().ComboBox().Name("RequestSettlementType").HtmlAttributes(new { @class = "form-control k-rtl" })
+                  .DataTextField("RequestSettlementTitle")
+                  .Filter(FilterType.Contains)
+                  .DataValueField("RequestSettlementValue")
+                  .AutoBind(true)
+                  .Value("-1")
+                  .DataSource(source => source.Read(read => read.Action("GetRequestSettlementType", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+
+        </div>
+        <div class="col-md-3 form-group">
+            <label class="display-block text-semibold">از تاریخ</label>
+            @Html.Kendo().DatePicker().Name("StartDate").HtmlAttributes(new { type = "text" }).Format("yyyy/MM/dd")
+        </div>
+        <div class="col-md-3 form-group">
+
+            <label class="display-block text-semibold">تا تاریخ</label>
+            @Html.Kendo().DatePicker().Name("EndDate").HtmlAttributes(new { type = "text" }).Format("yyyy/MM/dd")
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>مبلغ درخواست صدور از</label>
+                <input class="form-control mask" type="text" min="0" id="subscriptionRequestamountFrom" />
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>تا  </label>
+                <input class="form-control mask" type="text" min="0" id="subscriptionRequestamountTo" />
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>تعداد درخواست ابطال از</label>
+                <input class="form-control mask" type="text" min="0" id="RedemptionRequestform" />
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>تا  </label>
+                <input class="form-control mask" type="text" min="0" id="RedemptionRequestTo" />
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>شناسه از</label>
+                <input class="form-control " type="text" min="0" id="uniqueIdFrom" />
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>شناسه تا  </label>
+                <input class="form-control " type="text" min="0" id="uniqueIdTo" />
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="text-right">
+        <button type="button" id="search" class="btn btn-primary">جست و جو <i class="icon-arrow-left13 position-right"></i></button>
+    </div>
+</div>
+</div>
+
+<div class="panel panel-body">
+    <div class="k-rtl" style="font-size: 11px;">
+        @(Html.Kendo().Grid<IranMarketer.Domain.DTO.Request>().HtmlAttributes(new { style = "font-size: 10px;" })
+              .Name("grid")
+
+              .Columns(column =>
+              {
+                  column.Bound(x => x.Id).Title("شناسه ").Width(60).ClientTemplate("<a href='/Requests/ViewRequest?Id=${Id}'>${Id}</a>").ClientFooterTemplate("جمع کل");
+                  column.Command(command => command.Custom("رسید").Click("toPrint")).Width(80);
+                  column.Command(command => command.Custom("اعلامیه").Click("toPrintStatement")).Width(80);
+                  column.Bound(x => x.DateJalali).Title("تاریح درخواست").Width(110).HtmlAttributes(new { Style = "direction:ltr;font-size: 10px" });
+                  column.Bound(x => x.ConfirmationDateJalali).Title("تاریخ تایید").Width(80);
+                  column.Bound(x => x.TransactionTypeTitle).Title("نوع ").Width(60);
+                  column.Bound(x => x.BranchName).Title("شعبه").Width(75);
+                  column.Bound(x => x.PartyFullName).Title("نام مشتری").Width(110);
+                  column.Bound(x => x.NationalId).Title("کد ملی").Width(95);
+                  column.Bound(x => x.Amount).Title("مبلغ").Width(100).Format("{0:n0}").ClientFooterTemplate(" #=SetColor(sum)#");
+                  column.Bound(x => x.Volume).Title("تعداد").Width(50).Format("{0:n0}").ClientFooterTemplate(" #=SetColor(sum)#");
+                  column.Bound(x => x.ProcessDateJalali).Title("تاریخ مبنای درخواست").Width(100).Hidden(true);
+                  column.Bound(x => x.CreatedBy).Title("کاربر").Width(60);
+                  column.Bound(x => x.SettlementTypeTitle).Title("محل تامین").Width(60);
+                  column.Bound(x => x.StateTitle).Title("وضعیت").Width(80);
+                  column.Template(@<text></text>).ClientTemplate("<input type='checkbox' #= CheckToConfirm ? checked='checked':'' # class='chkbx' />")
+                      .HeaderTemplate("<input type='checkbox' id='masterCheckBox' onclick='checkAll(this)'/>انتخاب همه").Width(70).Visible(Model.IsAdminRole);
+                  column.Command(command => command.Custom("حذف").Click("toDelete")).Width(100).Title("حذف").Visible(Model.CanDelete);
+
+              })
+              .ToolBar(toolBar =>
+              {
+                  if (!@Model.IsAdminRole)
+                  {
+                      toolBar.Excel().Text("Excel");
+                  }
+                  if (@Model.IsAdminRole)
+                  {
+
+                      toolBar.Template(
+
+
+                          @<text>
+                              <div class="toolbar" style="direction: rtl !important;">
+
+                                  <a class="k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                  <a style="background-color: #F25320 !important;" id="Deny" class='k-button k-button-icontext ' onlick='customCommand()'>رد درخواست</a>
+                                  <a id="okRequest" style="float: left; background-color: #00B2C9 !important;" class='k-button k-button-icontext '>تایید درخواست</a>
+                              </div>
+                           </text>);
+                  }
+
+
+              })
+              .Events(e =>
+              {
+                  e.DataBound("onGridBound");
+                  e.ExcelExport("hideprog");
+              })
+              .Excel(excel => excel
+                  .FileName("AllRequests.xlsx")
+                  .Filterable(true)
+                  .AllPages(true)
+                  .ForceProxy(true)
+                  .AllPages(true)
+                  .ProxyURL(Url.Action("CustomExcelReport", "Requests"))
+              )
+              .Sortable(sortable => sortable.AllowUnsort(false))
+              .Editable(editable =>
+              {
+                  editable.Mode(GridEditMode.InCell);
+              })
+              .AllowCopy(true)
+              .Selectable()
+              .ColumnMenu()
+              .AutoBind(true)
+              .ColumnMenu(e =>
+              {
+                  e.Columns(true);
+
+              })
+              .Pageable(pager => pager
+                  .Input(true)
+                  .Numeric(true)
+                  .Info(true)
+                  .PreviousNext(true)
+                  .Refresh(true)
+                  .PageSizes(new[] { 200, 300, 400, 500 }))
+              .HtmlAttributes(new { style = "height:800px;" })
+
+              .DataSource(dataSource =>
+                  dataSource.Custom().Events(x => x.RequestEnd("onRequestEnd"))
+                      .Type("aspnetmvc-ajax")
+                      .PageSize(200)
+                      .ServerPaging(true)
+                      .ServerSorting(true)
+                      .ServerFiltering(true)
+                      .ServerAggregates(true)
+                      .Aggregates(x =>
+                      {
+                          x.Add(p => p.Volume).Sum();
+                          x.Add(p => p.Amount).Sum();
+
+                      })
+                      .Transport(transport => transport
+                          .Read(read => read.Action("GetAllRequest", "Requests").Data("filterData").Type(HttpVerbs.Post))
+                          .Update(read => read.Action("UpdateStatus", "Requests").Type(HttpVerbs.Post)
+
+
+                          )).Batch(true)
+                      .Schema(s => s.Data("Data").Model(model =>
+                      {
+                          model.Id(a => a.Id);
+                          model.Field(x => x.Id).Editable(false);
+
+                          model.Field(x => x.Amount).Editable(false);
+                          model.Field(x => x.TransactionTypeTitle).Editable(false);
+                          model.Field(x => x.EvidenceStateTitle).Editable(false);
+                          model.Field(x => x.SettlementTypeTitle).Editable(false);
+                          model.Field(x => x.BranchName).Editable(false);
+                          model.Field(x => x.CreatedBy).Editable(false);
+                          model.Field(x => x.PartyFullName).Editable(false);
+                          model.Field(x => x.NationalId).Editable(false);
+                          model.Field(x => x.Amount).Editable(false);
+                          model.Field(x => x.Volume).Editable(false);
+
+                      }).Total("Total"))
+
+
+              )
+              .Scrollable(x =>
+              {
+                  x.Enabled(true);
+
+              })
+              .Resizable(resize => resize.Columns(true))
+              .Reorderable(reorder => reorder.Columns(true)))
+
+    </div>
+</div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+    .dropdown-header > span {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: right;
+        display: inline-block;
+        border-style: solid;
+        border-width: 0 0 1px 1px;
+        padding: .3em .6em;
+        width: 150px;
+    }
+
+    .dropdown-header > span:first-child {
+        width: 150px;
+        border-left-width: 0;
+    }
+
+    .k-grid .k-state-selected {
+        background-color: #FFF3E0 !important;
+        color: #000000;
+    }
+
+    .k-grid .k-alt.k-state-selected {
+        background-color: #FFF3E0 !important;
+        color: #000000;
+    }
+
+    #loadingDiv {
+        position: fixed;
+        top: 135px;
+        left: 800px;
+        width: 70px;
+        height: 70px;
+        background-image: url(../../assets/images/ajax-loader.gif);
+        opacity: 0.5;
+        z-index: 5000;
+        display: none;
+    }
+</style>
+
+
+<script>
+
+
+    $(document).ready(function() {
+        $("#loadingDiv").hide();
+        $('#filterPanel').click(function() {
+            $("#loadingDiv").hide();
+        });
+    });
+
+
+    function onGridBound(e) {
+
+        var items= $("#grid").data("kendoGrid").dataItems();
+        items.forEach(function(f) {
+            if (f.State == 8 || f.State == 3) {
+                var row = $("#grid").data("kendoGrid").tbody.find("tr[data-uid='" + f.uid + "']");
+                //   $(row[0]).css("background-color", "#FAFFFA");
+                //f.set("CheckToConfirm", true);
+                //$(row[0].children[15]).prop('disabled', true);
+                if (row[0].children.length >= 17)
+                {
+                    $(row[0].children[15].firstChild).prop('checked', true);
+                    $(row[0].children[15].firstChild).prop('disabled', true);
+
+                    $(row[0].children[16].firstChild).attr('disabled', 'disabled');
+                    $(row[0].children[16].firstChild).hide();
+                }
+
+                if (row[0].children.length == 16)
+                {
+                    $(row[0].children[15].firstChild).attr('disabled', 'disabled');
+                    $(row[0].children[15].firstChild).hide();
+                }
+
+            } else if (f.State != 2){
+                var row = $("#grid").data("kendoGrid").tbody.find("tr[data-uid='" + f.uid + "']");
+                // $(row[0]).css("background-color", "#FAF8F7");
+                if (row[0].children.length >= 17)
+                {
+
+                    $(row[0].children[15].firstChild).prop('checked', true);
+                    $(row[0].children[15].firstChild).prop('disabled', true);
+                    $(row[0].children[16].firstChild).attr('disabled', 'disabled');
+                    $(row[0].children[16].firstChild).hide();
+                }
+                if (row[0].children.length == 16)
+                {
+                    $(row[0].children[15].firstChild).attr('disabled', 'disabled');
+                    $(row[0].children[15].firstChild).hide();
+                }
+            }
+
+        });
+    }
+    $('#grid').on('click', '.chkbx', function (e) {
+
+        var grid = $("#grid").data("kendoGrid"),
+            dataItem = grid.dataItem($(e.target).closest("tr"));
+        var td = $(this).parent();
+        dataItem.set("CheckToConfirm", this.checked);
+        //td.addClass('k-dirty-cell');
+
+        //// dataItem.set("Status", 8);
+        //$('<span class="k-dirty"></span>').insertBefore($(this));
+
+    });
+    function checkAll(ele) {
+        var state = $(ele).is(':checked');
+        var grid = $('#grid').data().kendoGrid;
+        $.each(grid.dataSource.view(), function () {
+
+            if (this['CheckToConfirm'] != state)
+                this.dirty = true;
+            if (this['State'] == 2) {
+                this['CheckToConfirm'] = state;
+                //this['State'] = 3;
+            }
+        });
+        grid.refresh();
+    }
+    function onadditionalBranch() {
+        return {
+            text: $('[name="BranchId_input"]').val()
+        };
+    }
+
+    function filterData() {
+        var party = $("#PartyName").data("kendoAutoComplete").dataItem();
+        var partyType = $("#PartyType").data("kendoComboBox").dataItem();
+
+        var branchId = $("#BranchId").data("kendoComboBox") == undefined ? -1 : $("#BranchId").data("kendoComboBox").dataItem();
+        var requestTransactionType = $("#RequestTransactionType").data("kendoComboBox").dataItem();
+        var startDate = $("#StartDate").val();
+        var endDate = $("#EndDate").val();
+        var requestTransactionState = $("#RequestTransactionState").data("kendoComboBox").dataItem();
+        var requestSettlementType = $("#RequestSettlementType").data("kendoComboBox").dataItem();
+
+        var subscriptionRequestamountTo = $("#subscriptionRequestamountTo").cleanVal();
+        var subscriptionRequestamountFrom = $("#subscriptionRequestamountFrom").cleanVal();
+
+
+        var redemptionRequestform = $("#RedemptionRequestform").cleanVal();
+        var redemptionRequestTo = $("#RedemptionRequestTo").cleanVal();
+
+        var uniqueIdTo = $("#uniqueIdTo").val();
+        var uniqueIdFrom = $("#uniqueIdFrom").val();
+
+
+        var data = {
+            FromRequestId: uniqueIdFrom > 0 ? uniqueIdFrom : null,
+            ToRequestId: uniqueIdTo > 0 ? uniqueIdTo : null,
+            PartyId: party != null ? party.Id : null,
+            StartDate: startDate,
+            EndDate: endDate,
+            RequestTransactionType: requestTransactionType != null
+                ? requestTransactionType.RequestTransactionTypeValue
+                : null,
+            RequestTransactionState: requestTransactionState != null ? requestTransactionState.RequestTransactionStateValue:null,
+            FromSubscriptionAmount: subscriptionRequestamountFrom > 0 ? subscriptionRequestamountFrom : null,
+            ToSubscriptionAmount: subscriptionRequestamountTo > 0 ? subscriptionRequestamountTo : null,
+            BranchId: branchId != null ? branchId.BranchValue : null,
+            FromRedemptionVolume: redemptionRequestform > 0 ? redemptionRequestform : null,
+            ToRedemptionVolume: redemptionRequestTo > 0 ? redemptionRequestTo : null,
+            RequestSettlementType: requestSettlementType != null ? requestSettlementType.RequestSettlementValue : null,
+            PartyType: partyType != null ? partyType.PartyTypeValue:null
+        }
+        if (!$('#filterPanel').hasClass('panel-collapsed')) {
+            $('#filterPanel [data-action=collapse]').click();
+        }
+
+        return { model: data };
+    }
+    $("#search").click(function () {
+
+        $("#grid").data("kendoGrid").dataSource.read();
+
+    });
+
+    function SetColor(e) {
+        if (e < 0)
+            return kendo.toString(Math.abs(e), "0:#,##0;#,##0");
+        //return "<font color=\"red\">" + kendo.toString(e, "0:#,##0;(#,##0)")+"</font>";
+        else if (e>0)
+            return kendo.toString(e, "0:#,##0;#,##0") ;
+        else return"0" ;
+
+    }
+
+    function toDelete(e) {
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        if (dataItem != null) {
+            var notice = new PNotify({
+                title: 'توجه',
+                text: '<p>آیا درخواست حذف شود؟</p>',
+                hide: false,
+                type: 'warning',
+                confirm: {
+                    confirm: true,
+                    buttons: [
+                        {
+                            text: 'بله',
+                            addClass: 'btn btn-sm btn-primary'
+                        },
+                        {
+                            text: 'خیر',
+                            addClass: 'btn btn-sm btn-link'
+                        }
+                    ]
+                },
+                buttons: {
+                    closer: false,
+                    sticker: false
+                },
+                history: {
+                    history: false
+                },
+                addclass: 'stack-top-right',
+                stack: stack_top_left
+            })
+
+            // On confirm
+            notice.get().on('pnotify.confirm',
+                function () {
+                    $.ajax({
+                        url: "/Requests/DeleteRequest",
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(dataItem),
+                        contentType: "application/json; charset=utf-8",
+                        401: function() {
+                            var url = '@Url.Action("Login", "Account")';
+                            window.location.href = url;
+                        },
+                        error: function(response) {
+
+                            showNotification(response.Message, 'e');
+                            $("#loadingDiv").hide();
+                        },
+
+                        success: function(response) {
+
+                            if (response != null && response.BRuleCode == '1000') {
+                                showNotification(response.Message, 's');
+                                $("#loadingDiv").hide();
+                                $("#grid").data("kendoGrid").dataSource.read();
+
+                            } else {
+                                showNotification(response.Message, 'e');
+                                $("#loadingDiv").hide();
+                            }
+                        }
+                    });
+                })
+
+            // On cancel
+            notice.get().on('pnotify.cancel',
+                function () {
+
+                });
+        }
+    }
+
+
+    function toPrint(e) {
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        if (dataItem != null) {
+            if (dataItem.TransactionType == 2) {
+                
+                var dataUri = "data:application/pdf;base64," + dataItem.Id;
+                kendo.saveAs({
+                    dataURI: dataUri,
+                    fileName: "Report.Pdf",
+                    proxyURL: "@Url.Action("SubscriptionReceiptPdf", "Requests")",
+                    forceProxy: true
+                });
+            }
+            else if (dataItem.TransactionType == 3)
+            {
+                var dataUri = "data:application/pdf;base64," + dataItem.Id;
+                kendo.saveAs({
+                    dataURI: dataUri,
+                    fileName: "Report.Pdf",
+                    proxyURL: "@Url.Action("RedemptionReceiptPdf", "Requests")",
+                    forceProxy: true
+                });
+            }
+        }
+
+
+    }
+    function toPrintStatement(e) {
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        if (dataItem != null) {
+            if (dataItem.TransactionType == 2) {
+                
+                var dataUri = "data:application/pdf;base64," + dataItem.Id;
+                kendo.saveAs({
+                    dataURI: dataUri,
+                    fileName: "Report.Pdf",
+                    proxyURL: "@Url.Action("SubscriptionStatementPdf", "Requests")",
+                    forceProxy: true
+                });
+            }
+            else if (dataItem.TransactionType == 3)
+            {
+                var dataUri = "data:application/pdf;base64," + dataItem.Id;
+                kendo.saveAs({
+                    dataURI: dataUri,
+                    fileName: "Report.Pdf",
+                    proxyURL: "@Url.Action("RedemptionStatementPdf", "Requests")",
+                    forceProxy: true
+                });
+            }
+        }
+
+
+    }
+
+
+
+
+    function toUpdate(e)
+    {
+        var dataItem = $("#PartyName").data("kendoAutoComplete").dataItem();
+
+        $.ajax({
+            url: "/Requests/UpdateRequest",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(dataItem),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                //  showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    $("#partyAccount").val(response.Result.FullAccountTitle);
+
+
+                } else {
+                    //showNotification(response.Message, 'e');
+                }
+            }
+        });
+
+    }
+
+    function onChange() {
+        var dataItem = $("#PartyName").data("kendoAutoComplete").dataItem();
+        var p = $('[name="PartyId"]');
+        if (dataItem != null)
+            $(p).val(dataItem.Id);
+    }
+
+    function onRequestEnd(e) {
+        if (e.type == "update" && e.response.BRuleCode == 1000) {
+            showNotification(e.response.Message, 's');
+            $('#grid').data('kendoGrid').dataSource.read();
+
+        } else if (e.type == "update") {
+
+            showNotification(e.response.Message, 'e');
+            $('#grid').data('kendoGrid').dataSource.read();
+        }
+
+    }
+
+    function hideprog(e) {
+        $("#loadingDiv").hide();
+    }
+
+    $(".k-grid-excel")[0].onmousedown = function (e){
+        $("#loadingDiv").show();
+    }
+
+    $("#Deny").click(function() {
+        var notice = new PNotify({
+            title: 'توجه',
+            text: '<p>آیا درخواست ها رد شود؟</p>',
+            hide: false,
+            type: 'warning',
+            confirm: {
+                confirm: true,
+                buttons: [
+                    {
+                        text: 'بله',
+                        addClass: 'btn btn-sm btn-primary'
+                    },
+                    {
+                        text: 'خیر',
+                        addClass: 'btn btn-sm btn-link'
+                    }
+                ]
+            },
+            buttons: {
+                closer: false,
+                sticker: false
+            },
+            history: {
+                history: false
+            },
+            addclass: 'stack-top-right',
+            stack: stack_top_left
+        });
+
+        // On confirm
+        notice.get().on('pnotify.confirm',
+            function() {
+
+                $("#grid").data("kendoGrid").dataSource.read();
+                var data = $("#grid").data("kendoGrid").dataSource.data();
+                var dirty = $.grep(data,
+                    function(item) {
+                        return item.dirty;
+                    });
+                $.ajax({
+                    url: "/Requests/UpdateRejectedByManagerStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(dirty),
+                    contentType: "application/json; charset=utf-8",
+                    401: function() {
+                        var url = '@Url.Action("Login", "Account")';
+                        window.location.href = url;
+                    },
+                    error: function(response) {
+                        showNotification(response.Message, 'e');
+                    },
+                    success: function(response) {
+                        if (response != null && response.BRuleCode == '1000') {
+                            showNotification(response.Message, 's');
+                            $('#grid').data('kendoGrid').dataSource.read();
+
+
+                        } else {
+                            showNotification(response.Message, 'e');
+
+
+                        }
+                    }
+                });
+
+            });
+
+        // On cancel
+        notice.get().on('pnotify.cancel',
+            function () {
+
+            });
+    });
+    function GetColumnIndexFromName(colName) {
+        var index = -1;
+        var grid = $("#grid").data("kendoGrid");
+        var columns = grid.options.columns;
+        if (columns.length > 0) {
+            for (var i = 0; i < columns.length; i++) {
+                if (columns[i].field == colName) { // columns[i].title -- You can also use title property here but for this you have to assign title for all columns
+                    index = i;
+                }
+            }
+        }
+
+        return index;
+    }
+
+
+
+    $("#okRequest").click(function() {
+        var notice = new PNotify({
+            title: 'توجه',
+            text: '<p>آیا درخواست ها تایید شود؟</p>',
+            hide: false,
+            type: 'warning',
+            confirm: {
+                confirm: true,
+                buttons: [
+                    {
+                        text: 'بله',
+                        addClass: 'btn btn-sm btn-primary'
+                    },
+                    {
+                        text: 'خیر',
+                        addClass: 'btn btn-sm btn-link'
+                    }
+                ]
+            },
+            buttons: {
+                closer: false,
+                sticker: false
+            },
+            history: {
+                history: false
+            },
+            addclass: 'stack-top-right',
+            stack: stack_top_left
+        });
+
+        // On confirm
+        notice.get().on('pnotify.confirm',
+            function() {
+
+                $("#grid").data("kendoGrid").dataSource.read();
+                var data = $("#grid").data("kendoGrid").dataSource.data();
+                var dirty = $.grep(data,
+                    function(item) {
+                        return item.dirty;
+                    });
+                $.ajax({
+                    url: "/Requests/UpdateStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(dirty),
+                    contentType: "application/json; charset=utf-8",
+                    401: function() {
+                        var url = '@Url.Action("Login", "Account")';
+                        window.location.href = url;
+                    },
+                    error: function(response) {
+                        showNotification(response.Message, 'e');
+
+                    },
+                    success: function(response) {
+                        if (response != null && response.BRuleCode == '1000') {
+                            showNotification(response.Message, 's');
+                            $('#grid').data('kendoGrid').dataSource.read();
+
+                        } else {
+                            showNotification(response.Message, 'e');
+
+                        }
+                    }
+                });
+            });
+
+        // On cancel
+        notice.get().on('pnotify.cancel',
+            function () {
+
+            });
+    });
+
+
+</script>

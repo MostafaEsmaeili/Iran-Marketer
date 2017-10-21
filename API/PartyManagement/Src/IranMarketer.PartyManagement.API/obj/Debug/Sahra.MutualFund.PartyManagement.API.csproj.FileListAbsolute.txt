@@ -1,0 +1,5 @@
+F:\FundProject\API\PartyManagement\Bin\Sahra.MutualFund.PartyManagement.API.dll
+F:\FundProject\API\PartyManagement\Bin\Sahra.MutualFund.PartyManagement.API.pdb
+F:\FundProject\API\PartyManagement\Src\Sahra.MutualFund.PartyManagement.API\obj\Debug\Sahra.MutualFund.PartyManagement.API.csprojResolveAssemblyReference.cache
+F:\FundProject\API\PartyManagement\Src\Sahra.MutualFund.PartyManagement.API\obj\Debug\Sahra.MutualFund.PartyManagement.API.dll
+F:\FundProject\API\PartyManagement\Src\Sahra.MutualFund.PartyManagement.API\obj\Debug\Sahra.MutualFund.PartyManagement.API.pdb

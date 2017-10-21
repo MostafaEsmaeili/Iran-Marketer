@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A752987-D17A-4FDC-BE62-EA0230A52FBC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Sahra.MutualFund.Agent.NAV.Runner</RootNamespace>
+    <AssemblyName>Sahra.MutualFund.Agent.NAV.Runner</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Castle.Core\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Castle.Windsor\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Common.Logging\2.1.2\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.NLog20">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Common.Logging\2.1.2\Common.Logging.NLog20.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Dapper\1.50.2\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FastCrud">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Dapper.FastCrud\2.4.1\Dapper.FastCrud.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Extended">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\NLog\NLog.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.Accounting.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.Accounting.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.CashFlow.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.CashFlow.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Accounting.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Accounting.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Accounting.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Accounting.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Accounting.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Accounting.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Calculation.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Calculation.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.CashFlow.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.CashFlow.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.CashFlow.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.CashFlow.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.CashFlow.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.CashFlow.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Common">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Domain">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Fund.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Fund.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Fund.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Fund.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Fund.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Fund.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Fund.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Fund.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.PartyManagement.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.PartyManagement.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.PartyManagement.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.PartyManagement.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.PartyManagement.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.PartyManagement.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.RequestManagement.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.RequestManagement.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.RequestManagement.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.RequestManagement.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.RequestManagement.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.RequestManagement.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.RequestManagement.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.RequestManagement.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.SharedData.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.SharedData.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.SharedData.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.SharedData.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.SharedData.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.SharedData.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.SharedData.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.SharedData.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Trade.API">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Trade.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Trade.Dao">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Trade.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.Trade.Service">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.Trade.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.MutualFund.UserManagement">
+      <HintPath>..\..\Lib\SahraLib\Sahra.MutualFund.UserManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.PartyManagement.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.PartyManagement.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Sahra.Trade.Interface">
+      <HintPath>..\..\Lib\SahraLib\Sahra.Trade.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Topshelf">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Topshelf\Topshelf.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.NLog">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Topshelf\Topshelf.NLog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgentStarter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\VoucherDetailResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\VoucherMasterResource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sahra.MutualFund.Agent.NAV.Component\Sahra.MutualFund.Agent.NAV.Component.csproj">
+      <Project>{7849eb63-4231-4881-a412-9618d2d5e4fc}</Project>
+      <Name>Sahra.MutualFund.Agent.NAV.Component</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

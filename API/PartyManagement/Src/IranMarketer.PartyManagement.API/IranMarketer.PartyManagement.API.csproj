@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.PartyManagement.API</RootNamespace>
+    <AssemblyName>IranMarketer.PartyManagement.API</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Core\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Windsor\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Dapper\1.50.2\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FastCrud">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Dapper.FastCrud\2.4.1\Dapper.FastCrud.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.Common">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.PartyManagement.Dao">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.PartyManagement.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.PartyManagement.Interface">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.PartyManagement.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.PartyManagement.Service">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.PartyManagement.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.SharedData.Interface">
+      <HintPath>..\..\..\WebApi\Lib\SahraLib\IranMarketer.SharedData.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.UserManagement">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.UserManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\System\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomerProvider.cs" />
+    <Compile Include="PartyBankAccountProvider.cs" />
+    <Compile Include="PartyProvider.cs" />
+    <Compile Include="PartyRolesProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Core\Domain\Src\IranMarketer.Domain.csproj">
+      <Project>{cf384560-b8c1-48a1-b753-2f771b4613c0}</Project>
+      <Name>IranMarketer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SharedData\Src\IranMarketer.SharedData\IranMarketer.SharedData.API.csproj">
+      <Project>{25C01C02-1ECD-455E-A426-0F42B2EA909B}</Project>
+      <Name>IranMarketer.SharedData.API</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <resource name="SubscriptionRequest">واریز جهت درخواست صدور برای تاریخ {0}</resource>
+  <resource name="PublicSimpleVoucher">سند عمومی صندوق</resource>
+  <resource name="DailyCalculation">محاسبات روزانه صندوق</resource>
+  <resource name="SubscriptionRequestPayBack">رد درخواست صدور</resource>
+  <resource name="BankTransferVoucher">انتقال وجه بین بانکی در تاریخ {0}</resource>
+  <resource name="BankDepositProfitReceiveVoucher">دریافت سود بانکی در تاریخ {0}</resource>
+  <resource name="ConfirmSubscriptionRequestVoucher">تایید درخواست های صدور در تاریخ {0}</resource>
+  <resource name="ConfirmRedemptionRequestVoucher">تایید درخواست های ابطال در تاریخ {0}</resource>
+
+
+</root>

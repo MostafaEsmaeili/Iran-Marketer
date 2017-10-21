@@ -1,0 +1,351 @@
+﻿@using IranMarketer.App.Helper
+@using IranMarketer.Domain.DTO
+@using Kendo.Mvc.UI
+@model WorkExperience
+<script>
+    var workXPId = 0;
+
+</script>
+@*<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>*@
+<form id="WorkExprienceForm" class="form-validate-jquery" novalidate="novalidate">
+    <fieldset class="step ui-formwizard-content "  style="display: block;">
+        <h6 class="form-wizard-title text-semibold">
+            <span class="form-wizard-count">3</span>
+            سوابق شغلی
+            <small class="display-block">از سوابق شغلی خود بنویسید...</small>
+        </h6>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>عنوان شغل</label>
+                    @Html.Kendo().TextBoxFor(x => x.JobTitle).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label class="display-block text-semibold"> گروه شغلی</label>
+                    @(Html.Kendo().ComboBoxFor(x => x.JobCategoryId).HtmlAttributes(new { @class = "form-control k-rtl",required = "required" })
+                          .DataTextField("TitleFa")
+                          .Filter(FilterType.Contains)
+                          .DataValueField("Id")
+                          .SyncValueAndText(true)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetJobCategories", "UIComponent", new { addAll = false })).ServerFiltering(false)))
+                </div>
+            </div>
+
+   
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>نام شرکت</label>
+                    @Html.Kendo().TextBoxFor(x => x.CompanyName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label class="display-block text-semibold">زمینه فعالیت شرکت</label>
+                    @(Html.Kendo().ComboBoxFor(x => x.IndustryId).HtmlAttributes(new { @class = "form-control k-rtl", required = "required" })
+                          .DataTextField("TitleFa")
+                          .Filter(FilterType.Contains)
+                          .DataValueField("Id")
+                          .SyncValueAndText(true)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label>شهر</label>
+                    @(Html.Kendo().ComboBoxFor(x => x.JobCityId).HtmlAttributes(new { @class = " form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("Title")
+                          .DataValueField("Id").Filter(FilterType.Contains)
+                          .AutoBind(true)
+                          .HighlightFirst(false)
+                          .SyncValueAndText(true)
+                          .MinLength(3)
+                          .DataSource(source => source.Read(read => read.Action("GetCities", "UIComponent", new { addAll = true }).Type(HttpVerbs.Get)).ServerFiltering(true)))
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ماه شروع</label>
+                   
+                    @Html.PersianDateTimePicker("FromDate")
+
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>هنوز در این کار مشغول هستم</label>
+                    @Html.Kendo().CheckBoxFor(x=>x.StillInThisWork)</div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ماه پایان</label>
+                   
+                    @Html.PersianDateTimePicker("ToDate")
+
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <div class="text-left">
+        <button id="addWorkExprince" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+
+        <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+
+    </div>
+</form>
+<div class="panel panel-flat panel-collapsed">
+    <div class="panel-heading">
+        <h5 class="panel-title">تمام دسته بندی بندی های شعلی<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<IranMarketer.Domain.Entity.WorkExperience>().Mobile(MobileMode.Auto)
+                  .Name("WorkExperienceGrid")
+
+                  .Columns(column =>
+                  {
+
+
+                      column.Bound(x => x.JobTitle).Title("عنوان شغل").Width(150);
+                      column.Bound(x => x.CompanyName).Title("نام شرکت").Width(150);
+                      column.Bound(x => x.Region.Title).Title("شهر").Width(100); ;
+                      column.Bound(x => x.FromDateJalali).Title("از تاریخ");
+                      column.Bound(x => x.ToDateJalali).Title("تا تاریخ");
+                      column.Bound(x => x.StillInThisWork).Title("هنوز مشغول به کار هستم") .ClientTemplate("<#=StillInThisWork?'بله':'خیر'#>");
+                      ;
+                      column.Command(command => command.Custom("ویرایش").Click("WorkExprienceShowDetails")).Width(100);
+                      column.Command(command => command.Custom("حذف").Click("WorkExpriencDelete")).Width(100);
+
+                  })
+                  .Excel(excel => excel
+                      .FileName("WorkExperienceGrid.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "Profile"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+                  .Pageable(pageable => pageable
+                      .Refresh(true)
+                      .PageSizes(true)
+                      .ButtonCount(5))
+                  .Selectable(x =>
+                  {
+                      x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                  })//.Events(c => c.Change("AuditorSettingGridonChenge"))
+                  .ToolBar(toolbar =>
+                  {
+                      toolbar.Template(@<text>
+                                           <div class="row toolbar" style="direction: rtl !important;">
+
+                                               <div class="pull-left ">
+                                                   <div class="col-xs-6" style="display: inline-block;">
+                                                       <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                                   </div>
+                                                   <div class="col-xs-6" style=" display: inline-block;">
+                                                       <div class="input-group">
+                                                           <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                           <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                        </text>);
+                  })
+                  .AllowCopy(true)
+                  .Selectable()
+                  .HtmlAttributes(new { style = "height:Auto;" })
+                  .DataSource(dataSource => dataSource
+                      .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.JobTitle).Descending())
+                      .PageSize(20).Read(read => read.Action("GetAllWorkExprience", "Profile"))
+                  )
+                  //.Resizable(resize => resize.Columns(true))
+                  .Resizable(r => r.Columns(true))
+                  .Scrollable()
+
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="~/assets/js/plugins/forms/validation/validate.min.js"></script>
+
+
+<script>
+    
+
+    $( "#WorkExprienceForm" ).keyup(function() {
+        $("#WorkExprienceForm").valid();
+    });
+    $("#addWorkExprince").click(function () {
+
+        if (!$("#WorkExprienceForm").valid()) {
+            return;
+        } else {
+
+            debugger;
+
+            var data = $("#WorkExprienceForm").serializeJSON({ checkboxUncheckedValue: "true" });
+            $("#WorkExprienceForm").KendoToJson(data);
+            data['Id'] = workXPId;
+
+
+            $.ajax({
+                url: '@Url.Action("SaveWorkExprince", "Profile")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        clear();
+                        $("#WorkExperienceGrid").data("kendoGrid").dataSource.read();
+                        data.Id = 0;
+
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function clear() {
+        $('#WorkExprienceForm').ClearAll();
+        
+
+    }
+    $( document ).ready(function() {
+        // LoadWorkExprience();
+    });
+    function WorkExprienceShowDetails(e)
+    {
+        var grid = $("#WorkExperienceGrid").data("kendoGrid");
+
+        var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+
+        $.ajax({
+            url: '@Url.Action("GetWorkExprienceById", "Profile")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(dataItem),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    //   showNotification(response.Message, 's');
+                    try {
+                        $('#WorkExprienceForm').loadJSON(response.Result);
+                    } catch (e) {
+                      
+                    }
+                    try {
+                        $('#WorkExprienceForm').BindJsonKendo(response.Result, '');
+
+                    } catch (e) {
+
+                    } 
+                    workXPId = response.Result.Id;
+                  
+
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    }
+
+    function WorkExpriencDelete(e)
+    {
+        var grid = $("#WorkExperienceGrid").data("kendoGrid");
+
+        var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+        $.ajax({
+            url: '@Url.Action("DeleteWorkExprenceById", "Profile")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(dataItem),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    //   showNotification(response.Message, 's');
+                    grid.dataSource.read();
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    }
+</script>

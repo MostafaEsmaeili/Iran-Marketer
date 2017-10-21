@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VouhcerDetailDesc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <VoucherDetail Code="100" SubsidiaryLedgerCode="1110">واریز جهت درخواست صدور برای {0} طی شماره فیش {1} به حساب بانک {2} {3}</VoucherDetail>
+  <VoucherDetail Code="100" SubsidiaryLedgerCode="2220">واریز جهت درخواست صدور برای {0} طی شماره فیش {1} به حساب بانک {2} {3}</VoucherDetail>
+  <VoucherDetail Code="100" SubsidiaryLedgerCode="2250">درخواست صدور از محل سود پرداختنی به {0} </VoucherDetail>
+
+</VouhcerDetailDesc>

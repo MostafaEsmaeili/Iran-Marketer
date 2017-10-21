@@ -1,0 +1,6 @@
+D:\DOOOZestan-master\DOOOZestan-master\BackEnd\build\IdentityServer3.Admin.EntityFramework.dll.config
+D:\DOOOZestan-master\DOOOZestan-master\BackEnd\build\IdentityServer3.Admin.EntityFramework.dll
+D:\DOOOZestan-master\DOOOZestan-master\BackEnd\build\IdentityServer3.Admin.EntityFramework.pdb
+D:\DOOOZestan-master\DOOOZestan-master\BackEnd\IdentityServer\IdentityServer3.Admin.EntityFramework\obj\Debug\IdentityServer.EntityFramework.csprojResolveAssemblyReference.cache
+D:\DOOOZestan-master\DOOOZestan-master\BackEnd\IdentityServer\IdentityServer3.Admin.EntityFramework\obj\Debug\IdentityServer3.Admin.EntityFramework.dll
+D:\DOOOZestan-master\DOOOZestan-master\BackEnd\IdentityServer\IdentityServer3.Admin.EntityFramework\obj\Debug\IdentityServer3.Admin.EntityFramework.pdb

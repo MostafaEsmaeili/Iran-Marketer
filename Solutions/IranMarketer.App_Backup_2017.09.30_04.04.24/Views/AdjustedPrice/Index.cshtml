@@ -1,0 +1,367 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI;
+@using IranMarketer.Common.Utility;
+@using IranMarketer.App.Component.Model;
+@using IranMarketer.Domain.DTO;
+@model IranMarketer.App.Component.Model.AdjustedPriceModel
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "قیمت کارشناسی";
+}
+
+<form id="AdjustedPriceForm">
+
+    <div class="panel panel-flat k-rtl">
+
+        <div class="panel-body" style="display: block;">
+            <fieldset id="fielsSet">
+                <div class="form-group col-md-6">
+
+                    @(Html.Kendo().ComboBox()
+                      .Name("ProductId")
+                      .DataValueField("Id")
+                      .DataTextField("Title")
+                      .HtmlAttributes(new
+                      {
+                          style = "width:400px;margin-right: 1px;",
+                          data_required_msg = " الزامی است",
+                          required = "required"
+                      })
+                       .Placeholder("انتخاب نماد ...")
+                      //.MaxSelectedItems(1)
+                      .Filter("contains")
+                      .MinLength(3)
+                      .DataSource(
+                          source => source.Read(read => read.Action("GetProductByFilter", "Product")
+                              ).ServerFiltering(true))
+                      .Enable(true))
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label>نوع قیمت</label>
+                    <br />
+                    @(Html.Kendo().DropDownList()
+                    .Name("PriceType")
+                    .HtmlAttributes(new
+                    {
+                        style = "width:400px;margin-right: 1px;",
+                        data_required_msg = " الزامی است",
+                        required = "required"
+                    })
+                    .DataTextField("AdjustedPriceTypeTitle")
+                    .DataValueField("AdjustedPriceTypeValue")
+                    .Events(a => a.Change("PriceTypeOnChange"))
+                    .DataSource(
+                          source => source.Read(read => read.Action("GetAdjustedPriceType", "UIComponent")
+                              ).ServerFiltering(true))
+                    )
+                </div>
+                <div class="form-group " style="display:none;clear:both;" id="PriceDiv">
+                    <label>قیمت کارشناسی</label>
+                    <input type="number" class="form-control" placeholder="قیمت کارشناسی" name="Price" data-bind="value: Price" onblur="CheckPrice(this)">
+                </div>
+                <div class="form-group col-md-6" style="clear:both" id="IncreaseDiv">
+                    <label>درصد افزایش </label>
+                    <input id="IncreaseInput" type="number" min="0" class="form-control" placeholder="درصد افزایش " name="IncreaseInput" data-bind="value: IncreasePrice" onblur="CheckIncreasePercent(this)">
+                </div>
+                <div class="form-group col-md-6" id="DecreaseDiv">
+                    <label>درصد کاهش</label>
+                    <input id="DecreaseInput" title="باید کوچکتر از صفر باشد" type="number" max="0" class="form-control" placeholder="درصد کاهش" name="DecreaseInput" data-bind="value: DecreasePrice" onblur="CheckDecreasePercent(this)" style="text-align:right;direction:ltr;padding-right:2px">
+                </div>
+                <div class="form-group " style="clear:both;" id="adjustedPriceReasonCheckboxes">
+                    <label>انتخاب دلایل تعدیل:</label>&nbsp;
+                    @foreach (var item in (List<IranMarketer.App.Component.Model.AdjustedPriceReasonModel>)ViewData["AdjustedPriceReasons"])
+                    {
+                        <input id="@item.ID" type="checkbox" />
+                        <label for="@item.ID">@item.Title</label>
+                        <span>&nbsp; &nbsp;</span>
+                    }
+                </div>
+                <div class="form-group col-md-6">
+                    <label>از تاریخ</label>
+                    @(Html.Kendo().DatePickerFor(x => x.FromDateJalali)
+                        .HtmlAttributes(
+                    new
+                    {
+                        style = "width:250px",
+                        type = "text",
+                        data_required_msg = " الزامی است",
+                        required = "required"
+                    }).Format("yyyy/MM/dd"))
+
+                    <span class="text-danger">*</span>
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label> تا تاریخ</label>
+                    @(Html.Kendo().DatePickerFor(x => x.ToDateJalali).HtmlAttributes(new
+                {
+                    style = "width:250px",
+                    type = "text",
+                    data_required_msg = " الزامی است",
+                    required = "required"
+                }).Format("yyyy/MM/dd"))
+                    <span class="text-danger">*</span>
+
+                </div>
+                <div class="form-group " style="clear:both;">
+                    <label>شرح</label>
+                    <input type="text" min="0" class="form-control" placeholder="شرح" name="Description" data-bind="value: Description">
+                </div>
+                <div class="form-group">
+                    <input id="adjustedPriceId" type="hidden" value="0" />
+                </div>
+            </fieldset>
+            <div class="text-right">
+                <button id="AddAdjustedPrice" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="panel panel-body" style="min-height: 670px">
+    <div class="k-rtl">
+        @(Html.Kendo().Grid<AdjustedPrice>()
+                  .Name("grid")
+                  .Columns(column =>
+                  {
+                      //column.Bound(x => x.ProductId).Title("نماد");
+                      //column.Bound(x => x.ProductTitle).Title("نماد");
+                      column.Bound(x => x.Symbol).Title("نماد").Width(100);
+                      column.Bound(x => x.FromDateJalali).Title("از تاریخ").Width(100);
+                      column.Bound(x => x.ToDateJalali).Title("تا تاریخ").Width(100);
+                      column.Bound(x => x.TypeTitle).Title("نوع قیمت").Width(100);
+                      column.Bound(x => x.Value).Title("قیمت تعدیل شده").Width(100).Format("{0:n0}");
+                      column.Bound(x => x.Reason).Title("دلایل تعدیل").ClientTemplate("#= AdjustedPriceReasonsTitle == null ? 'N/A' : AdjustedPriceReasonsTitle.join(', ') #").Width(250);
+                      column.Bound(x => x.Description).Title("شرح").Width(180);
+                      column.Template(@<text></text>).ClientTemplate("<button class='k-button' id='#=Id#' onclick='showDetails(this)'>ویرایش</button>").Title("").Width(70);
+                  })
+                  .Selectable(x =>
+                  {
+                      x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                  }).Events(c => c.Change("GridonChange"))
+
+                  .Excel(excel => excel
+                      .FileName("managementSetting.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "ExpenseSetting"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] { 10, 20, 50, 100 }))
+
+                  .Selectable()
+                   .Scrollable()
+                  .HtmlAttributes(new { style = "height:500px;" })
+                  .DataSource(dataSource => dataSource
+                      .Ajax().Sort(x => x.Add(a => a.Symbol))
+                      .PageSize(20).Read(read => read.Action("GetAdjustedPrices", "AdjustedPrice"))
+                  )
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+    </div>
+</div>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $("#AddAdjustedPrice").click(function () {
+
+        if ($("#AdjustedPriceForm").kendoValidator().data("kendoValidator").validate() === false || $("#AdjustedPriceForm").valid() === false) {
+            alert("لطفا تمامی فیلدهای مورد نظر را پر نمایید");
+            return;
+        } else {
+            var selectedReasons = [];
+            $('#adjustedPriceReasonCheckboxes input:checked').each(function () {
+                if (this) {
+                    selectedReasons.push($(this).attr('id'));
+                }
+            });
+
+
+            var id = $('#adjustedPriceId').val();
+            var data = {
+                "Id": id,
+                "AdjustedPriceReasonsId": selectedReasons,
+                "ProductId": $("#ProductId").val(),
+                //$("#ProductId").data('kendoComboBox').dataItems()[0] != null ? $("#ProductId").data('kendoComboBox').dataItems()[0] : null,
+                "Description": $('[name=Description]').val(),
+                "Value": $('[name=Price]').val(),
+                //($('[name=Price]').val() != 0) ? $('[name=Price]').val() : (IncreasePriceValue != 0 ? IncreasePriceValue : (DecreasePriceValue != 0 ? IncreasePriceValue : 0)),
+                "FromDateJalali": $('[name=FromDateJalali]').val(),
+                "ToDateJalali": $('[name=ToDateJalali]').val(),
+                //"Reason": $('[name=Reason]').val(),
+                "Type": $('[name=PriceType]').val()
+            };
+            var url = "";
+            if (id == 0) {
+                url = '@Url.Action("SaveAdjustedPrice", "AdjustedPrice")';
+            }
+            else {
+                url = '@Url.Action("UpdateAdjustedPrice", "AdjustedPrice")';
+            }
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function () {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function (response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function (response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#AdjustedPriceForm')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+                        $('#grid').data('kendoGrid').dataSource.read();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function showDetails(e) {
+        var grid = $("#grid").data("kendoGrid");
+        var dataItem = grid.dataItem(grid.select());
+        if (dataItem) {
+            if (dataItem.Id == e.id) {
+                //grid.dataSource.preventDefault();
+                $("#fielsSet").removeAttr('disabled');
+                $("#ProductId").data("kendoComboBox").enable(true);
+                $('#PriceType').data('kendoDropDownList').enable(true);
+                $('#FromDateJalali').data('kendoDatePicker').enable(true);
+                $('#ToDateJalali').data('kendoDatePicker').enable(true);
+            }
+            else {
+                $("#fielsSet").attr('disabled', 'disabled');
+                $("#ProductId").data("kendoComboBox").enable(false);
+                $('#PriceType').data('kendoDropDownList').enable(false);
+                $('#FromDate').data('kendoDatePicker').enable(false);
+                $('#ToDate').data('kendoDatePicker').enable(false);
+            }
+        }
+    }
+
+    function GridonChange(e) {
+        $("#fielsSet").attr('disabled', 'disabled');
+        $("#ProductId").data("kendoComboBox").enable(false);
+        $('#PriceType').data('kendoDropDownList').enable(false);
+        $('#FromDateJalali').data('kendoDatePicker').enable(false);
+        $('#ToDateJalali').data('kendoDatePicker').enable(false);
+        var grid = $("#grid").data("kendoGrid");
+        var dataItem = grid.dataItem(grid.select());
+        dataItem.AdjustedPriceReasonsId;
+        $('#adjustedPriceReasonCheckboxes input').each(function () {
+            $(this).prop("checked", false);
+            var id = $(this).attr('id');
+            if (dataItem.AdjustedPriceReasonsId.indexOf(parseInt(id)) > -1) {
+                $(this).prop("checked", true);
+            }
+        });
+        $('#adjustedPriceId').val(dataItem.Id);
+        // var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        $('#ProductId').data('kendoComboBox').value(dataItem.ProductId);
+        $('[name=ProductId]').val(dataItem.ProductId);
+        $('[name=FromDateJalali]').val(dataItem.FromDateJalali);
+        $('[name=ToDateJalali]').val(dataItem.ToDateJalali);
+        $('[name=Description]').val(dataItem.Description);
+        $('[name=Price]').val(dataItem.Value);
+        $('[name=Reason]').val(dataItem.Reason);
+        // $('[name=PriceType]').val(dataItem.Type);
+        $('#PriceType').data('kendoDropDownList').value(dataItem.Type);
+        if (dataItem.Type == 2) {
+            $("#PriceDiv").hide();
+            $("#DecreaseDiv").show();
+            $("#IncreaseDiv").show();
+
+            if (dataItem.Value < 0) {
+
+                $("#DecreaseInput").val(dataItem.Value);
+
+            } else if (dataItem.Value > 0) {
+                $('#IncreaseInput').val(dataItem.Value);
+
+            }
+            else if (dataItem.Value == 0) {
+                $("#DecreasePrice").val("0");
+                $("#DecreasePrice").val("0");
+            }
+        }
+        else if (dataItem.Type == 1) {
+            $("#PriceDiv").show();
+            $("#DecreaseDiv").hide();
+            $("#IncreaseDiv").hide();
+
+        }
+
+    }
+
+
+</script>
+
+<script title="PercentInputs">
+    function CheckIncreasePercent(input) {
+        if (input.value && input.value != "0") {
+            $("#DecreaseInput").val(0);
+            $('[name=Price]').val(input.value);
+        }
+    }
+
+    function CheckDecreasePercent(input) {
+        if (input.value && input.value != "0") {
+            $("#IncreaseInput").val(0);
+            $('[name=Price]').val(input.value);
+        }
+    }
+    function CheckPrice(input) {
+        if (input.value && input.value != "0") {
+            $("#IncreaseInput").val(0);
+            $("#DecreaseInput").val(0);
+        }
+    }
+    function PriceTypeOnChange(e) {
+        var selectedItemValue = this.value();
+        if (selectedItemValue == 2) {
+            $("#PriceDiv").hide();
+            $("#DecreaseDiv").show();
+            $("#IncreaseDiv").show();
+
+        }
+        else if (selectedItemValue == 1) {
+            $("#PriceDiv").show();
+            $("#DecreaseDiv").hide();
+            $("#IncreaseDiv").hide();
+
+        }
+        $('[name=Price]').val("0");
+    }
+
+
+</script>

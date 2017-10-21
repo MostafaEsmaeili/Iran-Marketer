@@ -1,0 +1,6 @@
+F:\IranMarketer\Iran Marketer\Core\Domain\bin\IranMarketer.Domain.dll
+F:\IranMarketer\Iran Marketer\Core\Domain\bin\IranMarketer.Domain.pdb
+F:\IranMarketer\Iran Marketer\Core\Domain\Src\obj\Debug\IranMarketer.Domain.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Core\Domain\Src\obj\Debug\IranMarketer.Domain.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Core\Domain\Src\obj\Debug\IranMarketer.Domain.dll
+F:\IranMarketer\Iran Marketer\Core\Domain\Src\obj\Debug\IranMarketer.Domain.pdb

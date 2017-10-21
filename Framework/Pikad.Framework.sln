@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FremaworkTest", "FremaworkTest\FremaworkTest.csproj", "{179EFC2D-7F56-4B74-80C8-96F9A4366B47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Dao", "Test.Dao\Test.Dao.csproj", "{11EC828A-0984-417C-A01D-BF7CB917225E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Service", "Test.Service\Test.Service.csproj", "{7073C9FE-7EBC-4522-B1D4-8600058F6FFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Domain", "Test.Domain\Test.Domain.csproj", "{C05BD5F1-B73C-47F9-9102-F335F36732F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A0652E26-9E1D-4232-AFAB-A69621137505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikad.Framework", "Pikad.Framework\Pikad.Framework.csproj", "{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{179EFC2D-7F56-4B74-80C8-96F9A4366B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179EFC2D-7F56-4B74-80C8-96F9A4366B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179EFC2D-7F56-4B74-80C8-96F9A4366B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179EFC2D-7F56-4B74-80C8-96F9A4366B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11EC828A-0984-417C-A01D-BF7CB917225E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11EC828A-0984-417C-A01D-BF7CB917225E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11EC828A-0984-417C-A01D-BF7CB917225E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11EC828A-0984-417C-A01D-BF7CB917225E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7073C9FE-7EBC-4522-B1D4-8600058F6FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7073C9FE-7EBC-4522-B1D4-8600058F6FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7073C9FE-7EBC-4522-B1D4-8600058F6FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7073C9FE-7EBC-4522-B1D4-8600058F6FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C05BD5F1-B73C-47F9-9102-F335F36732F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05BD5F1-B73C-47F9-9102-F335F36732F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05BD5F1-B73C-47F9-9102-F335F36732F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05BD5F1-B73C-47F9-9102-F335F36732F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11EC828A-0984-417C-A01D-BF7CB917225E} = {A0652E26-9E1D-4232-AFAB-A69621137505}
+		{7073C9FE-7EBC-4522-B1D4-8600058F6FFE} = {A0652E26-9E1D-4232-AFAB-A69621137505}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://172.16.17.31:8080/tfs/sahra.mutualfund
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FremaworkTest\\FremaworkTest.csproj
+		SccProjectName1 = FremaworkTest
+		SccLocalPath1 = FremaworkTest
+		SccProjectUniqueName2 = Test.Dao\\Test.Dao.csproj
+		SccProjectTopLevelParentUniqueName2 = Pikad.Framework.sln
+		SccProjectName2 = Test.Dao
+		SccLocalPath2 = Test.Dao
+		SccProjectUniqueName3 = Test.Service\\Test.Service.csproj
+		SccProjectTopLevelParentUniqueName3 = Pikad.Framework.sln
+		SccProjectName3 = Test.Service
+		SccLocalPath3 = Test.Service
+		SccProjectUniqueName4 = Test.Domain\\Test.Domain.csproj
+		SccProjectName4 = Test.Domain
+		SccLocalPath4 = Test.Domain
+		SccProjectUniqueName5 = Pikad.Framework\\Pikad.Framework.csproj
+		SccProjectName5 = Pikad.Framework
+		SccLocalPath5 = Pikad.Framework
+	EndGlobalSection
+EndGlobal

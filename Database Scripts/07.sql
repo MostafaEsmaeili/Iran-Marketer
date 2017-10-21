@@ -1,0 +1,1 @@
+UPDATE acc.SubsidiaryLedger SET Map = 'SubsidiaryLedgerForBankProfitIncome' WHERE Id = 101 

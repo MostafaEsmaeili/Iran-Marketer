@@ -1,0 +1,341 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using System.Security.Cryptography.X509Certificates
+@using Kendo.Mvc.UI
+@using Pikad.Framework.Infra.Utility
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@model IranMarketer.App.Component.Model.BalancSheetReportFilterModel
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "تراز آزمایشی معین";
+}
+<div>
+
+    <div id="filterPanel" class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">فیلتر جستجو</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                <label>سال مالی</label>
+                @(Html.Kendo().DropDownList().Name("FiscalYearId").HtmlAttributes(new { @class = "form-control k-rtl" })
+                      .DataTextField("Title")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("Id")
+                      .SelectedIndex(0)
+                      .Events(x =>
+                      {
+                          x.Change("onfiscalYearChange");
+                          x.DataBound("onfiscalYearChange");
+
+                      })
+                      .AutoBind(true)
+                      .DataSource(source => source.Read(read => read.Action("GetFiscalYears", "UIComponent")).ServerFiltering(false)))
+            </div>
+        
+            <div class="row">
+            
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>از تاریخ</label>
+                        @Html.Kendo().DatePicker().Name("StartDate").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                
+                    <div class="form-group">
+                        <label>تا تاریخ</label>
+                        @Html.Kendo().DatePicker().Name("EndDate").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+            
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>شماره سند: از</label>
+                        <input class="form-control" type="number" min="0" id="FromVoucherNumber"/>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                
+                    <div class="form-group">
+                        <label>تا  </label>
+                        <input  class="form-control" type="number" min="0" id="ToVoucherNumber"/>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label>شعبه</label>
+                @(Html.Kendo().ComboBox().Name("BranchId").HtmlAttributes(new { @class = "form-control k-rtl" })
+                      .DataTextField("BranchTitle")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("BranchValue")
+                      .AutoBind(true)
+                .Value("همه")
+                      .DataSource(source => source.Read(read => read.Action("GetBranchesDropDownListById", "UIComponent",new{addAll=true}).Data("onadditionalBranch")).ServerFiltering(false)))
+            </div>
+        
+            <div class="row">
+            
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>بدون سند افتتاحیه</label>
+                        <input type="checkbox"  id="OpeningAccounts" value="360"/>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                
+                    <div class="form-group">
+                        <label>بدون سند اختتامیه </label>
+                        <input  type="checkbox" id="ClosingAccounts" value="370" />
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                
+                    <div class="form-group">
+                        <label>بدون سند بستن عملکرد </label>
+                        <input type="checkbox" id="OperationalAccountsClosing" value="350" />
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="text-right">
+                <button type="button" id="search" class="btn btn-primary">جست و جو <i class="icon-arrow-left13 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="panel panel-body">
+        <div class="k-rtl" style="font-size: 12px;">
+            @(Html.Kendo().Grid<AccountBalanceSheet>()
+                  .Name("grid")
+                  .Columns(column =>
+                  {
+                      column.Bound(x => x.AccountCode).ClientTemplate("<a href='/Ledgers/DetailLedgers?subcode=${AccountCode}&fid=${FiscalYearId}&fromDate=${FromDateJalali}&toDate=${ToDateJalali}&branchId=${BranchId}'>${AccountCode}</a>").Title("کد حساب").Width(80);
+                      column.Bound(x => x.AccountTitle).Title("عنوان حساب").Width(150);
+                      column.Bound(x => x.DebitSum).Title("گردش بدهکار").Width(110).ClientTemplate("#=SetColor(DebitSum)#").ClientFooterTemplate(" #=SetColor(sum)#");
+                      column.Bound(x => x.CreditSum).Title("گردش بستانکار").Width(110).ClientTemplate("#=SetColor(CreditSum)#" ).ClientFooterTemplate(" #=SetColor(sum)#");;
+                      column.Bound(x => x.DebitLeave).Title("مانده بدهکار").Width(100).ClientTemplate("#=SetColor(DebitLeave)#" ).ClientFooterTemplate(" #=SetColor(sum)#");
+                      column.Bound(x => x.CreditLeave).Title("مانده بستانکار").Width(100).ClientTemplate("#=SetColor(CreditLeave)#" ).ClientFooterTemplate(" #=SetColor(sum)#");
+              
+                  })
+                  .ToolBar(x =>
+                  {
+                      x.Excel().Text("Excel");
+                  })
+                  .Excel(excel => excel
+                      .FileName("SubsidiaryLedgers.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "Ledgers"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] { 50, 100, 150, 200 }))
+
+                  .AllowCopy(true)
+                  .Selectable(x => x.Mode(GridSelectionMode.Multiple))
+                  .AutoBind(true)
+                  .Scrollable()
+                  .AutoBind(true)
+                  .HtmlAttributes(new { style = "height:800px;" })
+                  .DataSource(dataSource =>
+                      dataSource.Custom()
+                          .Type("aspnetmvc-ajax")
+                          .PageSize(100)
+                          .Aggregates(x =>
+                          {
+                              x.Add(p => p.DebitSum).Sum();
+                              x.Add(p => p.CreditSum).Sum();
+                              x.Add(p => p.DebitLeave).Sum();
+                              x.Add(p => p.CreditLeave).Sum();
+
+
+                          })
+                          .ServerPaging(true)
+                          .ServerSorting(true)
+                          .ServerFiltering(true)
+                          .Transport(transport => transport
+                              .Read(read => read.Action("GetNormalSubsidiaryLedgerBalanceSheet", "Ledgers").Data("filterData").Type(HttpVerbs.Post))
+                          )
+                          .Schema(s => s.Data("Result").Total("TotalRecords"))
+                          .PageSize(50)
+                          .ServerPaging(true)
+                          .ServerSorting(true)
+                          .ServerFiltering(true)
+                  )
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+    .dropdown-header > span {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: right;
+        display: inline-block;
+        border-style: solid;
+        border-width: 0 0 1px 1px;
+        padding: .3em .6em;
+        width: 150px;
+    }
+
+    .dropdown-header > span:first-child {
+        width: 150px;
+        border-left-width: 0;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+        onfiscalYearChange();
+        var data = @Html.Raw(Json.Encode(Model));
+        setTimeout(function () {
+
+            if (data.BranchId > 0)
+                $("#BranchId").data("kendoComboBox").value(data.BranchId);
+            if (data.FiscalYearId > 0)
+                $("#FiscalYearId").data("kendoDropDownList").value(data.FiscalYearId);
+            onfiscalYearChange();
+            if ((data.StartDate != null && data.StartDate!=''))
+            $("#StartDate").val(data.StartDate);
+            if ((data.EndDate != null && data.EndDate!=''))
+            $("#EndDate").val(data.EndDate);
+            $("#ToVoucherNumber").val(data.ToVoucherNumber);
+            $("#FromVoucherNumber").val(data.FromVoucherNumber);
+            if (data.VouhcerCategoryExcetionListCode != null && data.VouhcerCategoryExcetionListCode.length > 0) {
+
+                for (var i = 0; i < data.VouhcerCategoryExcetionListCode.length; i++)
+
+                {
+                    if(data.VouhcerCategoryExcetionListCode[0]==350)
+                        $("#OperationalAccountsClosing").prop('checked', '');
+
+                    if(data.VouhcerCategoryExcetionListCode[0]==360)
+                        $("#ClosingAccounts").prop('checked',true);
+
+                    if(data.VouhcerCategoryExcetionListCode[0]==370)
+                        $("#OperationalAccountsClosing").prop('checked', true);
+                }
+            }
+        }, 3000);
+    
+
+    });
+
+
+
+    function onadditionalBranch() {
+        return {
+            text: $('[name="BranchId_input"]').val()
+        };
+    }
+
+    function filterData() {
+
+        var exceptionList = [];
+        if ($("#OperationalAccountsClosing").prop('checked') === true) {
+
+            exceptionList.push($("#OperationalAccountsClosing").val());
+        }
+        if ($("#ClosingAccounts").prop('checked') === true) {
+
+            exceptionList.push($("#ClosingAccounts").val());
+        }
+        if ($("#OpeningAccounts").prop('checked') === true) {
+
+            exceptionList.push($("#OpeningAccounts").val());
+        }
+
+        var data = {
+
+            BranchId: $("#BranchId").data("kendoComboBox").dataItem() != null ? $("#BranchId").data("kendoComboBox").dataItem().BranchValue : "-1",
+            StartDate: $("#StartDate").val(),
+            EndDate: $("#EndDate").val(),
+            FiscalYearId: $("#FiscalYearId").data("kendoDropDownList").dataItem() != null ? $("#FiscalYearId").data("kendoDropDownList").dataItem().Id : "-1",
+            ToVoucherNumber: $("#ToVoucherNumber").val(),
+            FromVoucherNumber: $("#FromVoucherNumber").val(),
+            VouhcerCategoryExcetionListCode: exceptionList
+
+        }
+
+
+        if (!$('#filterPanel').hasClass('panel-collapsed'))
+            $('#filterPanel [data-action=collapse]').click();
+        return { model: data };
+    }
+    $("#search").click(function () {
+
+        $("#grid").data("kendoGrid").dataSource.read();
+
+    });
+
+
+    function onfiscalYearChange() {
+        var dataItem = $("#FiscalYearId").data("kendoDropDownList").dataItem();
+        if (dataItem != null) {
+            $("#EndDate").val(dataItem.EndDateJalali);
+            $("#StartDate").val(dataItem.StartDateJalali);
+
+
+        }
+    }
+    function SetColor(e) {
+        if (e < 0)
+            return kendo.toString(Math.abs(e), "#,##0;#,##0");
+        //return "<font color=\"red\">" + kendo.toString(e, "0:#,##0;(#,##0)")+"</font>";
+        else if (e > 0)
+            return kendo.toString(e, "#,##0;#,##0");
+        else return"0" ;
+
+    }
+</script>

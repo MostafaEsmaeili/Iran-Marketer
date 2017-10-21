@@ -1,0 +1,7 @@
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Bin\IranMarketer.PartyManagement.Dao.dll.config
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Bin\IranMarketer.PartyManagement.Dao.dll
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Bin\IranMarketer.PartyManagement.Dao.pdb
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Dao\obj\Debug\IranMarketer.PartyManagement.Dao.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Dao\obj\Debug\IranMarketer.PartyManagement.Dao.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Dao\obj\Debug\IranMarketer.PartyManagement.Dao.dll
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Dao\obj\Debug\IranMarketer.PartyManagement.Dao.pdb

@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{595D7C80-F01A-40C9-8E95-B471C2E2EC69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibrary1</RootNamespace>
+    <AssemblyName>ClassLibrary1</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcademicField.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AcademicFieldMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedPriceModel.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustedPriceModelMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole1.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole1Mapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRoleMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser1.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser1Mapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim1.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim1Mapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaimMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin1.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin1Mapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLoginMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientClaim.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientClaimMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCorsOrigin.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCorsOriginMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCustomGrantType.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCustomGrantTypeMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientIdPRestriction.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientIdPRestrictionMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPostLogoutRedirectUri.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPostLogoutRedirectUriMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRedirectUri.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientRedirectUriMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientScope.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientScopeMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientSecret.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientSecretMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consent.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsentMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IIranMarketerContext.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Industry.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IndustryMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IranMarketer2017259.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IranMarketerContext.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IranMarketerDataBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobCategory.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobCategoryMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobPrefer.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobPreferMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleModelGeneratorConfig.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleModelGeneratorConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageRepository.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageRepositoryMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartyUniversity.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartyUniversityMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegionMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetailParty.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetailPartyMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scope.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScopeClaim.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScopeClaimMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScopeMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScopeSecret.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScopeSecretMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRegionsReturnModel.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkExperience.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkExperienceMapper.cs">
+      <DependentUpon>IranMarketerDataBase.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IranMarketerDataBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IranMarketerDataBase.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+    <None Include="Models\GenericModelGenerator.tt" />
+    <None Include="Models\SampleModelGeneratorConfig.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SampleModelGeneratorConfig.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

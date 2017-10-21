@@ -1,0 +1,69 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@using CustodianSetting = IranMarketer.Domain.DTO.CustodianSetting
+@using ProfitGuaranteeSetting = IranMarketer.Domain.DTO.ProfitGuaranteeSetting
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "پنل ادمین";
+}
+
+<div class="k-rtl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">پنل ادمین</h5>
+                </div>
+                <div class="panel-body">
+                    @* ReSharper disable once UnknownCssClass *@
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                       
+                            <li class="active"><a href="#highlighted-justified-tab1" data-toggle="tab" class="legitRipple" aria-expanded="false">صنایع</a></li>
+                            <li class=""><a href="#highlighted-justified-tab2" data-toggle="tab" class="legitRipple" aria-expanded="false">رشته های تحصیلی</a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="highlighted-justified-tab1">
+                                <!-- هزینه های مدیر-->
+                                @{
+                                    Html.RenderPartial("Industry",new Industry());
+                                }
+
+
+                            </div>
+
+                            <div class="tab-pane  " id="highlighted-justified-tab2">
+                                <!--هزینه های مدیر سرمایه گذاری-->
+                                @{
+//Html.RenderPartial("_InvestmentManagerSetting", new InvestmentManagerSetting());
+
+                                }
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+

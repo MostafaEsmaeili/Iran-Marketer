@@ -1,0 +1,68 @@
+2017-08-08 00:30:25.3226 Error Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute Exception occurred in NLog Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute.AuthorizeRequest AuthorizeRequest NLog.NLogRuntimeException: Exception occurred in NLog ---> System.Data.SqlClient.SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception: The network path was not found
+   --- End of inner exception stack trace ---
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at NLog.Targets.DatabaseTarget.OpenConnection(String connectionString)
+   at NLog.Targets.DatabaseTarget.EnsureConnectionOpen(String connectionString)
+   at NLog.Targets.DatabaseTarget.WriteEventToDatabase(LogEventInfo logEvent)
+   at NLog.Targets.DatabaseTarget.Write(LogEventInfo logEvent)
+   at NLog.Targets.Target.Write(AsyncLogEventInfo logEvent)
+   --- End of inner exception stack trace ---
+   at NLog.LoggerImpl.<>c__DisplayClass1.<Write>b__0(Exception ex)
+   at NLog.Internal.SingleCallContinuation.Function(Exception exception)
+   at NLog.Targets.Target.Write(AsyncLogEventInfo logEvent)
+   at NLog.Targets.Target.WriteAsyncLogEvent(AsyncLogEventInfo logEvent)
+   at NLog.LoggerImpl.WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
+   at NLog.LoggerImpl.Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
+   at NLog.Logger.WriteToTargets(Type wrapperType, LogEventInfo logEvent)
+   at NLog.Logger.Log(Type wrapperType, LogEventInfo logEvent)
+   at Pikad.Framework.Infra.Logging.CustomLogger.ErrorException(String message, Exception exception) in D:\My Projects\Sahra\MutualFund\Framework\Pikad.Framework\Infra\Logging\CustomLogger.cs:line 21
+   at Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in F:\FundProject\API\WebApi\Src\Sahra.MutualFund.WebApi\Attribute\CustomAuthentication.cs:line 136
+   at Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute.AuthorizeRequest(HttpActionContext actionContext) in F:\FundProject\API\WebApi\Src\Sahra.MutualFund.WebApi\Attribute\CustomAuthentication.cs:line 72
+2017-08-08 00:30:25.3696 Error Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute Exception occurred in NLog Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute.AuthorizeRequest AuthorizeRequest NLog.NLogRuntimeException: Exception occurred in NLog ---> System.Data.SqlClient.SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception: The network path was not found
+   --- End of inner exception stack trace ---
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at NLog.Targets.DatabaseTarget.OpenConnection(String connectionString)
+   at NLog.Targets.DatabaseTarget.EnsureConnectionOpen(String connectionString)
+   at NLog.Targets.DatabaseTarget.WriteEventToDatabase(LogEventInfo logEvent)
+   at NLog.Targets.DatabaseTarget.Write(LogEventInfo logEvent)
+   at NLog.Targets.Target.Write(AsyncLogEventInfo logEvent)
+   --- End of inner exception stack trace ---
+   at NLog.LoggerImpl.<>c__DisplayClass1.<Write>b__0(Exception ex)
+   at NLog.Internal.SingleCallContinuation.Function(Exception exception)
+   at NLog.Targets.Target.Write(AsyncLogEventInfo logEvent)
+   at NLog.Targets.Target.WriteAsyncLogEvent(AsyncLogEventInfo logEvent)
+   at NLog.LoggerImpl.WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
+   at NLog.LoggerImpl.Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
+   at NLog.Logger.WriteToTargets(Type wrapperType, LogEventInfo logEvent)
+   at NLog.Logger.Log(Type wrapperType, LogEventInfo logEvent)
+   at Pikad.Framework.Infra.Logging.CustomLogger.ErrorException(String message, Exception exception) in D:\My Projects\Sahra\MutualFund\Framework\Pikad.Framework\Infra\Logging\CustomLogger.cs:line 21
+   at Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in F:\FundProject\API\WebApi\Src\Sahra.MutualFund.WebApi\Attribute\CustomAuthentication.cs:line 136
+   at Sahra.MutualFund.WebAPI.CustomAuthorizeAttribute.AuthorizeRequest(HttpActionContext actionContext) in F:\FundProject\API\WebApi\Src\Sahra.MutualFund.WebApi\Attribute\CustomAuthentication.cs:line 72
+2017-08-08 00:40:49.2472 Error Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository Cannot insert the value NULL into column 'CreatedBy', table 'MutualFundTest.acc.VoucherMaster'; column does not allow nulls. INSERT fails.
+The statement has been terminated. Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster SaveVoucherMaster System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'CreatedBy', table 'MutualFundTest.acc.VoucherMaster'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Pikad.Framework.Repository.Repository`2.Save(CustomCommand command, IUnitOfWork uow) in D:\My Projects\Sahra\MutualFund\Framework\Pikad.Framework\Repository\RepositorySaveOrUpdate.cs:line 130
+   at Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Dao\VoucherMaster\VoucherMasterRepository.cs:line 39
+ClientConnectionId:a77b2963-d899-4cdb-a140-9184bbd46819
+Error Number:515,State:2,Class:16
+2017-08-08 00:40:50.2936 Error Sahra.MutualFund.Accounting.Service.VoucherMasterService Cannot insert the value NULL into column 'CreatedBy', table 'MutualFundTest.acc.VoucherMaster'; column does not allow nulls. INSERT fails.
+The statement has been terminated. Sahra.MutualFund.Accounting.Service.VoucherMasterService.SaveVoucherMaster SaveVoucherMaster System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'CreatedBy', table 'MutualFundTest.acc.VoucherMaster'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Dao\VoucherMaster\VoucherMasterRepository.cs:line 44
+   at Sahra.MutualFund.Accounting.Service.VoucherMasterService.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Service\VoucherMaster\VoucherMasterService.cs:line 24
+ClientConnectionId:a77b2963-d899-4cdb-a140-9184bbd46819
+Error Number:515,State:2,Class:16

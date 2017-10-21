@@ -1,0 +1,201 @@
+﻿
+@using IranMarketer.App.Helper
+@using Kendo.Mvc.UI
+@model IranMarketer.Domain.DTO.JobPrefer
+
+
+<form id="JobPrefferForm" class="form-validate-jquery" novalidate="novalidate">
+    <fieldset class="step ui-formwizard-content " id="ajax-step1" style="display: block;">
+        <h6 class="form-wizard-title text-semibold">
+            <span class="form-wizard-count">2</span>
+            ترجیحات شغلی
+            <small class="display-block">چه شرایطی برای شما بهتر است...</small>
+        </h6>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label>گروه شغلی:</label>
+                    @(Html.Kendo().MultiSelectFor(x => x.JobCategories).AutoWidth(true).HtmlAttributes(new { @class = "form-control k-rtl", required = "required" })
+                      .DataTextField("TitleFa")
+                      .Filter(FilterType.Contains)
+                      .BindTo(Model.JobCategories)
+                      .DataValueField("Id")
+                      .AutoBind(true)
+                      .DataSource(source => source.Read(read => read.Action("GetJobCategories", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label>صنعت مورد علاقه</label>
+                    @(Html.Kendo().MultiSelectFor(x => x.Industries).HtmlAttributes(new { @class = "form-control k-rtl",required = "required" })
+                          .DataTextField("TitleFa")
+                          .Filter(FilterType.Contains)
+                          .DataValueField("Id")
+                          .BindTo(Model.Industries)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label>حقوق درخواستی</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                    @(Html.Kendo().DropDownListFor(x => x.ExpectedSalary).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("ExpectedSalaryitleFa")
+                          .DataValueField("ExpectedSalaryValue").Filter(FilterType.Contains)
+                          .AutoBind(true)
+
+
+                          .DataSource(source => source.Read(read => read.Action("GetSalaryType", "UIComponent")).ServerFiltering(true)))
+
+                </div>
+            </div>
+            <div class="col-md-6 k-rtl">
+                <div class="form-group">
+                    <label>تمایل به سفر</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                    @(Html.Kendo().DropDownListFor(x => x.BusinessTrips).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("BusinessTripsTitleFa")
+                          .DataValueField("BusinessTripsValue").Filter(FilterType.Contains)
+                          .AutoBind(true)
+
+
+                          .DataSource(source => source.Read(read => read.Action("GetBusinessTrips", "UIComponent")).ServerFiltering(true)))
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6 k-rtl">
+                <div class="form-group">
+                    <label>تغییر محل زندگی</label>
+                    @(Html.Kendo().DropDownListFor(x => x.Relocate).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("RelocateTitleFa")
+                          .DataValueField("RelocateValue").Filter(FilterType.Contains)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetRelocateStatus", "UIComponent")).ServerFiltering(true)))
+
+                </div>
+            </div>
+       
+        </div>
+
+    </fieldset>
+
+    <div class="text-left">
+        <button id="addJobPreffer" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+
+        <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+
+    </div>
+</form>
+
+
+
+<script>
+    $( "#JobPrefferForm" ).keyup(function() {
+        $("#JobPrefferForm").valid();
+    });
+
+
+    $("#addJobPreffer").click(function () {
+
+        if (!$("#JobPrefferForm").valid()) {
+            return;
+        } else {
+
+            debugger;
+
+            var data = $("#JobPrefferForm").serializeJSON({ checkboxUncheckedValue: "false" });
+            $("#JobPrefferForm").KendoToJson(data);
+
+            $.ajax({
+                url: '@Url.Action("SaveJobPreffer", "Profile")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        clear();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function clear() {
+        $('#addJobPreffer').ClearAll();
+    }
+    $( document ).ready(function() {
+        LoadJobPreffer();
+    });
+    function LoadJobPreffer()
+    {
+        $.ajax({
+            url: '@Url.Action("GetJobPreffer", "Profile")',
+            type: "POST",
+            dataType: "json",
+
+          
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    //   showNotification(response.Message, 's');
+                    try {
+                        $('#JobPrefferForm').loadJSON(response.Result);
+                    } catch (e) {
+                      
+                    }
+                    try {
+                        $('#JobPrefferForm').BindJsonKendo(response.Result, '');
+
+                    } catch (e) {
+
+                    } 
+                  
+
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    }
+
+
+</script>

@@ -1,0 +1,7 @@
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Bin\IranMarketer.UserManagement.dll.config
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Bin\IranMarketer.UserManagement.dll
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Bin\IranMarketer.UserManagement.pdb
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Src\IranMarketer.UserManagement\obj\Debug\IranMarketer.UserManagement.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Src\IranMarketer.UserManagement\obj\Debug\IranMarketer.UserManagement.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Src\IranMarketer.UserManagement\obj\Debug\IranMarketer.UserManagement.dll
+F:\IranMarketer\Iran Marketer\Core\UserManagement\Src\IranMarketer.UserManagement\obj\Debug\IranMarketer.UserManagement.pdb

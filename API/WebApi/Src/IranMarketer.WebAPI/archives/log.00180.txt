@@ -1,0 +1,48 @@
+2017-06-18 09:37:24.2838 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider StartIndex cannot be less than zero.
+Parameter name: startIndex TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository AddApiToServiceRepository System.ArgumentOutOfRangeException: StartIndex cannot be less than zero.
+Parameter name: startIndex
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository(ServiceRepository repository) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 37
+2017-06-18 09:37:24.7268 Error TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker StartIndex cannot be less than zero.
+Parameter name: startIndex TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository AddAllApiToServiceRepository System.ArgumentOutOfRangeException: StartIndex cannot be less than zero.
+Parameter name: startIndex
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at System.String.Substring(Int32 startIndex)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthorizeProvider.AddApiToServiceRepository(ServiceRepository repository) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthorizeProvider.cs:line 56
+   at TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository() in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 205
+2017-06-18 09:44:57.2904 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-18 09:44:57.5423 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-18 09:45:21.6122 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider User Name and/or Password  are incorrect TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 87
+2017-06-18 09:45:21.7742 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController User Name and/or Password  are incorrect TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: User Name and/or Password  are incorrect
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 111
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 84
+2017-06-18 09:45:30.9171 Error TadbirPardaz.AM.MID.PartyManagement.Service.PartyService NationalId is invalid TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId GetPartyByNationalId TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+2017-06-18 09:45:31.0181 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider NationalId is invalid TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 61
+2017-06-18 09:45:31.1361 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController NationalId is invalid TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 111
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 84
+2017-06-18 09:45:46.0691 Error TadbirPardaz.AM.MID.PartyManagement.Service.PartyService NationalId is invalid TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId GetPartyByNationalId TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+2017-06-18 09:45:46.1831 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider NationalId is invalid TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 61
+2017-06-18 09:45:46.2671 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController NationalId is invalid TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 111
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 84

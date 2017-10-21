@@ -1,0 +1,460 @@
+﻿@using Kendo.Mvc.UI
+@using IranMarketer.Common.Utility
+@using IranMarketer.Domain.Entity
+@using LiquidityGuaranteeFee = IranMarketer.Domain.DTO.LiquidityGuaranteeFee
+@using LiquidityGuaranteeSetting = IranMarketer.Domain.DTO.LiquidityGuaranteeSetting
+@using PersonalityRole = IranMarketer.Domain.Enum.PersonalityRole
+
+<div class="panel panel-flat">
+    <form id="LiquidityGuaranteeSettingForm" >
+        <div class="panel-body" style="display: block;">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <fieldset class="fielsSet3">
+                        
+                        <div class="form-group">
+                            <label>ضامن نقد شوندگی اول</label>
+                            @(Html.Kendo().MultiSelect().Name("LiquidityGuarantorFirst")
+                                  .DataValueField("NationalId")
+                          .DataTextField("FullName").Placeholder("ضامن نقد شوندگی اول")
+                            .MaxSelectedItems(1)
+                          .HtmlAttributes(new
+                          {
+                              style = "width:400px;margin-right: 1px;",
+                              data_required_msg = " الزامی است",
+                              required = "required"
+                          })
+                          .Filter("contains")
+                          .MinLength(3)
+                          .DataSource(
+                              source => source.Read(read => read.Action("GetPartyByFilter", "Party",new{roleId=(int)PersonalityRole.LiquidityGuarantor})
+
+                                  ).ServerFiltering(true))
+                          .Enable(true))
+
+                        </div>
+                        <div class="form-group">
+                            <label>دوره تضمین ضامن اول از تاریخ</label>
+                            @Html.Kendo().DatePicker().Name("FirstGuaranteePeriodFromDate").HtmlAttributes(new {style = "width:250px", type = "text"}).Format("yyyy/MM/dd")
+                            <span class="text-danger">*</span>
+
+                        </div>
+                        <div class="form-group">
+                            <label>دوره تضمین ضامن اول تا تاریخ</label>
+                            @Html.Kendo().DatePicker().Name("FirstGuaranteePeriodToDate").HtmlAttributes(new {style = "width:250px", type = "text"}).Format("yyyy/MM/dd")
+                            <span class="text-danger">*</span>
+
+                        </div>
+                        
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ضامن(سهم و حق تقدم)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل سهم و حق تقدم" name="LiquidityGuarantorFeeFactorOnEquity1">
+                        </div>
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ضامن(داراییها بدون سهم و حق تقدم)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل داراییها بدون سهم و حق تقدم" name="LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity1"  >
+                        </div>
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ضامن(داراییهای اوراق با درآمد ثابت و سپرده بانکی بدون سهم و حق تقدم)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل داراییهای اوراق با درآمد ثابت و سپرده بانکی بدون سهم و حق تقدم" name="LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly1" >
+                        </div>
+                        <div class="form-group">
+                            <label>ضریب سالانه کارمزد  ( ارزش روزانه ی اوراق بهادار بادرآمد ثابت)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل  ارزش روزانه ی اوراق بهادار بادرآمد ثابت" name="LiquidityGuarantorFeeFactorOnFixedIncome1"  >
+                        </div>
+                        <div class="form-group">
+                            <label>شامل مالیات و عوارض</label>
+                            <input type="checkbox" name="FirstLGConsiderTaxAndToll" id="FirstLGConsiderTaxAndToll"/>
+                        </div>
+                        
+
+                    </fieldset>
+
+                </div>
+                <div class="col-md-6">
+                    <fieldset class="fielsSet3">
+                        <div class="form-group">
+                            <label>ضامن نقد شوندگی دوم</label>
+                            @(Html.Kendo().MultiSelect().Name("LiquidityGuarantorTwo")
+                                  .DataValueField("NationalId")
+                              .DataTextField("FullName").Placeholder("ضامن نقد شوندگی دوم")
+                            .MaxSelectedItems(1)
+                              .HtmlAttributes(new
+                              {
+                                  style = "width:400px;margin-right: 1px;",
+                                
+                              })
+                              .Filter("contains")
+                              .MinLength(3)
+                              .DataSource(
+                                  source => source.Read(read => read.Action("GetPartyByFilter", "Party",new{roleId=(int)PersonalityRole.LiquidityGuarantor})
+
+                                      ).ServerFiltering(true))
+                              .Enable(true))
+
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>دوره تضمین ضامن دوم از تاریخ</label>
+                            @Html.Kendo().DatePicker().Name("SecoundGuaranteePeriodFromDate").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+
+                        </div>
+                        <div class="form-group">
+                            <label>دوره تضمین ضامن اول تا تاریخ</label>
+                            @Html.Kendo().DatePicker().Name("SecoundGuaranteePeriodToDate").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+
+                        </div>
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ضامن(سهم و حق تقدم)</label>
+                            <input type="number" min="0" class="form-control" placeholder="درصد کارمزد  از محل  سهم و حق تقدم" name="LiquidityGuarantorFeeFactorOnEquity2">
+                        </div>
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ضامن(داراییها بدون سهم و حق تقدم)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل داراییها بدون سهم و حق تقدم" name="LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity2"  >
+                        </div>
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ضامن(داراییهای اوراق با درآمد ثابت و سپرده بانکی بدون سهم و حق تقدم)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل داراییهای اوراق با درآمد ثابت و سپرده بانکی بدون سهم و حق تقدم" name="LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly2" >
+                        </div>
+                        <div class="form-group ">
+                            <label>ضریب سالانه کارمزد ( ارزش روزانه ی اوراق بهادار بادرآمد ثابت)</label>
+                            <input type="number" min="0" class="form-control"  placeholder="درصد کارمزد  از محل ارزش روزانه ی اوراق بهادار بادرآمد ثابت" name="LiquidityGuarantorFeeFactorOnFixedIncome2"  >
+                        </div>
+                        <div class="form-group">
+                            <label>شامل مالیات و عوارض</label>
+                            <input type="checkbox" name="SecoundLGConsiderTaxAndToll" id="SecoundLGConsiderTaxAndToll"/>
+                        </div>
+
+                    </fieldset>
+                    
+                    
+
+                </div>
+            </div>
+     
+            <div class="text-right">
+                <button id="AddLiquidityGuaranteeSetting" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+            </div>
+        </div>
+    </form>
+  
+</div>
+
+<div class="panel panel-flat panel-collapsed">
+    <div class="panel-heading">
+        <h5 class="panel-title">تاریخچه تنظیمات<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<LiquidityGuaranteeSetting>()
+                  .Name("LiquidityGuaranteeSettingGrid")
+                  .Columns(column =>
+                  {
+
+                      column.Bound(x => x.LiquidityGuarantorFirst.FullName).Title("نام ضامن نقد شوندگی اول");
+                      //column.Bound(x => x.LiquidityGuarantorTwo.FullName).Template(x=>).Title("نام ضامن نقد شوندگی دوم");
+                      column.Bound(x => x.ValidFromJalali).Title("تاریخ");
+                      //.ClientTemplate("<a href='" + Url.Action("UpdateUser", "UserManagement", new { UserName = "#=UserName#" }) + "'>#=UserName#</a>").HtmlAttributes("id=RowClick");
+                      //.ClientTemplate("<a href='" + Url.Action("GetLogDetails", "Monitoring", new { Id = "#=Id#"}) + "'>#=EventDateTime#</a>").HtmlAttributes("id=RowClick");
+                      column.Command(command => command.Custom("انتخاب").Click("showDetailsLiquidityGuaranteeSetting")).Width(180);
+
+
+                  }).Selectable(x =>
+                  {
+                      x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                  }).Events(c => c.Change("GridOnChenge1"))
+
+                  .Excel(excel => excel
+                      .FileName("LiquidityGuaranteeSetting.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "ExpenseSetting"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] {10, 20, 50, 100}))
+                  .ToolBar(toolbar =>
+                  {
+                      toolbar.Template(@<text>
+                                           <div class="toolbar" style="direction: ltr !important;">
+
+                                               <div class="row pull-right ">
+                                                   <div style="display: inline-block;">
+                                                       <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                                   </div>
+                                                   <div class="" style="width: 400px; margin-right: 15px; display: inline-block;">
+                                                       <div class="input-group">
+                                                           <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                           <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                                           <span class="input-group-btn">
+                                                               <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                                           </span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                        </text>);
+                  })
+                  .AllowCopy(true)
+                  .Selectable()
+                  .Scrollable()
+                  .HtmlAttributes(new {style = "height:500px;"})
+                  .DataSource(dataSource => dataSource
+                      .Ajax().Sort(x=>x.Add(a=>a.ValidFrom).Descending())
+                      .PageSize(20).Read(read => read.Action("GetHistoricalLiquidityGuaranteeSettings", "LiquidityGuaranteeSetting"))
+                  )
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $("#AddLiquidityGuaranteeSetting").click(function() {
+        
+    
+        if ($("#LiquidityGuaranteeSettingForm").valid()===false ||  $("#LiquidityGuaranteeSettingForm").kendoValidator().data("kendoValidator").validate()===false) {
+            return;
+        } else {
+
+
+            // var data = @Html.Raw(Json.Encode(Model));
+            var data = {
+                "LiquidityGuarantorFirst": $('#LiquidityGuarantorFirst').data('kendoMultiSelect').dataItems()[0],
+                "LiquidityGuarantorTwo": $('#LiquidityGuarantorTwo').data('kendoMultiSelect').dataItems()[0],
+
+        
+
+
+                "LiquidityGuaranteeFeeForFirst":
+                {
+
+                    "GuaranteePeriodToDate": $('#FirstGuaranteePeriodToDate').val(),
+                    "GuaranteePeriodFromDate": $('#FirstGuaranteePeriodFromDate').val(),
+                    "LiquidityGuarantorFeeFactorOnEquity": $('[name=LiquidityGuarantorFeeFactorOnEquity1]').val(),
+                    "LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity": $('[name=LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity1]').val(),
+                    "LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly": $('[name=LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly1]').val(),
+                    "LiquidityGuarantorFeeFactorOnFixedIncome": $('[name=LiquidityGuarantorFeeFactorOnFixedIncome1]').val(),
+                    "ConsiderTaxAndToll": $('[name=FirstLGConsiderTaxAndToll]').prop('checked'),
+
+
+                },
+                "LiquidityGuaranteeFeeForTwo":
+                {
+                    "GuaranteePeriodFromDate": $('#SecoundGuaranteePeriodFromDate').val(),
+                    "GuaranteePeriodToDate": $('#SecoundGuaranteePeriodToDate').val(),
+                    "LiquidityGuarantorFeeFactorOnEquity": $('[name=LiquidityGuarantorFeeFactorOnEquity2]').val(),
+                    "LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity": $('[name=LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity2]').val(),
+                    "LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly": $('[name=LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly2]').val(),
+                    "LiquidityGuarantorFeeFactorOnFixedIncome": $('[name=LiquidityGuarantorFeeFactorOnFixedIncome2]').val(),
+                    "ConsiderTaxAndToll": $('[name=SecoundLGConsiderTaxAndToll]').prop('checked'),
+
+
+                },
+           
+
+            };
+
+
+            $.ajax({
+                url: '@Url.Action("SaveSetting", "LiquidityGuaranteeSetting")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#LiquidityGuaranteeSettingForm')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+                        $("#LiquidityGuaranteeSettingGrid").data("kendoGrid").dataSource.read();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function showDetailsLiquidityGuaranteeSetting(e) {
+        e.preventDefault();
+        debugger;
+        $("#fielsSet3").removeAttr('disabled');
+
+    }
+    function LiquidityGuaranteeSettingOnAdditionalData1() {
+        return {
+            text: $("#LiquidityGuarantorFirst").val()
+        };
+    }
+    function LiquidityGuaranteeSettingOnAdditionalData2() {
+        return {
+            text: $("#LiquidityGuarantorTwo").val()
+        };
+    }
+
+    $(".k-grid-save-changes").mouseup(function () {
+
+        setTimeout(function() {
+            $("#Fee1").data("kendoGrid").dataSource.read();
+            $("#Fee2").data("kendoGrid").dataSource.read();
+
+        }, 1000);
+    });
+
+
+    function GridOnChenge1(e) {
+        debugger;
+        $("#fielsSet3").attr('disabled', 'disabled');
+        var grid = $("#LiquidityGuaranteeSettingGrid").data("kendoGrid");
+        var dataItem = grid.dataItem(grid.select());
+        // var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        $.ajax({
+            url: '@Url.Action("LiquidityGuaranteeSettingsByGuid", "LiquidityGuaranteeSetting")',
+            type: "POST",
+            async:false,
+            dataType: "json",
+            data: JSON.stringify({ id: dataItem.Guid}),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            }
+        });
+        debugger;
+        $('#LiquidityGuarantorFirst').data('kendoMultiSelect').value([dataItem.LiquidityGuarantorFirst.NationalId]);
+        if (dataItem.LiquidityGuarantorTwo != null) {
+
+            $('#LiquidityGuarantorTwo').data('kendoMultiSelect').value([dataItem.LiquidityGuarantorTwo.NationalId]);
+
+            }
+        //$('#LiquidityGuarantorFirst').data('kendoAutoComplete').value(dataItem.LiquidityGuarantorFirst.FullName);
+
+        //if (dataItem.LiquidityGuarantorTwo != null) {
+
+        //$('#LiquidityGuarantorTwo').data('kendoAutoComplete').value(dataItem.LiquidityGuarantorTwo.FullName);
+
+        //    }
+
+        //$('#LiquidityGuarantorFirst').data("kendoAutoComplete").search(dataItem.LiquidityGuarantorFirst.FullName);
+        //if (dataItem.LiquidityGuarantorTwo != null) 
+
+        //$('#LiquidityGuarantorTwo').data("kendoAutoComplete").search(dataItem.LiquidityGuarantorTwo.FullName);
+
+        //setTimeout(function() {
+        //    $('#LiquidityGuarantorFirst').data("kendoAutoComplete").select(0);
+        //    if (dataItem.LiquidityGuarantorTwo != null) 
+
+        //    $('#LiquidityGuarantorTwo').data("kendoAutoComplete").select(0);
+
+
+        //}, 500);
+        //setTimeout(function() {
+        //    $('#LiquidityGuarantorFirst').data("kendoAutoComplete").close();
+        //    $('#LiquidityGuarantorTwo').data("kendoAutoComplete").close();
+        //}, 500);
+
+
+
+
+        $('#FirstGuaranteePeriodFromDate').val(dataItem.LiquidityGuaranteeFeeForFirst.GuaranteePeriodFromDate);
+        $('#FirstGuaranteePeriodToDate').val(dataItem.LiquidityGuaranteeFeeForFirst.GuaranteePeriodToDate);
+
+        if (dataItem.LiquidityGuarantorTwo != null) {
+        $('#SecoundGuaranteePeriodFromDate').val(dataItem.LiquidityGuaranteeFeeForTwo.GuaranteePeriodFromDate);
+        $('#SecoundGuaranteePeriodToDate').val(dataItem.LiquidityGuaranteeFeeForTwo.GuaranteePeriodToDate);}
+
+
+        $('[name=LiquidityGuarantorFeeFactorOnEquity1]')
+            .val(dataItem.LiquidityGuaranteeFeeForFirst.LiquidityGuarantorFeeFactorOnEquity);
+        $('[name=LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity1]').val(dataItem
+            .LiquidityGuaranteeFeeForFirst.LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity);
+        $('[name=LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly1]').val(dataItem
+            .LiquidityGuaranteeFeeForFirst.LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly);
+        $('[name=LiquidityGuarantorFeeFactorOnFixedIncome1]').val(dataItem
+            .LiquidityGuaranteeFeeForFirst.LiquidityGuarantorFeeFactorOnFixedIncome);
+        $('[name=FirstLGConsiderTaxAndToll]').prop('checked', dataItem.LiquidityGuaranteeFeeForFirst.ConsiderTaxAndToll);
+
+
+        if (dataItem.LiquidityGuarantorTwo != null) {
+            $('[name=LiquidityGuarantorFeeFactorOnEquity2]')
+                .val(dataItem.LiquidityGuaranteeFeeForTwo.LiquidityGuarantorFeeFactorOnEquity);
+            $('[name=LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity2]').val(dataItem
+                .LiquidityGuaranteeFeeForTwo.LiquidityGuarantorFeeFactorOnOtherAssetWitoutEquity);
+            $('[name=LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly2]').val(dataItem
+                .LiquidityGuaranteeFeeForTwo.LiquidityGuarantorFeeFactorFixedIncomeAndbankDepositOnly);
+            $('[name=LiquidityGuarantorFeeFactorOnFixedIncome2]').val(dataItem
+                .LiquidityGuaranteeFeeForTwo.LiquidityGuarantorFeeFactorOnFixedIncome);
+            $('[name=SecoundLGConsiderTaxAndToll]').prop('checked', dataItem.LiquidityGuaranteeFeeForTwo.ConsiderTaxAndToll);
+
+        }
+
+
+
+
+        //$('[name=OperatinalAdministratorData]').val(kendo.stringify(dataItem.OperatinalAdministrator));
+        //$('[name=FundManagerData]').val(kendo.stringify(dataItem.FundManager));
+        //$("#DocumentGrid").data("kendoGrid").dataSource.read();
+        //$('[name=MinManagerUnit]').val(dataItem.MinManagerUnit);
+        //$('[name=MaxManagerUnit]').val(dataItem.MaxManagerUnit);
+        //$('[name=ConsiderTaxAndToll]').prop('checked', dataItem.ConsiderTaxAndToll);
+        //$('#OperatinalAdministrator').data("kendoAutoComplete").value(dataItem.OperatinalAdministrator.FullName);
+        //$('#FundManager').data("kendoAutoComplete").value(dataItem.FundManager.FullName);
+
+    }
+</script>
+             

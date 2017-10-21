@@ -1,0 +1,129 @@
+﻿@using IranMarketer.Domain.DTO
+<div class="sidebar sidebar-main sidebar-default">
+    <div class="sidebar-content">
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="sidebar-user-material">
+                <div class="category-content">
+                    <div class="sidebar-user-material-content">
+                        <a href="#"><img src="~/assets/images/placeholder.jpg" class="img-circle img-responsive" alt=""></a>
+                        <h6></h6>
+                        <span id="NavBarBranchTitle" class="text-size-small"></span>
+                    </div>
+
+                    <div class="sidebar-user-material-menu">
+                        <a href="#user-nav" data-toggle="collapse"><span>حساب کاربری</span> <i class="caret"></i></a>
+                    </div>
+                </div>
+
+                <div class="navigation-wrapper collapse" id="user-nav">
+                    <ul class="navigation">
+                        <li><a href="#"><i class="icon-user-plus"></i> <span>پروفایل من</span></a></li>
+                        @*<li><a href="#"><i class="icon-coins"></i> <span>My balance</span></a></li>*@
+                        <li><a href="#"><i class="icon-comment-discussion"></i> <span><span class="badge bg-teal-400 pull-right">58</span> پیغام های من</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-cog5"></i> <span>تنظیمات کاربری</span></a></li>
+                        <li><a href="#"><i class="icon-switch2"></i> <span>خروج</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+                    <!-- Main -->
+
+                    <li><a href="@Url.Action("Index", "Home")"><i class="icon-home4"></i> <span>داشبورد</span></a></li>
+                    <li class="navigation-header"><span>مدیریت اطلاعات</span> <i class="icon-menu" title="profile"></i></li>
+                    <li tname="profile">
+                        <a href="#"><i class="icon-stack2"></i> <span>مدیریت درخواست ها</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("EmployeeProfile", "Profile")">ویرایش رزومه</a></li>
+                        </ul>
+                    </li>
+                    <li class="navigation-header"><span>پنل ادمین</span> <i class="icon-menu" title="adminPanel"></i></li>
+                    <li tname="adminPanel">
+                        <a href="#"><i class="icon-stack2"></i> <span>پنل ادمین</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("AdminArea", "AdminPanel")">تنظیمات</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+
+        var profile = "profile";
+        setActiveMenuBar(profile);
+        var adminPanel = "adminPanel";
+        setActiveMenuBar(adminPanel);
+        //SET Active & Open
+
+    });
+
+    function setActiveMenuBar(param) {
+
+        var lis = $('.navigation-accordion');
+        //var lis = $(ulacc).find('li');
+        var k = window.location.href;
+        if (k.toLowerCase().indexOf(param) > 0) {
+            $('.navigation-accordion li.active').removeClass('active');
+            $('.navigation-accordion li.active').removeClass('active');
+            $('.hidden-ul').css('style', 'hidden');
+
+            var x = $(lis).find('[tname= "' + param + '"  ]');
+            var hidul = $(x).find('.hidden-ul');
+            $(hidul).css('display', 'block');
+            $(x).addClass('active');
+            $(x).addClass('active');
+            x = $(location).attr('href');
+
+            var z = x.split("?");
+            var y = z[0].split("/");
+            var url = "/" + y[3] + "/";
+            for (var index = 4; index < y.length; index++) {
+                url = url + y[index] + "/";
+            }
+            var items = $(".navigation-accordion").children().children("ul").children().children("a");
+            for (i = 0; i <= $(items).length; i++) {
+                if ($(items).eq(i)[0] != null) {
+                    if (url.toLowerCase() === ($(items).eq(i)[0].pathname).toLowerCase() + "/") {
+                        var xxx = $(items).eq(i)[0];
+                        var lip = $(xxx).parent();
+                        $(lip).addClass('active');
+                        //$(xxx).css('background-color', '#d9d9d9');
+                        //$(xxx).css('color', '#000');
+                    }
+                }
+            }
+
+        }
+    }
+
+</script>
+<script>
+    $.ajax({
+        url: "/Account/ValidateToken",
+        type: "Post",
+        dataType: "json",
+
+        contentType: "application/json; charset=utf-8",
+        401: function () {
+       //     var url = '@Url.Action("Login", "Account")';
+          //  window.location.href = url;
+        },
+        error: function (response) {
+       
+        },
+        success: function (response) {
+       
+            $("#NavBarBranchTitle").html(response.BranchTitle);
+            //  g.hideColumn(16);
+        }
+
+    });
+
+</script>

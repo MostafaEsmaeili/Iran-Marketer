@@ -1,0 +1,73 @@
+F:\FundProject\Framework\FremaworkTest\bin\Debug\FremaworkTest.exe.config
+F:\FundProject\Framework\FremaworkTest\bin\Debug\FremaworkTest.exe
+F:\FundProject\Framework\FremaworkTest\bin\Debug\FremaworkTest.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Core.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Facilities.AutoTx.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Transactions.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Windsor.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Dapper.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Dapper.FastCrud.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Pikad.Framework.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Test.Dao.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Test.Domain.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Test.Service.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\NLog.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Pikad.Framework.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Test.Dao.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Test.Domain.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Test.Service.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Core.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Facilities.AutoTx.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Facilities.AutoTx.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Transactions.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Transactions.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Castle.Windsor.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Dapper.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\Dapper.FastCrud.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\NLog.xml
+F:\FundProject\Framework\FremaworkTest\obj\Debug\FremaworkTest.csprojResolveAssemblyReference.cache
+F:\FundProject\Framework\FremaworkTest\obj\Debug\FremaworkTest.csproj.FremaworkTest.exe.config
+F:\FundProject\Framework\FremaworkTest\obj\Debug\FremaworkTest.exe
+F:\FundProject\Framework\FremaworkTest\obj\Debug\FremaworkTest.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\AutoMapper.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\AutoMapper.pdb
+F:\FundProject\Framework\FremaworkTest\bin\Debug\AutoMapper.xml
+F:\FundProject\Framework\FremaworkTest\bin\Debug\NLog.Extended.dll
+F:\FundProject\Framework\FremaworkTest\bin\Debug\NLog.Extended.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\FremaworkTest.exe.config
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\FremaworkTest.exe
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\FremaworkTest.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Core.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Facilities.AutoTx.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Transactions.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Windsor.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Dapper.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Dapper.FastCrud.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\NLog.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\NLog.Extended.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Pikad.Framework.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Test.Dao.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Test.Domain.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Test.Service.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\AutoMapper.dll
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Pikad.Framework.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Test.Dao.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Test.Domain.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Test.Service.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Core.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Facilities.AutoTx.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Facilities.AutoTx.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Transactions.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Transactions.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Castle.Windsor.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Dapper.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\Dapper.FastCrud.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\NLog.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\NLog.Extended.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\AutoMapper.pdb
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\bin\Debug\AutoMapper.xml
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\obj\Debug\FremaworkTest.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\obj\Debug\FremaworkTest.csproj.FremaworkTest.exe.config
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\obj\Debug\FremaworkTest.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\obj\Debug\FremaworkTest.exe
+F:\IranMarketer\Iran Marketer\Framework\FremaworkTest\obj\Debug\FremaworkTest.pdb

@@ -1,0 +1,238 @@
+﻿@using Kendo.Mvc.UI
+@using IranMarketer.Common.Utility
+@using IranMarketer.Domain.DTO.ServiceAcces
+@using IranMarketer.Domain.Enum
+@Html.Partial("_RegisterLastVersionOfKendo")
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "افزودن سطح دسترسی به نقش";
+}
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">@ViewBag.Title</h5>
+
+    </div>
+    @*<div class="panel-body">
+
+        </div>*@
+    <div class="panel-body">
+        <!-- Vertical form options -->
+        <div class="row">
+            <div class="col-xs-8">
+
+                <!-- Basic layout-->
+                <form id="form">
+
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse" class=""></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body" style="display: block;">
+
+                            <div class="k-rtl">
+                                @(Html.Kendo().Grid<FlatServiceAccess>()
+                                      .Name("grid")
+                                      .Columns(column =>
+                                      {
+
+                                          column.Bound(x => x.RoleName).Title("نام نقش");
+                                          // column.Command(command => command.Custom("جزییات").Click("showDetails"));
+                                      })
+                                      .Excel(excel => excel
+                                          .FileName("UsersList.xlsx")
+                                          .Filterable(true)
+                                          .AllPages(true)
+
+                                          .ForceProxy(true)
+
+                                          .AllPages(true)
+                                          .ProxyURL(Url.Action("CustomExcelReport", "UserManagement"))
+                                      )
+                                      .Sortable(sortable => sortable.AllowUnsort(false))
+                                      .ClientDetailTemplateId("template")
+                                      .Events(events => events.DataBound("dataBound"))
+
+                                      .Pageable(pager => pager
+                                          .Input(true)
+                                          .Numeric(true)
+                                          .Info(true)
+                                          .PreviousNext(true)
+                                          .Refresh(true)
+                                          .PageSizes(new[] { 10, 20, 50, 100 }))
+                                      .ToolBar(toolBar =>
+                                      {
+                                          toolBar.Template(@<text>
+                                                               <div class="toolbar" style="direction: ltr !important;">
+                                                
+                                                        
+                                                                   <div class="row">
+                                                                       <div class="col-md-4">
+                                                                           <div class="input-group">
+                                                                               <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                                               <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو...">
+                                                                               <span class="input-group-btn">
+                                                                                   <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                                                               </span>
+                                                                           </div>
+                                                                       </div>
+                                                                   </div>
+                                                               </div>
+                                                            </text>);
+
+                                      })
+                                      .AllowCopy(true)
+                                      .Selectable()
+                                      .Scrollable()
+                                      .HtmlAttributes(new { style = "height:500px;" })
+                                      .DataSource(dataSource => dataSource
+                                          .Ajax().Model(x=>x.Id(t=>t.RoleId)).Read(r => r.Action("GetAllPageAccessBasedOnRoles", "UserManagement")).PageSize(20))
+                                      
+                                      .Resizable(resize => resize.Columns(true))
+                                      .Reorderable(reorder => reorder.Columns(true)))
+
+                            </div>
+
+                            <div class="text-right">
+                                <button id="ss" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- /basic layout -->
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<script>
+    $("#UpdateUser").click(function () {
+
+        // var data =@Html.Raw(Json.Encode(Model));
+        var data = {
+            "RolesCodeList": $('#RolesCodeList').data("kendoMultiSelect").value(),
+            "BranchCodeList": $('#BranchCodeList').data("kendoDropDownList").value(),
+            "Status": $('#Status').val(),
+
+        };
+
+        $.ajax({
+            url: '@Url.Action("UpdateUser","UserManagement")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function (response) {
+                showNotification(response.Message, 'e');
+            },
+
+            success: function (response) {
+                
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input','#form')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+                }
+
+                else {
+
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    });
+
+</script>
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<IranMarketer.Domain.Entity.FlatServiceAccess>()
+          .Name("grid_#=RoleId#") // template expression, to be evaluated in the master context
+          .Columns(columns =>
+          {
+          columns.Bound(o => o.RoleId).Width(110).Visible(false);
+          columns.Bound(o => o.PageTypeTitle).Width(110).Title("نام صفحه");
+              columns.Bound(rg => rg.Allow).Title("دسترسی").ClientTemplate("\\#= Allow ? 'بله' : 'خیر' \\#");
+
+              @*columns.Template(@<text></text>).ClientTemplate("<input type='checkbox' class='chkbx' />")
+                                                      .HeaderTemplate("<input type='checkbox' id='masterCheckBox' onclick='checkAll(this)'/> دسترسی").Width(200);*@
+          })    
+          .Editable(editable => editable.Mode(GridEditMode.InCell))
+    .ToolBar(x =>
+    {
+        x.Save().CancelText("انصراف").SaveText("ذخیره تغییرات");
+    })
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .ServerOperation(false)
+              .Batch(true)
+              .Model(m =>
+              {
+                  m.Id(x => x.RoleId);
+                  m.Field(x => x.PageTypeTitle).Editable(false);
+                  m.Field(x => x.Allow).Editable(true);
+
+              })
+              .PageSize(10)
+              .Read(read => read.Action("GetAllPagebyRolesId", "UserManagement", new { roleId = "#=RoleId#" }))
+              .Update(update =>
+                  update.Action("UpdateAccess", "UserManagement"))
+          )
+          .Pageable()
+          .Sortable()
+          .ToClientTemplate()
+          )
+</script>
+<script>
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+
+    //$('#grid').on('click', '.chkbx', function (e) {
+    
+    //    var grid = $("#grid").data("kendoGrid"),
+    //        dataItem = grid.dataItem($(e.target).closest("tr"));
+    //    var td = $(this).parent();
+    //    td.addClass('k-dirty-cell');
+       
+    //    $('<span class="k-dirty"></span>').insertBefore($(this));
+    //    dataItem.set("Allow", this.checked);
+
+    //});
+    //$('#grid').on('click', '.k-grid-save-changes', function (e) {
+    //    //notifyStaker("", 'عملیات با موفقیت انجام شد ', "s");
+    //});
+    //function checkAll(ele) {
+    //    var state = $(ele).is(':checked');
+    //    var grid = $('#grid').data().kendoGrid;
+    //    $.each(grid.dataSource.view(), function () {
+    //        if (this['Allow'] != state)
+    //            this.dirty = true;
+    //        this['Allow'] = state;
+    //    });
+    //   // grid.refresh();
+    //}
+</script>
+

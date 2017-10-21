@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{25C01C02-1ECD-455E-A426-0F42B2EA909B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.SharedData.API</RootNamespace>
+    <AssemblyName>IranMarketer.SharedData.API</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Core\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.AutoTx">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Facilities\Castle.Facilities.AutoTx.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.NLogIntegration">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Facilities\Castle.Services.Logging.NLogIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Transactions">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Facilities\Castle.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Windsor\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.SharedData.Dao">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.SharedData.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.SharedData.Interface">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.SharedData.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.SharedData.Service">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.SharedData.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedDataProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Core\Common\Src\IranMarketer.Common.csproj">
+      <Project>{4adf8319-95d5-4352-ac2a-aa2bf6ffa984}</Project>
+      <Name>IranMarketer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Core\Domain\Src\IranMarketer.Domain.csproj">
+      <Project>{cf384560-b8c1-48a1-b753-2f771b4613c0}</Project>
+      <Name>IranMarketer.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

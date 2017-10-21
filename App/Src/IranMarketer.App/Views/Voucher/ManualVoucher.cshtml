@@ -1,0 +1,376 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.Extensions
+@using Kendo.Mvc.UI
+@using Pikad.Framework.Infra.Utility
+@using IranMarketer.App.Component.Model
+@using IranMarketer.Common.Utility
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@model VoucherModel
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "سند دستی";
+}
+<div>
+
+    <div id="filterPanel" class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">تنظیمات و ورودی اطلاعات سند دستی</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body k-rtl">
+            <form role="form" id="master" novalidate method="POST">
+                <div class="row">
+                    <div class="form-group col-md-12">
+
+                        <label style="display: block;">تاریخ</label>
+                        @Html.Kendo().DatePicker().Name("Date").Value(Extention.ConvertMiladiToJalali(DateTime.Now)).HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                    </div>
+                    <div class="form-group col-md-6">
+
+                        <label>شرح سند</label>
+                        @Html.TextBox("Description", "", new { @class = "form-control" })
+                    </div>
+
+
+                </div>
+            </form>
+
+
+            <form role="form" id="temp" novalidate class="form-horizontal form-validate-jquery" method="POST">
+                <div class="row ">
+
+                    <div class="col-md-2 form-group ">
+                        <label class="display-block text-semibold">حساب معین</label>
+                        @(Html.Kendo().ComboBox().Name("SubsidiaryLedgerId").HtmlAttributes(new { @class = "k-rtl", required = "required", style = "width:100%;font-size:12px;" })
+                              .DataTextField("FullTitle")
+                              .Filter(FilterType.Contains)
+                              .DataValueField("Id")
+
+                              .MinLength(3)
+                              .SelectedIndex(0)
+                              .Events(x =>
+                              {
+
+                              })
+                              .AutoBind(true)
+                              .DataSource(source => source.Read(read => read.Action("GetSubsidiaryLedgersAutoComplete", "Ledgers")).ServerFiltering(true)))
+
+
+                    </div>
+
+
+
+                    <div class="col-md-2 form-group ">
+
+
+                        <label class="display-block text-semibold">حساب تفصیلی</label>
+                        @(Html.Kendo().AutoComplete().Name("DetailLedgersId").HtmlAttributes(new { @class = " k-rtl", required = "required", style = "width:100%;font-size:12px;" })
+                              .DataTextField("FullTitle")
+
+                              .Filter(FilterType.Contains)
+                              .MinLength(3).Animation(true)
+                              .Events(x =>
+                              {
+
+                              })
+                              .DataSource(source => source.Read(read => read.Action("GetDetailLedgersAutoComplete", "Ledgers").Data("onDetailLedgersData")).ServerFiltering(true)))
+
+
+
+                    </div>
+                    <div class="col-md-4 form-group ">
+
+
+                        <label class="display-block text-semibold">شرح ردیف سند</label>
+                        @Html.TextBox("voucherDetailsNote", "", new { @class = "form-control", required = "required" })
+
+
+                    </div>
+                    <div class="col-md-2 form-group ">
+
+
+                        <label class="display-block text-semibold">بدهکار</label>
+                        @Html.TextBox("Debit", "0", new { @class = "form-control mask onOfThem ", required = "required" })
+
+
+                    </div>
+                    <div class="col-md-2 form-group ">
+
+
+                        <label class="display-block text-semibold">بستانکار</label>
+                        @Html.TextBox("Credit", "0", new { @class = "form-control mask onOfThem", required = "required" })
+
+
+                    </div>
+
+                </div>
+
+                <div class=" form-group">
+
+                    @(Html.Kendo().Grid<VoucherDetailModel>()
+                          .Name("grid")
+                          .Columns(c =>
+                          {
+                              c.Bound(x => x.RowNumber).Title("ردیف").Width(15);
+                              c.Bound(x => x.SubsidiaryLedgerTitle).Title("حساب معین").Width(40).HtmlAttributes(new { style = "font-size:12px;" });
+                              c.Bound(x => x.DetailLedgerTitle).Title("حساب تفصیلی").Width(65).HtmlAttributes(new { style = "font-size:12px;" }); ;
+                              c.Bound(x => x.Description).Title("شرح").Width(120);
+                              c.Bound(x => x.Debit).Title("بدهکار").ClientTemplate("#=SetColor(Credit)#").ClientFooterTemplate("#=SetColor(sum)#").Width(40);
+                              c.Bound(x => x.Credit).Title("بستانکار").ClientTemplate("#=SetColor(Debit)#").ClientFooterTemplate("#=SetColor(sum)#").Width(40);
+                              ;
+
+                          })
+                    .Scrollable(x =>
+                    {
+                        x.Height("Auto");
+                    })
+                          .DataSource(d =>
+                              d.Ajax().Aggregates(x =>
+                              {
+                                  x.Add(p => p.Debit).Sum();
+                                  x.Add(p => p.Credit).Sum();
+
+                              })
+                                  .Read(x => x.Action("GetTempVoucherDetails", "Voucher"))
+                          )
+                    )
+                </div>
+
+                <div style="float: left" class="content-group">
+                    <h5 class="text-semibold no-margin "><i class="icon-cash3 position-right text-slate"></i><span id="Sum"></span></h5>
+                    <span class="text-muted text-size-small">اختلاف بدهکار و بستانکار</span>
+                </div>
+
+                <div style="clear: both" class="text-right">
+                    <button type="button" id="AddTempVoucher" class="btn btn-primary">ذخیره ردیف سند <i class="icon-arrow-left13 position-right"></i></button>
+                    <button type="button" id="AddVoucher" class="btn btn-primary">ذخیره سند <i class="icon-arrow-left13 position-right"></i></button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+        .dropdown-header > span {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: right;
+            display: inline-block;
+            border-style: solid;
+            border-width: 0 0 1px 1px;
+            padding: .3em .6em;
+            width: 150px;
+        }
+
+            .dropdown-header > span:first-child {
+                width: 150px;
+                border-left-width: 0;
+            }
+</style>
+
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#Description").keyup(function (event) {
+
+            $("#voucherDetailsNote").val($(this).val());
+
+        }).keydown(function( event ) {
+            if ( event.which == 13 ) {
+                event.preventDefault();
+            }
+        });
+    });
+
+
+    function SetColor(e) {
+        if (e < 0)
+            return kendo.toString(Math.abs(e), "#,##0;#,##0");
+        //return "<font color=\"red\">" + kendo.toString(e, "0:#,##0;(#,##0)")+"</font>";
+        else if (e>0)
+            return kendo.toString(e, "#,##0;#,##0") ;
+        else return"0" ;
+
+    }
+
+    function onDetailLedgersData(e) {
+
+        var subsidariCode = $("#SubsidiaryLedgerId").data("kendoComboBox").dataItem();
+        var text = $("#DetailLedgersId").data("kendoAutoComplete").value();
+        if (subsidariCode != null)
+            return { text: text, accountClassId: subsidariCode.ClassId }
+        else return { text:text, accountClassId: 0 }
+    }
+
+    $("#AddTempVoucher").click(function () {
+        if (!$("#temp").valid())
+            return;
+
+        var subsidariCode = $("#SubsidiaryLedgerId").data("kendoComboBox").dataItem();
+        var detailsCode = $("#DetailLedgersId").data("kendoAutoComplete").dataItem();
+        var voucherDetailsNote = $("#voucherDetailsNote").val();
+        var debit = $("#Debit").cleanVal();
+        var credit = $("#Credit").cleanVal();
+
+        if (debit != "" && debit > 0 && credit != "" && credit > 0) {
+
+            showNotification("یکی از مقادیر بستانکار و یا بدهکار مجاز است.", 'e');
+            return;
+        }
+
+
+        var data = {
+            SubsidiaryLedgerId: subsidariCode.Id,
+            SubsidiaryLedgerCode: subsidariCode.Code,
+
+            SubsidiaryLedgerTitle: subsidariCode.FullTitle,
+            DetailLedgerId: detailsCode.Id,
+            DetailLedgerTitle: detailsCode.FullTitle,
+            DetailLedgerCode: detailsCode.Code,
+            Credit: credit,
+            Debit: debit,
+            Description: voucherDetailsNote,
+            GeneralLedgerCode: subsidariCode.GeneralLedgerCode,
+            GeneralLedgerId: subsidariCode.GeneralLedgerId
+        };
+        $.ajax({
+            url: '@Url.Action("AddTempVoucherDetail", "Voucher")',
+            type: "POST",
+            dataType: "json",
+
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input', '#temp')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+                    $('#grid').data('kendoGrid').dataSource.read();
+                    var grid = $('#grid').data('kendoGrid');
+                    $("#Debit").val(0);
+              $("#Credit").val(0);
+
+                    setTimeout(function(){  var aggregates = grid.dataSource.aggregates();
+                        var diff = aggregates.Credit.sum - aggregates.Debit.sum;
+                        $("#Sum").html(" "+SetColor(diff)+" ");
+                    }, 1000);
+
+
+
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+
+    });
+
+
+
+    $("#AddVoucher").click(function () {
+        if (!$("#master").valid())
+            return;
+
+        var date = $("#Date").val();
+        var description = $("#Description").val();
+
+        var data = {
+            VoucherDate: date,
+            Description: description,
+
+        };
+        $.ajax({
+            url: '@Url.Action("AddVoucher", "Voucher")',
+            type: "POST",
+            dataType: "json",
+
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+               showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input', '#temp')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+                    $('#grid').data('kendoGrid').dataSource.read();
+
+                    showNotification(response.Message, 's');
+                    $(':input', '#master')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+                    $('#grid').data('kendoGrid').dataSource.read();
+
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+
+    });
+    //$('.onOfThem').keyup(function (e) {
+    //    if (e.target.name === 'Debit')
+    //        $('[name=Credit]').val('0');
+    //    else
+    //        $('[name=Debit]').val('0');
+
+
+    //});
+</script>

@@ -1,0 +1,6 @@
+F:\FundProject\Core\SharedData\bin\Sahra.MutualFund.SharedData.Dao.dll.config
+F:\FundProject\Core\SharedData\bin\Sahra.MutualFund.SharedData.Dao.dll
+F:\FundProject\Core\SharedData\bin\Sahra.MutualFund.SharedData.Dao.pdb
+F:\FundProject\Core\SharedData\Src\Sahra.MutualFund.SharedData.Dao\obj\Debug\Sahra.MutualFund.SharedData.Dao.csprojResolveAssemblyReference.cache
+F:\FundProject\Core\SharedData\Src\Sahra.MutualFund.SharedData.Dao\obj\Debug\Sahra.MutualFund.SharedData.Dao.dll
+F:\FundProject\Core\SharedData\Src\Sahra.MutualFund.SharedData.Dao\obj\Debug\Sahra.MutualFund.SharedData.Dao.pdb

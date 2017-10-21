@@ -1,0 +1,453 @@
+﻿<form role="form" id="ifbequityfeesettingform" novalidate class="form-horizontal form-validate-jquery" action="#" method="POST">
+    <table id="ifbequityfeesetting" class="tblBuySell" cellpadding="3" width="90%">
+        <tr class="cssGridHeaderFirst">
+            <td rowspan="2">
+                شرح کارمزد
+            </td>
+            <td colspan="3">
+                خرید
+            </td>
+            <td colspan="3">
+                فروش
+            </td>
+        </tr>
+        <tr class="cssGridHeaderFirst">
+            <td>
+                کارمزد
+            </td>
+            <td>
+                حداکثر مبلغ کارمزد
+            </td>
+            <td>
+                تخفیف (درصد)
+            </td>
+
+            <td>
+                کارمزد
+            </td>
+            <td>
+                حداکثر مبلغ کارمزد
+            </td>
+            <td>
+                تخفیف (درصد)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                کارمزد کارگزاری
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityBrokerBuyFee" data-bind="value: IFBEquityBrokerBuyFee" name="IFBEquityBrokerBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxBrokerBuyFee" data-bind="value: IFBEquityMaxBrokerBuyFee" name="IFBEquityMaxBrokerBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityBrokerBuyFeeDiscount" data-bind="value: IFBEquityBrokerBuyFeeDiscount" name="IFBEquityBrokerBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityBrokerSellFee" data-bind="value: IFBEquityBrokerSellFee" name="IFBEquityBrokerSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxBrokerSellFee" data-bind="value: IFBEquityMaxBrokerSellFee" name="IFBEquityMaxBrokerSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityBrokerSellFeeDiscount" data-bind="value: IFBEquityBrokerSellFeeDiscount" name="IFBEquityBrokerSellFeeDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                کارمزد بورس
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquitySeoBuyFee" data-bind="value: IFBEquitySeoBuyFee" name="IFBEquitySeoBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxSeoBuyFee" data-bind="value: IFBEquityMaxSeoBuyFee" name="IFBEquityMaxSeoBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquitySeoBuyFeeDiscount" data-bind="value: IFBEquitySeoBuyFeeDiscount" name="IFBEquitySeoBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquitySeoSellFee" data-bind="value: IFBEquitySeoSellFee" name="IFBEquitySeoSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxSeoSellFee" data-bind="value: IFBEquityMaxSeoSellFee" name="IFBEquityMaxSeoSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquitySeoSellFeeDiscount" data-bind="value: IFBEquitySeoSellFeeDiscount" name="IFBEquitySeoSellFeeDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                کارمزد سپرده گذاری
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityCsdBuyFee" data-bind="value: IFBEquityCsdBuyFee" name="IFBEquityCsdBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxCsdBuyFee" data-bind="value: IFBEquityMaxCsdBuyFee" name="IFBEquityMaxCsdBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityCsdBuyFeeDiscount" data-bind="value: IFBEquityCsdBuyFeeDiscount" name="IFBEquityCsdBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityCsdSellFee" data-bind="value: IFBEquityCsdSellFee" name="IFBEquityCsdSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxCsdSellFee" data-bind="value: IFBEquityMaxCsdSellFee" name="IFBEquityMaxCsdSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityCsdSellFeeDiscount" data-bind="value: IFBEquityCsdSellFeeDiscount" name="IFBEquityCsdSellFeeDiscount">
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                کارمزد مدیریت فن آوری
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseTmcBuyFee" data-bind="value: IFBEquityTseTmcBuyFee" name="IFBEquityTseTmcBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxTseTmcBuyFee" data-bind="value: IFBEquityMaxTseTmcBuyFee" name="IFBEquityMaxTseTmcBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseTmcBuyDiscount" data-bind="value: IFBEquityTseTmcBuyDiscount" name="IFBEquityTseTmcBuyDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseTmcSellFee" data-bind="value: IFBEquityTseTmcSellFee" name="IFBEquityTseTmcSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxTseTmcSellFee" data-bind="value: IFBEquityMaxTseTmcSellFee" name="IFBEquityMaxTseTmcSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseTmcSellDiscount" data-bind="value: IFBEquityTseTmcSellDiscount" name="IFBEquityTseTmcSellDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                حق نظارت سازمان
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseBuyFee" data-bind="value: IFBEquityTseBuyFee" name="IFBEquityTseBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxTseBuyFee" data-bind="value: IFBEquityMaxTseBuyFee" name="IFBEquityMaxTseBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseBuyFeeDiscount" data-bind="value: IFBEquityTseBuyFeeDiscount" name="IFBEquityTseBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseSellFee" data-bind="value: IFBEquityTseSellFee" name="IFBEquityTseSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityMaxTseSellFee" data-bind="value: IFBEquityMaxTseSellFee" name="IFBEquityMaxTseSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquityTseSellFeeDiscount" data-bind="value: IFBEquityTseSellFeeDiscount" name="IFBEquityTseSellFeeDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                مالیات
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBEquitySellTax" data-bind="value: IFBEquitySellTax" name="IFBEquitySellTax">
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+
+        <tr style="font-weight: bold; background-color: Yellow">
+            <td style="white-space: nowrap">
+                <b>جمع</b>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBEquitySumBuyFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBEquitySumMaxBuyFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBEquitySumBuyDiscount">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBEquitySumSellFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBEquitysumSellMaxFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBEquitySumSellDiscount">
+                    .
+                </label>
+            </td>
+        </tr>
+    </table>
+    <div class="text-right">
+        <button type="button" id="IFBEquitysaveSettingBtn" class="btn btn-primary legitRipple">ذخیره <i class="icon-arrow-left13 position-right"></i></button>
+    </div>
+</form>
+
+<style>
+    .cssGridHeaderFirst {
+        background-color: #4caf50;
+        color: #fff;
+    }
+
+    .tblBuySell {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+    .tblBuySell td {
+        text-align: center;
+    }
+
+    .cssGridHeaderFirst td {
+        color: #fff;
+    }
+
+    .tr td {
+        padding: 3px !important;
+    }
+
+    td, th {
+        padding: 3px !important;
+    }
+</style>
+
+<script>
+    $("#IFBEquitysaveSettingBtn").click(function() {
+
+        if (!$("#ifbequityfeesettingform").valid()) {
+            return;
+        } else {
+
+            var data = {
+                "BrokerBuyFee": SetValueFloatNumber($('#IFBEquityBrokerBuyFee').val()),
+                "MaxBrokerBuyFee": $('#IFBEquityMaxBrokerBuyFee').val(),
+                "BrokerBuyFeeDiscount": SetValueFloatNumber($('#IFBEquityBrokerBuyFeeDiscount').val()),
+                "BrokerSellFee": SetValueFloatNumber($('#IFBEquityBrokerSellFee').val()),
+                "MaxBrokerSellFee": $('#IFBEquityMaxBrokerSellFee').val(),
+                "BrokerSellFeeDiscount": SetValueFloatNumber($('#IFBEquityBrokerSellFeeDiscount').val()),
+
+                "SeoBuyFee": SetValueFloatNumber($('#IFBEquitySeoBuyFee').val()),
+                "MaxSeoBuyFee": $('#IFBEquityMaxSeoBuyFee').val(),
+                "SeoBuyFeeDiscount": SetValueFloatNumber($('#IFBEquitySeoBuyFeeDiscount').val()),
+                "SeoSellFee": SetValueFloatNumber($('#IFBEquitySeoSellFee').val()),
+                "MaxSeoSellFee": $('#IFBEquityMaxSeoSellFee').val(),
+                "SeoSellFeeDiscount": SetValueFloatNumber($('#IFBEquitySeoSellFeeDiscount').val()),
+
+                "CsdBuyFee": SetValueFloatNumber($('#IFBEquityCsdBuyFee').val()),
+                "MaxCsdBuyFee": $('#IFBEquityMaxCsdBuyFee').val(),
+                "CsdBuyFeeDiscount": SetValueFloatNumber($('#IFBEquityCsdBuyFeeDiscount').val()),
+                "CsdSellFee": SetValueFloatNumber($('#IFBEquityCsdSellFee').val()),
+                "MaxCsdSellFee": $('#IFBEquityMaxCsdSellFee').val(),
+                "CsdSellFeeDiscount": SetValueFloatNumber($('#IFBEquityCsdSellFeeDiscount').val()),
+
+                "TseTmcBuyFee": SetValueFloatNumber($('#IFBEquityTseTmcBuyFee').val()),
+                "MaxTseTmcBuyFee": $('#IFBEquityMaxTseTmcBuyFee').val(),
+                "TseTmcBuyDiscount": SetValueFloatNumber($('#IFBEquityTseTmcBuyDiscount').val()),
+                "TseTmcSellFee": SetValueFloatNumber($('#IFBEquityTseTmcSellFee').val()),
+                "MaxTseTmcSellFee": $('#IFBEquityMaxTseTmcSellFee').val(),
+                "TseTmcSellDiscount": SetValueFloatNumber($('#IFBEquityTseTmcSellDiscount').val()),
+
+                "TseBuyFee": SetValueFloatNumber($('#IFBEquityTseBuyFee').val()),
+                "MaxTseBuyFee": $('#IFBEquityMaxTseBuyFee').val(),
+                "TseBuyFeeDiscount": SetValueFloatNumber($('#IFBEquityTseBuyFeeDiscount').val()),
+                "TseSellFee": SetValueFloatNumber($('#IFBEquityTseSellFee').val()),
+                "MaxTseSellFee": $('#IFBEquityMaxTseSellFee').val(),
+                "TseSellFeeDiscount": SetValueFloatNumber($('#IFBEquityTseSellFeeDiscount').val()),
+
+                "SellTax": SetValueFloatNumber($('#IFBEquitySellTax').val())
+            };
+
+
+            $.ajax({
+                url: '@Url.Action("SaveSetting", "IFBEquityFeeSetting")',
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#form')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+
+                        $('#grid').data('kendoGrid').dataSource.read();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+                    }
+                }
+            });
+        }
+    });
+
+
+    function IFBEquitygetSumSymbolTradeSettingList() {
+
+        $('#IFBEquitySumBuyFee').html(
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityBrokerBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquitySeoBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityCsdBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityTseTmcBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityTseBuyFee').val()).replace(",", "")));
+
+        $('#IFBEquitySumBuyFee').html(SetValueFloatNumber($('#IFBEquitySumBuyFee').html()).toFixed(7));
+
+        $('#IFBEquitySumSellFee').html(
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityBrokerSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquitySeoSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityCsdSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityTseTmcSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquityTseSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBEquitySellTax').val()).replace(",", "")));
+
+        $('#IFBEquitySumSellFee').html(SetValueFloatNumber($('#IFBEquitySumSellFee').html()).toFixed(7));
+
+
+
+    }
+    document.onload = IFBEquitygetSumSymbolTradeSettingList();
+
+    $(document).ready(function () {
+        //$('input:text').each(function() {
+        //    $(this).html(NullCheckerSTSLOMFB($(this).html()));
+        //});
+
+
+
+        $.ajax({
+            url: '@Url.Action("GetLastSetting", "IFBEquityFeeSetting")',
+            type: "POST",
+            dataType: "json",
+            //data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input', '#form')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+
+                } else {
+
+                    $('#IFBEquityBrokerBuyFee').val(response.BrokerBuyFee);
+                    $('#IFBEquityMaxBrokerBuyFee').val(addcommas2(response.MaxBrokerBuyFee));
+                    $('#IFBEquityBrokerBuyFeeDiscount').val(response.BrokerBuyFeeDiscount);
+                    $('#IFBEquityBrokerSellFee').val(response.BrokerSellFee);
+                    $('#IFBEquityMaxBrokerSellFee').val(addcommas2(response.MaxBrokerSellFee));
+                    $('#IFBEquityBrokerSellFeeDiscount').val(response.BrokerSellFeeDiscount);
+
+                    $('#IFBEquitySeoBuyFee').val(response.SeoBuyFee);
+                    $('#IFBEquityMaxSeoBuyFee').val(addcommas2(response.MaxSeoBuyFee));
+                    $('#IFBEquitySeoBuyFeeDiscount').val(response.SeoBuyFeeDiscount);
+                    $('#IFBEquitySeoSellFee').val(response.SeoSellFee);
+                    $('#IFBEquityMaxSeoSellFee').val(addcommas2(response.MaxSeoSellFee));
+                    $('#IFBEquitySeoSellFeeDiscount').val(response.SeoSellFeeDiscount);
+
+                    $('#IFBEquityCsdBuyFee').val(response.CsdBuyFee);
+                    $('#IFBEquityMaxCsdBuyFee').val(addcommas2(response.MaxCsdBuyFee));
+                    $('#IFBEquityCsdBuyFeeDiscount').val(response.CsdBuyFeeDiscount);
+                    $('#IFBEquityCsdSellFee').val(response.CsdSellFee);
+                    $('#IFBEquityMaxCsdSellFee').val(addcommas2(response.MaxCsdSellFee));
+                    $('#IFBEquityCsdSellFeeDiscount').val(response.CsdSellFeeDiscount);
+
+                    $('#IFBEquityTseTmcBuyFee').val(response.TseTmcBuyFee);
+                    $('#IFBEquityMaxTseTmcBuyFee').val(addcommas2(response.MaxTseTmcBuyFee));
+                    $('#IFBEquityTseTmcBuyDiscount').val(response.TseTmcBuyDiscount);
+                    $('#IFBEquityTseTmcSellFee').val(response.TseTmcSellFee);
+                    $('#IFBEquityMaxTseTmcSellFee').val(addcommas2(response.MaxTseTmcSellFee));
+                    $('#IFBEquityTseTmcSellDiscount').val(response.TseTmcSellDiscount);
+
+
+                    $('#IFBEquityTseBuyFee').val(response.TseBuyFee);
+                    $('#IFBEquityMaxTseBuyFee').val(addcommas2(response.MaxTseBuyFee));
+                    $('#IFBEquityTseBuyFeeDiscount').val(response.TseBuyFeeDiscount);
+                    $('#IFBEquityTseSellFee').val(response.TseSellFee);
+                    $('#IFBEquityMaxTseSellFee').val(addcommas2(response.MaxTseSellFee));
+                    $('#IFBEquityTseSellFeeDiscount').val(response.TseSellFeeDiscount);
+
+                    $('#IFBEquitySellTax').val(response.SellTax);
+
+                    IFBEquitygetSumSymbolTradeSettingList();
+                }
+            }
+
+
+        });
+
+        $('input').keyup(function (e) {
+            IFBEquitygetSumSymbolTradeSettingList();
+            e.stopPropagation();
+        });
+    });
+</script>

@@ -1,0 +1,236 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using Pikad.Framework.Infra.Utility
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "فهرست معاملات";
+}
+<div>
+    <div class="panel-heading">
+        <h5 class="panel-title">فهرست معاملات</h5>
+
+    </div>
+    <div id="filterPanel" class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">فیلتر جستجو</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="k-rtl">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>کارگزاری</label>
+                        @(Html.Kendo().DropDownList().Name("BrokerCode").HtmlAttributes(new { @class = "form-control k-rtl", style = "width:50%" })
+                              .DataTextField("BrokerTitle")
+                              .Filter(FilterType.Contains)
+                              .DataValueField("BrokerValue")
+                              .SelectedIndex(0)
+                              .AutoBind(true)
+                              .DataSource(source => source.Read(read => read.Action("GetBrokers", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>نوع معامله</label>
+                        @(Html.Kendo().DropDownList().Name("TradeType").HtmlAttributes(new { @class = "form-control k-rtl", style = "width:50%" })
+                          .DataTextField("TradeTypeTitle")
+                          .Filter(FilterType.Contains)
+                          .DataValueField("TradeTypeValue")
+                          .SelectedIndex(0)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetTradeTypes", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>نماد</label>
+                        @(Html.Kendo().ComboBox()
+                          .Name("ProductId")
+                          .DataValueField("Id")
+                          .DataTextField("Title")
+                          .HtmlAttributes(new
+                          {
+                              style = "width:600px;margin-right: 1px;",
+                              data_required_msg = " الزامی است",
+                              required = "required"
+                          })
+                          .Placeholder("انتخاب نماد ...")
+                          //.MaxSelectedItems(1)
+                          .Filter("contains")
+                          .MinLength(3)
+                          .DataSource(
+                              source => source.Read(read => read.Action("GetProductByFilter", "Product")
+                                  ).ServerFiltering(true))
+                          .Enable(true))
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>تاریخ از</label>
+                        @Html.Kendo().DatePicker().Name("FromDate").Value(DateTime.Now.AddDays(-14).ConvertMiladiToJalali()).HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                        <span class="text-danger">*</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>تاریخ تا</label>
+                        @Html.Kendo().DatePicker().Name("ToDate").Value(DateTime.Now.ConvertMiladiToJalali()).HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                        <span class="text-danger">*</span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" id="search" class="btn btn-primary">جست و جو <i class="icon-arrow-left13 position-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-body" style="min-height: 680px;font-size: 12px">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<IranMarketer.Domain.DTO.SecurityTransaction>()
+                  .Name("grid")
+                  .Columns(column =>
+                  {
+                      column.Bound(x => x.Symbol).Title("نماد").Width(80);
+                      column.Bound(x => x.ProductName).Title("عنوان").Width(120);
+                      column.Bound(x => x.Volume).Title("تعداد").Width(80).Format("{0:n0}"); ;
+                      column.Bound(x => x.Price).Title("قیمت").Width(80).Format("{0:n0}"); 
+                      column.Bound(x => x.TransactionTypeTitle).Title("نوع").Width(80);
+                      column.Bound(x => x.DateJalali).Title("تاریخ").Width(60).HtmlAttributes(new { style = "direction: ltr" });
+                      column.Bound(x => x.BrokerFee).Title("کارمزد کارگزاری").Width(80).Format("{0:n0}");
+                      column.Bound(x => x.TotalFee).Title("کل کارمزد").Width(80).Format("{0:n0}");
+                      column.Bound(x => x.CouponAmount).Title("سود اوراق").Width(80).Format("{0:n0}");
+                  })
+                  .ToolBar(x =>
+                  {
+                      x.Excel().Text("Excel");
+                  })
+                  .Excel(excel => excel
+                      .FileName("TradesExcelReport.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+                      .ForceProxy(true)
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "Trade"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] { 100, 200, 300, 400 }))
+
+                  .AllowCopy(true)
+                  .ColumnMenu(e =>
+                  {
+                      e.Columns(true);
+                  })
+                  .Selectable(x => x.Mode(GridSelectionMode.Multiple))
+                  .Scrollable()
+                  .AutoBind(false)
+                  .HtmlAttributes(new { style = "height:620px;" })
+                  .DataSource(dataSource =>
+                      dataSource.Custom()
+                          .Type("aspnetmvc-ajax")
+                          .PageSize(100)
+                          .ServerPaging(true)
+                          .ServerSorting(true)
+                          .ServerFiltering(true)
+                          .Transport(transport => transport
+                              .Read(read => read.Action("GetTrades", "Trade").Data("filterData").Type(HttpVerbs.Post))
+                          )
+                          .Schema(s => s.Data("Result").Total("TotalRecords"))
+                  )
+
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+        .dropdown-header > span {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: right;
+            display: inline-block;
+            border-style: solid;
+            border-width: 0 0 1px 1px;
+            padding: .3em .6em;
+            width: 150px;
+        }
+
+            .dropdown-header > span:first-child {
+                width: 150px;
+                border-left-width: 0;
+            }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+    });
+
+
+
+
+    function onSelect(e) {
+
+        // $("#custometfullname").text(dataItem.FullName);
+    }
+
+    function onDataBound(e) {
+
+    }
+
+    function onFiltering() {
+
+    }
+
+
+    function filterData() {
+
+        var data = {
+            TradeType: $("#TradeType").val(),
+            BrokerCode: $("#BrokerCode").val(),
+            FromDate: $("#FromDate").val(),
+            ToDate: $("#ToDate").val(),
+            ProductId: $("#ProductId").data("kendoComboBox").dataItem() != null ? $("#ProductId").val() : "-1"
+        }
+        if (!$('#filterPanel').hasClass('panel-collapsed'))
+            $('#filterPanel [data-action=collapse]').click();
+        return { model: data };
+    }
+    $("#search").click(function () {
+
+        $("#grid").data("kendoGrid").dataSource.read();
+
+    });
+
+</script>

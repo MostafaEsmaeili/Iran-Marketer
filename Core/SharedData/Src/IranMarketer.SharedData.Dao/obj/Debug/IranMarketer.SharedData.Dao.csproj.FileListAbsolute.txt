@@ -1,0 +1,7 @@
+F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Dao.dll.config
+F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Dao.dll
+F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Dao.pdb
+F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Dao\obj\Debug\IranMarketer.SharedData.Dao.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Dao\obj\Debug\IranMarketer.SharedData.Dao.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Dao\obj\Debug\IranMarketer.SharedData.Dao.dll
+F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Dao\obj\Debug\IranMarketer.SharedData.Dao.pdb

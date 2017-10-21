@@ -1,0 +1,137 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@using CustodianSetting = IranMarketer.Domain.DTO.CustodianSetting
+@using ProfitGuaranteeSetting = IranMarketer.Domain.DTO.ProfitGuaranteeSetting
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "تنظیمات پایه";
+}
+
+<div class="k-rtl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">تنظیمات ارکان</h5>
+                </div>
+                <div class="panel-body">
+                    @* ReSharper disable once UnknownCssClass *@
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">مدیریت صندوق <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class=""><a href="#highlighted-justified-tab3" data-toggle="tab" aria-expanded="true">هزینه های مدیر</a></li>
+                                    <li class="active"><a href="#highlighted-justified-tab4" data-toggle="tab" aria-expanded="true">هزینه های مدیر سرمایه گذاری</a></li>
+                                    <li class=""><a href="#highlighted-justified-tab5" data-toggle="tab" aria-expanded="true">هزینه های مدیر ثبت</a></li>
+
+                                </ul>
+                            </li>
+                            <li class=""><a href="#highlighted-justified-tab1" data-toggle="tab" class="legitRipple" aria-expanded="false">ضامن سودآوری</a></li>
+                            <li class=""><a href="#highlighted-justified-tab2" data-toggle="tab" class="legitRipple" aria-expanded="false">ضامن نقد شوندگی</a></li>
+                            <li class=""><a href="#highlighted-justified-tab6" data-toggle="tab" class="legitRipple" aria-expanded="false">بازار گردان</a></li>
+                            <li class=""><a href="#highlighted-justified-tab7" data-toggle="tab" class="legitRipple" aria-expanded="false">متولی</a></li>
+                            <li class=""><a href="#highlighted-justified-tab8" data-toggle="tab" class="legitRipple" aria-expanded="false">حسابرس</a></li>
+                            @*
+                                <li class=""><a href="#highlighted-justified-tab9" data-toggle="tab" class="legitRipple" aria-expanded="false">سایر هزینه ها</a></li>
+
+                                <li class=""><a href="#highlighted-justified-tab10" data-toggle="tab" class="legitRipple" aria-expanded="false">تنظیمات هزینه های عمومی</a></li>
+
+                                <li class=""><a href="#highlighted-justified-tab11" data-toggle="tab" class="legitRipple" aria-expanded="false">تنظیمات هزینه های برگزاری مجامع</a></li>
+                                <li class=""><a href="#highlighted-justified-tab12" data-toggle="tab" class="legitRipple" aria-expanded="false">تنظیمات هزینه تاسیس</a></li>
+                                <li class=""><a href="#highlighted-justified-tab13" data-toggle="tab" class="legitRipple" aria-expanded="false">تنظیمات عضویت در کانون ها</a></li>
+                                <li class=""><a href="#highlighted-justified-tab14" data-toggle="tab" class="legitRipple" aria-expanded="false">آبونمان نرم افزار</a></li>*@
+
+
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane " id="highlighted-justified-tab3">
+                                <!-- هزینه های مدیر-->
+                                @{
+                                    Html.RenderPartial("_MagementSetting");
+                                }
+
+
+                            </div>
+
+                            <div class="tab-pane  active" id="highlighted-justified-tab4">
+                                <!--هزینه های مدیر سرمایه گذاری-->
+                                @{
+                                    Html.RenderPartial("_InvestmentManagerSetting", new InvestmentManagerSetting());
+
+                                }
+                            </div>
+
+                            <div class="tab-pane" id="highlighted-justified-tab1">
+                                <!--ضامن سود آوردی-->
+                                @{
+                                    Html.RenderPartial("_ProfitGuarantorSetting", new ProfitGuaranteeSetting());
+                                }
+                            </div>
+
+                            <div class="tab-pane" id="highlighted-justified-tab2">
+                                <!--ضامن نقد شوندگی-->
+                                @{
+                                    Html.RenderPartial("_LiquidityGuaranteeSetting");
+                                }
+
+                            </div>
+                            <div class="tab-pane " id="highlighted-justified-tab7">
+                                <!--متولی-->
+                                @{
+                                    Html.RenderPartial("_CustodianSetting", new CustodianSetting());
+                                }
+                            </div>
+                            <div class="tab-pane " id="highlighted-justified-tab5">
+                                <!--مدیر ثبت-->
+                                @{
+                                    Html.RenderPartial("_BranchManagerSetting");
+                                }
+                            </div>
+
+                            <div class="tab-pane " id="highlighted-justified-tab6">
+                                <!--بازار گردان-->
+                                @{
+                                    Html.RenderPartial("_MarketMakarSetting");
+                                }
+                            </div>
+
+
+
+                            <div class="tab-pane " id="highlighted-justified-tab8">
+                                <!--حسابرس-->
+                                @{
+                                    Html.RenderPartial("_AuditorSetting");
+                                }
+                            </div>
+                            @*
+                                <div class="tab-pane " id="highlighted-justified-tab9"> <!--تنظیمات تصفیه-->
+
+                                </div>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+

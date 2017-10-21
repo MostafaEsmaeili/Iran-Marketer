@@ -1,0 +1,6 @@
+F:\FundProject\IdentityServer\build\Sahra.MutualFund.IdentityAdmin.EntityFramework.dll.config
+F:\FundProject\IdentityServer\build\Sahra.MutualFund.IdentityAdmin.EntityFramework.dll
+F:\FundProject\IdentityServer\build\Sahra.MutualFund.IdentityAdmin.EntityFramework.pdb
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.EntityFramework\obj\Release\Sahra.MutualFund.IdentityAdmin.EntityFramework.csprojResolveAssemblyReference.cache
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.EntityFramework\obj\Release\Sahra.MutualFund.IdentityAdmin.EntityFramework.dll
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.EntityFramework\obj\Release\Sahra.MutualFund.IdentityAdmin.EntityFramework.pdb

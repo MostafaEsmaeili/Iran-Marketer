@@ -1,0 +1,611 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.App.Component.Model
+@model SubscriptionRequestModel
+@{
+    ViewBag.Title = "درخواست صدور";
+}
+<style>
+    .myPanel {
+        height: 7em !important;
+    }
+</style>
+
+
+<div class="k-rtl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">درخواست صدور</h5>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="subscriptionrequestform" novalidate class="form-horizontal form-validate-jquery" action="@Url.Action("RegisterSubscriptionRequest", "Requests")" method="POST">
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-material">
+                                    <label class="display-block text-semibold">انتخاب مشتری</label>
+                                    @(Html.Kendo().AutoComplete().Name("PartyName")
+                                          .DataTextField("FullName")
+                                          .Filter(FilterType.Contains)
+                                          .MinLength(3)
+                                          .HtmlAttributes(new 
+                                          {
+                                              style = "width:630px;",
+                                              required = "required",
+                                              data_required_msg = "اطلاعات مشتری الزامی است",
+                                          })
+                                          .HeaderTemplate("<div style=\"width:630px !important;\" class=\"dropdown-header\">" +
+                                                          "<span style=\"width:290px;\" class=\"k-widget k-header\" >عنوان</span>" +
+                                                          "<span class=\"k-widget k-header\" >کد ملی</span>" +
+                                                          "<span class=\"k-widget k-header\" >نام پدر</span>" +
+                                                          "</div>")
+                                          .Template("<div  class=\"dropdown-header\">" +
+                                                    "<span style=\"width:290px;\" class=\"k-state-default\">#: data.FullName #</span>" +
+                                                    "<span class=\"k-state-default\">#: data.NationalId #</span>" +
+                                                    "<span class=\"k-state-default\">#: data.FatherName #</span>" +
+                                                    "</div>").HtmlAttributes(new { style = "width:630px;" })
+                                          .Placeholder("جستجوی مشتری بر اساس نام و نام خانوادگی و کد ملی")
+                                          .DataSource(source =>
+                                          {
+                                              source
+                                                  .Custom()
+                                                  .ServerFiltering(true)
+                                                  .ServerPaging(true)
+                                                  .PageSize(100)
+                                                  .Type("aspnetmvc-ajax")
+                                                  .Transport(t =>
+                                                  {
+                                                      t.Read(r =>
+                                                      {
+                                                          r.Action("GetCustomerAutoCompleteFilter", "Party").Data("onAdditionalData");
+                                                      });
+                                                  })
+                                                  .Schema(s =>
+                                                  {
+                                                      s.Data("Data").Total("Total");
+                                                  });
+                                              ;
+
+                                          })
+                                          .Events(e =>
+                                                    {
+                                                        e.Change("onSelect");
+                                                    })
+                                          .Virtual(v => v.ItemHeight(26))
+                                    )
+                                    <input type="hidden" id="PartyId" name="PartyId" data-bind="value: getPartyId" />
+                                    @*<span class="text-danger">*</span>*@
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    <style>
+      
+                    </style>
+
+                    <div class="row">
+                
+                        <div class="panel bg-teal-400 col-md-3 myPanel">
+                            <div class="panel-body">
+                                کد ملی/شناسه ملی    
+                                <h6 class="no-margin"><span id="customenationalid"></span></h6>
+                        </div>
+                     
+                        </div>
+                        <div class="panel bg-teal-400 col-md-3 myPanel">
+                            <div class="panel-body">
+                                نام   
+                                <h6 class="no-margin"><span id="customedfullname"></span></h6>
+                                                         </div>
+                     
+                        </div>
+                    
+                        <div id="fatherPanel" class="panel bg-teal-400  col-md-3 myPanel">
+                            <div class="panel-body">
+                                نام پدر 
+                                <h6 class="no-margin"><span id="fathername"></span></h6>
+                                            
+                            </div>
+                        </div>
+                            
+                        <div class="panel bg-teal-400  col-md-3 myPanel">
+                            <div class="panel-body">
+                                تاریخ تولد/ثبت  
+                                <h6 class="no-margin"><span id="Birth"></span></h6>
+                                                         </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>تاریخ واریز</label>
+                                @Html.Kendo().DatePickerFor(x => x.Date).HtmlAttributes(new { style = "width:250px", type = "text", required = "required",data_required_msg = "تاریخ صدور الزامی است"}).Format("yyyy/MM/dd")
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="display-block text-semibold">درخواست صدور از محل</label>
+                                    @(Html.Kendo().ComboBox().Name("RequestInsertMode")
+                                          .DataTextField("RequestSettlementTitle")
+                                          .DataValueField("RequestSettlementValue")
+                                          .HtmlAttributes(new
+                                          {
+                                              style = "width:400px;margin-right: 1px;",
+                                              data_required_msg = " الزامی است",
+                                              required = "required"
+                                          })
+
+                                          .Filter("contains")
+                                          .AutoBind(true)
+                                    .Events(x =>
+                                    {
+                                        x.Change("onChengeSubscriptionRequest");
+                                        x.Select("onChengeSubscriptionRequest");
+                                    })
+                                          .SelectedIndex(1)
+                                          .MinLength(3) 
+                                          .DataSource(
+                                              source => source.Read(read => read.Action("GetRequestSettlementType", "UIComponent",new {addAll=false})
+                                             
+                                                  ).ServerFiltering(false))
+                                     
+                                          )
+                                </div>
+                            </div>
+                        </div>
+       
+                        <fieldset id="BankDeposit">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">مبلغ درخواست صدور</label>
+                                        <input type="text" class="form-control mask" id="subscriptionRequestamount"  required="required" data_required_msg = "مبلغ درخواست صدو الزامی است" />
+                                        <span> ریال</span>
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">شماره فیش/حواله واریزی</label>
+                                        @Html.TextBoxFor(x => x.DepositTranckigNumber, new { @class = "form-control" ,required="required", data_required_msg = "شماره فیش الزامی است"})
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">تاریخ واریز</label>
+                                        @Html.Kendo().DatePickerFor(x => x.Date).HtmlAttributes(new { style = "width:250px", type = "text",required="required", data_required_msg = "الزامی است" }).Format("yyyy/MM/dd")
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">حساب محل واریز</label>
+                                        @(Html.Kendo().ComboBox().Name("BankDepositId")
+                                            
+                                              .DataTextField("FullBankName").Placeholder("انتخاب حساب محل واریز")
+                                              .DataValueField("Id")
+                                              .HtmlAttributes(new
+                                              {
+                                                  style = "width:400px;margin-right: 1px;",
+                                                  data_required_msg = "انتخاب حساب محل واریز الزامی است",
+                                                  required = "required"
+                                              })
+
+                                              .Filter("contains")
+                                              .AutoBind(true)
+                                              .MinLength(3)
+                                              .DataSource(
+                                                  source => source.Read(read => read.Action("GetActiveBankDepositsForReqeust", "BankDeposit")
+                                                      ).ServerFiltering(false))
+                                              )
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                        </fieldset>
+                        
+                        <fieldset id="DividendAccount">
+                            <div class="row">
+                                @*<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">مانده حساب سود تقسیمی</label>
+                                        @Html.TextBox("dividendAmount",null,new {@class = "form-control mask",@readonly="readonly"})
+                                    </div>
+                                </div>*@
+                                <div class="content-group">
+                                    <h5  class="text-semibold no-margin"><i class="icon-cash3 position-right text-slate"></i><span id="dividendAmount"> </span></h5>
+                                    <span class="text-muted text-size-small">مانده حساب سود تقسیم</span>
+                                </div>
+                                
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="display-block text-semibold">مبلغ درخواست صدور</label>
+                                        @Html.TextBox("subscriptionRequestamountFromDividendAmount",null,new {@class = "form-control mask",required="required"})
+                                        <span class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+                     
+                            
+
+                        </fieldset>
+                        <div class="form-group" id="taxFee">
+                            <label>دریافت کارمزد</label>
+                            <input type="checkbox" checked="checked" name="ConsiderTaxAndToll" id="ConsiderTaxAndToll"/>
+                        </div>
+          
+
+                        <div class="text-right">
+                            <button type="button" id="btnFormSubs" class="btn btn-primary">ذخیره <i class="icon-arrow-left13 position-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .label {
+        font-size: 100% !important;
+    }
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+    .dropdown-header > span {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: right;
+        display: inline-block;
+        border-style: solid;
+        border-width: 0 0 1px 1px;
+        padding: .3em .6em;
+        width: 150px;
+    }
+
+    .dropdown-header > span:first-child {
+        width: 150px;
+        border-left-width: 0;
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $(document).ready(function () {
+  
+        $("#DividendAccount").attr('disabled','disabled');
+        $("#DividendAccount").hide();
+        //$("#BankDeposit").attr('disabled','disabled');
+        //$("#BankDeposit").hide();
+
+        jQuery.extend(jQuery.validator.messages, {
+            max: jQuery.validator.format("لطفا یک عدد کوچک تر و یا مساوی{0} وارد کنید"),
+            min: jQuery.validator.format("لطفا یک عدد بزرگ تر و یا مساوی{0} وارد کنید")
+
+
+        });
+
+
+        $.ajax({
+            url: "/AllOtherExpensesSetting/IsConsiderFixedFeeForSubscription",
+            type: "POST",
+            dataType: "json",
+            // data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+                      
+                //showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    if (response.Result == true) {
+                        $("#taxFee").show();
+                    } else {
+                        $("#taxFee").hide();
+
+                    }
+
+                } else {
+                   // showNotification(response.Message, 'e');
+                }
+            }
+        });
+
+
+
+
+
+
+    });
+
+    function onAdditionalData() {
+        return {
+            text: $('[name="CustomerCode"]').val()
+        };
+    }
+
+    function onClose() {
+
+    }
+
+    function onSelect(e) {
+        var dataItem = $('#PartyName').data("kendoAutoComplete").dataItem();
+        if (dataItem != null)
+            {
+        var p = $('[name="PartyId"]');
+        $(p).val(dataItem.Id);
+        $("#customedfullname").text( dataItem.FullName);
+        $("#customenationalid").text( dataItem.NationalId);
+      $("#Birth").text(dataItem.BirthDateJalali != "" ? dataItem.BirthDateJalali :dataItem.RegisterDateJalali);
+           $("#fathername").text( dataItem.FatherName);
+            
+
+                onChengeSubscriptionRequest();
+
+
+        }
+    }
+
+
+    function onChengeSubscriptionRequest(e) {
+        var value = $("#RequestInsertMode").data("kendoComboBox").value();
+        var dataItem = $("#RequestInsertMode").data("kendoComboBox").dataItem();
+        if (dataItem != null)
+        {
+            if (value == 1)
+            {
+                $("#BankDeposit").removeAttr('disabled');
+                $("#BankDeposit").show();
+                $("#DividendAccount").attr('disabled','disabled');
+                $("#DividendAccount").hide();
+             
+
+            }
+    else if (value == 2) {
+                
+                $("#DividendAccount").removeAttr('disabled');
+                $("#DividendAccount").show();
+                $("#BankDeposit").attr('disabled','disabled');
+                $("#BankDeposit").hide();
+                var party = $('#PartyName').data("kendoAutoComplete").dataItem();
+
+                if (party != null) {
+                    $.ajax({
+                        url: "/Requests/GetCustomerFundDividenAccountRemain?ledgerCode=" +
+                            party.DetailLedgerCode +
+                            "&date=" +
+                            $("#Date").val(),
+                        type: "POST",
+                        dataType: "json",
+                        // data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        401: function() {
+                            var url = '@Url.Action("Login", "Account")';
+                            window.location.href = url;
+                        },
+                        error: function(response) {
+
+                            showNotification(response.Message, 'e');
+                        },
+
+                        success: function(response) {
+
+                            if (response != null && response.BRuleCode == '1000') {
+                                $("#dividendAmount").text(" "+response.Result +" ریال");
+                                $("#subscriptionRequestamountFromDividendAmount").attr('max', response.Result);
+
+                            } else {
+                                showNotification(response.Message, 'e');
+                            }
+                        }
+                    });
+
+                } else {
+
+                    showNotification('مشتری انتخاب  نشده است', 'e');
+
+                }
+
+            }
+            
+
+
+        }
+
+    }
+    $("#btnFormSubs").hover(function(){
+        $("#subscriptionrequestform").valid();
+    }, function(){
+        // $("#RedemptionRequestform").valid();
+    });
+    $("#btnFormSubs").click(function() {
+
+        //$("#subscriptionrequestform").kendoValidator().data("kendoValidator").validate();
+
+        $("#subscriptionrequestform").valid();
+
+
+        var value = $("#RequestInsertMode").data("kendoComboBox").value();
+        var requestInsertMode = $("#RequestInsertMode").data("kendoComboBox").dataItem();
+        var party = $("#PartyName").data("kendoAutoComplete").dataItem();
+        var amount = $("#subscriptionRequestamount").cleanVal(); //BankDeposit
+ 
+        var date = $("#Date").val(); 
+        var bankDeposit = $("#BankDepositId").data("kendoComboBox").dataItem();
+     
+        var subscriptionRequestamountFromDividendAmount = $("#subscriptionRequestamountFromDividendAmount").cleanVal();
+        var depositTranckigNumber = $("#DepositTranckigNumber").val();
+        if (requestInsertMode == null) {
+
+    
+            return;
+        }
+        if (value == 1) {
+            if (party == null || date == "" || bankDeposit == null || amount === "" || depositTranckigNumber === "")
+            {
+                if (party == null) showNotification('مشتری انتخاب  نشده است', 'e');
+
+                return;
+                }
+
+        }
+        else if (value == 2) {
+
+            if (party == null || date == "" || subscriptionRequestamountFromDividendAmount === "") {
+
+                if (party == null) showNotification('مشتری انتخاب  نشده است', 'e');
+                return;
+            }
+           
+        } else
+            return;
+       
+
+        var data= {
+            NationalId: party.NationalId,
+            PartyId: party.Id,
+            Date: date,
+            Amount: value == 1 ? amount : subscriptionRequestamountFromDividendAmount,
+            BranchCode: value == 1?bankDeposit.BranchCode:null,
+            BankDepositAccountNumber: value == 1?bankDeposit.AccountNumber:null,
+            BankDepositId: value == 1?bankDeposit.Id:null,
+            DetailLedgerId: party.DetailLedgerId,
+            DepositTranckigNumber: value == 1? depositTranckigNumber:null,
+          //  BranchId=bankDeposit.
+            RequestSettlementType: value,
+            IsConsiderFixedFee: $("#ConsiderTaxAndToll").attr('checked')
+           // AccountCode
+
+        }
+
+        $.ajax({
+            url: '@Url.Action("RegisterSubscriptionRequest", "Requests")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+                $(':input', '#subscriptionrequestform')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
+                $("#RequestInsertMode").data("kendoComboBox").value(1);
+                $("#BankDepositId").data("kendoComboBox").value('');
+                $("#customedfullname").text( "");
+                $("#customenationalid").text("");
+                $("#Birth").text("");
+                $("#fathername").text( "");
+
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input', '#subscriptionrequestform')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+
+                    $("#RequestInsertMode").data("kendoComboBox").value(1);
+                    $("#BankDepositId").data("kendoComboBox").value('');
+                    $("#customedfullname").text( "");
+                    $("#customenationalid").text("");
+                    $("#Birth").text("");
+                    $("#fathername").text("");
+                    $('#PartyName').data("kendoAutoComplete").value("");
+
+
+                } else {
+                    showNotification(response.Message, 'e');
+                    $(':input', '#subscriptionrequestform')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+ 
+                    $("#RequestInsertMode").data("kendoComboBox").value(1);
+                    $("#BankDepositId").data("kendoComboBox").value('');
+                    $("#customedfullname").text( "");
+                    $("#customenationalid").text("");
+                    $("#Birth").text("");
+                    $("#fathername").text("");
+                    $('#PartyName').data("kendoAutoComplete").value("");
+
+
+                }
+            }
+        });
+
+    });
+
+</script>
+
+
+
+@if (@TempData["Success"] != null)
+{
+    <script>
+        $(document).ready(function () {
+
+            showNotification('@TempData["Success"]', 's');
+        });
+    </script>
+}
+@if (@TempData["Error"] != null)
+{
+    <script>
+
+        $(document).ready(function () {
+            showNotification('@TempData["Error"]', 'e');
+
+        });
+    </script>
+}

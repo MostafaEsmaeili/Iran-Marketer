@@ -1,0 +1,13 @@
+﻿@using System.Collections
+@using Kendo.Mvc.UI
+@using IranMarketer.Common.Utility
+@(
+    Html.Kendo().DropDownListFor(m => m)
+        .DataTextField("ManagementFeeTite")
+        .DataValueField("ManagementFeeValue")
+        .BindTo(Enum.GetValues(typeof(IranMarketer.Domain.Enum.ManagementFee)).
+            Cast<IranMarketer.Domain.Enum.ManagementFee>().
+            Select(x => new {ManagementFeeTite = x.GetEnumDescription(), ManagementFeeValue = (int) x}))
+      )
+
+

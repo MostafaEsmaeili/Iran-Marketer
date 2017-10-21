@@ -1,0 +1,17 @@
+F:\FundProject\Core\DllManagement\bin\Settings\DllConfigCore.xml
+F:\FundProject\Core\DllManagement\bin\DllManagement.exe.config
+F:\FundProject\Core\DllManagement\bin\DllManagement.exe
+F:\FundProject\Core\DllManagement\bin\DllManagement.pdb
+F:\FundProject\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.csprojResolveAssemblyReference.cache
+F:\FundProject\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.exe
+F:\FundProject\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.pdb
+F:\FundProject\Core\DllManagement\bin\Settings\DllConfigAPI.xml
+F:\IranMarketer\Iran Marketer\Core\DllManagement\bin\Settings\DllConfigAPI.xml
+F:\IranMarketer\Iran Marketer\Core\DllManagement\bin\Settings\DllConfigCore.xml
+F:\IranMarketer\Iran Marketer\Core\DllManagement\bin\DllManagement.exe.config
+F:\IranMarketer\Iran Marketer\Core\DllManagement\bin\DllManagement.exe
+F:\IranMarketer\Iran Marketer\Core\DllManagement\bin\DllManagement.pdb
+F:\IranMarketer\Iran Marketer\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.exe
+F:\IranMarketer\Iran Marketer\Core\DllManagement\Src\DllManagement\obj\Debug\DllManagement.pdb

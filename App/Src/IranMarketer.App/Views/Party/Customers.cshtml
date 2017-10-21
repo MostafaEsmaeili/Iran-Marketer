@@ -1,0 +1,325 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using Pikad.Framework.Infra.Utility
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "فهرست مشتریان";
+}
+<div>
+    <div class="panel-heading">
+        <h5 class="panel-title">فهرست مشتریان</h5>
+
+    </div>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">فیلتر جستجو</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                <label>قسمتی از نام</label>
+                <input type="text" class="form-control" placeholder=" قسمتی از نام" id="NamePhrase">
+            </div>
+            <div class="form-group k-rtl">
+                <label>مشتری</label>
+                @(Html.Kendo().AutoComplete().Name("PartyName")
+                      .DataTextField("FullName")
+                      .Filter(FilterType.Contains)
+                      .MinLength(3)
+                      .HtmlAttributes(new
+                      {
+                          style = "width:630px;",
+                          //data_required_msg = "اطلاعات مشتری الزامی است",
+                          //required = "required"
+                      })
+                      .HeaderTemplate("<div style=\"width:630px !important;\" class=\"dropdown-header\">" +
+                                      "<span style=\"width:290px;\" class=\"k-widget k-header\" >عنوان</span>" +
+                                      "<span class=\"k-widget k-header\" >کد ملی</span>" +
+                                      "<span class=\"k-widget k-header\" >نام پدر</span>" +
+                                      "</div>")
+                      .Template("<div  class=\"dropdown-header\">" +
+                                "<span style=\"width:290px;\" class=\"k-state-default\">#: data.FullName #</span>" +
+                                "<span class=\"k-state-default\">#: data.NationalId #</span>" +
+                                "<span class=\"k-state-default\">#: data.FatherName #</span>" +
+                                "</div>").HtmlAttributes(new { style = "width:630px;" })
+                      .Placeholder("جستجوی مشتری بر اساس  نام و نام خانوادگی و کد ملی")
+                      .DataSource(source =>
+                      {
+                          source
+                              .Custom()
+                              .ServerFiltering(true)
+                              .ServerPaging(true)
+                              .PageSize(100)
+                              .Type("aspnetmvc-ajax")
+                              .Transport(t =>
+                              {
+                                  t.Read(r =>
+                                  {
+                                      r.Action("GetCustomerAutoCompleteFilter", "Party");
+                                  });
+                              })
+
+                              .Schema(s =>
+                              {
+                                  s.Data("Data").Total("Total");
+                              });
+                          ;
+
+                      }).Events(e =>
+                      {
+                          e.Change("onChange").Select("onSelect").Close("onClose").Filtering("onFiltering");
+                      })
+                      .Virtual(v => v.ItemHeight(26))
+                      )
+                <input type="hidden" id="PartyId" name="PartyId" data-bind="value: getPartyId" />
+            </div>
+            @*<div class="form-group">
+                <label>شعبه</label>
+                @(Html.Kendo().ComboBox().Name("BranchId").HtmlAttributes(new { @class = "form-control k-rtl" })
+              .DataTextField("BranchTitle")
+              .Filter(FilterType.Contains)
+              .DataValueField("BranchValue")
+              .AutoBind(true)
+              .DataSource(source => source.Read(read => read.Action("GetBranchesDropDownList", "UIComponent").Data("onadditionalData1")).ServerFiltering(false)))
+            </div>*@
+
+            <div class="form-group form-group-material">
+
+                <label>محل ثبت</label>
+
+                @(Html.Kendo().ComboBox()
+                      .Name("RegionId")
+                      .DataTextField("Title").Placeholder("محل ثبت...")
+                      .DataValueField("Id")
+                      .HtmlAttributes(new
+                      {
+                          style = "width:400px;",
+                          data_required_msg = "شهر الزامی است",
+                          required = "required"
+                      })
+
+                      .Filter("contains")
+                      .AutoBind(true)
+                      .MinLength(3)
+                      .DataSource(
+                          source => source.Read(read => read.Action("GetCities", "UIComponent")
+                              .Data("onAdditionalData")
+                              ).ServerFiltering(true))
+                      )
+
+                <input type="hidden" id="regionid" data-bind="value: regionid" name="regionid">
+                @*</div>*@
+
+
+
+
+            </div>
+            <div class="form-group">
+                <label>نوع مشتری</label>
+                @(Html.Kendo().ComboBox().Name("PartyType").HtmlAttributes(new { @class = "form-control k-rtl" })
+                      .DataTextField("PartyTypeTitle")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("PartyTypeValue")
+                      .AutoBind(true)
+                      .DataSource(source => source.Read(read => read.Action("GetPartyType", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+            </div>
+            <div class="form-group form-group-material">
+                <label> تاریخ ثبت از</label>
+                @Html.Kendo().DatePicker().Name("FromDate").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                <span class="text-danger">*</span>
+            </div>
+            <div class="form-group form-group-material">
+                <label>تاریخ ثبت تا</label>
+                @Html.Kendo().DatePicker().Name("ToDate").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                <span class="text-danger">*</span>
+            </div>
+
+            <div class="text-right">
+                <button type="button" id="search" class="btn btn-primary">جست و جو <i class="icon-arrow-left13 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="panel panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<Customer>()
+                  .Name("grid")
+                  .Columns(column =>
+                  {
+                      column.Bound(x => x.Party.FirstName).Title("نام").Width(100);
+                      column.Bound(x => x.Party.LastName).Title("نام خانوادگی").Width(110);
+                      column.Bound(x => x.Party.Name).Title("نام شرکت").Width(120);
+                      column.Bound(x => x.Party.NationalId).ClientTemplate("<a href ='/Party/CustomerView?id=${Party.Id}'>${Party.NationalId}</a>").Title("شناسه ملی");
+                      column.Bound(x => x.Contact.HomePhone).Title("تلفن").Width(90);
+                      column.Bound(x => x.Contact.Mobile).Title("همراه").Width(90);
+                      column.Bound(x => x.Contact.Email1).Title("ایمیل").Width(110);
+                      column.Bound(x => x.Contact.RegionTitle).Title("شهر سکونت").Width(90);
+                      column.Bound(x => x.Party.FatherName).Title("نام پدر").Width(100);
+                      //column.Bound(x => x.Party.Created.ConvertMiladiToJalali()).Title("تاریخ ایجاد");
+                      column.Bound(x => x.Party.DetailLedgerCode).Title("کد حساب تفصیلی").Width(100);
+                      column.Command(command => command.Custom("ویرایش").Click("showDetails"));
+                  })
+                  .Excel(excel => excel
+                      .FileName("Customers.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "Party"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] { 100, 200, 250, 300 }))
+
+                  .AllowCopy(true)
+                  .Selectable()
+                  .Scrollable()
+                  .AutoBind(false)
+                  .HtmlAttributes(new { style = "height:500px;" })
+                  .DataSource(dataSource =>
+                      dataSource.Custom()
+                          .Type("aspnetmvc-ajax")
+                          .PageSize(100)
+                          .ServerPaging(true)
+                          .ServerSorting(true)
+                          .ServerFiltering(true)
+                          .Transport(transport => transport
+                              .Read(read => read.Action("GetFlatAllCustomers", "Party").Data("filterData").Type(HttpVerbs.Post))
+                          )
+                          .Schema(s => s.Data("Result").Total("TotalRecords"))
+                        
+                  )
+
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+        .dropdown-header > span {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: right;
+            display: inline-block;
+            border-style: solid;
+            border-width: 0 0 1px 1px;
+            padding: .3em .6em;
+            width: 150px;
+        }
+
+            .dropdown-header > span:first-child {
+                width: 150px;
+                border-left-width: 0;
+            }
+</style>
+<script>
+
+    function showDetails(e) {
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr")).Party.Id;
+        window.location.href = '/Party/UpdateCustomer/' + dataItem;
+    }
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+    });
+
+
+    function onClose() {
+
+    }
+
+    function onChange() {
+        var dataItem = $("#PartyName").data("kendoAutoComplete").dataItem();
+        var p = $('[name="PartyId"]');
+        if (dataItem != null)
+            $(p).val(dataItem.Id);
+    }
+
+    function onSelect(e) {
+
+        // $("#custometfullname").text(dataItem.FullName);
+    }
+
+    function onDataBound(e) {
+
+    }
+
+    function onFiltering() {
+
+    }
+
+    function onadditionalData1() {
+        return {
+            text: $('[name="BranchId_input"]').val()
+        };
+    }
+
+    function onAdditionalData() {
+        return {
+            text: $('[name="RegionId_input"]').val()
+        };
+    }
+
+    function filterData() {
+
+        var data = {
+
+            PartyId: $("#PartyName").data("kendoAutoComplete").dataItem() != null ? $("#PartyName").data("kendoAutoComplete").dataItem().Id : "-1",
+            NamePhrase: $("#NamePhrase").val(),
+            //BranchId: $("#BranchId").data("kendoComboBox").dataItem() != null ? $("#BranchId").data("kendoComboBox").dataItem().BranchValue : "-1",
+            BranchId: "-1",
+            RegionId: $("#RegionId").data("kendoComboBox").dataItem() != null ? $("#RegionId").data("kendoComboBox").dataItem().Id : "-1",
+            PartyType: $("#PartyType").data("kendoComboBox").dataItem() != null ? $("#PartyType").data("kendoComboBox").dataItem().PartyTypeValue : "-1",
+            FromDate: $("#FromDate").val(),
+            ToDate: $("#ToDate").val()
+        }
+
+        return { model: data };
+    }
+    $("#search").click(function () {
+
+        $("#grid").data("kendoGrid").dataSource.read();
+
+    });
+
+</script>

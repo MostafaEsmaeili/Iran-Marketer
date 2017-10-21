@@ -1,0 +1,7 @@
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.Core\obj\Debug\Sahra.MutualFund.IdentityAdmin.Core.Resources.Messages.resources
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.Core\obj\Debug\Sahra.MutualFund.IdentityAdmin.Core.csproj.GenerateResource.Cache
+F:\FundProject\IdentityServer\Bin\Sahra.MutualFund.IdentityAdmin.Core.dll.config
+F:\FundProject\IdentityServer\Bin\Sahra.MutualFund.IdentityAdmin.Core.dll
+F:\FundProject\IdentityServer\Bin\Sahra.MutualFund.IdentityAdmin.Core.pdb
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.Core\obj\Debug\Sahra.MutualFund.IdentityAdmin.Core.dll
+F:\FundProject\IdentityServer\Src\Sahra.MutualFund.IdentityAdmin.Core\obj\Debug\Sahra.MutualFund.IdentityAdmin.Core.pdb

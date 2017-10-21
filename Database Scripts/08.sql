@@ -1,0 +1,1 @@
+UPDATE acc.GeneralLedger SET Map = 'GeneralLedgerForOtherCost' WHERE Id = 26

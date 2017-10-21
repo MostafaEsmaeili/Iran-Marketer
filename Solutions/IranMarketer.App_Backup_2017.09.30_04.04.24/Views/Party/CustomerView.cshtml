@@ -1,0 +1,292 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.App.Component.Model
+@model CustomerModel
+@{
+    ViewBag.Title = "مشاهده مشتری";
+}
+
+
+<div class="k-rtl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">مشاهده مشتری</h5>
+                </div>
+                <div class="panel-body">
+
+                    <fieldset class="content-group">
+                        <legend class="text-bold">اطلاعات اصلی</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام مشتری حقیقی (فارسی)" required="required" id="firstname" data-bind="value: customer.party.firstname" name="Customer.Party.FirstName" value="@Model.Customer.Party.FirstName">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام خانوادگی مشتری حقیقی (فارسی)" required="required" id="lastname" data-bind="value: customer.party.lastname" name="Customer.Party.LastName" value="@Model.Customer.Party.LastName">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام مشتری حقوقی (فارسی)" required="required" id="name" data-bind="value: customer.party.firstname" name="Customer.Party.Name" value="@Model.Customer.Party.Name">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام مشتری حقوقی (انگلیسی)" required="required" id="enname" data-bind="value: customer.party.lastname" name="Customer.Party.EnName" value="@Model.Customer.Party.EnName">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام مشتری حقیقی (انگلیسی)" id="enfirstname" data-bind="value: customer.party.enfirstname" name="Customer.Party.EnFirstName" value="@Model.Customer.Party.EnFirstName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام حقیقی خانوادگی (انگلیسی)" id="enlastname" data-bind="value: customer.party.enlastname" name="Customer.Party.EnLastName" value="@Model.Customer.Party.EnLastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام پدر (فارسی)" required="required" id="fathername" data-bind="value: customer.party.fathername" name="Customer.Party.FatherName" value="@Model.Customer.Party.FatherName">
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نام پدر (انگلیسی)" id="enfathername" data-bind="value: customer.party.enfathername" name="Customer.Party.EnFatherName" value="@Model.Customer.Party.EnFatherName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="display-block text-semibold">کد/شناسه ملی</label>
+                                <div class="form-group form-group-material">
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="کد ملی" required="required" id="nationalid" data-bind="value: customer.party.nationalid" name="Customer.Party.NationalId" value="@Model.Customer.Party.NationalId">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="display-block text-semibold">شماره شناسنامه/ثبت</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="شماره شناسنامه" required="required" id="identitycard" data-bind="value: customer.party.identitycard" name="Customer.Party.IdentityCard" value="@Model.Customer.Party.IdentityCard">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-material">
+                                <label class="display-block text-semibold">سریال شناسنامه</label>
+                                <input type="text" disabled="disabled" class="form-control" placeholder="سریال شناسنامه" required="required" id="IdentitySerialNumber" data-bind="value: customer.party.identitySerialNumber" name="Customer.Party.IdentitySerialNumber" value="@Model.Customer.Party.IdentitySerialNumber">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+
+                                    <label class="control-label">تاریخ تولد/ثبت شرکت</label>
+                                    @if (!string.IsNullOrEmpty(@Model.Customer.Party.BirthDateJalali))
+                                    {
+
+                                        @Html.Kendo().DatePickerFor(x => x.Customer.Party.BirthDateJalali).HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd").Enable(false)
+                                    }
+                                    @if (!string.IsNullOrEmpty(@Model.Customer.Party.RegisterDateJalali))
+                                    {
+
+                                        @Html.Kendo().DatePickerFor(x => x.Customer.Party.RegisterDateJalali).HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd").Enable(false)
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label class="display-block text-semibold">جنسیت</label>
+                                    <label class="radio-inline radio-right">
+
+
+                                        @Html.RadioButtonFor(m => m.Customer.Party.Gender, "1", new { @checked = true })
+                                        مرد
+                                    </label>
+                                    <label class="radio-inline radio-right">
+
+                                        @Html.RadioButtonFor(m => m.Customer.Party.Gender, "2")
+                                        زن
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-group-material col-md-6">
+
+                                <label class="control-label"> معرف</label>
+                                <input type="text" disabled="disabled" class="form-control" placeholder="معرف" required="required" id="IssuerName" data-bind="value: customer.party.IssuerName" name="Customer.Party.IssuerName" value="@Model.Customer.Party.IssuerName">
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <fieldset class="content-group">
+                        <legend class="text-bold">اطلاعات تماس</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">تلفن</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="تلفن (02188888888)" required="required" id="homephone" data-bind="value: customer.contact.homephone" name="Customer.Contact.HomePhone" value="@Model.Customer.Contact.HomePhone">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">فکس</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="فکس" id="fax" data-bind="value: customer.contact.fax" name="Customer.Contact.Fax" value="@Model.Customer.Contact.Fax">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">همراه</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="تلفن همراه" required="required" id="mobile" data-bind="value: customer.contact.mobile" name="Customer.Contact.Mobile" value="@Model.Customer.Contact.Mobile">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">ایمیل</label>
+                                    <input type="email" disabled="disabled" class="form-control" placeholder="ایمیل" id="email1" data-bind="value: customer.contact.email1" name="Customer.Contact.Email1" value="@Model.Customer.Contact.Email1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">شهر</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="شهر شکونت / ثبت" id="region" data-bind="value: customer.contact.RegionTitle" name="Customer.Contact.RegionTitle" value="@Model.Customer.Contact.RegionTitle">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">آدرس</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="آدرس" required="required" id="homeaddress" data-bind="value: customer.contact.homeaddress" name="Customer.Contact.HomeAddress" value="@Model.Customer.Contact.HomeAddress">
+
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="content-group">
+                        <legend class="text-bold">حساب بانکی پیش فرض</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group form-group-material">
+                                    <label class="control-label"> بانک</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="بانک" required="required" id="BankTitle" data-bind="value: customer.PartyBankAccount.BankTitle" name="Customer.PartyBankAccount.BankTitle" value="@Model.Customer.PartyBankAccount.BankTitle">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">شعبه بانک</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="شعبه بانک" required="required" id="BranchName" data-bind="value: customer.PartyBankAccount.BranchName" name="Customer.PartyBankAccount.BranchName" value="@Model.Customer.PartyBankAccount.BranchName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">کد بانک</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="کد شعبه" required="required" id="BranchCode" data-bind="value: customer.PartyBankAccount.BranchCode" name="Customer.PartyBankAccount.BranchCode" value="@Model.Customer.PartyBankAccount.BranchCode">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="control-label">نوع حساب</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نوع حساب" required="required" id="BankAccountTypeName" data-bind="value: customer.PartyBankAccount.BankAccountTypeName" name="Customer.PartyBankAccount.BankAccountTypeName" value="@Model.Customer.PartyBankAccount.BankAccountTypeName">
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label>شماره حساب پیش فرض</label>
+                                    <input type="text" disabled="disabled" class="form-control" placeholder="نوع حساب" required="required" id="AccountNumber" data-bind="value: customer.PartyBankAccount.AccountNumber" name="Customer.PartyBankAccount.BranchCode" value="@Model.Customer.PartyBankAccount.AccountNumber">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label>شماره شبا</label>
+                                    <input type="text" class="form-control" placeholder="شبا" id="iban" required="required" data-bind="value: customer.partybankaccount.iban" name="Customer.PartyBankAccount.IBAN" value="@Model.Customer.PartyBankAccount.IBAN">
+
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="content-group">
+                        <legend class="text-bold">اطلاعات تکمیلی</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="display-block text-semibold">مدرک تحصیلی</label>
+                                    <input type="text" class="form-control" placeholder="مدرک" id="EducationDegreeName" required="required" data-bind="value: customer.Party.EducationDegreeName" name="Customer.Party.EducationDegreeName" value="@Model.Customer.Party.EducationDegreeName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="display-block text-semibold">عنوان شغلی</label>
+
+                                </div><input type="text" class="form-control" placeholder="شغل" id="JobTitleName" required="required" data-bind="value: customer.Party.JobTitleName" name="Customer.Party.JobTitleName" value="@Model.Customer.Party.JobTitleName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-material">
+                                    <label class="display-block text-semibold">موقعیت سازمانی</label>
+                                </div><input type="text" class="form-control" placeholder="موقعیت" id="PositionName" required="required" data-bind="value: customer.Party.PositionName" name="Customer.Party.PositionName" value="@Model.Customer.Party.PositionName">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-material">
+
+                            </div>
+                        </div>
+                </div>
+
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>

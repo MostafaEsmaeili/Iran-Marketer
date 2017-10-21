@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.Common</RootNamespace>
+    <AssemblyName>IranMarketer.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\..\..\ThirdPartyLib\Owin\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Quartz\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractMapping.cs" />
+    <Compile Include="BaseProvider.cs" />
+    <Compile Include="BaseSettingService.cs" />
+    <Compile Include="Database\IIranMarketerDatabase.cs" />
+    <Compile Include="Database\IranMarketerDatabase.cs" />
+    <Compile Include="DLL\DLLConfig.cs" />
+    <Compile Include="Job\AbstractJob.cs" />
+    <Compile Include="Job\IMutualFundJob.cs" />
+    <Compile Include="Job\QuartzJobAgent.cs" />
+    <Compile Include="ProductType.cs" />
+    <Compile Include="SecurityExchange.cs" />
+    <Compile Include="Session\IranMarketerSession.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting\AgentSetting.cs" />
+    <Compile Include="Setting\IranMarketerAgentSetting.cs" />
+    <Compile Include="Utility\CustomCache.cs" />
+    <Compile Include="Utility\GeneralCache.cs" />
+    <Compile Include="Utility\IranMarketerCustomUtility.cs" />
+    <Compile Include="Utility\ResourceManager.cs" />
+    <Compile Include="Utility\ValueCalculation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Identity Server\IdentityServerSettings.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd ..\..\DllManagement\Bin\
+DllManagement.exe</PostBuildEvent>
+  </PropertyGroup>
+</Project>

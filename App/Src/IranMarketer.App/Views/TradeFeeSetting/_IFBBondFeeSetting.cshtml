@@ -1,0 +1,453 @@
+﻿<form role="form" id="IFBBondfeesettingform" novalidate class="form-horizontal form-validate-jquery" action="#" method="POST">
+    <table id="IFBBondfeesetting" class="tblBuySell" cellpadding="3" width="90%">
+        <tr class="cssGridHeaderFirst">
+            <td rowspan="2">
+                شرح کارمزد
+            </td>
+            <td colspan="3">
+                خرید
+            </td>
+            <td colspan="3">
+                فروش
+            </td>
+        </tr>
+        <tr class="cssGridHeaderFirst">
+            <td>
+                کارمزد
+            </td>
+            <td>
+                حداکثر مبلغ کارمزد
+            </td>
+            <td>
+                تخفیف (درصد)
+            </td>
+
+            <td>
+                کارمزد
+            </td>
+            <td>
+                حداکثر مبلغ کارمزد
+            </td>
+            <td>
+                تخفیف (درصد)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                کارمزد کارگزاری
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondBrokerBuyFee" data-bind="value: IFBBondBrokerBuyFee" name="IFBBondBrokerBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxBrokerBuyFee" data-bind="value: IFBBondMaxBrokerBuyFee" name="IFBBondMaxBrokerBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondBrokerBuyFeeDiscount" data-bind="value: IFBBondBrokerBuyFeeDiscount" name="IFBBondBrokerBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondBrokerSellFee" data-bind="value: IFBBondBrokerSellFee" name="IFBBondBrokerSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxBrokerSellFee" data-bind="value: IFBBondMaxBrokerSellFee" name="IFBBondMaxBrokerSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondBrokerSellFeeDiscount" data-bind="value: IFBBondBrokerSellFeeDiscount" name="IFBBondBrokerSellFeeDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                کارمزد بورس
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondSeoBuyFee" data-bind="value: IFBBondSeoBuyFee" name="IFBBondSeoBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxSeoBuyFee" data-bind="value: IFBBondMaxSeoBuyFee" name="IFBBondMaxSeoBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondSeoBuyFeeDiscount" data-bind="value: IFBBondSeoBuyFeeDiscount" name="IFBBondSeoBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondSeoSellFee" data-bind="value: IFBBondSeoSellFee" name="IFBBondSeoSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxSeoSellFee" data-bind="value: IFBBondMaxSeoSellFee" name="IFBBondMaxSeoSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondSeoSellFeeDiscount" data-bind="value: IFBBondSeoSellFeeDiscount" name="IFBBondSeoSellFeeDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                کارمزد سپرده گذاری
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondCsdBuyFee" data-bind="value: IFBBondCsdBuyFee" name="IFBBondCsdBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxCsdBuyFee" data-bind="value: IFBBondMaxCsdBuyFee" name="IFBBondMaxCsdBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondCsdBuyFeeDiscount" data-bind="value: IFBBondCsdBuyFeeDiscount" name="IFBBondCsdBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondCsdSellFee" data-bind="value: IFBBondCsdSellFee" name="IFBBondCsdSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxCsdSellFee" data-bind="value: IFBBondMaxCsdSellFee" name="IFBBondMaxCsdSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondCsdSellFeeDiscount" data-bind="value: IFBBondCsdSellFeeDiscount" name="IFBBondCsdSellFeeDiscount">
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                کارمزد مدیریت فن آوری
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseTmcBuyFee" data-bind="value: IFBBondTseTmcBuyFee" name="IFBBondTseTmcBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxTseTmcBuyFee" data-bind="value: IFBBondMaxTseTmcBuyFee" name="IFBBondMaxTseTmcBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseTmcBuyDiscount" data-bind="value: IFBBondTseTmcBuyDiscount" name="IFBBondTseTmcBuyDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseTmcSellFee" data-bind="value: IFBBondTseTmcSellFee" name="IFBBondTseTmcSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxTseTmcSellFee" data-bind="value: IFBBondMaxTseTmcSellFee" name="IFBBondMaxTseTmcSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseTmcSellDiscount" data-bind="value: IFBBondTseTmcSellDiscount" name="IFBBondTseTmcSellDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                حق نظارت سازمان
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseBuyFee" data-bind="value: IFBBondTseBuyFee" name="IFBBondTseBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxTseBuyFee" data-bind="value: IFBBondMaxTseBuyFee" name="IFBBondMaxTseBuyFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseBuyFeeDiscount" data-bind="value: IFBBondTseBuyFeeDiscount" name="IFBBondTseBuyFeeDiscount">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseSellFee" data-bind="value: IFBBondTseSellFee" name="IFBBondTseSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondMaxTseSellFee" data-bind="value: IFBBondMaxTseSellFee" name="IFBBondMaxTseSellFee">
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondTseSellFeeDiscount" data-bind="value: IFBBondTseSellFeeDiscount" name="IFBBondTseSellFeeDiscount">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                مالیات
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                <input class="form-control" onkeyup="SetMoney(event,this)" type="text" id="IFBBondSellTax" data-bind="value: IFBBondSellTax" name="IFBBondSellTax">
+            </td>
+            <td>
+                &nbsp;
+
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+
+        <tr style="font-weight: bold; background-color: Yellow">
+            <td style="white-space: nowrap">
+                <b>جمع</b>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBBondSumBuyFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBBondSumMaxBuyFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBBondSumBuyDiscount">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBBondSumSellFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBBondsumSellMaxFee">
+                    .
+                </label>
+            </td>
+            <td style="text-align: right">
+                <label id="IFBBondSumSellDiscount">
+                    .
+                </label>
+            </td>
+        </tr>
+    </table>
+    <div class="text-right">
+        <button type="button" id="IFBBondsaveSettingBtn" class="btn btn-primary legitRipple">ذخیره <i class="icon-arrow-left13 position-right"></i></button>
+    </div>
+</form>
+
+<style>
+    .cssGridHeaderFirst {
+        background-color: #4caf50;
+        color: #fff;
+    }
+
+    .tblBuySell {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+    .tblBuySell td {
+        text-align: center;
+    }
+
+    .cssGridHeaderFirst td {
+        color: #fff;
+    }
+
+    .tr td {
+        padding: 3px !important;
+    }
+
+    td, th {
+        padding: 3px !important;
+    }
+</style>
+
+<script>
+    $("#IFBBondsaveSettingBtn").click(function() {
+
+        if (!$("#IFBBondfeesettingform").valid()) {
+            return;
+        } else {
+
+            var data = {
+                "BrokerBuyFee": SetValueFloatNumber($('#IFBBondBrokerBuyFee').val()),
+                "MaxBrokerBuyFee": $('#IFBBondMaxBrokerBuyFee').val(),
+                "BrokerBuyFeeDiscount": SetValueFloatNumber($('#IFBBondBrokerBuyFeeDiscount').val()),
+                "BrokerSellFee": SetValueFloatNumber($('#IFBBondBrokerSellFee').val()),
+                "MaxBrokerSellFee": $('#IFBBondMaxBrokerSellFee').val(),
+                "BrokerSellFeeDiscount": SetValueFloatNumber($('#IFBBondBrokerSellFeeDiscount').val()),
+
+                "SeoBuyFee": SetValueFloatNumber($('#IFBBondSeoBuyFee').val()),
+                "MaxSeoBuyFee": $('#IFBBondMaxSeoBuyFee').val(),
+                "SeoBuyFeeDiscount": SetValueFloatNumber($('#IFBBondSeoBuyFeeDiscount').val()),
+                "SeoSellFee": SetValueFloatNumber($('#IFBBondSeoSellFee').val()),
+                "MaxSeoSellFee": $('#IFBBondMaxSeoSellFee').val(),
+                "SeoSellFeeDiscount": SetValueFloatNumber($('#IFBBondSeoSellFeeDiscount').val()),
+
+                "CsdBuyFee": SetValueFloatNumber($('#IFBBondCsdBuyFee').val()),
+                "MaxCsdBuyFee": $('#IFBBondMaxCsdBuyFee').val(),
+                "CsdBuyFeeDiscount": SetValueFloatNumber($('#IFBBondCsdBuyFeeDiscount').val()),
+                "CsdSellFee": SetValueFloatNumber($('#IFBBondCsdSellFee').val()),
+                "MaxCsdSellFee": $('#IFBBondMaxCsdSellFee').val(),
+                "CsdSellFeeDiscount": SetValueFloatNumber($('#IFBBondCsdSellFeeDiscount').val()),
+
+                "TseTmcBuyFee": SetValueFloatNumber($('#IFBBondTseTmcBuyFee').val()),
+                "MaxTseTmcBuyFee": $('#IFBBondMaxTseTmcBuyFee').val(),
+                "TseTmcBuyDiscount": SetValueFloatNumber($('#IFBBondTseTmcBuyDiscount').val()),
+                "TseTmcSellFee": SetValueFloatNumber($('#IFBBondTseTmcSellFee').val()),
+                "MaxTseTmcSellFee": $('#IFBBondMaxTseTmcSellFee').val(),
+                "TseTmcSellDiscount": SetValueFloatNumber($('#IFBBondTseTmcSellDiscount').val()),
+
+                "TseBuyFee": SetValueFloatNumber($('#IFBBondTseBuyFee').val()),
+                "MaxTseBuyFee": $('#IFBBondMaxTseBuyFee').val(),
+                "TseBuyFeeDiscount": SetValueFloatNumber($('#IFBBondTseBuyFeeDiscount').val()),
+                "TseSellFee": SetValueFloatNumber($('#IFBBondTseSellFee').val()),
+                "MaxTseSellFee": $('#IFBBondMaxTseSellFee').val(),
+                "TseSellFeeDiscount": SetValueFloatNumber($('#IFBBondTseSellFeeDiscount').val()),
+
+                "SellTax": SetValueFloatNumber($('#IFBBondSellTax').val())
+            };
+
+
+            $.ajax({
+                url: '@Url.Action("SaveSetting", "IFBBondFeeSetting")',
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#form')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+
+                        $('#grid').data('kendoGrid').dataSource.read();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+                    }
+                }
+            });
+        }
+    });
+
+
+    function IFBBondgetSumSymbolTradeSettingList() {
+
+        $('#IFBBondSumBuyFee').html(
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondBrokerBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondSeoBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondCsdBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondTseTmcBuyFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondTseBuyFee').val()).replace(",", "")));
+
+        $('#IFBBondSumBuyFee').html(SetValueFloatNumber($('#IFBBondSumBuyFee').html()).toFixed(7));
+
+        $('#IFBBondSumSellFee').html(
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondBrokerSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondSeoSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondCsdSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondTseTmcSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondTseSellFee').val()).replace(",", "")) +
+            SetValueFloatNumber(NullCheckerSTSLOMFB($('#IFBBondSellTax').val()).replace(",", "")));
+
+        $('#IFBBondSumSellFee').html(SetValueFloatNumber($('#IFBBondSumSellFee').html()).toFixed(7));
+
+
+      
+    }
+    document.onload = IFBBondgetSumSymbolTradeSettingList();
+
+    $(document).ready(function () {
+        //$('input:text').each(function() {
+        //    $(this).html(NullCheckerSTSLOMFB($(this).html()));
+        //});
+
+
+
+        $.ajax({
+            url: '@Url.Action("GetLastSetting", "IFBBondFeeSetting")',
+            type: "POST",
+            dataType: "json",
+            //data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input', '#form')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+
+                } else {
+
+                    $('#IFBBondBrokerBuyFee').val(response.BrokerBuyFee);
+                    $('#IFBBondMaxBrokerBuyFee').val(addcommas2(response.MaxBrokerBuyFee));
+                    $('#IFBBondBrokerBuyFeeDiscount').val(response.BrokerBuyFeeDiscount);
+                    $('#IFBBondBrokerSellFee').val(response.BrokerSellFee);
+                    $('#IFBBondMaxBrokerSellFee').val(addcommas2(response.MaxBrokerSellFee));
+                    $('#IFBBondBrokerSellFeeDiscount').val(response.BrokerSellFeeDiscount);
+
+                    $('#IFBBondSeoBuyFee').val(response.SeoBuyFee);
+                    $('#IFBBondMaxSeoBuyFee').val(addcommas2(response.MaxSeoBuyFee));
+                    $('#IFBBondSeoBuyFeeDiscount').val(response.SeoBuyFeeDiscount);
+                    $('#IFBBondSeoSellFee').val(response.SeoSellFee);
+                    $('#IFBBondMaxSeoSellFee').val(addcommas2(response.MaxSeoSellFee));
+                    $('#IFBBondSeoSellFeeDiscount').val(response.SeoSellFeeDiscount);
+
+                    $('#IFBBondCsdBuyFee').val(response.CsdBuyFee);
+                    $('#IFBBondMaxCsdBuyFee').val(addcommas2(response.MaxCsdBuyFee));
+                    $('#IFBBondCsdBuyFeeDiscount').val(response.CsdBuyFeeDiscount);
+                    $('#IFBBondCsdSellFee').val(response.CsdSellFee);
+                    $('#IFBBondMaxCsdSellFee').val(addcommas2(response.MaxCsdSellFee));
+                    $('#IFBBondCsdSellFeeDiscount').val(response.CsdSellFeeDiscount);
+
+                    $('#IFBBondTseTmcBuyFee').val(response.TseTmcBuyFee);
+                    $('#IFBBondMaxTseTmcBuyFee').val(addcommas2(response.MaxTseTmcBuyFee));
+                    $('#IFBBondTseTmcBuyDiscount').val(response.TseTmcBuyDiscount);
+                    $('#IFBBondTseTmcSellFee').val(response.TseTmcSellFee);
+                    $('#IFBBondMaxTseTmcSellFee').val(addcommas2(response.MaxTseTmcSellFee));
+                    $('#IFBBondTseTmcSellDiscount').val(response.TseTmcSellDiscount);
+
+
+                    $('#IFBBondTseBuyFee').val(response.TseBuyFee);
+                    $('#IFBBondMaxTseBuyFee').val(addcommas2(response.MaxTseBuyFee));
+                    $('#IFBBondTseBuyFeeDiscount').val(response.TseBuyFeeDiscount);
+                    $('#IFBBondTseSellFee').val(response.TseSellFee);
+                    $('#IFBBondMaxTseSellFee').val(addcommas2(response.MaxTseSellFee));
+                    $('#IFBBondTseSellFeeDiscount').val(response.TseSellFeeDiscount);
+
+                    $('#IFBBondSellTax').val(response.SellTax);
+
+                    IFBBondgetSumSymbolTradeSettingList();
+                }
+            }
+
+
+        });
+
+        $('input').keyup(function (e) {
+            IFBBondgetSumSymbolTradeSettingList();
+            e.stopPropagation();
+        });
+    });
+</script>

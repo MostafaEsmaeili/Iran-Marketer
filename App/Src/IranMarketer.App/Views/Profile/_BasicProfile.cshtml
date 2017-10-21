@@ -1,0 +1,259 @@
+﻿@using IranMarketer.App.Helper
+@using Kendo.Mvc.UI
+@model IranMarketer.Domain.DTO.RetailParty
+
+
+<form id="simpleProfileForm" class="form-validate-jquery" novalidate="novalidate">
+    <fieldset class="step ui-formwizard-content " id="ajax-step1" style="display: block;">
+        <h6 class="form-wizard-title text-semibold">
+            <span class="form-wizard-count">1</span>
+            اطلاعات اولیه
+            <small class="display-block">اندکی از خودتان بنویسید...</small>
+        </h6>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>نام:</label>
+                    @Html.Kendo().TextBoxFor(x => x.FirstName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>نام خانوادگی</label>
+                    @Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>جنسیت</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                    @(Html.Kendo().DropDownListFor(x => x.Gender).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("GenderTypeTitleFa")
+                          .DataValueField("GenderTypeValue").Filter(FilterType.Contains)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetGenderType", "UIComponent")).ServerFiltering(true)))
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>وضعیت تاهل</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                    @(Html.Kendo().DropDownListFor(x => x.MaritalStatus).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("MaritalStatusTitleFa")
+                          .DataValueField("MaritalStatusValue").Filter(FilterType.Contains)
+                          .AutoBind(true)
+
+
+                          .DataSource(source => source.Read(read => read.Action("GetMaritalStatus", "UIComponent")).ServerFiltering(true)))
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>وضعیت نظام وظیفه</label>
+                    @(Html.Kendo().DropDownListFor(x => x.MilitaryServiceStatus).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("MilitaryServiceTitleFa")
+                          .DataValueField("MilitaryServiceValue").Filter(FilterType.Contains)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetMilitaryServiceStatus", "UIComponent")).ServerFiltering(true)))
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label>شهر</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                    @(Html.Kendo().ComboBoxFor(x => x.CityId).HtmlAttributes(new { @class = " form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("Title")
+                          .DataValueField("Id").Filter(FilterType.Contains)
+                          .AutoBind(true)
+                          .HighlightFirst(false)
+                          .SyncValueAndText(true)
+                          .MinLength(3)
+                          .DataSource(source => source.Read(read => read.Action("GetCities", "UIComponent", new { addAll = true }).Type(HttpVerbs.Get)).ServerFiltering(true)))
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>آدرس</label>
+                    @Html.Kendo().TextBoxFor(x => x.Address).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content", })
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>تاریخ تولد</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+
+                    @Html.PersianDateTimePicker("BirthDateJalali")
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>شماره تلفن</label>
+                    @Html.Kendo().TextBoxFor(x => x.PhoneNumber).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label> شماره موبایل</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+
+                    @Html.Kendo().TextBoxFor(x => x.MobileNumber).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            >
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label> آپلود عکس</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+
+                    @(Html.Kendo().Upload()
+                          .Name("files")
+                          .Async(a => a
+                              .Save("SaveProfilePicture", "Profile")
+                              .AutoUpload(true)
+                          ).Multiple(false).ShowFileList(true)
+                          )
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="profilePic" class="form-group">
+                    <label> آپلود عکس</label>
+
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <div class="text-left">
+        <button id="addSimpleProfile" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+
+        <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+
+    </div>
+</form>
+
+
+
+<script>
+    $("#addSimpleProfile").click(function () {
+
+        if (!$("#simpleProfileForm").valid()) {
+            return;
+        } else {
+
+            debugger;
+           
+            var data = $("#simpleProfileForm").serializeJSON({ checkboxUncheckedValue: "false" });
+
+            $.ajax({
+                url: '@Url.Action("SaveBasicPartyInformarion", "Profile")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        clear();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+    //$("#clear").click(function(){
+    //    var forms = $(this).parents('form:first')[0].id;
+    //    $(forms).ClearAll();
+          
+    //});
+    function clear() {
+        $('#addSimpleProfile').ClearAll();
+
+    }
+    $( "#simpleProfileForm" ).keyup(function() {
+        $("#simpleProfileForm").valid();
+    });
+
+    $( document ).ready(function() {
+        LoadBasicPartyInformarion();
+    });
+    function LoadBasicPartyInformarion()
+    {
+        $.ajax({
+            url: '@Url.Action("GetBasicPartyInformarion", "Profile")',
+            type: "POST",
+            dataType: "json",
+
+          
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                 //   showNotification(response.Message, 's');
+                    $('#simpleProfileForm').loadJSON(response.Result);
+                    $('#simpleProfileForm').BindJsonKendo(response.Result,'');
+
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    }
+
+</script>
+

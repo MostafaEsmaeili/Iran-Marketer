@@ -1,0 +1,70 @@
+2017-08-07 22:43:09.7794 Error Sahra.MutualFund.Authentication.UserManagementProvider Value cannot be null.
+Parameter name: key Sahra.MutualFund.Authentication.UserManagementProvider.GetUserInformationByUserName GetUserInformationByUserName System.ArgumentNullException: Value cannot be null.
+Parameter name: key
+   at System.Web.Caching.CacheKey..ctor(String key, Boolean isPublic)
+   at System.Web.Caching.AspNetCache.Get(String key)
+   at System.Web.Caching.Cache.get_Item(String key)
+   at Sahra.MutualFund.Common.Utility.CustomCache.Get(String key) in F:\FundProject\Core\Common\Src\Utility\CustomCache.cs:line 146
+   at Sahra.MutualFund.Authentication.UserManagementProvider.GetUserInformationByUserName(BaseReportFilter`1 filter) in F:\FundProject\API\Authentication\Src\Sahra.MutualFund.Authentication\UserManagementProvider.cs:line 47
+2017-08-07 22:43:14.6512 Error Sahra.MutualFund.Authentication.UserManagementProvider Value cannot be null.
+Parameter name: key Sahra.MutualFund.Authentication.UserManagementProvider.GetUserInformationByUserName GetUserInformationByUserName System.ArgumentNullException: Value cannot be null.
+Parameter name: key
+   at System.Web.Caching.CacheKey..ctor(String key, Boolean isPublic)
+   at System.Web.Caching.AspNetCache.Get(String key)
+   at System.Web.Caching.Cache.get_Item(String key)
+   at Sahra.MutualFund.Common.Utility.CustomCache.Get(String key) in F:\FundProject\Core\Common\Src\Utility\CustomCache.cs:line 146
+   at Sahra.MutualFund.Authentication.UserManagementProvider.GetUserInformationByUserName(BaseReportFilter`1 filter) in F:\FundProject\API\Authentication\Src\Sahra.MutualFund.Authentication\UserManagementProvider.cs:line 47
+2017-08-07 23:23:10.8962 Error Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster SaveVoucherMaster System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Pikad.Framework.Repository.Repository`2.Save(CustomCommand command, IUnitOfWork uow) in D:\My Projects\Sahra\MutualFund\Framework\Pikad.Framework\Repository\RepositorySaveOrUpdate.cs:line 130
+   at Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Dao\VoucherMaster\VoucherMasterRepository.cs:line 39
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:23:11.0552 Error Sahra.MutualFund.Accounting.Service.VoucherMasterService Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.Accounting.Service.VoucherMasterService.SaveVoucherMaster SaveVoucherMaster System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Dao\VoucherMaster\VoucherMasterRepository.cs:line 44
+   at Sahra.MutualFund.Accounting.Service.VoucherMasterService.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Service\VoucherMaster\VoucherMasterService.cs:line 24
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:23:11.2517 Error Sahra.MutualFund.Accounting.API.VoucherProvider Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.Accounting.API.VoucherProvider.SaveVoucher SaveVoucher System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.API.VoucherProvider.SaveVoucher(Voucher voucher) in F:\FundProject\API\Accounting\Src\Sahra.MutualFund.Accounting.API\Vouchering\VoucherProvider.cs:line 106
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:23:11.3705 Error Sahra.MutualFund.WebAPI.Controllers.Voucher.VoucherController Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.WebAPI.Controllers.Voucher.VoucherController.SaveManualVoucher SaveManualVoucher System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.API.VoucherProvider.SaveVoucher(Voucher voucher) in F:\FundProject\API\Accounting\Src\Sahra.MutualFund.Accounting.API\Vouchering\VoucherProvider.cs:line 113
+   at Sahra.MutualFund.WebAPI.Controllers.Voucher.VoucherController.SaveManualVoucher(ApiRequest`1 voucher) in F:\FundProject\API\WebApi\Src\Sahra.MutualFund.WebApi\Controllers\Voucher\VoucherController.cs:line 41
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:24:23.9723 Error Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster SaveVoucherMaster System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Pikad.Framework.Repository.Repository`2.Save(CustomCommand command, IUnitOfWork uow) in D:\My Projects\Sahra\MutualFund\Framework\Pikad.Framework\Repository\RepositorySaveOrUpdate.cs:line 130
+   at Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Dao\VoucherMaster\VoucherMasterRepository.cs:line 39
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:24:24.4262 Error Sahra.MutualFund.Accounting.Service.VoucherMasterService Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.Accounting.Service.VoucherMasterService.SaveVoucherMaster SaveVoucherMaster System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.Dao.VoucherMasterRepository.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Dao\VoucherMaster\VoucherMasterRepository.cs:line 44
+   at Sahra.MutualFund.Accounting.Service.VoucherMasterService.SaveVoucherMaster(VoucherMaster master, IUnitOfWork unitOfWork) in F:\FundProject\Core\Accounting\Src\Sahra.MutualFund.Accounting.Service\VoucherMaster\VoucherMasterService.cs:line 24
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:24:24.6215 Error Sahra.MutualFund.Accounting.API.VoucherProvider Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.Accounting.API.VoucherProvider.SaveVoucher SaveVoucher System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.API.VoucherProvider.SaveVoucher(Voucher voucher) in F:\FundProject\API\Accounting\Src\Sahra.MutualFund.Accounting.API\Vouchering\VoucherProvider.cs:line 106
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14
+2017-08-07 23:24:24.7503 Error Sahra.MutualFund.WebAPI.Controllers.Voucher.VoucherController Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated. Sahra.MutualFund.WebAPI.Controllers.Voucher.VoucherController.SaveManualVoucher SaveManualVoucher System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'acc.VoucherMaster' with unique index 'IX_VoucherMaster'. The duplicate key value is (2, 0).
+The statement has been terminated.
+   at Sahra.MutualFund.Accounting.API.VoucherProvider.SaveVoucher(Voucher voucher) in F:\FundProject\API\Accounting\Src\Sahra.MutualFund.Accounting.API\Vouchering\VoucherProvider.cs:line 113
+   at Sahra.MutualFund.WebAPI.Controllers.Voucher.VoucherController.SaveManualVoucher(ApiRequest`1 voucher) in F:\FundProject\API\WebApi\Src\Sahra.MutualFund.WebApi\Controllers\Voucher\VoucherController.cs:line 41
+ClientConnectionId:6fb1e58c-66f7-407e-8be4-59b43a19f68d
+Error Number:2601,State:1,Class:14

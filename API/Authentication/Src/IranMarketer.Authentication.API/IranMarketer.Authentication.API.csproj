@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{038BC6F8-290C-45C7-A510-FDC16B68DDDB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.Authentication.API</RootNamespace>
+    <AssemblyName>IranMarketer.Authentication.API</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\AutoMapper\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Core\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Castle.Windsor\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Dapper\1.50.2\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FastCrud">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\Dapper.FastCrud\2.4.1\Dapper.FastCrud.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityManager">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\IdentityManager.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityServer3, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\IdentityServer3.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\IdentityServer3.AccessTokenValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.PartyManagement.Dao">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.PartyManagement.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.PartyManagement.Interface">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.PartyManagement.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.PartyManagement.Service">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.PartyManagement.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="IranMarketer.UserManagement">
+      <HintPath>..\..\Lib\SahraLib\IranMarketer.UserManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ThirdPartyLib\Microsoft\Microsoft.AspNet.Identity\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\SahraLib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Extended">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\NLog\NLog.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>..\..\..\..\ThirdPartyLib\Utility\IdentityServer\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthenticationProvider.cs" />
+    <Compile Include="AuthorizeProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManagementProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Core\Common\Src\IranMarketer.Common.csproj">
+      <Project>{4adf8319-95d5-4352-ac2a-aa2bf6ffa984}</Project>
+      <Name>IranMarketer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Core\Domain\Src\IranMarketer.Domain.csproj">
+      <Project>{cf384560-b8c1-48a1-b753-2f771b4613c0}</Project>
+      <Name>IranMarketer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PartyManagement\Src\IranMarketer.PartyManagement.API\IranMarketer.PartyManagement.API.csproj">
+      <Project>{1d77d328-23f6-4b4f-9bec-f2ec394ceefb}</Project>
+      <Name>IranMarketer.PartyManagement.API</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

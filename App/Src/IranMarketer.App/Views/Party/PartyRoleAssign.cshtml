@@ -1,0 +1,340 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.Domain.DTO
+@model PartyRole
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "انتساب نقش";
+}
+<div class="panel panel-flat">
+
+    <form id="form">
+        <div class="panel panel-flat">
+            <div class="panel-body" style="display: block;">
+
+                <fieldset id="fielsSet8">
+                    <div class="form-group">
+                        <label>نوع شخص</label>
+                        @(Html.Kendo().ComboBox().Name("PartyType").HtmlAttributes(new { @class = "form-control k-rtl" })
+                      .DataTextField("PartyTypeTitle")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("PartyTypeValue").SelectedIndex(0)
+                      .AutoBind(true)
+                      .Events(e => e.Select("onSelectPartyType").Change("onChangePartyType").DataBound("onDataBound"))
+                      .DataSource(source => source.Read(read => read.Action("GetPartyType", "UIComponent", new { addAll = false }))
+                      .ServerFiltering(false)))
+                        <input type="hidden" id="PartyTypeId" name="PartyTypeId" data-bind="value: getPartyTypeId" />
+                    </div>
+                    <div class="form-group" id="retail">
+                        <label>نام</label>
+                        <input type="text" class="form-control" placeholder="نام" required="required" id="firstname" data-bind="value: partyfirstname" name="PartyFirstName" value="@Model.PartyFirstName">
+                        <span class="text-danger">*</span>
+                        <label>نام خانوادگی</label>
+                        <input type="text" class="form-control" placeholder="نام خانوادگی" required="required" id="lastname" data-bind="value: partylastname" name="PartyLastName" value="@Model.PartyLastName">
+                        <span class="text-danger">*</span>
+                    </div>
+                    <div class="form-group" id="institutional">
+                        <label>نام</label>
+                        <input type="text" class="form-control" placeholder="نام" required="required" id="name" data-bind="value: partyname" name="PartyName" value="@Model.PartyName">
+                        <span class="text-danger">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>کد ملی</label>
+                        <input type="text" class="form-control" placeholder="کد ملی" required="required" id="nationalId" data-bind="value: nationalid" name="NationalId" value="@Model.NationalId">
+                    </div>
+                    <div class="form-group">
+                        <label>نقش</label>
+                        @(Html.Kendo().DropDownListFor(x => x.PersonalityRoleCodeId).HtmlAttributes(new
+                    {
+                        @class = "form-control k-rtl ",
+                        required = "required"
+                    })
+                      .DataTextField("PersonalityRoleTitle")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("PersonalityRoleValue")
+                      .AutoBind(true)
+                      .DataSource(source => source.Read(read => read.Action("GetPersonalityRoleType", "UIComponent")).ServerFiltering(false)))
+                    </div>
+
+                    <div class="form-group">
+                        <label>از تاریخ</label>
+                        @Html.Kendo().DatePicker().Name("ValidFrom").HtmlAttributes(new { style = "width:250px", type = "text", required = "required" }).Format("yyyy/MM/dd")
+                        <span class="text-danger">*</span>
+
+                    </div>
+                    <div class="form-group">
+                        <label> تا تاریخ</label>
+                        @Html.Kendo().DatePicker().Name("ValidUntil").HtmlAttributes(new { style = "width:250px", type = "text" }).Format("yyyy/MM/dd")
+                        @*<span class="text-danger">*</span>*@
+
+                    </div>
+
+                </fieldset>
+
+                <div class="text-right">
+                    <button id="add" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="panel panel-flat panel-collapsed">
+        <div class="panel-heading">
+            <h5 class="panel-title">فهرست ارکان و اشخاص صندوق<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="k-rtl">
+                @(Html.Kendo().Grid<PartyRole>()
+                  .Name("Grid")
+                  .Columns(column =>
+                  {
+                      column.Bound(x => x.PartyFullName).Title("نام");
+                      column.Bound(x => x.PersonalityRoleCodeIdTite).Title("نقش");
+                      column.Bound(x => x.ValidFrom).Title("اعتبار از");
+                      column.Bound(x => x.ValidUntil).Title("اعتبار تا");
+                      column.Command(command => command.Custom("ویرایش").Click("AllPartyRoleGridshowDetails")).Width(180);
+                  })
+                  .Excel(excel => excel
+                      .FileName("PartyRoles.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "Party"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+
+                  .Pageable(pager => pager
+                      .Input(true)
+                      .Numeric(true)
+                      .Info(true)
+                      .PreviousNext(true)
+                      .Refresh(true)
+                      .PageSizes(new[] { 10, 20, 50, 100 })).Selectable(x =>
+                      {
+                          x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                      }).Events(c => c.Change("AllOtherExpensesGridonChenge"))
+                  .ToolBar(toolbar =>
+                  {
+                  toolbar.Template(@<text>
+                    <div class="toolbar" style="direction: ltr !important;">
+
+                        <div class="row pull-right ">
+                            <div style="display: inline-block;">
+                                <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                            </div>
+                            <div class="" style="width: 400px; margin-right: 15px; display: inline-block;">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                    <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </text>);
+                  })
+                  .AllowCopy(true)
+                  .Selectable()
+                  .Scrollable()
+                  .HtmlAttributes(new { style = "height:600px !important;" })
+                  .DataSource(dataSource => dataSource
+                      .Ajax().Sort(x => x.Add(a => a.ValidFrom).Descending())
+                      .PageSize(20).Read(read => read.Action("GetAllPartyRoles", "Party"))
+                  )
+                  .Resizable(resize => resize.Columns(true))
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <style type="text/css">
+        .form-horizontal .form-group {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .form-group-material > .control-label {
+            opacity: 1 !important;
+            filter: alpha(opacity=0);
+        }
+
+        .k-grid-content {
+            min-height: 450px !important;
+        }
+    </style>
+    <script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+    <script>
+
+    $(document).ready(function() {
+
+
+        $("#institutional").css("display", "block");
+        $("#retail").css("display", "none");
+        var x = $("#PartyType").data('kendoComboBox');
+        var i = x.selectedIndex;
+        if (i == 0) {
+
+            $('[name="PartyTypeId"]').val(2);
+
+        } if (i == 1) {
+
+            $('[name="PartyTypeId"]').val(1);
+
+        }
+     });
+
+
+
+    $("#add").click(function() {
+
+        if (!$("#form").valid()) {
+            return;
+        } else {
+
+            var firstName = "";
+            var lastName = "";
+            var name = "";
+            var nationalid = "";
+
+            firstName = $('[name="PartyFirstName"]').val();
+            lastName = $('[name="PartyLastName"]').val();
+            name = $('[name="PartyName"]').val();
+            nationalid = $('[name="NationalId"]').val();
+
+            var data = {
+
+                "PartyFirstName": firstName,
+                "PartyLastName": lastName,
+                "PartyName": name,
+                "NationalId": nationalid,
+                "PartyType": $('[name="PartyTypeId"]').val(),
+                //"PartyId": $('#PartyId').data("kendoAutoComplete").dataItem().Id,
+                "PersonalityRoleCodeId": $('#PersonalityRoleCodeId').data("kendoDropDownList").dataItem().PersonalityRoleValue,
+                "ValidFrom": $('#ValidFrom').val(),
+                "ValidUntil": $('#ValidUntil').val()
+            };
+            $.ajax({
+                url: '@Url.Action("SavePartyRole", "Party")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#Grid')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+                        $('#Grid').data('kendoGrid').dataSource.read();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function onChangePartyType() {
+
+    }
+
+    function onDataBound() {
+        var x = $("#PartyType").data('kendoComboBox');
+        var i = x.selectedIndex;
+
+
+        if (i== 0) {
+            $("#institutional").css("display", "block");
+            $("#retail").css("display", "none");
+            $('[name="PartyTypeId"]').val(2);
+
+        } if (i == 1) {
+            $("#retail").css("display", "block");
+            $("#institutional").css("display", "none");
+            $('[name="PartyTypeId"]').val(1);
+
+        }
+    }
+
+    function onSelectPartyType(e) {
+
+        var dataItem = this.dataItem(e.item.index());
+        if (dataItem.PartyTypeValue == 2) {
+            $("#institutional").css("display", "block");
+            $("#retail").css("display", "none");
+            $('[name="PartyTypeId"]').val(2);
+
+        } if (dataItem.PartyTypeValue == 1) {
+            $("#retail").css("display", "block");
+            $("#institutional").css("display", "none");
+            $('[name="PartyTypeId"]').val(1);
+
+        }
+    }
+
+     function AllPartyRoleGridshowDetails(e)
+     {
+        e.preventDefault();
+        $("#fielsSet8").removeAttr('disabled');
+
+    }
+
+    function AllOtherExpensesGridonChenge(e) {
+
+        $("#fielsSet8").attr('disabled', 'disabled');
+        var grid = $("#Grid").data("kendoGrid");
+        var dataItem = grid.dataItem(grid.select());
+
+        $("#PartyType").data('kendoComboBox').value(dataItem.PartyTypeTitle);
+        $('[name="PartyTypeId"]').val(dataItem.PartyType);
+        $('#PersonalityRoleCodeId').data("kendoDropDownList").value(dataItem.PersonalityRoleCodeId);
+        $('#ValidFrom').val(dataItem.ValidFrom);
+        $('#ValidUntil').val(dataItem.ValidUntil);
+        $('#firstname').val(dataItem.PartyFirstName);
+        $('#lastname').val(dataItem.PartyLastName);
+        $('#name').val(dataItem.PartyName);
+        $('#nationalId').val(dataItem.NationalId);
+
+
+    }
+    function AuditorSettingOnAdditionalData1() {
+        return {
+            text: $("#PartyId").val()
+        };
+    }
+    </script>
+
+
+</div>

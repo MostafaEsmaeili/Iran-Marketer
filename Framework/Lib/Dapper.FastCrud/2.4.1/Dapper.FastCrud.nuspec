@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Dapper.FastCrud</id>
+    <version>2.4.1</version>
+    <title>Dapper.FastCrud</title>
+    <authors>MoonStorm</authors>
+    <owners>MoonStorm</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/MoonStorm/Dapper.FastCRUD</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/MoonStorm/Dapper.FastCRUD/master/logo.png</iconUrl>
+    <description>The fastest micro-orm extension for Dapper is built around essential features of the C# 6 / VB 14 that have finally raised the simplicity of raw SQL constructs to acceptable maintenance levels. 
+These features leave no chance to mistypings or problems arising from db entity refactorings.
+It is mandatory to use VS2015 or an equivalent build environment.
+
+Features:
+----------
+- Support for LocalDb, Ms Sql Server, MySql, SqLite, PostgreSql.
+- Composite primary keys are supported.
+- Compatible with component model data annotations.
+- Opt-in relationships.
+- Multiple entity mappings are supported, useful for partial queries in large denormalized tables and data migrations between different database types.
+- All the CRUD methods accept a transaction, a command timeout, and a custom entity mapping.
+- Fast pre-computed entity queries.
+- A useful SQL builder and statement formatter which can be used even if you don't need the CRUD features of this library.
+- A generic T4 template for C# is also provided for convenience in the NuGet package Dapper.FastCrud.ModelGenerator.
+Code first entities are also supported which can either be decorated with attributes, have their mappings programmatically set, or using your own custom convention.
+
+Check out the project site for release notes, usage and benchmarks..</description>
+    <summary>The fastest micro-orm extension for Dapper.</summary>
+    <copyright>Copyright 2016</copyright>
+    <tags>dapper crud orm sql sqlite mysql mssql localdb postgresql poco</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Dapper" version="1.50.2" />
+        <dependency id="StringInterpolationBridge" version="0.9.1" />
+      </group>
+      <group targetFramework=".NETFramework4.6">
+        <dependency id="Dapper" version="1.50.2" />
+      </group>
+      <group targetFramework=".NETStandard1.6">
+        <dependency id="Dapper" version="1.50.2" />
+        <dependency id="System.ComponentModel.Annotations" version="4.1.0" />
+        <dependency id="System.ComponentModel.TypeConverter" version="4.1.0" />
+        <dependency id="System.Data.Common" version="4.1.0" />
+        <dependency id="System.Reflection.Extensions" version="4.0.1" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

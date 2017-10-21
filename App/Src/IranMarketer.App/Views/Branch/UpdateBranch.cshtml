@@ -1,0 +1,197 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.App.Component.Model
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.DTO.Setting
+@model IranMarketer.Domain.Entity.Branch
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "ویرایش شعبه";
+}
+
+
+<div class="k-rtl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">افزودن شعبه</h5>
+                </div>
+                <div class="panel-body">
+                    <form role="form" id="form" novalidate class="form-horizontal form-validate-jquery" action="#" method="POST">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">ویرایش شعبه<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>بانک</label>
+                                @(Html.Kendo().ComboBoxFor(x => x.BankNameId)
+                                      //.Name("roles")
+                                      .DataTextField("Title")
+                                      .DataValueField("CodeId")
+                                      .HtmlAttributes(new
+                                      {
+                                          style = "width:400px;margin-right: 1px;",
+
+                                      })
+
+                                      .Filter("contains")
+                                      .AutoBind(true)
+
+
+                                      .MinLength(3)
+                                      .DataSource(
+                                          source => source.Read(read => read.Action("GetBankNames", "UIComponent")
+
+                                              ).ServerFiltering(true))
+
+                                )
+                            </div>
+                            <div class="form-group">
+                                <label>نام شعبه</label>
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                <span class="text-danger">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>نام انگلیسی شعبه</label>
+                                @Html.TextBoxFor(x => x.EnTitle, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>کد  شعبه</label>
+                                @Html.TextBoxFor(x => x.Code, new { @class = "form-control", required = "required" })
+                            </div>
+
+                            <div class="form-group">
+                                <label>نوع شعبه</label>
+                                @(Html.Kendo().DropDownListFor(x => x.Type).HtmlAttributes(new { @class = " k-rtl" })
+                                      .DataTextField("BranchTypeTitle")
+                                      .Filter(FilterType.Contains)
+                                      .DataValueField("BranchTypeValue")
+                                      .AutoBind(true)
+                                      .DataSource(source => source.Read(read => read.Action("GetBranchTypes", "UIComponent")).ServerFiltering(false)))
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label>مدیر شعبه </label>
+                                <input type="text" class="form-control" placeholder="مدیر شعبه" id="ManagerName" data-bind="value: managername" name="ManagerName" value="@Model.ManagerName">
+                                <span class="text-danger">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label>مدیر شعبه به انگلیسی</label>
+                                <input type="text" class="form-control" placeholder="مدیر شعبه به انگلیسی" id="EnManagerName" data-bind="value: enmanagername" name="ManagerName" value="@Model.EnManagerName">
+                            </div>
+                            <div class="form-group">
+                                <label>آدرس  شعبه</label>
+                                @Html.TextAreaFor(x => x.Address, new { @class = "form-control" })
+                                <span class="text-danger">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label>آدرس انگلیسی شعبه</label>
+                                @Html.TextAreaFor(x => x.EnAddress, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>تلفن</label>
+                                <input type="number" class="form-control" placeholder="تلفن" id="Tel" data-bind="value: tel" name="Tel" value="@Model.Tel">
+                                <span class="text-danger">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label>فکس </label>
+                                <input type="number" class="form-control" placeholder="فکس" id="Fax" data-bind="value: fax" name="Fax" value="@Model.Fax">
+                            </div>
+
+
+
+                            <div class="text-right">
+                                <button type="button" id="SaveBranch" class="btn btn-primary legitRipple"> ذخیره <i class="icon-arrow-left13 position-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $("#SaveBranch").click(function() {
+
+        if (!$("#form").valid()) {
+            alert("اجزای فرم معتبر نمی باشد. ورودی های الزامی را پر نمایید");
+            return;
+        } else {
+
+
+            var data = {
+                "Id":@Model.Id,
+                "Title": $('#Title').val(),
+                "EnTitle": $('#EnTitle').val(),
+                "Code": $('#Code').val(),
+                "BankNameId": $('#BankNameId').data('kendoComboBox').dataItem() == undefined ? -1 : $('#BankNameId').data('kendoComboBox').dataItem().CodeId,
+                "ManagerName": $('#ManagerName').val(),
+                "EnManagerName": $('#EnManagerName').val(),
+                "Tel": $('#Tel').val(),
+                "Fax": $('#Fax').val(),
+                "Type": $('#Type').data('kendoDropDownList').value(),
+                "Address": $('#Address').val(),
+                "EnAddress": $('#EnAddress').val(),
+                "BankName": $('#BankNameId').data('kendoComboBox').dataItem() == undefined ? "" : $('#BankNameId').data('kendoComboBox').dataItem().Title
+            };
+            debugger;
+            $.ajax({
+                url: '@Url.Action("UpdateBranch", "Branch")',
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        $(':input', '#form')
+                            .not(':button, :submit, :reset, :hidden')
+                            .val('')
+                            .removeAttr('checked')
+                            .removeAttr('selected');
+
+                    } else {
+                        showNotification(response.Message, 'e');
+                    }
+                }
+            });
+        }
+    });
+    function CustodianOnAdditionalData() {
+        return {
+            text: $("#ManagerName").val()
+        };
+    }
+</script>

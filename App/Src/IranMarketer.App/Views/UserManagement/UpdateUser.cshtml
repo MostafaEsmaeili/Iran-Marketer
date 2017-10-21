@@ -1,0 +1,161 @@
+﻿@using Kendo.Mvc.UI
+@using IranMarketer.Domain.Enum
+@Html.Partial("_RegisterLastVersionOfKendo")
+@model IranMarketer.Domain.DTO.UserManagement
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "ویرایش کاربر";
+}
+
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">ویرایش کاربر</h5>
+
+    </div>
+    @*<div class="panel-body">
+
+        </div>*@
+    <div class="panel-body">
+        <!-- Vertical form options -->
+        <div class="row">
+            <div class="col-xs-8">
+
+                <!-- Basic layout-->
+                <form id="form">
+          
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse" class=""></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="panel-body" style="display: block;">
+                            <div class="form-group">
+                                <label>نام و نام خانوادگی</label>
+                                <input type="text" class="form-control" placeholder="نام و نام خانوادگی"  name="DisplayName" data-bind="value: DisplayName"  value="@Model.DisplayName">
+                            </div>
+                            <div class="form-group">
+                                <label>نام کاریری</label>
+                                <input type="text"  disabled class="form-control" placeholder="نام کاربری"  name="UserName"  data-bind="value: UserName"  value="@Model.UserName">
+                            </div>
+                            <div class="form-group">
+                                <label>ایمیل</label>
+                                <input type="text" class="form-control" placeholder="ایمیل"  name="Email" data-bind="value: Email"  value="@Model.Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label>شماره تلفن</label>
+                                <input type="text" class="form-control" placeholder="شماره تلفن"  name="PhoneNumber" data-bind="value: PhoneNumber"  value="@Model.PhoneNumber">
+                            </div>
+
+                            <div class="form-group">
+                                <label>نقش کاربر</label>
+                                @(Html.Kendo().MultiSelect().Name("RolesCodeList").HtmlAttributes(new {@class = "form-control k-rtl"})
+                                      .DataTextField("RoleTitle")
+                                      .DataValueField("RoleValue").Filter(FilterType.Contains)
+                                      .AutoBind(true)
+                                      .AutoClose(false)
+
+                                      .DataSource(source => source.Read(read => read.Action("GetRolesDropDownList", "UIComponent")).ServerFiltering(true)))
+                            </div>
+                            <div class="form-group">
+                                <label>شعبه</label>
+                                @(Html.Kendo().DropDownListFor(x=>x.BranchCode).HtmlAttributes(new {@class = "form-control k-rtl"})
+                                      .DataTextField("BranchTitle")
+                                      .Filter(FilterType.Contains)
+                                      .DataValueField("BranchValue")
+                                      .AutoBind(true)
+                                      .DataSource(source => source.Read(read => read.Action("GetBranchesDropDownList", "UIComponent")).ServerFiltering(true)))
+                            </div>
+                            <div class="form-group">
+                                <label>فعالیت</label>
+                                @*@(Html.Kendo().DropDownList().Name("Status").HtmlAttributes(new {@class = "form-control k-rtl"})
+                                      .DataTextField("UserStatusTitle")
+                                      .Filter(FilterType.Contains)
+                                      .DataValueField("UserStatusValue")
+                                      .AutoBind(true)
+
+                                      .BindTo(Enum.GetNames(typeof(UserStatus)).ToList())
+                                   /*   .DataSource(source => source.Read(read => read.Action("GetUserStatusType", "UIComponent")).ServerFiltering(true)*/))*@
+                                @Html.EnumDropDownListFor(model => model.Status)
+
+                                
+                                      
+                            </div>
+
+
+                            <div class="text-right">
+                                <button id="UpdateUser" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </form>
+                <!-- /basic layout -->
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<script>
+    $("#UpdateUser").click(function () {
+    
+        // var data =@Html.Raw(Json.Encode(Model));
+        var data = {
+            "UserName": '@Model.UserName',
+            "DisplayName": $('[name=DisplayName]').val(),
+            "Email": $('[name=Email]').val(),
+            "PhoneNumber": $('[name=PhoneNumber]').val(),
+            "RolesCodeList": $('#RolesCodeList').data("kendoMultiSelect").value(),
+            "BranchCode": $('#BranchCode').data("kendoDropDownList").value(),
+            "Status": $('#Status').val(),
+
+        };
+
+        $.ajax({
+            url: '@Url.Action("UpdateUser","UserManagement")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function (response) {
+                showNotification(response.Message, 'e');
+            },
+
+            success: function (response) {
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input','#form')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+                }
+
+                else {
+
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    });
+   
+</script>

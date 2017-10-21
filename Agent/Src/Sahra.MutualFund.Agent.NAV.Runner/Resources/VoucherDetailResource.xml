@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <resource name="SubscriptionRequestFromBankDeposit">درخواست صدور برای {0} طی شماره فیش {1} به شماره حساب {2} {3}</resource>
+  <resource name="SubscriptionRequestFromDividend">درخواست صدور از محل سود پرداختنی به {0}</resource>
+  <resource name="AuditorDailyCostCalculationCost">هزینه حق الزحمه حسابرس</resource>
+  <resource name="AuditorDailyCostCalculationReserved">ذخیره حق الزحمه حسابرس</resource>
+  <resource name="CustodianDailyCostCaculationCost">هزینه کارمزد متولی</resource>
+  <resource name="CustodianDailyCostCaculationReserved">ذخیره کارمزد متولی</resource>
+  <resource name="LiquidityGuaranteeDailyCostCalculationCost">هزینه کارمزد ضامن نقدشوندگی</resource>
+  <resource name="LiquidityGuaranteeDailyCostCalculationReserved">ذخیره کارمزد ضامن نقدشوندگی</resource>
+  <resource name="ProfitGuaranteeDailyCostCalculationCost">هزینه کارمزد ضامن جبران خسارت یا سود</resource>
+  <resource name="ProfitGuaranteeDailyCostCalculationReserved">ذخیره کارمزد ضامن جبران خسارت یا سود</resource>
+  <resource name="ManagementDailyCostCaclulationCost">هزینه کارمزد مدیر</resource>
+  <resource name="ManagementDailyCostCaclulationReserved">ذخیره کارمزد مدیر</resource>
+  <resource name="SubscriptionRequestPayBackVoucherDetail">رد درخواست صدور برای مشتری {0}</resource>
+  <resource name="BankTransferVoucherDetail">انتقال وجه بین بانکی</resource>
+  <resource name="BankDepositProfitReceiveVoucherDetail">دریافت سررسید سود بانکی شماره حساب {0} {1} در تاریخ {2}</resource>
+  <resource name="SubscriptionRequestConfirmationUnitVoucherDetail">تایید درخواست صدور تعداد {0} واحد برای مشتری {1}</resource>
+  <resource name="SettlementCalculationDailyVoucherCost">كارمزد روزانه تصفيه</resource>
+  <resource name="SettlementCalculationDailyVoucherReserved">ذخیره روزانه تصفيه</resource>
+  <resource name="EstablishmentDailyVoucherCost">هزینه روزانه تاسیس</resource>
+  <resource name="EstablishmentDailyVoucherReserved">ذخیره روزانه تاسیس</resource>
+  <resource name="SoftwareAndAccessCostDailyVoucherCost">هزينه روزانه نرم افزار و سايت</resource>
+  <resource name="SoftwareAndAccessCostDailyVoucherReserved">ذخیره روزانه نرم افزار و سايت</resource>
+  <resource name="GAMCostDailyVoucherCost">هزينه برگزاری مجامع صندوق</resource>
+  <resource name="GAMCostDailyVoucherReserved">ذخیره برگزاری مجامع صندوق</resource>
+  <resource name="BankDepositProfitCalculationVoucher">شناسایی روزانه سود سپرده بانکی برای حساب {0}</resource>
+  <resource name="BankDepositProfitReductionCalculationCost">هزینه تنزیل روزانه سود سپرده بانکی حساب {0}</resource>
+  <resource name="BankDepositProfitReductionCalculationReserved">ذخیره تنزیل روزانه سود سپرده بانکی حساب {0}</resource>
+  <resource name="ManagementDailyCostCaclulationCostForBankDeposit">هزینه کارمزد مدیر بابت مابالتفاوت سود سپرده</resource>
+  <resource name="ManagementDailyCostCaclulationReservedForBankDeposit">ذخیره کارمزد مدیر بابت مابالتفاوت سود سپرده</resource>
+  <resource name="RedemptionRequestConfirmationUnitVoucherDetail">تایید درخواست ابطال تعداد {0} واحد برای مشتری {1}</resource>
+
+
+</root>

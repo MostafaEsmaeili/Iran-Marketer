@@ -1,0 +1,58 @@
+2017-06-18 09:46:25.6330 Error TadbirPardaz.AM.MID.PartyManagement.Service.PartyService NationalId is invalid TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId GetPartyByNationalId TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String memberName, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 50
+   at TadbirPardaz.Infrastructure.Validation.BRule.Assert(Boolean condition, String message, Int32 code, Object[] parameters) in C:\Workspace\ATS\AMSConstant\Framework\Src\Validation\BRule.cs:line 38
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+2017-06-18 09:46:25.7950 Error TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider NationalId is invalid TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 61
+2017-06-18 09:46:25.9220 Error TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController NationalId is invalid TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login Login TadbirPardaz.Infrastructure.Validation.Model.BusinessRuleException: NationalId is invalid
+   at TadbirPardaz.AM.MID.PartyManagement.Service.PartyService.GetPartyByNationalId(String nationalId)
+   at TadbirPardaz.AM.AuthenticationProvider.API.AuthenticationProvider.Login(String userName, String password, String clientId, String clientPassword, String identityServerAddress) in D:\MofidWS\ATS\API\Authentication\Src\TadbirPardaz.AM.AuthenticateProvider.API\AuthenticationProvider.cs:line 111
+   at TadbirPardaz.AM.WebAPI.Controllers.Token.TokenController.Login(UserLoginRequest filter) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Controllers\Authentication\TokenController.cs:line 84
+2017-06-18 09:48:20.6415 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryDao Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories DeleteAllPageRepositories System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.DoExecuteNonQuery(DbCommand command)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteNonQuery(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories()
+ClientConnectionId:808fe0d3-a970-4562-bc24-1ac3e4df68e9
+Error Number:2812,State:62,Class:16
+2017-06-18 09:48:20.9865 Error TadbirPardaz.AM.UserManagement.ServiceRepositoryService Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories DeleteAllPageRepositories System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryDao.DeleteAllPageRepositories()
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories()
+ClientConnectionId:808fe0d3-a970-4562-bc24-1ac3e4df68e9
+Error Number:2812,State:62,Class:16
+2017-06-18 09:48:21.0565 Error TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker Could not find stored procedure 'sec.DeleteAllPageRepositories'. TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository AddAllApiToServiceRepository System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.DeleteAllPageRepositories'.
+   at TadbirPardaz.AM.UserManagement.ServiceRepositoryService.DeleteAllPageRepositories()
+   at TadbirPardaz.AM.WebAPI.Attribute.ServiceReposioryMaker.AddAllApiToServiceRepository() in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 201
+ClientConnectionId:808fe0d3-a970-4562-bc24-1ac3e4df68e9
+Error Number:2812,State:62,Class:16
+2017-06-18 09:48:26.9834 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-18 09:48:27.0614 Error TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute Object reference not set to an instance of an object. TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized IsAuthorized System.NullReferenceException: Object reference not set to an instance of an object.
+   at TadbirPardaz.AM.WebAPI.Attribute.CustomAuthorizeAttribute.IsAuthorized(HttpActionContext actionContext) in D:\MofidWS\ATS\API\WebAPI\Src\TadbirPardaz.AM.WebAPI\Attrebute\CustomAuthentication.cs:line 124
+2017-06-18 09:48:41.8505 Error TadbirPardaz.AM.UserManagement.ServiceAccessDao Could not find stored procedure 'sec.GetAccessiblePagesByUsername'. TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername GetAccessiblePagesByUsername System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'sec.GetAccessiblePagesByUsername'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteReader(DbCommand command)
+   at TadbirPardaz.AM.UserManagement.ServiceAccessDao.GetAccessiblePagesByUsername(String username, Applications application)
+ClientConnectionId:f2774650-9330-4c8a-9033-dd34a87356fd
+Error Number:2812,State:62,Class:16

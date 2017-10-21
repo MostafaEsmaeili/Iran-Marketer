@@ -1,0 +1,57 @@
+F:\FundProject\Framework\Test.Dao\bin\Debug\Test.Dao.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Test.Dao.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Windsor.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Dapper.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Dapper.FastCrud.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Pikad.Framework.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Test.Domain.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\NLog.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Core.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Pikad.Framework.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\Test.Domain.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Windsor.xml
+F:\FundProject\Framework\Test.Dao\bin\Debug\Dapper.xml
+F:\FundProject\Framework\Test.Dao\bin\Debug\Dapper.FastCrud.xml
+F:\FundProject\Framework\Test.Dao\bin\Debug\NLog.xml
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Core.xml
+F:\FundProject\Framework\Test.Dao\obj\Debug\Test.Dao.csprojResolveAssemblyReference.cache
+F:\FundProject\Framework\Test.Dao\obj\Debug\Test.Dao.dll
+F:\FundProject\Framework\Test.Dao\obj\Debug\Test.Dao.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\AutoMapper.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\AutoMapper.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\AutoMapper.xml
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Facilities.AutoTx.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Transactions.dll
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Facilities.AutoTx.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Facilities.AutoTx.xml
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Transactions.pdb
+F:\FundProject\Framework\Test.Dao\bin\Debug\Castle.Transactions.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Test.Dao.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Test.Dao.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Core.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Facilities.AutoTx.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Transactions.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Windsor.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Dapper.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Dapper.FastCrud.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Pikad.Framework.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Test.Domain.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\AutoMapper.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\NLog.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Pikad.Framework.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Test.Domain.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Core.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Facilities.AutoTx.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Facilities.AutoTx.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Transactions.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Transactions.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Castle.Windsor.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Dapper.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\Dapper.FastCrud.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\AutoMapper.pdb
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\AutoMapper.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\bin\Debug\NLog.xml
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\obj\Debug\Test.Dao.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\obj\Debug\Test.Dao.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\obj\Debug\Test.Dao.dll
+F:\IranMarketer\Iran Marketer\Framework\Test.Dao\obj\Debug\Test.Dao.pdb

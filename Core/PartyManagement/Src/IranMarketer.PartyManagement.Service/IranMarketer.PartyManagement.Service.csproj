@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93B7572C-4BAF-4B66-A4C3-5840FAD5D990}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.PartyManagement.Service</RootNamespace>
+    <AssemblyName>IranMarketer.PartyManagement.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PartyAttachment\PartyAttachmentService.cs" />
+    <Compile Include="PartyAttachment\IPartyAttachmentRepository.cs" />
+    <Compile Include="Contact\ContactService.cs" />
+    <Compile Include="Contact\IContactRepository.cs" />
+    <Compile Include="PartyBankAccount\IPartyBankAccountRepository.cs" />
+    <Compile Include="PartyBankAccount\PartyBankAccountService.cs" />
+    <Compile Include="PartyBranch\IPartyBranchRepository.cs" />
+    <Compile Include="PartyBranch\PartyBranchService.cs" />
+    <Compile Include="PartyCode\IPartyCodeRepository.cs" />
+    <Compile Include="PartyCode\PartyCodeService.cs" />
+    <Compile Include="PartyRoles\IPartyRolesRepository.cs" />
+    <Compile Include="PartyRoles\PartyRolesService.cs" />
+    <Compile Include="PartyUniversity\IPartyUniversityRepository.cs" />
+    <Compile Include="PartyUniversity\PartyUniversityService.cs" />
+    <Compile Include="Party\IPartyRepository.cs" />
+    <Compile Include="Party\IWorkExprienceRepository.cs" />
+    <Compile Include="Party\PartyService.cs" />
+    <Compile Include="Party\WorkExprienceService.cs" />
+    <Compile Include="PersonalityRole\IPersonalityRoleRepository.cs" />
+    <Compile Include="PersonalityRole\PersonalityRoleService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RetailParty\IRetailPartyRepository.cs" />
+    <Compile Include="RetailParty\RetailPartyService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Src\IranMarketer.Common.csproj">
+      <Project>{4adf8319-95d5-4352-ac2a-aa2bf6ffa984}</Project>
+      <Name>IranMarketer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\Src\IranMarketer.Domain.csproj">
+      <Project>{cf384560-b8c1-48a1-b753-2f771b4613c0}</Project>
+      <Name>IranMarketer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IranMarketer.PartyManagement.Interface\IranMarketer.PartyManagement.Interface.csproj">
+      <Project>{91BCEBF3-1A2F-42A7-9CF3-86E665271A51}</Project>
+      <Name>IranMarketer.PartyManagement.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

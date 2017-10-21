@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="0" />
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="21">
+      <value>,FundTitle,FundTitle,FundTitle,System.String,,False,False,False</value>
+      <value>,SeoRegisterNumberTitle,SeoRegisterNumberTitle,SeoRegisterNumberTitle,System.String,,False,False,False</value>
+      <value>,ReportTitle,ReportTitle,ReportTitle,System.String,,False,False,False</value>
+      <value>,ReceiptNumber,ReceiptNumber,ReceiptNumber,System.String,,False,False,False</value>
+      <value>,ReceiptDate,ReceiptDate,ReceiptDate,System.String,,False,False,False</value>
+      <value>,GenderType,GenderType,GenderType,System.String,,False,False,False</value>
+      <value>,CustomerTitle,CustomerTitle,CustomerTitle,System.String,,False,False,False</value>
+      <value>,RetailpPersonTitle,RetailpPersonTitle,RetailpPersonTitle,System.String,,False,False,False</value>
+      <value>,NationalId,NationalId,NationalId,System.String,,False,False,False</value>
+      <value>,IssuePlace,IssuePlace,IssuePlace,System.String,,False,False,False</value>
+      <value>,BirthDate,BirthDate,BirthDate,System.String,,False,False,False</value>
+      <value>,InstitutionalPersonTitle,InstitutionalPersonTitle,InstitutionalPersonTitle,System.String,,False,False,False</value>
+      <value>,RegistrationNumber,RegistrationNumber,RegistrationNumber,System.String,,False,False,False</value>
+      <value>,RegisterPlace,RegisterPlace,RegisterPlace,System.String,,False,False,False</value>
+      <value>,RegisterDate,RegisterDate,RegisterDate,System.String,,False,False,False</value>
+      <value>,IdNumber,IdNumber,IdNumber,System.String,,False,False,False</value>
+      <value>,RequestNumber,RequestNumber,RequestNumber,System.String,,False,False,False</value>
+      <value>,RedemptionUnit,RedemptionUnit,RedemptionUnit,System.String,,False,False,False</value>
+      <value>,ReceiptDateTime,ReceiptDateTime,ReceiptDateTime,System.String,,False,False,False</value>
+      <value>,ManagerName,ManagerName,System.String,System.String,False,False,True</value>
+      <value>,BranchName,BranchName,System.String,System.String,False,False,True</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="2" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="8">
+        <PageHeaderBand1 Ref="3" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,1</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text1 Ref="4" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1,19,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="2" />
+              <Parent isRef="3" />
+              <Text>{FundTitle}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+        </PageHeaderBand1>
+        <PageFooterBand1 Ref="5" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,26.7,19,1</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+        </PageFooterBand1>
+        <PageFooterBand2 Ref="6" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,25.3,19,0.6</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand2</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+        </PageFooterBand2>
+        <Text2 Ref="7" type="Text" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2,19,0.6</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Font>B Nazanin,12</Font>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text2</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+          <Text>ثبت شده به شماره {SeoRegisterNumberTitle} نزد سازمان بورس و اوراق بهادار</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text2>
+        <Text3 Ref="8" type="Text" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2.6,19,0.6</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Font>B Nazanin,12,Bold</Font>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text3</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+          <Text>{ReportTitle}</Text>
+          <TextBrush>Black</TextBrush>
+          <VertAlignment>Center</VertAlignment>
+        </Text3>
+        <Panel1 Ref="9" type="Panel" isKey="true">
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>[243:243:243]</Brush>
+          <ClientRectangle>0.2,6.8,18.4,8.8</ClientRectangle>
+          <Components isList="true" count="14">
+            <Text4 Ref="10" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>12.2,0,6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>مشخصات سرمايه‌گذار:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text6 Ref="11" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>0.8,0.8,17.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>def3ed0ed67b4d6d8bad226e34ab1d31</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>شخص حقوقي: {InstitutionalPersonTitle}        شماره ثبت:  {RegistrationNumber}      محل ثبت: {RegisterPlace}       تاریخ ثبت: {RegisterDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="12" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>12.2,1.8,6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>e2c014ce204c4336894273bbb1c9bb89</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>کد ملی: {NationalId}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="13" type="Text" isKey="true">
+              <Border>Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>11.6,3,6.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Guid>8d10a6f7317343e496a624b52144fe45</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>  شماره درخواست: {RequestNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text10 Ref="14" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>12,4,6.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Guid>ea56b43dae514c69a1b7b922293e265d</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>  تاريخ و ساعت صدور رسيد:  {ReceiptDateTime}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="15" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>5.4,4,6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Guid>68a64aebbbcc48ea89272f8d04a945f7</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>نام نماینده مدیر: {ManagerName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text5 Ref="16" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>0.8,0.8,17.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,11</Font>
+              <Guid>13fccb550301490480dc290f252447ea</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>شخص حقیقی آقای/ خانم {RetailpPersonTitle}       شماره شناسنامه {IdNumber}      محل صدور{IssuePlace}        تاریخ تولد {BirthDate}  </Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text13 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.8,6.4,4.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <Guid>a6dabb8465e048f1b7aa15e745b566a2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>مهر صندوق</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text13>
+            <Text15 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.8,6.4,4.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12,Bold</Font>
+              <Guid>711c1fa4e5334b7c85a9799939b21823</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>امضای نماینده مدیر</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text15>
+            <Text9 Ref="19" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>0,3,11.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Guid>807f8d1183944894b8787234fc1be3f3</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>      تعداد واحد سرمايه‌گذاري درخواست شده براي ابطال: {RedemptionUnit}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text16 Ref="20" type="Text" isKey="true">
+              <Border>Top, Right, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.2,3,0.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <TextBrush>Black</TextBrush>
+            </Text16>
+            <Text17 Ref="21" type="Text" isKey="true">
+              <Border>Top, Right, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18.2,3,0.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <TextBrush>Black</TextBrush>
+            </Text17>
+            <Text12 Ref="22" type="Text" isKey="true">
+              <Brush>EmptyBrush</Brush>
+              <ClientRectangle>0,4,4.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Nazanin,12</Font>
+              <Guid>daa567f2e76e40769f40d5e49a92f558</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <Text>شعبه: {BranchName}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <HorizontalLinePrimitive1 Ref="23" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,3,18.4,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="24" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="2" />
+              <Parent isRef="9" />
+              <StartCap Ref="25" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>Panel1</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+        </Panel1>
+        <RichText1 Ref="26" type="Stimulsoft.Report.Components.StiRichText" isKey="true">
+          <BackColor>Transparent</BackColor>
+          <ClientRectangle>0.4,16.4,18.4,5.4</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <DataColumn />
+          <Margins>0,0,0,0</Margins>
+          <Name>RichText1</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+          <Text>__LP___x005C_rtf1_x005C_fbidis_x005C_ansi_x005C_ansicpg1256_x005C_deff0_x005C_deflang1065__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fprq2_x005C_fcharset178_x0020_B_x0020_Nazanin_x003B___RP____LP___x005C_f1_x005C_froman_x005C_fprq2_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C_colortbl_x0020__x003B__x005C_red0_x005C_green0_x005C_blue0_x003B___RP___x000D__x000A__x005C_viewkind4_x005C_uc1_x005C_pard_x005C_rtlpar_x005C_qr_x005C_f0_x005C_rtlch_x005C_fs24_x005C__x0027_d5_x005C__x0027_cd_x005C__x0027_ca_x0020__x005C__x0027_c7_x005C__x0027_d8_x005C__x0027_e1_x005C__x0027_c7_x005C__x0027_da_x005C__x0027_c7_x005C__x0027_ca_x0020__x005C__x0027_dd_x005C__x0027_e6_x005C__x0027_de_x0020__x005C__x0027_e3_x005C__x0027_e6_x005C__x0027_d1_x005C__x0027_cf_x0020__x005C__x0027_ca_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_ed_x005C__x0027_cf_x0020__x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_e4_x005C__x0027_cc_x005C__x0027_c7_x005C__x0027_e4_x005C__x0027_c8_x0020__x005C__x0027_e3_x005C__x0027_ed_x005C__x0027_9d_x005C__x0027_c8_x005C__x0027_c7_x005C__x0027_d4_x005C__x0027_cf._x005C_par_x000D__x000A__x005C_tab_x005C__x0027_e4_x005C__x0027_c7_x005C__x0027_e3_x0020__x005C__x0027_e6_x0020__x005C__x0027_e4_x005C__x0027_c7_x005C__x0027_e3_x0020__x005C__x0027_ce_x005C__x0027_c7_x005C__x0027_e4_x005C__x0027_e6_x005C__x0027_c7_x005C__x0027_cf_x005C__x0027_90_x005C__x0027_ed_x0020__x005C__x0027_d3_x005C__x0027_d1_x005C__x0027_e3_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_e5_x005C__x0027_9d_x005C__x0027_90_x005C__x0027_d0_x005C__x0027_c7_x005C__x0027_d1_x0020__x005C_cf1_x005C__x0027_ed_x005C__x0027_c7_x005C_cf0_x0020__x0020__x005C__x0027_e4_x005C__x0027_e3_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_e4_x005C__x0027_cf_x005C__x0027_e5_x0020__x005C__x0027_de_x005C__x0027_c7_x005C__x0027_e4_x005C__x0027_e6_x005C__x0027_e4_x005C__x0027_ed_x0020__x005C__x0027_e6_x005C__x0027_ed:_x005C_tab_x005C_tab_x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x0020__x005C_tab_x005C_tab_x005C__x0027_c7_x005C__x0027_e3_x005C__x0027_d6_x005C__x0027_c7_x005C__x0027_c1:_x005C_par_x000D__x000A__x005C_pard_x005C_rtlpar_x005C_ri360_x005C_qr_x005C_par_x000D__x000A__x005C_pard_x005C_rtlpar_x005C_qr_x005C__x0027_ca_x005C__x0027_e6_x005C__x0027_d6_x005C__x0027_ed_x005C__x0027_cd_x005C__x0027_c7_x005C__x0027_ca:_x005C_par_x000D__x000A__x005C_pard_x005C_rtlpar_x005C_fi-360_x005C_ri720_x005C_qr_x005C_tx720_x0020_1-_x005C_tab_x005C__x0027_cf_x005C__x0027_d1_x005C__x0027_d5_x005C__x0027_e6_x005C__x0027_d1_x005C__x0027_ca_x0020__x005C__x0027_c7_x005C__x0027_e4_x005C__x0027_d5_x005C__x0027_d1_x005C__x0027_c7_x005C__x0027_dd_x0020__x005C__x0027_e3_x005C__x0027_ca_x005C__x0027_de_x005C__x0027_c7_x005C__x0027_d6_x005C__x0027_ed_x005C__x0027_a1_x0020__x005C__x0027_e6_x005C__x0027_ed_x0020__x005C__x0027_e3_x005C__x0027_ed_x005C__x0027_ca_x005C__x0027_e6_x005C__x0027_c7_x005C__x0027_e4_x005C__x0027_cf_x0020__x005C__x0027_ca_x005C__x0027_c7_x0020__x005C__x0027_d3_x005C__x0027_c7_x005C__x0027_da_x005C__x0027_ca_x0020_14_x0020__x005C__x0027_d1_x005C__x0027_e6_x005C__x0027_d2_x0020__x005C__x0027_c7_x005C__x0027_d1_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_c9_x0020__x005C__x0027_cf_x005C__x0027_d1_x005C__x0027_ce_x005C__x0027_e6_x005C__x0027_c7_x005C__x0027_d3_x005C__x0027_ca_x005C__x0027_a1_x0020__x005C__x0027_c8_x005C__x0027_e5_x0020__x005C__x0027_d4_x005C__x0027_da_x005C__x0027_c8_x005C__x0027_e5_x0020__x005C__x0027_d5_x005C__x0027_c7_x005C__x0027_cf_x005C__x0027_d1_x0020__x005C__x0027_df_x005C__x0027_e4_x005C__x0027_e4_x005C__x0027_cf_x005C__x0027_e5_x0020__x005C__x0027_e3_x005C__x0027_d1_x005C__x0027_c7_x005C__x0027_cc_x005C__x0027_da_x005C__x0027_e5_x0020__x005C__x0027_e6_x0020__x005C__x0027_cf_x005C__x0027_d1_x005C__x0027_ce_x005C__x0027_e6_x005C__x0027_c7_x005C__x0027_d3_x005C__x0027_ca_x0020__x005C__x0027_ce_x005C__x0027_e6_x005C__x0027_cf_x0020__x005C__x0027_d1_x005C__x0027_c7_x0020__x005C__x0027_ab_x005C__x0027_e1_x005C__x0027_db_x005C__x0027_e6_x005C__x0027_bb_x0020__x005C__x0027_e4_x005C__x0027_e3_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_cf._x005C_par_x000D__x000A__x005C_pard_x005C_rtlpar_x005C_fi-360_x005C_ri720_x005C_qr_x0020_2-_x005C_tab_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_e4_x0020__x005C__x0027_d1_x005C__x0027_d3_x005C__x0027_ed_x005C__x0027_cf_x0020__x005C__x0027_cf_x005C__x0027_e6_x0020__x005C__x0027_e4_x005C__x0027_d3_x005C__x0027_ce_x005C__x0027_e5_x005C__x0027_9d_x005C__x0027_c7_x005C__x0027_ed_x0020__x005C__x0027_c8_x005C__x0027_e6_x005C__x0027_cf_x005C__x0027_e5_x0020__x005C__x0027_e6_x0020__x005C__x0027_ed_x005C__x0027_df_x0020__x005C__x0027_e4_x005C__x0027_d3_x005C__x0027_ce_x005C__x0027_e5_x0020__x005C__x0027_c8_x005C__x0027_c7_x0020__x005C__x0027_ca_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_ed_x005C__x0027_cf_x0020__x005C__x0027_e6_x0020__x005C__x0027_c7_x005C__x0027_e3_x005C__x0027_d6_x005C__x0027_c7_x005C__x0027_ed_x0020__x005C__x0027_d3_x005C__x0027_d1_x005C__x0027_e3_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_e5_x005C__x0027_9d_x005C__x0027_90_x005C__x0027_d0_x005C__x0027_c7_x005C__x0027_d1_x0020__x005C__x0027_cf_x005C__x0027_d1_x0020__x005C__x0027_d4_x005C__x0027_da_x005C__x0027_c8_x005C__x0027_e5_x0020__x005C__x0027_e4_x005C__x0027_90_x005C__x0027_e5_x005C__x0027_cf_x005C__x0027_c7_x005C__x0027_d1_x005C__x0027_ed_x0020__x005C__x0027_d4_x005C__x0027_cf_x005C__x0027_e5_x0020__x005C__x0027_e6_x0020__x005C__x0027_e4_x005C__x0027_d3_x005C__x0027_ce_x005C__x0027_e5_x0020__x005C__x0027_cf_x005C__x0027_e6_x005C__x0027_e3_x0020__x005C__x0027_c2_x005C__x0027_e4_x0020__x005C__x0027_c8_x005C__x0027_e5_x0020__x005C__x0027_e6_x005C__x0027_ed_x0020__x005C__x0027_ca_x005C__x0027_cd_x005C__x0027_e6_x005C__x0027_ed_x005C__x0027_e1_x0020__x005C__x0027_e3_x005C__x0027_ed_x005C__x0027_90_x005C__x0027_d1_x005C__x0027_cf_x005C__x0027_cf._x0020__x005C__x0027_d1_x005C__x0027_d3_x005C__x0027_ed_x005C__x0027_cf_x0020__x005C__x0027_d3_x005C__x0027_d1_x005C__x0027_e3_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_e5_x005C__x0027_9d_x005C__x0027_90_x005C__x0027_d0_x005C__x0027_c7_x005C__x0027_d1_x0020__x005C__x0027_c8_x005C__x0027_c7_x005C__x0027_ed_x005C__x0027_cf_x0020__x005C__x0027_c8_x005C__x0027_c7_x0020__x005C__x0027_e3_x005C__x0027_e5_x005C__x0027_d1_x0020__x005C__x0027_d5_x005C__x0027_e4_x005C__x0027_cf_x005C__x0027_e6_x005C__x0027_de_x0020__x005C__x0027_e3_x005C__x0027_e5_x005C__x0027_d1_x0020__x005C__x0027_d4_x005C__x0027_cf_x005C__x0027_e5_x0020__x005C__x0027_e6_x005C__x0027_c8_x005C__x0027_e5_x0020__x005C__x0027_c7_x005C__x0027_e3_x005C__x0027_d6_x005C__x0027_c7_x005C_u1740_x003F__x0020__x005C_cf1_x005C__x0027_e3_x005C__x0027_cf_x005C_u1740_x003F__x005C__x0027_d1_x0020__x005C__x0027_d5_x005C__x0027_e4_x005C__x0027_cf_x005C__x0027_e6_x005C__x0027_de_x005C_cf0_x0020__x0020__x005C__x0027_d1_x005C__x0027_d3_x005C_u1740_x003F__x005C__x0027_cf_x005C__x0027_e5_x0020__x005C__x0027_c8_x005C__x0027_c7_x005C__x0027_d4_x005C__x0027_cf._x005C_lang1033_x005C_f1_x005C_ltrch_x005C_par_x000D__x000A__x005C_pard_x005C_ltrpar_x005C_qr_x005C_lang1065_x005C_f2_x005C_fs17_x005C_par_x000D__x000A___RP___x000D__x000A_</Text>
+        </RichText1>
+        <Text14 Ref="27" type="Text" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0.4,4.8,18.4,2</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <Font>B Nazanin,12</Font>
+          <HorAlignment>Right</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text14</Name>
+          <Page isRef="2" />
+          <Parent isRef="2" />
+          <Text>به موجب اين رسيد گواهي مي‌شود، گواهي سرمايه‌گذاري شماره  {ReceiptNumber}  مورخ   {ReceiptDate}  از آقاي/خانم/شخص حقوقي  {CustomerTitle}  با مشخصات زير دريافت شده است.</Text>
+          <TextBrush>Black</TextBrush>
+          <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+          <Type>Expression</Type>
+        </Text14>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>11a4c1609d324481aa0ec159b7b719d3</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="28" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="29" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>8/31/2017 9:37:19 PM</ReportChanged>
+  <ReportCreated>8/28/2017 6:36:07 PM</ReportCreated>
+  <ReportFile>F:\FundProject\App\Src\IranMarketer.App\ReportTemplate\RedemptionReceipt.mrt</ReportFile>
+  <ReportGuid>d56fcd5f4187429d978cfbd594279338</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2015.1.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

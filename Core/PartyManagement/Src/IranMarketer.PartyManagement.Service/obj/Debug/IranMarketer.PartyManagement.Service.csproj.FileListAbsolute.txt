@@ -1,0 +1,6 @@
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Bin\IranMarketer.PartyManagement.Service.dll
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Bin\IranMarketer.PartyManagement.Service.pdb
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Service\obj\Debug\IranMarketer.PartyManagement.Service.csprojResolveAssemblyReference.cache
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Service\obj\Debug\IranMarketer.PartyManagement.Service.csproj.CoreCompileInputs.cache
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Service\obj\Debug\IranMarketer.PartyManagement.Service.dll
+F:\IranMarketer\Iran Marketer\Core\PartyManagement\Src\IranMarketer.PartyManagement.Service\obj\Debug\IranMarketer.PartyManagement.Service.pdb

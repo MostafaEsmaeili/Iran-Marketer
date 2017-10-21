@@ -1,0 +1,238 @@
+﻿@using IranMarketer.App.Helper
+@using Kendo.Mvc.UI
+@using IranMarketer.Domain.Entity
+
+@model AcademicField
+    
+<script>
+    var AcademicFieldId = -1;
+
+</script>
+<form id="AcademicFieldForm" class="form-validate-jquery" novalidate="novalidate">
+
+    <div class="panel panel-flat">
+        <div class="panel-body" style="display: block;">
+            <fieldset id="IndustryFieldSet">
+                <div class="row">
+                    <div class="col-xs-12  col-md-6">
+                        <label class="display-block text-semibold">نام فارسی رشته تحصیلی</label>
+                        @*<input type="number" min="0" class="form-control" placeholder="حق الزحمه حسابرسی" id="AuditorFee" data-bind="value: AuditorFee">*@
+                        @Html.Kendo().TextBoxFor(x => x.TitleFa).Name("AcademicFieldTitleFa").HtmlAttributes(new {required = "required", style = " width:100%;"})
+
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <label class="display-block text-semibold">نام انگلیسی رشته تحصیلی</label>
+                        @Html.Kendo().TextBoxFor(x => x.TitleEn).Name("AcademicFieldTitleEn").HtmlAttributes(new {required = "required", style = " width:100%;"})
+
+                    </div>`
+
+
+                </div>
+
+            </fieldset>
+
+            <div class="text-left">
+                <button id="addAcademicField" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+                
+                <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="panel panel-flat panel-collapsed">
+    <div class="panel-heading">
+        <h5 class="panel-title">تمام صنایع<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<Industry>().Mobile(MobileMode.Auto)
+                  .Name("AcademicFieldGrid")
+                  
+                  .Columns(column =>
+                  {
+
+
+                      column.Bound(x => x.TitleFa).Title("نام فارسی").Width(150);
+                      column.Bound(x => x.TitleEn).Title("نام انگلیسی").Width(150);
+                      column.Bound(x => x.CreatedJalali).Title("تاریخ ایجاد").Width(150); ;
+                      column.Bound(x => x.CreatedBy).Title("ایجاد کننده").Width(150); ;
+                      column.Bound(x => x.ModifiedJalali).Title("تاریخ ویرایش").Width(150); ;
+                      column.Bound(x => x.ModifiedBy).Title("ویرایش کننده").Width(150); ;
+                      column.Command(command => command.Custom("ویرایش").Click("AcademicFieldGridshowDetails")).Width(180);
+
+
+                  })
+                  .Excel(excel => excel
+                      .FileName("AcademicFieldGrid.xlsx")
+                      .Filterable(true)
+                      .AllPages(true)
+
+                      .ForceProxy(true)
+
+                      .AllPages(true)
+                      .ProxyURL(Url.Action("CustomExcelReport", "AdminPanel"))
+                  )
+                  .Sortable(sortable => sortable.AllowUnsort(false))
+                  .Pageable(pageable => pageable
+                      .Refresh(true)
+                      .PageSizes(true)
+                      .ButtonCount(5))
+                  .Selectable(x =>
+                  {
+                      x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                  })//.Events(c => c.Change("AuditorSettingGridonChenge"))
+                  .ToolBar(toolbar =>
+                  {
+                      toolbar.Template(@<text>
+                                           <div class="row toolbar" style="direction: rtl !important;">
+
+                                               <div class="pull-left ">
+                                                   <div class="col-xs-6" style="display: inline-block;">
+                                                       <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                                   </div>
+                                                   <div class="col-xs-6" style=" display: inline-block;">
+                                                       <div class="input-group">
+                                                           <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                           <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                        </text>);
+                  })
+                  .AllowCopy(true)
+                  .Selectable()
+                  .HtmlAttributes(new { style = "height:Auto;" })
+                  .DataSource(dataSource => dataSource
+                      .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.TitleFa).Descending())
+                      .PageSize(20).Read(read => read.Action("GetAcademicFields", "AdminPanel"))
+                  )
+                  //.Resizable(resize => resize.Columns(true))
+                  .Resizable(r=>r.Columns(true))
+                  .Scrollable()
+                  
+                  .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+
+</div>
+
+
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+</style>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script>
+    $("#addAcademicField").click(function() {
+
+        if (!$("#AcademicFieldForm").valid()) {
+            return;
+        } else {
+
+            debugger;
+            var dataa = {
+                "Id": 0,
+                "TitleFa": null,
+                "TitleEn": null,
+            };
+            var data = {
+                "Id": AcademicFieldId > 0 ? AcademicFieldId:0,
+                "TitleFa": $('#AcademicFieldTitleFa').val(),
+                "TitleEn": $('#AcademicFieldTitleEn').val()
+            };
+
+
+
+
+            $.ajax({
+                url: '@Url.Action("SaveOrUpdateAcademicField", "AdminPanel")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        clear();
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+    $("#clear").click(function(){
+        var form = $(this).parents('form:first')[0].id;
+        $(':input', '#'+form)
+            .not(':button, :submit, :reset, :hidden')
+            .val('')
+            .removeAttr('checked')
+            .removeAttr('selected');
+        $('#AcademicFieldGrid').data('kendoGrid').dataSource.read();
+        AcademicFieldId = -1;
+    });
+    function clear() {
+        $(':input', '#AcademicFieldForm')
+            .not(':button, :submit, :reset, :hidden')
+            .val('')
+            .removeAttr('checked')
+            .removeAttr('selected');
+        $('#AcademicFieldGrid').data('kendoGrid').dataSource.read();
+        AcademicFieldId = -1;
+
+    }
+
+
+
+    function AcademicFieldGridshowDetails(e) {
+        debugger;
+        var grid = $("#AcademicFieldGrid").data("kendoGrid");
+        var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+        AcademicFieldId = dataItem.Id;
+        //  }, 500);
+        //$('#Auditor').data("kendoMultiSelect").value([dataItem.Auditor.NationalId]);
+
+
+        $('#AcademicFieldTitleFa').val(dataItem.TitleFa);
+        $('#AcademicFieldTitleEn').val(dataItem.TitleEn);
+        //$('#AuditorFee').val(dataItem.AuditorFee);
+        //$('#AuditorFeeTax').val(dataItem.AuditorFeeTax);
+        //$('#AuditorFeeToll').val(dataItem.AuditorFeeToll);
+    }
+
+</script>
+
+

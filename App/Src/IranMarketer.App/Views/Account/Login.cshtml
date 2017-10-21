@@ -1,0 +1,75 @@
+﻿
+@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+
+@{
+    Layout = "../Shared/_LoginPartial.cshtml";
+    ViewBag.Title = "ورود به سیستم";
+}
+@model IranMarketer.App.Models.LoginViewModel
+
+
+<div class="page-container pb-20">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <form action="@Url.Action("Login")" method="post">
+                @Html.AntiForgeryToken()
+                <div class="panel panel-body login-form">
+                    <div class="text-center">
+                        <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i>
+                        </div>
+                        <h5 class="content-group">سامانه ... <small class="display-block">ورود به سیستم</small></h5>
+                    </div>
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input type="text" class="form-control" placeholder="نام کاربری" name="UserName">
+                        <div class="form-control-feedback">
+                            <i class="icon-user text-muted"></i>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback has-feedback-left">
+                        <input type="password" class="form-control" placeholder="رمز عبور" name="Password">
+                        <div class="form-control-feedback">
+                            <i class="icon-lock2 text-muted"></i>
+                        </div>
+                    </div>
+                    <div class="form-group login-options">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @*<label class="checkbox-inline">
+                                    <input type="checkbox" class="styled" checked="checked">
+                                    Remember
+                                </label>*@
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <a href="@Url.Action("ForgetPassword")">فراموشی رمز عبور</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn bg-blue btn-block" style="font-weight: bold; font-size: 16px">ورود<i class="icon-arrow-left13 position-right"></i></button>
+                    </div>
+
+                    @*<span class="help-block text-center no-margin"><a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>*@
+                </div>
+            </form>
+        </div>
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+</div>
+
+@if (@ViewData["ErrorMessage"] != null)
+{
+    <script>
+        $(document).ready(function() {
+
+
+            showNotification('@ViewData["ErrorMessage"]', 'e');
+
+
+        });
+
+    </script>
+}

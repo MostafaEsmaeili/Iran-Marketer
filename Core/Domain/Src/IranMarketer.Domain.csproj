@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF384560-B8C1-48A1-B753-2F771B4613C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IranMarketer.Domain</RootNamespace>
+    <AssemblyName>IranMarketer.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper.FastCrud">
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Dapper.FastCrud\2.4.1\Dapper.FastCrud.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\UserManagement\Bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ThirdPartyLib\Utility\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Pikad.Framework">
+      <HintPath>..\..\..\ThirdPartyLib\Framework\Pikad.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessRuleHelper\BusinessRuleHelper.cs" />
+    <Compile Include="DescriptionFa.cs" />
+    <Compile Include="DTO\AccountBalanceSheet.cs" />
+    <Compile Include="DTO\Account\AccountModel.cs" />
+    <Compile Include="DTO\AdjustedPrice.cs" />
+    <Compile Include="DTO\ApplicationUserDTO.cs" />
+    <Compile Include="DTO\Authentication\AuthenticationResponse.cs" />
+    <Compile Include="DTO\BankDeposit.cs" />
+    <Compile Include="DTO\BankDepositProfitReceive.cs" />
+    <Compile Include="DTO\BankTransfer.cs" />
+    <Compile Include="DTO\BaseDTO.cs" />
+    <Compile Include="DTO\BondProfitCashFlow.cs" />
+    <Compile Include="DTO\CashFlow.cs" />
+    <Compile Include="DTO\CashFlowDetail.cs" />
+    <Compile Include="DTO\CashFlowDetailDeletion.cs" />
+    <Compile Include="DTO\CashFlowMaster.cs" />
+    <Compile Include="DTO\ClearingAndSettlementCashFlow.cs" />
+    <Compile Include="DTO\Contact.cs" />
+    <Compile Include="DTO\Customer.cs" />
+    <Compile Include="DTO\CustomerPayment.cs" />
+    <Compile Include="DTO\CustomerPaymentItem.cs" />
+    <Compile Include="DTO\Evidence.cs" />
+    <Compile Include="DTO\JobPrefer.cs" />
+    <Compile Include="DTO\Party.cs" />
+    <Compile Include="DTO\PartyBankAccount.cs" />
+    <Compile Include="DTO\PartyRole.cs" />
+    <Compile Include="DTO\PartyUniversity.cs" />
+    <Compile Include="DTO\RedemptionRequest.cs" />
+    <Compile Include="DTO\Request.cs" />
+    <Compile Include="DTO\RetailParty.cs" />
+    <Compile Include="DTO\SecurityTransaction.cs" />
+    <Compile Include="DTO\ServiceAcces\SoftwareAndAccessCostSetting.cs" />
+    <Compile Include="DTO\Setting\AllOtherExpenses.cs" />
+    <Compile Include="DTO\Setting\AuditorSetting.cs" />
+    <Compile Include="DTO\Setting\ClubMembershipCostSetting.cs" />
+    <Compile Include="DTO\Setting\CustodianSetting.cs" />
+    <Compile Include="DTO\Setting\EstablishmentCostSetting.cs" />
+    <Compile Include="DTO\Setting\FundSettlementCostSetting.cs" />
+    <Compile Include="DTO\Setting\GAMCostSetting.cs" />
+    <Compile Include="DTO\Setting\GeneralFundSetting.cs" />
+    <Compile Include="DTO\Setting\LiquidityGuaranteeSetting.cs" />
+    <Compile Include="DTO\Setting\MarketMakarSetting.cs" />
+    <Compile Include="DTO\Setting\ProfitGuaranteeSetting.cs" />
+    <Compile Include="DTO\SubscriptionRequest.cs" />
+    <Compile Include="DTO\ServiceAcces\ServiceAccess.cs" />
+    <Compile Include="DTO\WorkExperience.cs" />
+    <Compile Include="Entity\AcademicField.cs" />
+    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Entity\Document.cs" />
+    <Compile Include="Entity\FlatServiceAccess.cs" />
+    <Compile Include="Entity\Industry.cs" />
+    <Compile Include="Entity\IranMarketerContext.cs" />
+    <Compile Include="Entity\JobCategory.cs" />
+    <Compile Include="Entity\JobPrefer.cs" />
+    <Compile Include="Entity\PartySkill.cs" />
+    <Compile Include="Entity\PartyUniversity.cs" />
+    <Compile Include="Entity\ProductCardex.cs" />
+    <Compile Include="Entity\Questions.cs" />
+    <Compile Include="Entity\RedemptionReceipt.cs" />
+    <Compile Include="Entity\RetailParty.cs" />
+    <Compile Include="Entity\SearchRegionsReturnModel.cs" />
+    <Compile Include="Entity\Skill.cs" />
+    <Compile Include="Entity\SubscriptionStatement.cs" />
+    <Compile Include="Entity\RedemptionStatement.cs" />
+    <Compile Include="Entity\SubscriptionReceipt.cs" />
+    <Compile Include="Entity\SecurityPosition.cs" />
+    <Compile Include="Entity\Setting\BrokerTradeSetting.cs" />
+    <Compile Include="Entity\Setting\IFBBondFeeSetting.cs" />
+    <Compile Include="Entity\Setting\TseBondFeeSetting.cs" />
+    <Compile Include="Entity\Setting\SymbolTradeSetting.cs" />
+    <Compile Include="Entity\Setting\IFBEquityFeeSetting.cs" />
+    <Compile Include="Entity\Setting\TseEquityFeeSetting.cs" />
+    <Compile Include="Entity\SimpleSecurityPosition.cs" />
+    <Compile Include="Entity\TradeFee.cs" />
+    <Compile Include="Entity\WorkExperience.cs" />
+    <Compile Include="Enum\ ExpectedSalary.cs" />
+    <Compile Include="Enum\BusinessTrips.cs" />
+    <Compile Include="Enum\CloseNAVStatus.cs" />
+    <Compile Include="Entity\RedemptionRequestCalculationItem.cs" />
+    <Compile Include="Entity\Setting\RequestCalculationProcessSetting.cs" />
+    <Compile Include="Entity\SubscriptionRequestCalculationItem.cs" />
+    <Compile Include="Enum\AccountBalanaceRemainType.cs" />
+    <Compile Include="Enum\AdjustedPriceReason.cs" />
+    <Compile Include="Enum\AdjustedPriceType.cs" />
+    <Compile Include="Enum\CalculationState.cs" />
+    <Compile Include="Enum\CustodianFee.cs" />
+    <Compile Include="Enum\CustomerPaymentType.cs" />
+    <Compile Include="Enum\DocumentType.cs" />
+    <Compile Include="Enum\FiscalYearStatue.cs" />
+    <Compile Include="Enum\GuaranteeState.cs" />
+    <Compile Include="Enum\MaritalStatus.cs" />
+    <Compile Include="Enum\MilitaryService.cs" />
+    <Compile Include="Enum\ProductStatus.cs" />
+    <Compile Include="Enum\ProfitCouponType.cs" />
+    <Compile Include="Enum\Relocate.cs" />
+    <Compile Include="Enum\RequestVolumeProcessResult.cs" />
+    <Compile Include="Enum\NAVCalculationMode.cs" />
+    <Compile Include="Enum\RequestProcessFinalResult.cs" />
+    <Compile Include="Enum\UserRoleType.cs" />
+    <Compile Include="Filters\ApiRequest.cs" />
+    <Compile Include="Filters\ApiResponse.cs" />
+    <Compile Include="Filters\BrokerClearingAndSettlementReportFilter.cs" />
+    <Compile Include="Filters\CashFlowDetailReportFilter.cs" />
+    <Compile Include="Filters\CashFlowMasterReportFilter.cs" />
+    <Compile Include="Filters\CustomerPaymentsReportFilter.cs" />
+    <Compile Include="Filters\RequestStatusFilter.cs" />
+    <Compile Include="Filters\SearchProductFilter.cs" />
+    <Compile Include="Filters\TradeReportFilter.cs" />
+    <Compile Include="Filters\UpdateRequestState.cs" />
+    <Compile Include="DTO\UserManagement.cs" />
+    <Compile Include="DTO\VoucherDetail.cs" />
+    <Compile Include="DTO\VoucherMaster.cs" />
+    <Compile Include="Entity\Abstract\AbstractSetting.cs" />
+    <Compile Include="DTO\SimpleParty.cs" />
+    <Compile Include="Entity\RequestGuaranteeCardex.cs" />
+    <Compile Include="Entity\ProductDetailLedger.cs" />
+    <Compile Include="Entity\SecurityTransaction.cs" />
+    <Compile Include="Enum\SecurityTransactionType.cs" />
+    <Compile Include="Entity\Setting\ClubMembershipCostSetting.cs" />
+    <Compile Include="Entity\Setting\CommonTaxAndTollFactorSetting.cs" />
+    <Compile Include="Entity\Setting\EstablishmentCostSetting.cs" />
+    <Compile Include="Entity\Setting\FundSettlementCostSetting.cs" />
+    <Compile Include="Entity\Setting\GAMCostSetting.cs" />
+    <Compile Include="Entity\Setting\InvestmentManagerSetting.cs" />
+    <Compile Include="Entity\Setting\ManagementSetting.cs" />
+    <Compile Include="Entity\NAV.cs" />
+    <Compile Include="Entity\Request.cs" />
+    <Compile Include="Entity\Setting\RequestFeeSetting.cs" />
+    <Compile Include="Entity\RequestVoucher.cs" />
+    <Compile Include="Entity\Setting\SoftwareAndAccessCostSetting.cs" />
+    <Compile Include="Entity\SubsidiaryLedger.cs" />
+    <Compile Include="Entity\Voucher.cs" />
+    <Compile Include="Entity\VoucherCategory.cs" />
+    <Compile Include="Entity\VoucherDetail.cs" />
+    <Compile Include="Entity\VoucherDetailList.cs" />
+    <Compile Include="Entity\VoucherGroup.cs" />
+    <Compile Include="Entity\VoucherMaster.cs" />
+    <Compile Include="Entity\Auditing.cs" />
+    <Compile Include="Entity\Setting\BranchManagerSetting.cs" />
+    <Compile Include="Entity\Region.cs" />
+    <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\Holiday.cs" />
+    <Compile Include="Entity\AttachmentCategory.cs" />
+    <Compile Include="Entity\Attachment.cs" />
+    <Compile Include="Entity\PartyBankAccount.cs" />
+    <Compile Include="Entity\Setting\GeneralFundSetting.cs" />
+    <Compile Include="Entity\PersonalityRole.cs" />
+    <Compile Include="Entity\PartyRoles.cs" />
+    <Compile Include="Entity\PartyCode.cs" />
+    <Compile Include="Entity\PartyBranch.cs" />
+    <Compile Include="Entity\PartyAttachment.cs" />
+    <Compile Include="Entity\Contact.cs" />
+    <Compile Include="Entity\Party.cs" />
+    <Compile Include="Entity\Sector.cs" />
+    <Compile Include="Entity\BaseSetting.cs" />
+    <Compile Include="Entity\Setting\AuditorSetting.cs" />
+    <Compile Include="Entity\ServiceRepository.cs" />
+    <Compile Include="Enum\AccountBalanceLevel.cs" />
+    <Compile Include="Enum\AccountCategoryEnum.cs" />
+    <Compile Include="Enum\AccountClassEnum.cs" />
+    <Compile Include="Enum\AccountNature.cs" />
+    <Compile Include="Enum\AccountStatus.cs" />
+    <Compile Include="Enum\Applications.cs" />
+    <Compile Include="Enum\BalanceSheetColumnType.cs" />
+    <Compile Include="Enum\BankDepositState.cs" />
+    <Compile Include="Enum\BranchType.cs" />
+    <Compile Include="Enum\CashFlowCategory.cs" />
+    <Compile Include="Enum\CashFlowState.cs" />
+    <Compile Include="Enum\CashFlowTransactionType.cs" />
+    <Compile Include="Enum\ChequeType.cs" />
+    <Compile Include="Enum\EvidenceState.cs" />
+    <Compile Include="Enum\OrgenizationType.cs" />
+    <Compile Include="Enum\DataSource.cs" />
+    <Compile Include="Enum\EvidenceType.cs" />
+    <Compile Include="Enum\NAVStatus.cs" />
+    <Compile Include="Enum\PartyType.cs" />
+    <Compile Include="Enum\RegionType.cs" />
+    <Compile Include="Enum\RequestInsertMode.cs" />
+    <Compile Include="Enum\RequestSettlementType.cs" />
+    <Compile Include="Enum\VoucherCategoryEnum.cs" />
+    <Compile Include="Enum\VoucherDetailState.cs" />
+    <Compile Include="Enum\VoucherGroupEnum.cs" />
+    <Compile Include="Enum\VoucherInsertMode.cs" />
+    <Compile Include="Enum\VoucherMasterState.cs" />
+    <Compile Include="Entity\Setting\CustodianSetting.cs" />
+    <Compile Include="Enum\DividendsGuaranteeType.cs" />
+    <Compile Include="Enum\EducationDegree.cs" />
+    <Compile Include="Enum\FundDividendsPeriod.cs" />
+    <Compile Include="Enum\FundSize.cs" />
+    <Compile Include="Enum\FundType.cs" />
+    <Compile Include="Enum\BankAccountType.cs" />
+    <Compile Include="Enum\Gender.cs" />
+    <Compile Include="Entity\Setting\LiquidityGuaranteeSetting.cs" />
+    <Compile Include="Entity\Setting\MarketMakarSetting.cs" />
+    <Compile Include="Entity\Setting\OtherExpensesMaxSetting.cs" />
+    <Compile Include="Entity\Setting\ProfitGuaranteeSetting.cs" />
+    <Compile Include="Enum\JobTitle.cs" />
+    <Compile Include="Enum\ManagementFee.cs" />
+    <Compile Include="Enum\PageType.cs" />
+    <Compile Include="Enum\RequestTransactionState.cs" />
+    <Compile Include="Enum\RequestTransactionType.cs" />
+    <Compile Include="Enum\ServiceAccess.cs" />
+    <Compile Include="Enum\MessageResultEnum.cs" />
+    <Compile Include="Enum\PersonalityRole.cs" />
+    <Compile Include="Enum\JobPosition.cs" />
+    <Compile Include="Enum\RuleExceptionCode.cs" />
+    <Compile Include="Enum\SettingType.cs" />
+    <Compile Include="Enum\UserStatus.cs" />
+    <Compile Include="Filters\AccountBalanceFilter.cs" />
+    <Compile Include="Filters\AccountBookFilter.cs" />
+    <Compile Include="Filters\BalanceSheetReportFilter.cs" />
+    <Compile Include="Filters\BankDepositFilter.cs" />
+    <Compile Include="Filters\BaseFilter.cs" />
+    <Compile Include="Filters\BaseReportFilter.cs" />
+    <Compile Include="Filters\CustomerEvidenceFilter.cs" />
+    <Compile Include="Filters\CustomerFilter.cs" />
+    <Compile Include="Filters\DateFilter.cs" />
+    <Compile Include="Filters\DateFilterNullable.cs" />
+    <Compile Include="Filters\FlatVoucherDetailViewReportFilter.cs" />
+    <Compile Include="Filters\NAVReportFilter.cs" />
+    <Compile Include="Filters\SearchLedgerFilter.cs" />
+    <Compile Include="Filters\FlatCustomerReportFilter.cs" />
+    <Compile Include="Filters\FlatVoucherMasterReportFilter.cs" />
+    <Compile Include="Filters\ReportFilter.cs" />
+    <Compile Include="Filters\RequestListFilter.cs" />
+    <Compile Include="Filters\ServiceAccessAddFilter.cs" />
+    <Compile Include="Filters\SettingFilter.cs" />
+    <Compile Include="Filters\UserManagementFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManagement\AccessTokenSession.cs" />
+    <Compile Include="UserManagement\ApplicationUserRequest.cs" />
+    <Compile Include="UserManagement\ApplicationUserResponse.cs" />
+    <Compile Include="UserManagement\BaseServiceResponse.cs" />
+    <Compile Include="UserManagement\ChangePasswordRequest.cs" />
+    <Compile Include="UserManagement\ChangePasswordResponse.cs" />
+    <Compile Include="UserManagement\UserRequest.cs" />
+    <Compile Include="UserManagement\UserResponse.cs" />
+    <Compile Include="UserManagement\UserRoleRequest.cs" />
+    <Compile Include="UserManagement\UserRoleResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Src\IranMarketer.Common.csproj">
+      <Project>{4adf8319-95d5-4352-ac2a-aa2bf6ffa984}</Project>
+      <Name>IranMarketer.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

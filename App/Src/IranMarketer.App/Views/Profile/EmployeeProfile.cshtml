@@ -1,0 +1,163 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using IranMarketer.App.Helper
+@using Kendo.Mvc.UI
+@using Pikad.Framework.Infra.Utility
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@using JobPrefer = IranMarketer.Domain.DTO.JobPrefer
+@using PartyUniversity = IranMarketer.Domain.DTO.PartyUniversity
+@using RetailParty = IranMarketer.Domain.DTO.RetailParty
+@using WorkExperience = IranMarketer.Domain.DTO.WorkExperience
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "ویرایش رزومه";
+}
+<script type="text/javascript" src="~/assets/js/core/libraries/jquery_ui/core.min.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/selects/select2.min.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+
+<div>
+
+<div id="filterPanel" class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">ویرایش رزومه</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="panel panel-white">
+        <div class="panel-heading">
+            <h6 class="panel-title">AJAX submit<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            @* ReSharper disable once UnknownCssClass *@
+            <div class="tabbable">
+                <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                       
+                    <li class="active"><a href="#highlighted-justified-tab1" data-toggle="tab" class="legitRipple" aria-expanded="false">اطلاعات پایه</a></li>
+                    <li class=""><a href="#highlighted-justified-tab2" data-toggle="tab" class="legitRipple" aria-expanded="false">ترجیحات شغلی</a></li>
+                    <li class=""><a href="#highlighted-justified-tab3" data-toggle="tab" class="legitRipple" aria-expanded="false">سوابق شغلی</a></li>
+                    <li class=""><a href="#highlighted-justified-tab4" data-toggle="tab" class="legitRipple" aria-expanded="false">سوابق تحصیلی</a></li>
+
+
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="highlighted-justified-tab1">
+                        @{
+                            @Html.Partial("_BasicProfile",new RetailParty())
+                        }
+
+
+                    </div>
+
+                    <div class="tab-pane  " id="highlighted-justified-tab2">
+                        هزینه های مدیر سرمایه گذاری
+                        @{
+                            @Html.Partial("_JobPreffer", new JobPrefer());
+
+                        }
+                    </div>
+                    <div class="tab-pane  " id="highlighted-justified-tab3">
+                        <!--هزینه های مدیر سرمایه گذاری-->
+                        @{
+                           Html.RenderPartial("_WorkExperience", new WorkExperience
+                            {
+                                Region = new Region()
+                            });
+
+                        }
+                    </div>
+                    <div class="tab-pane  " id="highlighted-justified-tab4">
+                        <!--هزینه های مدیر سرمایه گذاری-->
+                        @{
+                            @Html.Partial("_PartyUnivercities", new PartyUniversity());
+
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+
+
+</div>
+    </div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+    .dropdown-header > span {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: right;
+        display: inline-block;
+        border-style: solid;
+        border-width: 0 0 1px 1px;
+        padding: .3em .6em;
+        width: 150px;
+    }
+
+    .dropdown-header > span:first-child {
+        width: 150px;
+        border-left-width: 0;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".k-textbox ").removeClass("k-textbox");
+        //$("#ajax-next").click(function() {
+        //    $(".error").addClass("validation-error-label");
+        //    $(".error").removeClass("error");
+
+
+        //});
+        //$("#ajax-back").click(function() {
+        //    $(".error").addClass("validation-error-label");
+        //    $(".error").removeClass("error");
+
+
+
+        //});
+    });
+    $("#clear").click(function(){
+        var forms = $(this).parents('form:first')[0].id;
+        $('#'+forms).ClearAll();
+          
+    });
+</script>
