@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Net.Mime;
 using System.Web.Http.Results;
 using IranMarketer.Common.Utility;
@@ -393,7 +394,19 @@ namespace IranMarketer.App.Controllers
                 entity.CreatedBy = current?.CreatedBy ?? partyUniversity.UserName;
                 entity.ModifiedBy = partyUniversity.UserName;
 
-                PartyUniversityService.SaveOrUpdate(entity);
+
+                using (var db=new IranMarketerContext())
+                {
+                    if (current != null)
+                    {
+                        db.PartyUniversities.Add(entity);
+                    }
+                    else
+                    {
+                        db.Entry(entity).State=EntityState.Modified;
+                    }
+                    db.SaveChanges();
+                }
                 return this.Json(this.SuccessApiResponse, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
