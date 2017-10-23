@@ -1,8 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/CodeInspection/Highlighting/AnalysisEnabled/@EntryValue">VISIBLE_FILES</s:String>
-	
-	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
-  &lt;Assembly Path="G:\New Framework\Pikad Framework\Lib\Castle.Windsor\3.3.0\lib\net45\Castle.Windsor.dll" /&gt;&#xD;
-  &lt;Assembly Path="E:\My Projects\Sahra\MutualFund\Framework\Lib\Dapper.FastCrud\2.4.1\lib\net46\Dapper.FastCrud.dll" /&gt;&#xD;
-  &lt;Assembly Path="E:\My Projects\Sahra\MutualFund\Framework\Lib\Dapper\1.50.2\lib\net451\Dapper.dll" /&gt;&#xD;
-&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
