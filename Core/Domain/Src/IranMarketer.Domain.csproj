@@ -116,6 +116,7 @@
     <Compile Include="Entity\IranMarketerContext.cs" />
     <Compile Include="Entity\JobCategory.cs" />
     <Compile Include="Entity\JobPrefer.cs" />
+    <Compile Include="Entity\LegalParty.cs" />
     <Compile Include="Entity\PartySkill.cs" />
     <Compile Include="Entity\PartyUniversity.cs" />
     <Compile Include="Entity\ProductCardex.cs" />
