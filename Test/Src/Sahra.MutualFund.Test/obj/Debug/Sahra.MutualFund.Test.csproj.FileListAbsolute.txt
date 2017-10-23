@@ -1,7 +1,0 @@
-F:\FundProject\Test\Bin\Sahra.MutualFund.Test.exe.config
-F:\FundProject\Test\Bin\Sahra.MutualFund.Test.exe
-F:\FundProject\Test\Bin\Sahra.MutualFund.Test.pdb
-F:\FundProject\Test\Src\Sahra.MutualFund.Test\obj\Debug\Sahra.MutualFund.Test.csprojResolveAssemblyReference.cache
-F:\FundProject\Test\Src\Sahra.MutualFund.Test\obj\Debug\Sahra.MutualFund.Test.csproj.Sahra.MutualFund.Test.exe.config
-F:\FundProject\Test\Src\Sahra.MutualFund.Test\obj\Debug\Sahra.MutualFund.Test.exe
-F:\FundProject\Test\Src\Sahra.MutualFund.Test\obj\Debug\Sahra.MutualFund.Test.pdb

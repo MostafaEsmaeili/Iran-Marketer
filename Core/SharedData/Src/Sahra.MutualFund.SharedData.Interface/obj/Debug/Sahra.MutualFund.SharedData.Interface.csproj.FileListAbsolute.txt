@@ -1,5 +1,0 @@
-F:\FundProject\Core\SharedData\bin\Sahra.MutualFund.SharedData.Interface.dll
-F:\FundProject\Core\SharedData\bin\Sahra.MutualFund.SharedData.Interface.pdb
-F:\FundProject\Core\SharedData\Src\Sahra.MutualFund.SharedData.Interface\obj\Debug\Sahra.MutualFund.SharedData.Interface.csprojResolveAssemblyReference.cache
-F:\FundProject\Core\SharedData\Src\Sahra.MutualFund.SharedData.Interface\obj\Debug\Sahra.MutualFund.SharedData.Interface.dll
-F:\FundProject\Core\SharedData\Src\Sahra.MutualFund.SharedData.Interface\obj\Debug\Sahra.MutualFund.SharedData.Interface.pdb

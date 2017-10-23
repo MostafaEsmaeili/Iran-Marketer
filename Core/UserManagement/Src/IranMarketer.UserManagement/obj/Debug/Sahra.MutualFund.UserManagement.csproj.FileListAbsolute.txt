@@ -1,6 +1,0 @@
-F:\FundProject\Core\UserManagement\Bin\Sahra.MutualFund.UserManagement.dll.config
-F:\FundProject\Core\UserManagement\Bin\Sahra.MutualFund.UserManagement.dll
-F:\FundProject\Core\UserManagement\Bin\Sahra.MutualFund.UserManagement.pdb
-F:\FundProject\Core\UserManagement\Src\Sahra.MutualFund.UserManagement\obj\Debug\Sahra.MutualFund.UserManagement.csprojResolveAssemblyReference.cache
-F:\FundProject\Core\UserManagement\Src\Sahra.MutualFund.UserManagement\obj\Debug\Sahra.MutualFund.UserManagement.dll
-F:\FundProject\Core\UserManagement\Src\Sahra.MutualFund.UserManagement\obj\Debug\Sahra.MutualFund.UserManagement.pdb

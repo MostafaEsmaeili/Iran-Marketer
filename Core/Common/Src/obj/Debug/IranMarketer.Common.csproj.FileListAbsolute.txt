@@ -1,6 +1,0 @@
-F:\IranMarketer\Iran Marketer\Core\Common\Bin\IranMarketer.Common.dll
-F:\IranMarketer\Iran Marketer\Core\Common\Bin\IranMarketer.Common.pdb
-F:\IranMarketer\Iran Marketer\Core\Common\Src\obj\Debug\IranMarketer.Common.csproj.CoreCompileInputs.cache
-F:\IranMarketer\Iran Marketer\Core\Common\Src\obj\Debug\IranMarketer.Common.dll
-F:\IranMarketer\Iran Marketer\Core\Common\Src\obj\Debug\IranMarketer.Common.pdb
-F:\IranMarketer\Iran Marketer\Core\Common\Src\obj\Debug\IranMarketer.Common.csprojResolveAssemblyReference.cache

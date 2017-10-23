@@ -1,6 +1,0 @@
-F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Interface.dll
-F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Interface.pdb
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Interface\obj\Debug\IranMarketer.SharedData.Interface.csprojResolveAssemblyReference.cache
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Interface\obj\Debug\IranMarketer.SharedData.Interface.csproj.CoreCompileInputs.cache
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Interface\obj\Debug\IranMarketer.SharedData.Interface.dll
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketer.SharedData.Interface\obj\Debug\IranMarketer.SharedData.Interface.pdb

@@ -1,7 +1,0 @@
-F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Service.dll.config
-F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Service.dll
-F:\IranMarketer\Iran Marketer\Core\SharedData\bin\IranMarketer.SharedData.Service.pdb
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketerSharedData.Service\obj\Debug\IranMarketer.SharedData.Service.csprojResolveAssemblyReference.cache
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketerSharedData.Service\obj\Debug\IranMarketer.SharedData.Service.csproj.CoreCompileInputs.cache
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketerSharedData.Service\obj\Debug\IranMarketer.SharedData.Service.dll
-F:\IranMarketer\Iran Marketer\Core\SharedData\Src\IranMarketerSharedData.Service\obj\Debug\IranMarketer.SharedData.Service.pdb
