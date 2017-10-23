@@ -48,10 +48,11 @@ namespace IranMarketer.Domain.Entity
         [NotMapped]
         public new DateTime Created { get; set; }
         [NotMapped]
-
         public new DateTime Modified { get; set; }
        
+        [InverseProperty("City")]
         public virtual ICollection<PartyUniversity> City { get; set; } = new List<PartyUniversity>();
+        [InverseProperty("Country")]
         public virtual ICollection<PartyUniversity> Country { get; set; } = new List<PartyUniversity>();
 
         public virtual ICollection<RetailParty> CityId { get; set; } = new List<RetailParty>();

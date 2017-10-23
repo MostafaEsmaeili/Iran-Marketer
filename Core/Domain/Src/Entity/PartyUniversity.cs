@@ -13,6 +13,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using IranMarketer.Domain.Enum;
 using Newtonsoft.Json;
 using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository;
@@ -56,10 +57,10 @@ namespace IranMarketer.Domain.Entity
         [Display(Name = "To date")]
         public DateTime? UniversityToDate { get; set; }
 
-        [Column(@"Average", Order = 9, TypeName = "decimal")]
+        [Column(@"Average", Order = 9, TypeName = "float")]
         [Display(Name = "Average")]
         
-        public decimal? Average { get; set; }
+        public float? Average { get; set; }
 
         [Column(@"PartyId", Order = 10, TypeName = "int")]
         [Required]
@@ -79,6 +80,9 @@ namespace IranMarketer.Domain.Entity
             ? UniversityToDate.ConvertMiladiToJalali()
             : null;
 
+        public string DegreeLevelTitle => DegreeLevel != null
+            ? ((EducationDegree) DegreeLevel).GetDescription()
+            : null;
     }
 
 }

@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Net.Mime;
 using System.Web.Http.Results;
+using IranMarketer.App.Helper;
 using IranMarketer.Common.Utility;
 using IranMarketer.Domain.Enum;
 using Newtonsoft.Json;
@@ -264,7 +265,7 @@ namespace IranMarketer.App.Controllers
                     try
                     {
                         db.Configuration.ProxyCreationEnabled = false;
-                        all = db.WorkExperiences.Include(x => x.Region).ToList(); //.Include(x => x.Region).ToList();
+                        all = db.WorkExperiences.Where(x=>x.PartyId==User.Identity.GetPartyId().SafeInt()).Include(x => x.Region).ToList(); //.Include(x => x.Region).ToList();
                     }
                     finally
                     {
@@ -370,6 +371,8 @@ namespace IranMarketer.App.Controllers
                     UniversityToDate = partyUniversity.UniversityToDate.IsValidPersianDate()
                         ? partyUniversity.UniversityToDate.ConvertJalaliToMiladi()
                         : IranMarketerCustomUtility.MinDate,
+                    University = partyUniversity.University,
+                    
                     
                 };
 
@@ -397,7 +400,7 @@ namespace IranMarketer.App.Controllers
 
                 using (var db=new IranMarketerContext())
                 {
-                    if (current != null)
+                    if (current == null)
                     {
                         db.PartyUniversities.Add(entity);
                     }
@@ -445,7 +448,11 @@ namespace IranMarketer.App.Controllers
                     try
                     {
                         db.Configuration.ProxyCreationEnabled = false;
-                        all = db.PartyUniversities.Include(x => x.City).Include(x=>x.AcademicField).ToList(); //.Include(x => x.Region).ToList();
+                        var partyId = User.Identity.GetPartyId().SafeInt();
+                        all = db.PartyUniversities.Where(x => x.PartyId == partyId)
+                            .Include(x => x.City)
+                           .Include(x => x.AcademicField)
+                            .ToList(); //.Include(x => x.Region).ToList();
                     }
                     finally
                     {
@@ -463,7 +470,7 @@ namespace IranMarketer.App.Controllers
                 var da = all.Select(x => new
                 {
                     x.Id,
-                    DegreeLevel= ((EducationDegree)x.DegreeLevel).GetEnumDescription(),
+                    x.DegreeLevelTitle,
                     AcademicField=new {x.AcademicField.TitleFa},
                     x.FromDateJalali,
                     x.ToDateJalali,

@@ -13,7 +13,7 @@ namespace IranMarketer.Domain.DTO
         public int? UniversityCityId { get; set; }
         public string UniversityFromDate { get; set; }
         public string UniversityToDate { get; set; }
-        public decimal? Average { get; set; }
+        public float? Average { get; set; }
         public virtual AcademicField AcademicField { get; set; }
         public virtual Region City { get; set; }
         public virtual Region Country { get; set; }
