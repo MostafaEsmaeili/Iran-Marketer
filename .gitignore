@@ -26,6 +26,14 @@ bld/
 [Ll]og/
 bin*/
 obj*/
+/bin*/
+/obj*/
+bin/
+obj/
+SahraLib/
+bin/**
+obj/**
+SahraLib/**
 /[Dd]ebug/**
 /[Dd]ebugPublic/**
 /[Rr]elease/**
