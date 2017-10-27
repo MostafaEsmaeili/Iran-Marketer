@@ -63,6 +63,7 @@ namespace IranMarketer.Domain.Entity
         public virtual ICollection<WorkExperience> WorkExperiences { get; set; } = new List<WorkExperience>();
 
 
+        public System.Collections.Generic.ICollection<LegalParty> LegalParties { get; set; } = new List<LegalParty>(); // LegalParty.FK_LegalParty_Region
 
     }
 }

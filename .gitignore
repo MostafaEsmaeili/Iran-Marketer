@@ -330,3 +330,4 @@ OpenCover/
 *.ide
 Solutions/.vs/IranMarketer.App/v15/sqlite3/storage.ide
 Solutions/.vs/IranMarketer.Core/v15/sqlite3/storage.ide
+/Poco/ClassLibrary1/ClassLibrary1

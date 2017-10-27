@@ -139,6 +139,7 @@
     <Compile Include="Entity\TradeFee.cs" />
     <Compile Include="Entity\WorkExperience.cs" />
     <Compile Include="Enum\ ExpectedSalary.cs" />
+    <Compile Include="Enum\BrandSize.cs" />
     <Compile Include="Enum\BusinessTrips.cs" />
     <Compile Include="Enum\CloseNAVStatus.cs" />
     <Compile Include="Entity\RedemptionRequestCalculationItem.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Enum\AdjustedPriceReason.cs" />
     <Compile Include="Enum\AdjustedPriceType.cs" />
     <Compile Include="Enum\CalculationState.cs" />
+    <Compile Include="Enum\CompanyOwnershipType.cs" />
     <Compile Include="Enum\CustodianFee.cs" />
     <Compile Include="Enum\CustomerPaymentType.cs" />
     <Compile Include="Enum\DocumentType.cs" />

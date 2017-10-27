@@ -124,6 +124,7 @@ namespace IranMarketer.Domain.Entity
             return procResultData;
         }
 
+        public System.Data.Entity.DbSet<IranMarketer.Domain.Entity.LegalParty> LegalParties { get; set; }
     }
 }
 // </auto-generated>

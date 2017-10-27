@@ -96,6 +96,36 @@ namespace IranMarketer.App.Controllers
                 return Json(null);
             }
         }
+        public JsonResult GetBrandSize()
+        {
+            try
+            {
+                var list = Enum.GetValues(typeof(BrandSize)).Cast<BrandSize>();
+               
+                return Json(list.Select(x=>new {Id=(int)x , Title=x.GetEnumDescription()}), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+
+                Logger.ErrorException(e.Message, e);
+                return Json(null);
+            }
+        }
+        public JsonResult GetCompanyOwnershipType()
+        {
+            try
+            {
+                var list = Enum.GetValues(typeof(CompanyOwnershipType)).Cast<CompanyOwnershipType>();
+
+                return Json(list.Select(x => new { CompanyOwnershipTypeId = (int)x, CompanyOwnershipTypeTitleFa = x.GetEnumDescription() }), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+
+                Logger.ErrorException(e.Message, e);
+                return Json(null);
+            }
+        }
         public JsonResult GetRequestSettlementType(bool? addAll = false)
         {
             try

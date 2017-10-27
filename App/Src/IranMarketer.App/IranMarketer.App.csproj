@@ -249,9 +249,7 @@
     <Compile Include="Attribute\SetLoggedInUserInformationAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdjustedPriceController.cs" />
     <Compile Include="Controllers\AdminPanelController.cs" />
-    <Compile Include="Controllers\AllOtherExpensesSettingController.cs" />
     <Compile Include="Controllers\AuditorSettingController.cs" />
     <Compile Include="Controllers\BankDepositController.cs" />
     <Compile Include="Controllers\CashFlowController.cs" />
@@ -261,6 +259,7 @@
     <Compile Include="Controllers\CustodianSettingController.cs" />
     <Compile Include="Controllers\ExpenseSettingController.cs" />
     <Compile Include="Controllers\GeneralFundSettingController.cs" />
+    <Compile Include="Controllers\LegalPartiesController.cs" />
     <Compile Include="Controllers\NAVController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -2894,6 +2893,12 @@
     <Content Include="Views\Profile\_JobPreffer.cshtml" />
     <Content Include="Views\Profile\_WorkExperience.cshtml" />
     <Content Include="Views\Profile\_PartyUnivercities.cshtml" />
+    <Content Include="Views\LegalParties\Create.cshtml" />
+    <Content Include="Views\LegalParties\Delete.cshtml" />
+    <Content Include="Views\LegalParties\Details.cshtml" />
+    <Content Include="Views\LegalParties\Edit.cshtml" />
+    <Content Include="Views\LegalParties\Index.cshtml" />
+    <Content Include="Views\LegalParties\_LegalPartyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
