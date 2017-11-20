@@ -1,0 +1,8 @@
+CREATE TABLE [sec].[AspNetRoles]
+(
+[Id] [nvarchar] (128) COLLATE Persian_100_CI_AS NOT NULL,
+[Name] [nvarchar] (256) COLLATE Persian_100_CI_AS NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [sec].[AspNetRoles] ADD CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED  ([Id]) WITH (FILLFACTOR=90) ON [PRIMARY]
+GO
