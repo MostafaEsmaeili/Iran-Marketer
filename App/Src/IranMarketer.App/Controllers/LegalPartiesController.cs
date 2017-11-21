@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IranMarketer.Domain.Entity;
+using IranMarketer.PartyManagement.API;
+using Pikad.Framework.Infra.Utility;
+using Pikad.Framework.Repository.IoC;
+using LegalParty = IranMarketer.Domain.DTO.LegalParty;
+using RetailParty = IranMarketer.Domain.DTO.RetailParty;
 
 namespace IranMarketer.App.Controllers
 {
-    public class LegalPartiesController : Controller
+
+    public class LegalPartiesController : BaseController
     {
+        public PartyProvider PartyProvider => CoreContainer.Container.Resolve<PartyProvider>();
+
         private IranMarketerContext db = new IranMarketerContext();
 
         // GET: LegalParties
@@ -21,19 +30,19 @@ namespace IranMarketer.App.Controllers
         }
 
         // GET: LegalParties/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LegalParty legalParty = db.LegalParties.Find(id);
-            if (legalParty == null)
-            {
-                return HttpNotFound();
-            }
-            return View(legalParty);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    LegalParty legalParty = db.LegalParties.Find(id);
+        //    if (legalParty == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(legalParty);
+        //}
 
         // GET: LegalParties/Create
         public ActionResult Create()
@@ -46,31 +55,46 @@ namespace IranMarketer.App.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CreatedBy,ModifiedBy,Created,Modified")] LegalParty legalParty)
+        public ActionResult Create([Bind(Include = "Id,CreatedBy,ModifiedBy,Created,Modified")] Domain.DTO.LegalParty legalParty)
         {
-            if (ModelState.IsValid)
-            {
-                db.LegalParties.Add(legalParty);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(legalParty);
+            try
+            {
+                var ent = db.LegalParties.FirstOrDefault(x => x.UserName == legalParty.UserName);
+                var entity = ObjectMapper.BaseConverter
+                    .ConvertSourceToDest<LegalParty, IranMarketer.Domain.Entity.LegalParty>(legalParty);
+
+                if (ent != null) entity.Id = ent.Id;
+
+                entity.Modified = DateTime.Now;
+                entity.Created = ent.Created;
+                entity.CreatedBy = ent.CreatedBy;
+                db.LegalParties.AddOrUpdate(entity);
+                return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
         // GET: LegalParties/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult GetLegalPartyInformarion(LegalParty party)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var ent = db.LegalParties.FirstOrDefault(x => x.UserName == party.UserName);
+                var dto = ObjectMapper.BaseConverter
+                    .ConvertSourceToDest<IranMarketer.Domain.Entity.LegalParty, LegalParty>(ent);
+                SuccessApiResponse.Result = dto;
+                return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
             }
-            LegalParty legalParty = db.LegalParties.Find(id);
-            if (legalParty == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
             }
-            return View(legalParty);
         }
 
         // POST: LegalParties/Edit/5

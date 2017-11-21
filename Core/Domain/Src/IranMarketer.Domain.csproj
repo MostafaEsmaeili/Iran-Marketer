@@ -85,6 +85,7 @@
     <Compile Include="DTO\CustomerPaymentItem.cs" />
     <Compile Include="DTO\Evidence.cs" />
     <Compile Include="DTO\JobPrefer.cs" />
+    <Compile Include="DTO\LegalParty.cs" />
     <Compile Include="DTO\Party.cs" />
     <Compile Include="DTO\PartyBankAccount.cs" />
     <Compile Include="DTO\PartyRole.cs" />

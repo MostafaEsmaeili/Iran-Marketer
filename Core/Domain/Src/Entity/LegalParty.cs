@@ -56,6 +56,23 @@ namespace IranMarketer.Domain.Entity
         [Display(Name = "Establishment year")]
         public System.DateTime? EstablishmentYear { get; set; } // EstablishmentYear
 
+        [Column(@"UserId", Order = 13, TypeName = "nvarchar")]
+        [Required]
+        [MaxLength(128)]
+        [StringLength(128)]
+        [Display(Name = "User ID")]
+        public string UserId { get; set; }
+
+        [Column(@"UserName", Order = 14, TypeName = "nvarchar")]
+        [Required]
+        [MaxLength(100)]
+        [StringLength(100)]
+        [DataType(DataType.Text)]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+
+
         // Foreign keys
 
         /// <summary>

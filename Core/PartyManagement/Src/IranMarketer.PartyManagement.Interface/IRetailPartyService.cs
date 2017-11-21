@@ -7,4 +7,8 @@ namespace IranMarketer.PartyManagement.Interface
     {
         
     }
+    public interface ILegalPartyService : IService<LegalParty, int>
+    {
+
+    }
 }
