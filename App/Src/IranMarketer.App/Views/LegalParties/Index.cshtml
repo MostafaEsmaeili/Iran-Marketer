@@ -1,13 +1,5 @@
 ﻿@Html.Partial("_RegisterLastVersionOfKendo")
-@using IranMarketer.App.Helper
-@using Kendo.Mvc.UI
-@using Pikad.Framework.Infra.Utility
-@using IranMarketer.Domain.DTO
-@using IranMarketer.Domain.Entity
-@using JobPrefer = IranMarketer.Domain.DTO.JobPrefer
-@using PartyUniversity = IranMarketer.Domain.DTO.PartyUniversity
-@using RetailParty = IranMarketer.Domain.DTO.RetailParty
-@using WorkExperience = IranMarketer.Domain.DTO.WorkExperience
+@using LegalParty = IranMarketer.Domain.DTO.LegalParty
 
 @{
     Layout = "../Shared/_Layout.cshtml";
@@ -43,9 +35,11 @@
                 </div>
             </div>
 
-          @Html.Partial("_LegalPartyProfile",new LegalParty());
- 
-        </div>
+            <div class="panel-body">
+                @Html.Partial("_LegalPartyProfile",new LegalParty());
+
+            </div>
+            </div>
 
 
     </div>

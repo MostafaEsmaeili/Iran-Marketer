@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using IranMarketer.App.Attribute;
 using IranMarketer.Domain.Entity;
 using IranMarketer.PartyManagement.API;
 using Pikad.Framework.Infra.Utility;
@@ -16,7 +17,8 @@ using RetailParty = IranMarketer.Domain.DTO.RetailParty;
 
 namespace IranMarketer.App.Controllers
 {
-
+    [CustomAuthorize]
+    [SetLoggedInUserInformation]
     public class LegalPartiesController : BaseController
     {
         public PartyProvider PartyProvider => CoreContainer.Container.Resolve<PartyProvider>();
@@ -26,7 +28,7 @@ namespace IranMarketer.App.Controllers
         // GET: LegalParties
         public ActionResult Index()
         {
-            return View(db.LegalParties.ToList());
+            return View();
         }
 
         // GET: LegalParties/Details/5
@@ -55,7 +57,7 @@ namespace IranMarketer.App.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CreatedBy,ModifiedBy,Created,Modified")] Domain.DTO.LegalParty legalParty)
+        public ActionResult Create( Domain.DTO.LegalParty legalParty)
         {
 
             try
@@ -100,18 +102,18 @@ namespace IranMarketer.App.Controllers
         // POST: LegalParties/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CreatedBy,ModifiedBy,Created,Modified")] LegalParty legalParty)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(legalParty).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(legalParty);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,CreatedBy,ModifiedBy,Created,Modified")] LegalParty legalParty)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(legalParty).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(legalParty);
+        //}
 
         // GET: LegalParties/Delete/5
         public ActionResult Delete(int? id)
@@ -120,7 +122,7 @@ namespace IranMarketer.App.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LegalParty legalParty = db.LegalParties.Find(id);
+            var legalParty = db.LegalParties.Find(id);
             if (legalParty == null)
             {
                 return HttpNotFound();
@@ -133,7 +135,7 @@ namespace IranMarketer.App.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LegalParty legalParty = db.LegalParties.Find(id);
+            var legalParty = db.LegalParties.Find(id);
             db.LegalParties.Remove(legalParty);
             db.SaveChanges();
             return RedirectToAction("Index");

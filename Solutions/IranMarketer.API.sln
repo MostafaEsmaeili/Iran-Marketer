@@ -1,0 +1,105 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PartyManagement", "PartyManagement", "{2B64D3EE-5F1C-4477-A26C-B0B3A6753699}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8815FA3D-8186-44C7-BEE7-70CAF3F02D19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{973FC22C-464D-4642-B013-7F6F1F1C150F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{7C621720-0556-498F-B0E8-DAF1771F79B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{D6FE90B0-8850-4992-9FE9-252A70A75585}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IranMarketer.Authentication.API", "..\API\Authentication\Src\IranMarketer.Authentication.API\IranMarketer.Authentication.API.csproj", "{038BC6F8-290C-45C7-A510-FDC16B68DDDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IranMarketer.Common", "..\Core\Common\Src\IranMarketer.Common.csproj", "{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IranMarketer.Domain", "..\Core\Domain\Src\IranMarketer.Domain.csproj", "{CF384560-B8C1-48A1-B753-2F771B4613C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IranMarketer.PartyManagement.API", "..\API\PartyManagement\Src\IranMarketer.PartyManagement.API\IranMarketer.PartyManagement.API.csproj", "{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IranMarketer.WebAPI", "..\API\WebApi\Src\IranMarketer.WebAPI\IranMarketer.WebAPI.csproj", "{0E637FF7-260F-4591-89A3-223FCB259C25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedData", "SharedData", "{2413C1E1-5F18-4B8F-B574-D431589851D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IranMarketer.SharedData.API", "..\API\SharedData\Src\IranMarketer.SharedData\IranMarketer.SharedData.API.csproj", "{25C01C02-1ECD-455E-A426-0F42B2EA909B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{038BC6F8-290C-45C7-A510-FDC16B68DDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038BC6F8-290C-45C7-A510-FDC16B68DDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038BC6F8-290C-45C7-A510-FDC16B68DDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038BC6F8-290C-45C7-A510-FDC16B68DDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF384560-B8C1-48A1-B753-2F771B4613C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF384560-B8C1-48A1-B753-2F771B4613C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF384560-B8C1-48A1-B753-2F771B4613C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF384560-B8C1-48A1-B753-2F771B4613C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E637FF7-260F-4591-89A3-223FCB259C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E637FF7-260F-4591-89A3-223FCB259C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E637FF7-260F-4591-89A3-223FCB259C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E637FF7-260F-4591-89A3-223FCB259C25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C01C02-1ECD-455E-A426-0F42B2EA909B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C01C02-1ECD-455E-A426-0F42B2EA909B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C01C02-1ECD-455E-A426-0F42B2EA909B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C01C02-1ECD-455E-A426-0F42B2EA909B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{038BC6F8-290C-45C7-A510-FDC16B68DDDB} = {D6FE90B0-8850-4992-9FE9-252A70A75585}
+		{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984} = {8815FA3D-8186-44C7-BEE7-70CAF3F02D19}
+		{CF384560-B8C1-48A1-B753-2F771B4613C0} = {973FC22C-464D-4642-B013-7F6F1F1C150F}
+		{1D77D328-23F6-4B4F-9BEC-F2EC394CEEFB} = {2B64D3EE-5F1C-4477-A26C-B0B3A6753699}
+		{0E637FF7-260F-4591-89A3-223FCB259C25} = {7C621720-0556-498F-B0E8-DAF1771F79B4}
+		{25C01C02-1ECD-455E-A426-0F42B2EA909B} = {2413C1E1-5F18-4B8F-B574-D431589851D2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9BC3074-463B-45E6-B8B0-AF5F50BFBF75}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://bargozideh.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\API\\Authentication\\Src\\IranMarketer.Authentication.API\\IranMarketer.Authentication.API.csproj
+		SccProjectTopLevelParentUniqueName1 = IranMarketer.API.sln
+		SccProjectName1 = ../API/Authentication/Src/IranMarketer.Authentication.API
+		SccLocalPath1 = ..\\API\\Authentication\\Src\\IranMarketer.Authentication.API
+		SccProjectUniqueName2 = ..\\Core\\Common\\Src\\IranMarketer.Common.csproj
+		SccProjectTopLevelParentUniqueName2 = IranMarketer.API.sln
+		SccProjectName2 = ../Core/Common/Src
+		SccLocalPath2 = ..\\Core\\Common\\Src
+		SccProjectUniqueName3 = ..\\Core\\Domain\\Src\\IranMarketer.Domain.csproj
+		SccProjectTopLevelParentUniqueName3 = IranMarketer.API.sln
+		SccProjectName3 = ../Core/Domain/Src
+		SccLocalPath3 = ..\\Core\\Domain\\Src
+		SccProjectUniqueName4 = ..\\API\\PartyManagement\\Src\\IranMarketer.PartyManagement.API\\IranMarketer.PartyManagement.API.csproj
+		SccProjectTopLevelParentUniqueName4 = IranMarketer.API.sln
+		SccProjectName4 = ../API/PartyManagement/Src/IranMarketer.PartyManagement.API
+		SccLocalPath4 = ..\\API\\PartyManagement\\Src\\IranMarketer.PartyManagement.API
+		SccProjectUniqueName5 = ..\\API\\WebApi\\Src\\IranMarketer.WebAPI\\IranMarketer.WebAPI.csproj
+		SccProjectTopLevelParentUniqueName5 = IranMarketer.API.sln
+		SccProjectName5 = ../API/WebApi/Src/IranMarketer.WebAPI
+		SccLocalPath5 = ..\\API\\WebApi\\Src\\IranMarketer.WebAPI
+		SccProjectUniqueName6 = ..\\API\\SharedData\\Src\\IranMarketer.SharedData\\IranMarketer.SharedData.API.csproj
+		SccProjectTopLevelParentUniqueName6 = IranMarketer.API.sln
+		SccProjectName6 = ../API/SharedData/Src/IranMarketer.SharedData
+		SccLocalPath6 = ..\\API\\SharedData\\Src\\IranMarketer.SharedData
+	EndGlobalSection
+EndGlobal

@@ -30,7 +30,5 @@
         public System.DateTime? EstablishmentYear { get; set; } // EstablishmentYear
 
 
-        public string UserId { get; set; }
-        public string UserName { get; set; }
     }
 }

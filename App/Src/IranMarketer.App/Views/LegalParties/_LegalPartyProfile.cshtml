@@ -1,6 +1,6 @@
 ﻿@using IranMarketer.App.Helper
 @using Kendo.Mvc.UI
-@model IranMarketer.Domain.Entity.LegalParty
+@model IranMarketer.Domain.DTO.LegalParty
 
 
 <form id="legalPartyForm" class="form-validate-jquery" novalidate="novalidate">
@@ -24,7 +24,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>لوگو</label>
-                    @Html.Kendo().Upload().HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @Html.Kendo().Upload().Name("LogoUpload").HtmlAttributes(new {@class = "form-control ui-wizard-content", style = " width:100%;", required = "required"})
 
                 </div>
             </div>
@@ -167,7 +167,7 @@
 
             debugger;
            
-            var data = $("#simpleProfileForm").serializeJSON({ checkboxUncheckedValue: "false" });
+            var data = $("#legalPartyForm").serializeJSON({ checkboxUncheckedValue: "false" });
 
             $.ajax({
                 url: '@Url.Action("Create", "LegalParties")',

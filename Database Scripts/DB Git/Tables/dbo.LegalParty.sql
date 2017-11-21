@@ -14,7 +14,9 @@ CREATE TABLE [dbo].[LegalParty]
 [Created] [datetime] NULL,
 [CreatedBy] [nvarchar] (50) COLLATE Persian_100_CI_AS NULL,
 [Modified] [datetime] NULL,
-[ModifiedBy] [nvarchar] (50) COLLATE Persian_100_CI_AS NULL
+[ModifiedBy] [nvarchar] (50) COLLATE Persian_100_CI_AS NULL,
+[UserId] [nvarchar] (128) COLLATE Persian_100_CI_AS NULL,
+[UserName] [nvarchar] (100) COLLATE Persian_100_CI_AS NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[LegalParty] ADD CONSTRAINT [PK_LegalParty] PRIMARY KEY CLUSTERED  ([Id]) ON [PRIMARY]

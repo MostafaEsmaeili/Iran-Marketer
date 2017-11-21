@@ -159,7 +159,7 @@ namespace IranMarketer.App.Controllers
 
                     AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, id);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToLocal(returnUrl);
                 }
                 ModelState.AddModelError("", "نام کاربری و یا کلمه عبور اشتباه است");
                 ViewData["ErrorMessage"] = res?.Data?.Message ?? "نام کاربری و یا کلمه عبور اشتباه است";
