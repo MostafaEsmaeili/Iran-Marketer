@@ -48,6 +48,8 @@ namespace IranMarketer.App.Controllers
         }
 
         public IRetailPartyService RetailPartyService => CoreContainer.Container.Resolve<IRetailPartyService>();
+        public ILegalPartyService LegalPartyService => CoreContainer.Container.Resolve<ILegalPartyService>();
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login(string returnUrl)
@@ -137,6 +139,7 @@ namespace IranMarketer.App.Controllers
 
 
                     var party = RetailPartyService.Get(x => x.UserName == res.Data.Result.ApplicationUser.UserName).FirstOrDefault();
+                    var legal= LegalPartyService.Get(x => x.UserName == res.Data.Result.ApplicationUser.UserName).FirstOrDefault();
                     var user = UserManagement.AuthenticationManager.AuthenticationProvider.GetUserByName(res.Data.Result
                         .ApplicationUser.UserName);
 
@@ -144,9 +147,9 @@ namespace IranMarketer.App.Controllers
                         ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
 
-                    id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party.UserId, ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimTypes.UserData, party.Id.SafeString(), ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party.UserName, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party.UserId??legal.UserId, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.UserData, party.Id.SafeString()?? legal.Id.ToString(), ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party.UserName??legal.UserName, ClaimValueTypes.String));
                     id.AddClaim(new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.String));
                     id.AddClaim(new Claim("Clinet", res.Data.Result.ClientId, ClaimValueTypes.String));
                     id.AddClaim(

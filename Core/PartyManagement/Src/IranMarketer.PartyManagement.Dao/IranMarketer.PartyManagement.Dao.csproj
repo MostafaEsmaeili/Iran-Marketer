@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contact\ContactRepository.cs" />
+    <Compile Include="LegalPartyRepository.cs" />
     <Compile Include="PartyAttachment\PartyAttachmentRepository.cs" />
     <Compile Include="PartyBankAccount\PartyBankAccountRepository.cs" />
     <Compile Include="PartyBankAccount\PartyBankAccountRowMapper.cs" />

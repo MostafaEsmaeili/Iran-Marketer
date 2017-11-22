@@ -28,6 +28,8 @@ namespace IranMarketer.Authentication
         private static string pattern = "{0}_username";
         private IServiceAccessService ServiceAccessService => CoreContainer.Container.Resolve<IServiceAccessService>();
         public PartyProvider PartyProvider => CoreContainer.Container.Resolve<PartyProvider>();
+        public LegalPartyProvider LegalPartyProvider => CoreContainer.Container.Resolve<LegalPartyProvider>();
+
         public IPartyBranchService PartyBranchService => CoreContainer.Container.Resolve<IPartyBranchService>();
         public IUserManagementService UserManagementService => CoreContainer.Container.Resolve<IUserManagementService>();
 
@@ -251,17 +253,43 @@ namespace IranMarketer.Authentication
                 {
                     try
                     {
-                         PartyProvider.Save(new RetailParty()
+                        switch (model.PartyType)
                         {
-                            Created = DateTime.Now,
-                            Modified = DateTime.Now,
-                            CreatedBy = model.AuthenticatedUserName,
-                            ModifiedBy = model.AuthenticatedUserName,
-                            FullName = model.DisplayName,
-                            UserName = addedUser.UserName,
-                            UserId = addedUser.Id,
+                            case PartyType.Retail:
+                            {
+                                PartyProvider.Save(new RetailParty()
+                                {
+                                    Created = DateTime.Now,
+                                    Modified = DateTime.Now,
+                                    CreatedBy = model.AuthenticatedUserName,
+                                    ModifiedBy = model.AuthenticatedUserName,
+                                    FullName = model.DisplayName,
+                                    UserName = addedUser.UserName,
+                                    UserId = addedUser.Id,
 
-                        }, uow);
+                                }, uow);
+                                    break;
+                            }
+                            case PartyType.Institutional:
+                            {
+                                LegalPartyProvider.Save(new LegalParty()
+                                {
+                                    Created = DateTime.Now,
+                                    Modified = DateTime.Now,
+                                    CreatedBy = model.AuthenticatedUserName,
+                                    ModifiedBy = model.AuthenticatedUserName,
+                                    UserName = addedUser.UserName,
+                                    UserId = addedUser.Id,
+                                    CompanyName = model.DisplayName
+
+                                }, uow);
+
+                                    break;
+                            }
+                            default:
+                                break;
+                        }
+                       
                     }
                     catch (Exception)
                     {
@@ -280,7 +308,6 @@ namespace IranMarketer.Authentication
                 throw ex;
             }
         }
-
         public void AddRoles(BaseReportFilter<AddRoleFilter> model)
         {
             try

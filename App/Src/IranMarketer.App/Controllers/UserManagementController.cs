@@ -39,7 +39,12 @@ namespace IranMarketer.App.Controllers
             var model = new UserManagementAddFilter();
           return View(model);
         }
-
+        [HttpGet]
+        public ActionResult AddLegalUser()
+        {
+            var model = new UserManagementAddFilter();
+            return View(model);
+        }
         public ActionResult UpdateUser(string userName)
         {
             try
@@ -100,6 +105,7 @@ namespace IranMarketer.App.Controllers
         {
             try
             {
+                model.PartyType = PartyType.Retail;
                UserManagementProvider.AddUser(model);
                
                 return Json(new ApiResponse<object>
@@ -118,7 +124,31 @@ namespace IranMarketer.App.Controllers
                 });
             }
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public JsonResult AddLegalUser(UserManagementAddFilter model)
+        {
+            try
+            {
+                model.PartyType = PartyType.Institutional;
+                UserManagementProvider.AddUser(model);
 
+                return Json(new ApiResponse<object>
+                {
+                    Result = RuleExceptionCodeCommon.ValidResult.GetEnumDescription(),
+                    BRuleCode = (int)RuleExceptionCodeCommon.ValidResult
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new ApiResponse<object>
+                {
+                    Message = BusinessRuleHelper.GetException(ex),
+                    BRuleCode = BusinessRuleHelper.GetExceptionCode(ex)
+                });
+            }
+        }
 
         public ActionResult GetUsersByFilter([DataSourceRequest] DataSourceRequest request)
         {

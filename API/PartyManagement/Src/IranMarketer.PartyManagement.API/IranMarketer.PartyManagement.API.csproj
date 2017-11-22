@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerProvider.cs" />
+    <Compile Include="LegalPartyProvider.cs" />
     <Compile Include="PartyBankAccountProvider.cs" />
     <Compile Include="PartyProvider.cs" />
     <Compile Include="PartyRolesProvider.cs" />

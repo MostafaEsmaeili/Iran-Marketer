@@ -10,6 +10,7 @@ namespace IranMarketer.Domain.Filters
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public PartyType PartyType { get; set; }
 
     }
 

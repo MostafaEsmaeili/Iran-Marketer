@@ -1,0 +1,123 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using Kendo.Mvc.UI
+@using IranMarketer.Domain.DTO
+@using IranMarketer.Domain.Entity
+@model IranMarketer.Domain.Filters.UserManagementAddFilter
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "ثبت نام کارجو کارفرما";
+}
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">ثبت نام کارفرما</h5>
+
+    </div>
+    @*<div class="panel-body">
+
+        </div>*@
+    <div class="panel-body">
+        <!-- Vertical form options -->
+        <!-- Basic layout-->
+        <form id="form">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse" class=""></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body" style="display: block;">
+
+                    <div class="form-group">
+                        <label>نام شرکت</label>
+                        <input type="text" class="form-control" placeholder="نام شرکت" name="DisplayName">
+                    </div>
+                    <div class="form-group">
+                        <label>نام کاریری</label>
+                        <input type="text" class="form-control" placeholder="نام کاربری" name="UserName">
+                    </div>
+                    <div class="form-group">
+                        <label> ایمیل رابط</label>
+                        <input type="text" class="form-control" placeholder="ایمیل رابط" name="Email">
+                    </div>
+                    <div class="form-group">
+                        <label>گذرواژه</label>
+                        <input type="password" class="form-control" placeholder="رمز عبور حداقل 5 رقمی" name="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>تکرار گذر واژه</label>
+                        <input type="password" class="form-control" placeholder="تکرار رمز عبور" name="ConfirmPassword">
+                    </div>
+
+
+                    <div class="text-right">
+                        <button id="SaveUser" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- /basic layout -->
+
+
+    </div>
+</div>
+<style>
+    .k-multiselect .k-button {
+        color: #000 !important;
+    }
+</style>
+<script>
+   $("#SaveUser").click(function () {
+
+
+      // var data =@Html.Raw(Json.Encode(Model));
+        //    var data = {
+        //        "UserName": $('[name=UserName]').val(),
+        //        "DisplayName": $('[name=DisplayName]').val(),
+        //        "Email": $('[name=Email]').val(),
+        //        "PhoneNumber": $('[name=PhoneNumber]').val(),
+        //        "RolesCodeList": $('#RolesCodeList').data("kendoMultiSelect").value(),
+        //        "BranchCode": $('#BranchCodeList').data("kendoDropDownList").value(),
+        //        "Password": $('[name=Password]').val(),
+        //        "ConfirmPassword": $('[name=ConfirmPassword]').val()
+        //};
+       var data = $("#form").serializeJSON({ checkboxUncheckedValue: "false" });
+        $.ajax({
+            url: '@Url.Action("AddlegalUser","UserManagement")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+                showNotification(response.Message, 'e');
+            },
+
+            success: function (response) {
+                if (response != null && response.BRuleCode == '1000') {
+                    showNotification(response.Message, 's');
+                    $(':input','#form')
+                        .not(':button, :submit, :reset, :hidden')
+                        .val('')
+                        .removeAttr('checked')
+                        .removeAttr('selected');
+                }
+
+                else {
+
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    });
+
+</script>

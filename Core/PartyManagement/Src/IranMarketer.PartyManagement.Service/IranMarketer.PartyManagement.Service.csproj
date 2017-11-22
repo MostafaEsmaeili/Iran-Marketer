@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LegalParty\ILegalPartyRepository.cs" />
+    <Compile Include="LegalParty\LegalPartyService.cs" />
     <Compile Include="PartyAttachment\PartyAttachmentService.cs" />
     <Compile Include="PartyAttachment\IPartyAttachmentRepository.cs" />
     <Compile Include="Contact\ContactService.cs" />
@@ -85,9 +87,7 @@
       <Name>IranMarketer.PartyManagement.Interface</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LegalParty\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
