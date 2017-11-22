@@ -147,9 +147,9 @@ namespace IranMarketer.App.Controllers
                         ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
 
-                    id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party.UserId??legal.UserId, ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimTypes.UserData, party.Id.SafeString()?? legal.Id.ToString(), ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party.UserName??legal.UserName, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party?.UserId??legal?.UserId, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.UserData, party?.Id.SafeString()?? legal?.Id.ToString(), ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party?.UserName??legal?.UserName, ClaimValueTypes.String));
                     id.AddClaim(new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.String));
                     id.AddClaim(new Claim("Clinet", res.Data.Result.ClientId, ClaimValueTypes.String));
                     id.AddClaim(
@@ -171,7 +171,9 @@ namespace IranMarketer.App.Controllers
             catch (Exception ex)
             {
                 Logger.ErrorException(ex.Message, ex);
-                throw;
+                ModelState.AddModelError("", "نام کاربری و یا کلمه عبور اشتباه است");
+                ViewData["ErrorMessage"] =  "نام کاربری و یا کلمه عبور اشتباه است";
+                return View(model);
             }
         }
 

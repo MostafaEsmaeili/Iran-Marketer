@@ -23,18 +23,17 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>لوگو</label>
-                    @Html.Kendo().Upload().Name("LogoUpload").HtmlAttributes(new {@class = "form-control ui-wizard-content", style = " width:100%;", required = "required"})
+                    <label>وب سایت</label>
+                    @Html.Kendo().TextBoxFor(x => x.WebSite).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
 
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>وب سایت</label>
-                    @Html.Kendo().TextBoxFor(x => x.WebSite).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    <label>آدرس</label>
+                    @Html.Kendo().TextBoxFor(x => x.Address).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content", })
 
                 </div>
             </div>
@@ -75,16 +74,27 @@
                 </div>
             </div>
         </div>
-
-
+        <div class="row">
+           
+                <div class="form-group">
+                    <label>درباره شرکت</label>
+                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                    @Html.Kendo().TextBoxFor(x => x.About).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>آدرس</label>
-                    @Html.Kendo().TextBoxFor(x => x.Address).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content", })
+                    <label>نوع شرکت</label>
+                    @(Html.Kendo().DropDownListFor(x => x.CompanyOwnershipType).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                          .DataTextField("CompanyOwnershipTypeTitleFa")
+                          .DataValueField("CompanyOwnershipTypeId").Filter(FilterType.Contains)
+                          .AutoBind(true)
+                          .DataSource(source => source.Read(read => read.Action("GetCompanyOwnershipType", "UIComponent")).ServerFiltering(true)))
+                </div>
 
                 </div>
-            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>اندازه شرکت</label>
@@ -93,36 +103,11 @@
                           .DataValueField("Id").Filter(FilterType.Contains)
                           .AutoBind(true)
                           .DataSource(source => source.Read(read => read.Action("GetBrandSize", "UIComponent")).ServerFiltering(true)))
-                    </div>
-                </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>نوع شرکت</label>
-                    @(Html.Kendo().DropDownListFor(x => x.BrandSize).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
-                          .DataTextField("CompanyOwnershipTypeTitleFa")
-                          .DataValueField("CompanyOwnershipTypeId").Filter(FilterType.Contains)
-                          .AutoBind(true)
-                          .DataSource(source => source.Read(read => read.Action("GetCompanyOwnershipType", "UIComponent")).ServerFiltering(true)))
-                </div>
-
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>درباره شرکت</label>
-                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
 
-                    @Html.Kendo().TextBoxFor(x => x.About).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
-
-
-                </div>
             </div>
         <div class="row">
-            >
             <div class="col-md-6">
                 <div class="form-group">
                     <label> آپلود عکس</label>
@@ -131,22 +116,22 @@
                     @(Html.Kendo().Upload()
                           .Name("files")
                           .Async(a => a
-                              .Save("SaveProfilePicture", "Profile")
+                              .Save("SaveLogo", " LegalParties").Remove("RemoveLogo", "LegalParties")
                               .AutoUpload(true)
-                          ).Multiple(false).ShowFileList(true)
+                          ).Multiple(false).Messages(x=>x.UploadSelectedFiles("آپلود").Cancel("لغو")
+                          .InvalidMaxFileSize("حجم فایل ارسالی بالای 500 کیلو بایت است").InvalidFileExtension("نوع فایل ارسالی قابل قبول نیست")).Validation(x=>x.MaxFileSize(500000).AllowedExtensions(new []{"jpg","png"}))
                           )
-
                 </div>
             </div>
             <div class="col-md-6">
-                <div id="profilePic" class="form-group">
-                    <label> آپلود عکس</label>
+                <div class="form-group">
+                    <label>لوگو</label>
+                    @Html.Kendo().Upload().Name("LogoUpload").HtmlAttributes(new {@class = "form-control ui-wizard-content", style = " width:100%;", required = "required"})
 
                 </div>
             </div>
         </div>
 
-    </fieldset>
 
     <div class="text-left">
         <button id="addlegalParty" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
@@ -154,6 +139,7 @@
         <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
 
     </div>
+        </fieldset>
 </form>
 
 

@@ -3,6 +3,7 @@
     public enum DocumentType
     {
         UnKnown=0,
-        BirthCertificate=1
+        BirthCertificate=1,
+        CompanyLogo=2
     }
 }

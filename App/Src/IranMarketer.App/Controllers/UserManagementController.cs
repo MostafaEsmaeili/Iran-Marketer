@@ -135,8 +135,9 @@ namespace IranMarketer.App.Controllers
 
                 return Json(new ApiResponse<object>
                 {
-                    Result = RuleExceptionCodeCommon.ValidResult.GetEnumDescription(),
+                    Message = RuleExceptionCodeCommon.ValidResult.GetEnumDescription(),
                     BRuleCode = (int)RuleExceptionCodeCommon.ValidResult
+                     
                 });
             }
             catch (Exception ex)

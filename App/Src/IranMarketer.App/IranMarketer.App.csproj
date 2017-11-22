@@ -250,37 +250,14 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminPanelController.cs" />
-    <Compile Include="Controllers\AuditorSettingController.cs" />
-    <Compile Include="Controllers\BankDepositController.cs" />
-    <Compile Include="Controllers\CashFlowController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\BranchController.cs" />
-    <Compile Include="Controllers\BranchManagerSettingController.cs" />
-    <Compile Include="Controllers\CustodianSettingController.cs" />
-    <Compile Include="Controllers\ExpenseSettingController.cs" />
-    <Compile Include="Controllers\GeneralFundSettingController.cs" />
     <Compile Include="Controllers\LegalPartiesController.cs" />
-    <Compile Include="Controllers\NAVController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\RequestsController.cs" />
-    <Compile Include="Controllers\InvestmentManagerSettingController.cs" />
-    <Compile Include="Controllers\LiquidityGuaranteeSettingController.cs" />
-    <Compile Include="Controllers\ManagementSettingController.cs" />
-    <Compile Include="Controllers\MarketMakarSettingController.cs" />
     <Compile Include="Controllers\PartyAccountController.cs" />
-    <Compile Include="Controllers\ProfitGuaranteeSettingController.cs" />
-    <Compile Include="Controllers\TradeController.cs" />
-    <Compile Include="Controllers\TradeFeeSettingController.cs" />
-    <Compile Include="Controllers\IFBEquityFeeSettingController.cs" />
-    <Compile Include="Controllers\TseBondFeeSettingController.cs" />
-    <Compile Include="Controllers\IFBBondFeeSettingController.cs" />
-    <Compile Include="Controllers\TseEquityFeeSettingController.cs" />
     <Compile Include="Controllers\UIComponentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartyController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
-    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
