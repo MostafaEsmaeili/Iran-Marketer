@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FremaworkTest", "FremaworkTest\FremaworkTest.csproj", "{179EFC2D-7F56-4B74-80C8-96F9A4366B47}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Domain", "Test.Domain\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A0652E26-9E1D-4232-AFAB-A69621137505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikad.Framework", "Pikad.Framework\Pikad.Framework.csproj", "{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bargozideh.Framework", "Pikad.Framework\Bargozideh.Framework.csproj", "{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,27 +49,7 @@ Global
 		{11EC828A-0984-417C-A01D-BF7CB917225E} = {A0652E26-9E1D-4232-AFAB-A69621137505}
 		{7073C9FE-7EBC-4522-B1D4-8600058F6FFE} = {A0652E26-9E1D-4232-AFAB-A69621137505}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://172.16.17.31:8080/tfs/sahra.mutualfund
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = FremaworkTest\\FremaworkTest.csproj
-		SccProjectName1 = FremaworkTest
-		SccLocalPath1 = FremaworkTest
-		SccProjectUniqueName2 = Test.Dao\\Test.Dao.csproj
-		SccProjectTopLevelParentUniqueName2 = Pikad.Framework.sln
-		SccProjectName2 = Test.Dao
-		SccLocalPath2 = Test.Dao
-		SccProjectUniqueName3 = Test.Service\\Test.Service.csproj
-		SccProjectTopLevelParentUniqueName3 = Pikad.Framework.sln
-		SccProjectName3 = Test.Service
-		SccLocalPath3 = Test.Service
-		SccProjectUniqueName4 = Test.Domain\\Test.Domain.csproj
-		SccProjectName4 = Test.Domain
-		SccLocalPath4 = Test.Domain
-		SccProjectUniqueName5 = Pikad.Framework\\Pikad.Framework.csproj
-		SccProjectName5 = Pikad.Framework
-		SccLocalPath5 = Pikad.Framework
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9421686C-FCE4-4203-B5D5-5C4B93A0170B}
 	EndGlobalSection
 EndGlobal

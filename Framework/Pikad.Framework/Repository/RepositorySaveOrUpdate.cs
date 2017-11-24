@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-//using System.Data.Entity;
 using System.Threading.Tasks;
+using Bargozideh.Framework.Repository.Command;
+using Bargozideh.Framework.Repository.Extensions;
+using Bargozideh.Framework.UnitOfWork;
 using Dapper;
-using Pikad.Framework.Repository.Command;
-using Pikad.Framework.Repository.Extensions;
-using Pikad.Framework.UnitOfWork;
+//using System.Data.Entity;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public abstract partial class Repository<TEntity, TPk>
         where TEntity : class

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pikad.Framework.UnitOfWork.Helpers
+namespace Bargozideh.Framework.UnitOfWork.Helpers
 {
     public class EnumHelper
     {

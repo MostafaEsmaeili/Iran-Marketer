@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Pikad.Framework.Infra.Annotations
+namespace Bargozideh.Framework.Infra.Annotations
 {
     /// <summary>
     /// Indicates that marked element should be localized or not.
@@ -466,11 +466,11 @@ namespace Pikad.Framework.Infra.Annotations
 
     /// <summary>
     /// Indicates the condition parameter of the assertion method.
-    ///             The method itself should be marked by <see cref="T:Pikad.Framework.Infra.Annotations.AssertionMethodAttribute"/> attribute.
+    ///             The method itself should be marked by <see cref="T:Bargozideh.Framework.Infra.Annotations.AssertionMethodAttribute"/> attribute.
     ///             The mandatory argument of the attribute is the assertion type.
     /// 
     /// </summary>
-    /// <seealso cref="T:Pikad.Framework.Infra.Annotations.AssertionConditionType"/>
+    /// <seealso cref="T:Bargozideh.Framework.Infra.Annotations.AssertionConditionType"/>
     [Obsolete("Use ContractAnnotationAttribute instead")]
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
     public sealed class AssertionConditionAttribute : Attribute
@@ -494,10 +494,10 @@ namespace Pikad.Framework.Infra.Annotations
 
     /// <summary>
     /// Indicates that the marked method is assertion method, i.e. it halts control flow if one of the conditions is satisfied.
-    ///             To set the condition, mark one of the parameters with <see cref="T:Pikad.Framework.Infra.Annotations.AssertionConditionAttribute"/> attribute
+    ///             To set the condition, mark one of the parameters with <see cref="T:Bargozideh.Framework.Infra.Annotations.AssertionConditionAttribute"/> attribute
     /// 
     /// </summary>
-    /// <seealso cref="T:Pikad.Framework.Infra.Annotations.AssertionConditionAttribute"/>
+    /// <seealso cref="T:Bargozideh.Framework.Infra.Annotations.AssertionConditionAttribute"/>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class AssertionMethodAttribute : Attribute
     {

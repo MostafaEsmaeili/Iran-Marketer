@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Pikad.Framework.Repository;
+using Bargozideh.Framework.Repository;
 
 
 namespace Test.Domain

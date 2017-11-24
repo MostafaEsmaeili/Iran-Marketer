@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Pikad.Framework.Repository;
-using Pikad.Framework.UnitOfWork;
+using Bargozideh.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Infra.Provider
+namespace Bargozideh.Framework.Infra.Provider
 {
     public abstract  class  Provider<TEntity,TPk> where TPk : IComparable where TEntity : class 
     {

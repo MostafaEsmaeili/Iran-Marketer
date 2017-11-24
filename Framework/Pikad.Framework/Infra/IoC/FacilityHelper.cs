@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Castle.Windsor;
 
-namespace Pikad.Framework.Repository.IoC
+namespace Bargozideh.Framework.Infra.IoC
 {
     public static class FacilityHelper
     {

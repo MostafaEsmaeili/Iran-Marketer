@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using Pikad.Framework.Infra.Annotations;
+using Bargozideh.Framework.Infra.Annotations;
 
-namespace Pikad.Framework.Infra.Validation
+namespace Bargozideh.Framework.Infra.Validation
 {    
     public static class BRule
     {

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using Pikad.Framework.Repository.Containers;
-using Pikad.Framework.Repository.Exceptions;
-using Pikad.Framework.Repository.Helpers;
-using Pikad.Framework.Repository.Mapper;
-using Pikad.Framework.UnitOfWork;
-using Pikad.Framework.UnitOfWork.Helpers;
+using Bargozideh.Framework.Repository.Containers;
+using Bargozideh.Framework.Repository.Exceptions;
+using Bargozideh.Framework.Repository.Helpers;
+using Bargozideh.Framework.Repository.Mapper;
+using Bargozideh.Framework.UnitOfWork;
+using Bargozideh.Framework.UnitOfWork.Helpers;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public abstract partial class Repository<TEntity, TPk> : RepositoryBase, IRepository<TEntity, TPk>
         where TEntity : class

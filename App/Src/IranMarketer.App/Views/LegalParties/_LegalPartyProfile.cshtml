@@ -1,14 +1,16 @@
 ﻿@using IranMarketer.App.Helper
+@using IranMarketer.Domain.Entity
 @using Kendo.Mvc.UI
 @model IranMarketer.Domain.DTO.LegalParty
 
 
 <form id="legalPartyForm" class="form-validate-jquery" novalidate="novalidate">
+    @Html.AntiForgeryToken()
     <fieldset class="step ui-formwizard-content " id="ajax-step1" style="display: block;">
         <h6 class="form-wizard-title text-semibold">
             @*<span class="form-wizard-count">1</span>*@
             اطلاعات کارفرما
-            <small class="display-block">از کسب و کار خود  بنویسید</small>
+            <small class="display-block">از کسب و کار خود بنویسید</small>
         </h6>
 
 
@@ -17,14 +19,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>نام:</label>
-                    @Html.Kendo().TextBoxFor(x => x.CompanyName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @Html.Kendo().TextBoxFor(x => x.CompanyName).HtmlAttributes(new {required = "required", style = " width:100%;", @class = "form-control ui-wizard-content"})
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label>وب سایت</label>
-                    @Html.Kendo().TextBoxFor(x => x.WebSite).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @Html.Kendo().TextBoxFor(x => x.WebSite).HtmlAttributes(new {required = "required", style = " width:100%;", @class = "form-control ui-wizard-content"})
 
                 </div>
             </div>
@@ -33,14 +35,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>آدرس</label>
-                    @Html.Kendo().TextBoxFor(x => x.Address).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content", })
+                    @Html.Kendo().TextBoxFor(x => x.Address).HtmlAttributes(new {required = "required", style = " width:100%;", @class = "form-control ui-wizard-content",})
 
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>شماره تلفن</label>
-                    @Html.Kendo().TextBoxFor(x => x.Phone).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @Html.Kendo().TextBoxFor(x => x.Phone).HtmlAttributes(new {required = "required", style = " width:100%;", @class = "form-control ui-wizard-content"})
 
                 </div>
             </div>
@@ -50,7 +52,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>صنعت</label>
-                    @(Html.Kendo().DropDownListFor(x => x.IndustryId).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                    @(Html.Kendo().DropDownListFor(x => x.IndustryId).HtmlAttributes(new {@class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required"})
                           .DataTextField("TitleFa")
                           .DataValueField("Id").Filter(FilterType.Contains)
                           .AutoBind(true)
@@ -62,43 +64,43 @@
                 <div class="form-group k-rtl">
                     <label>شهر</label>
                     @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
-                    @(Html.Kendo().ComboBoxFor(x => x.LegalPartyCityId).HtmlAttributes(new { @class = " form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                    @(Html.Kendo().ComboBoxFor(x => x.LegalPartyCityId).HtmlAttributes(new {@class = " form-control ui-wizard-content", style = " width:100%;", required = "required"})
                           .DataTextField("Title")
                           .DataValueField("Id").Filter(FilterType.Contains)
                           .AutoBind(true)
                           .HighlightFirst(false)
                           .SyncValueAndText(true)
                           .MinLength(3)
-                          .DataSource(source => source.Read(read => read.Action("GetCities", "UIComponent", new { addAll = true }).Type(HttpVerbs.Get)).ServerFiltering(true)))
+                          .DataSource(source => source.Read(read => read.Action("GetCities", "UIComponent", new {addAll = true}).Type(HttpVerbs.Get)).ServerFiltering(true)))
 
                 </div>
             </div>
         </div>
         <div class="row">
-           
-                <div class="form-group">
-                    <label>درباره شرکت</label>
-                    @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
-                    @Html.Kendo().TextBoxFor(x => x.About).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
-                
+
+            <div class="form-group">
+                <label>درباره شرکت</label>
+                @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                @Html.Kendo().TextBoxFor(x => x.About).HtmlAttributes(new {required = "required", style = " width:100%;", @class = "form-control ui-wizard-content"})
+
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>نوع شرکت</label>
-                    @(Html.Kendo().DropDownListFor(x => x.CompanyOwnershipType).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                    @(Html.Kendo().DropDownListFor(x => x.CompanyOwnershipType).HtmlAttributes(new {@class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required"})
                           .DataTextField("CompanyOwnershipTypeTitleFa")
                           .DataValueField("CompanyOwnershipTypeId").Filter(FilterType.Contains)
                           .AutoBind(true)
                           .DataSource(source => source.Read(read => read.Action("GetCompanyOwnershipType", "UIComponent")).ServerFiltering(true)))
                 </div>
 
-                </div>
+            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>اندازه شرکت</label>
-                    @(Html.Kendo().DropDownListFor(x => x.BrandSize).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                    @(Html.Kendo().DropDownListFor(x => x.BrandSize).HtmlAttributes(new {@class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required"})
                           .DataTextField("Title")
                           .DataValueField("Id").Filter(FilterType.Contains)
                           .AutoBind(true)
@@ -106,45 +108,53 @@
                 </div>
             </div>
 
-            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label> آپلود عکس</label>
+                    <label> آپلود لوگو</label>
                     @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
 
                     @(Html.Kendo().Upload()
                           .Name("files")
+                          .Files(x =>
+                          {
+                              var file = (Document) TempData.Peek("Logo");
+                              if (file != null)
+                              {
+                                  x.Add().Size(file.Size).Extension(file.Extention).Name(file.DocTitle);
+                              }
+                          })
                           .Async(a => a
-                              .Save("SaveLogo", " LegalParties").Remove("RemoveLogo", "LegalParties")
-                              .AutoUpload(true)
-                          ).Multiple(false).Messages(x=>x.UploadSelectedFiles("آپلود").Cancel("لغو")
-                          .InvalidMaxFileSize("حجم فایل ارسالی بالای 500 کیلو بایت است").InvalidFileExtension("نوع فایل ارسالی قابل قبول نیست")).Validation(x=>x.MaxFileSize(500000).AllowedExtensions(new []{"jpg","png"}))
+                              .Save("SaveLogo", "LegalParties").Remove("RemoveLogo", "LegalParties").AutoUpload(true)
+                          ).Multiple(false).Messages(x => x.UploadSelectedFiles("آپلود").Cancel("لغو")
+                              .InvalidMaxFileSize("حجم فایل ارسالی بالای 500 کیلو بایت است").InvalidFileExtension("نوع فایل ارسالی قابل قبول نیست")).Validation(x => x.MaxFileSize(500000).AllowedExtensions(new[] {"jpg", "png"}))
                           )
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                @*<div class="form-group">
                     <label>لوگو</label>
                     @Html.Kendo().Upload().Name("LogoUpload").HtmlAttributes(new {@class = "form-control ui-wizard-content", style = " width:100%;", required = "required"})
 
-                </div>
+                </div>*@
             </div>
         </div>
 
 
-    <div class="text-left">
-        <button id="addlegalParty" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+        <div class="text-left">
+            <button id="addlegalParty" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
 
-        <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+            <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
 
-    </div>
-        </fieldset>
+        </div>
+    </fieldset>
 </form>
 
 
 
 <script>
+
     $("#addlegalParty").click(function () {
 
         if (!$("#legalPartyForm").valid()) {

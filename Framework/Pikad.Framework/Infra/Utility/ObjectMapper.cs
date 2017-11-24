@@ -1,7 +1,6 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 
-namespace Pikad.Framework.Infra.Utility
+namespace Bargozideh.Framework.Infra.Utility
 {
     public class ObjectMapper
     {

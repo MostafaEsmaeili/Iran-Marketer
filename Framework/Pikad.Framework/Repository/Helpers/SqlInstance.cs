@@ -1,9 +1,9 @@
 ﻿using System;
+using Bargozideh.Framework.UnitOfWork.Helpers;
 using Dapper.FastCrud;
 using Dapper.FastCrud.Mappings;
-using Pikad.Framework.UnitOfWork.Helpers;
 
-namespace Pikad.Framework.Repository.Helpers
+namespace Bargozideh.Framework.Repository.Helpers
 {
     /// <summary>
     /// Use this to get tables and columns from FastCRUD but also insuring that the SqlDialect is correct.

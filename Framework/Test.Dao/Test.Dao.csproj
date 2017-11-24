@@ -71,9 +71,9 @@
     <Compile Include="WorldRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pikad.Framework\Pikad.Framework.csproj">
+    <ProjectReference Include="..\Pikad.Framework\Bargozideh.Framework.csproj">
       <Project>{41ddff7d-33fb-4d2f-9582-ef553da2ebe8}</Project>
-      <Name>Pikad.Framework</Name>
+      <Name>Bargozideh.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Test.Domain\Test.Domain.csproj">
       <Project>{c05bd5f1-b73c-47f9-9102-f335f36732f9}</Project>

@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
+using Bargozideh.Framework.Infra.Utility;
+using Bargozideh.Framework.Repository.Command;
+using Bargozideh.Framework.Repository.Extensions;
+using Bargozideh.Framework.Repository.Mapper;
+using Bargozideh.Framework.Repository.Pagination;
+using Bargozideh.Framework.UnitOfWork;
+using Bargozideh.Framework.UnitOfWork.Helpers;
 using Dapper;
-using  Dapper.FastCrud
-using Dapper.FastCrud.Configuration.StatementOptions.Builders;
-using Pikad.Framework.Infra.Utility;
-using Pikad.Framework.Repository.Command;
-using Pikad.Framework.Repository.Extensions;
-using Pikad.Framework.Repository.FluentQuery;
-using Pikad.Framework.Repository.Mapper;
-using Pikad.Framework.Repository.Pagination;
-using Pikad.Framework.UnitOfWork;
-using Pikad.Framework.UnitOfWork.Helpers;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public abstract partial class Repository<TEntity, TPk>
         where TEntity : class

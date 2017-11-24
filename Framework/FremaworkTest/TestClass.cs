@@ -5,14 +5,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bargozideh.Framework.Infra.IoC;
+using Bargozideh.Framework.UnitOfWork;
 using Castle.Core.Internal;
 using Castle.Facilities.AutoTx;
 using Castle.MicroKernel.Registration;
 using Castle.Transactions;
 using Castle.Windsor;
 using Dapper;
-using Pikad.Framework.Repository.IoC;
-using Pikad.Framework.UnitOfWork;
 using Test.Dao;
 using Test.Domain;
 

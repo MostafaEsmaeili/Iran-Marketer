@@ -7,8 +7,8 @@
     <ProjectGuid>{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pikad.Framework</RootNamespace>
-    <AssemblyName>Pikad.Framework</AssemblyName>
+    <RootNamespace>Bargozideh.Framework</RootNamespace>
+    <AssemblyName>Bargozideh.Framework</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -4,8 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Pikad.Framework.Infra.Utility;
-using Pikad.Framework.Repository.Mapper;
+using Bargozideh.Framework.Infra.Utility;
+using Bargozideh.Framework.Repository.Mapper;
 using Test.Domain;
 
 namespace Test.Dao

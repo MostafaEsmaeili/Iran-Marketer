@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pikad.Framework.Repository.IoC
+namespace Bargozideh.Framework.Infra.IoC
 {
     [NoIoCFluentRegistration]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]

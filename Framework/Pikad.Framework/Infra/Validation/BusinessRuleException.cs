@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Pikad.Framework.Infra.Exception;
+﻿using System.Collections.Generic;
+using Bargozideh.Framework.Infra.Exception;
 
-namespace Pikad.Framework.Infra.Validation
+namespace Bargozideh.Framework.Infra.Validation
 {
     public class BusinessRuleException : AppException
     {

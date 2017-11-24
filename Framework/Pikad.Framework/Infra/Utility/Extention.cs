@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Pikad.Framework.Infra.Utility
+namespace Bargozideh.Framework.Infra.Utility
 {
     public static class Extention
     {

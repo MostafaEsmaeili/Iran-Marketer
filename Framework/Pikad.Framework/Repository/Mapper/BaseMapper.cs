@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Pikad.Framework.Repository.Mapper
+namespace Bargozideh.Framework.Repository.Mapper
 {
     public abstract class BaseMapper<T> : IRowMapper<T>
     {

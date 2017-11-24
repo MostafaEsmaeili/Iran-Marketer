@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pikad.Framework.UnitOfWork
+namespace Bargozideh.Framework.UnitOfWork
 {
     public interface IEntity<TPk> where TPk : IComparable 
     {

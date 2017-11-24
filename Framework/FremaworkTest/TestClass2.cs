@@ -4,13 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bargozideh.Framework.Infra.IoC;
+using Bargozideh.Framework.Repository.Command;
+using Bargozideh.Framework.UnitOfWork;
 using Castle.Transactions;
 using Dapper;
-
-using Pikad.Framework.Infra.IoC;
-using Pikad.Framework.Repository.Command;
-using Pikad.Framework.Repository.IoC;
-using Pikad.Framework.UnitOfWork;
 using Test.Dao;
 using Test.Domain;
 using Test.Service;

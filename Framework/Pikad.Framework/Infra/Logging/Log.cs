@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pikad.Framework.Infra.Logging
+namespace Bargozideh.Framework.Infra.Logging
 {
     public class Log
     {

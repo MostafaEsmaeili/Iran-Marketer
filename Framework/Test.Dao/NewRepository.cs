@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Bargozideh.Framework.Infra.IoC;
+using Bargozideh.Framework.Repository;
+using Bargozideh.Framework.Repository.Command;
+using Bargozideh.Framework.UnitOfWork;
 using Dapper;
 using Dapper.FastCrud;
-using Pikad.Framework.Repository;
-using Pikad.Framework.Repository.Command;
-using Pikad.Framework.Repository.IoC;
-using Pikad.Framework.UnitOfWork;
-
 using Test.Domain;
 
 namespace Test.Dao

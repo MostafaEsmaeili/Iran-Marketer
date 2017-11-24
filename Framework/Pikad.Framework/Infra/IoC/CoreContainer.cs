@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Castle.Core.Internal;
-//using Castle.Facilities.AutoTx;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Pikad.Framework.Infra.IoC;
+//using Castle.Facilities.AutoTx;
 
-namespace Pikad.Framework.Repository.IoC
+namespace Bargozideh.Framework.Infra.IoC
 {
     public class CoreContainer
     {
@@ -14,7 +13,7 @@ namespace Pikad.Framework.Repository.IoC
         public static bool Initialized;
         private static void PreventReInitialize()
         {
-            if (Initialized) throw new Exception("CoreContainer was initialized!");
+            if (Initialized) throw new System.Exception("CoreContainer was initialized!");
         }
 
 
@@ -43,7 +42,7 @@ namespace Pikad.Framework.Repository.IoC
                 Container.Install(new RepositoriesInstaller(), new ServicesInstaller());
 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }

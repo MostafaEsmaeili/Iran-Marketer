@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pikad.Framework.Repository.Exceptions
+namespace Bargozideh.Framework.Repository.Exceptions
 {
     public class NoPkException : Exception
     {

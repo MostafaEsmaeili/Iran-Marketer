@@ -1,9 +1,7 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Bargozideh.Framework.Infra.IoC;
+using Bargozideh.Framework.UnitOfWork;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Pikad.Framework.Infra.IoC;
-using Pikad.Framework.Repository.DataContext;
-using Pikad.Framework.Repository.IoC;
-using Pikad.Framework.UnitOfWork;
 
 namespace FremaworkTest
 {

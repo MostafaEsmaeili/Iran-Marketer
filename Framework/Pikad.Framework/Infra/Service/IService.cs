@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
-using Dapper;
-using Pikad.Framework.UnitOfWork;
+using Bargozideh.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Infra.Service
+namespace Bargozideh.Framework.Infra.Service
 {
     public interface IService<TEntity, TPk>
         where TEntity : class

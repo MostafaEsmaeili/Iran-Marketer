@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using Castle.Windsor.Installer;
-using Pikad.Framework.UnitOfWork.Helpers;
+using Bargozideh.Framework.UnitOfWork.Helpers;
 
-namespace Pikad.Framework.UnitOfWork
+namespace Bargozideh.Framework.UnitOfWork
 {
     public abstract class DbConnection : IDbConnection
     {

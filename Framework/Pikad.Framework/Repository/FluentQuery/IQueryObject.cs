@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Pikad.Framework.Repository.FluentQuery
+namespace Bargozideh.Framework.Repository.FluentQuery
 {
     public interface IQueryObject<TEntity,TPK>
     {

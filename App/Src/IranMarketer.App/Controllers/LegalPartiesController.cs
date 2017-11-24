@@ -31,13 +31,18 @@ namespace IranMarketer.App.Controllers
     public class LegalPartiesController : BaseController
     {
         public PartyProvider PartyProvider => CoreContainer.Container.Resolve<PartyProvider>();
-
+        public LegalPartyProvider LegalPartyProvider => CoreContainer.Container.Resolve<LegalPartyProvider>();
         public DocumentProvider DocumentProvider => CoreContainer.Container.Resolve<DocumentProvider>();
 
         // GET: LegalParties
         public ActionResult Index()
         {
-            return View();
+          
+                var userId = User.Identity.GetUserId();
+                const int logoType = (int) DocumentType.CompanyLogo;
+                var logo = DocumentProvider.Get(x => x.UserId == userId && x.DocType == logoType).FirstOrDefault();
+                TempData["Logo"] = logo;
+          return View();
         }
 
         // GET: LegalParties/Details/5
@@ -65,7 +70,6 @@ namespace IranMarketer.App.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(Domain.DTO.LegalParty legalParty)
         {
 
@@ -82,7 +86,7 @@ namespace IranMarketer.App.Controllers
                     entity.Modified = DateTime.Now;
                     entity.Created = ent.Created;
                     entity.CreatedBy = ent.CreatedBy;
-                    db.LegalParties.AddOrUpdate(entity);
+                    LegalPartyProvider.SaveOrUpdate(entity);
                     return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -131,8 +135,9 @@ namespace IranMarketer.App.Controllers
         //}
 
 
-
-        public ActionResult SaveAndPersist(IEnumerable<HttpPostedFileBase> files)
+            [HttpPost]
+          
+        public ActionResult SaveLogo(IEnumerable<HttpPostedFileBase> files)
         {
             // The Name of the Upload component is "files"
             if (files != null)
@@ -155,10 +160,12 @@ namespace IranMarketer.App.Controllers
                             CreatedBy = Extentions.GetUserName(User.Identity),
                             Modified = DateTime.Now,
                             ModifiedBy = Extentions.GetUserName(User.Identity),
-                            DocTitle = "لوگو",
+                            DocTitle = $"{fileName}.{fileExtension}",
                             DocType = (int) DocumentType.CompanyLogo,
                             PartyId = User.Identity.GetPartyId().SafeInt(),
-                            UserId = User.Identity.GetUserId()
+                            UserId = User.Identity.GetUserId(),
+                            Extention = fileExtension,
+                            Size = file.ContentLength
 
                         };
                         DocumentProvider.Save(doc);
@@ -171,12 +178,24 @@ namespace IranMarketer.App.Controllers
             return Content("");
 
         }
+        [HttpPost]
 
-        public ActionResult RemoveAndPersist(string[] fileNames)
+        public ActionResult RemoveLogo(string[] fileNames)
         {
             // The parameter of the Remove action must be called "fileNames"
             using (var db = new IranMarketerContext())
             {
+                db.Configuration.AutoDetectChangesEnabled = false;
+                var userId = User.Identity.GetUserId();
+                var logoId = db.Documents.Where(x => x.UserId == userId && x.DocType == (int) DocumentType.CompanyLogo)
+                    .Select(x => x.Id).FirstOrDefault();
+
+                if (logoId > 0)
+                    DocumentProvider.Delete(new Document
+                    {
+                        Id = logoId
+                    });
+                db.Configuration.AutoDetectChangesEnabled = true;
 
             }
 

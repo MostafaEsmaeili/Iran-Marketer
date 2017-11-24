@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Pikad.Framework.Repository.Pagination
+namespace Bargozideh.Framework.Repository.Pagination
 {
     public class PageCollection<T>
     {

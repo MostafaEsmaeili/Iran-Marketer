@@ -3,7 +3,7 @@ using System.Data;
 
 #pragma warning disable 618
 
-namespace Pikad.Framework.UnitOfWork
+namespace Bargozideh.Framework.UnitOfWork
 {
     public abstract class DbTransaction : IDisposable
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Pikad.Framework.Repository.FluentQuery
+namespace Bargozideh.Framework.Repository.FluentQuery
 {
     public interface IQueryFluent<TEntity,TPK> where TEntity : class 
     {

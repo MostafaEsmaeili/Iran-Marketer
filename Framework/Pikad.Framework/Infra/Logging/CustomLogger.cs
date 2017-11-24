@@ -1,7 +1,6 @@
-using System;
 using NLog;
 
-namespace Pikad.Framework.Infra.Logging
+namespace Bargozideh.Framework.Infra.Logging
 {
     public class CustomLogger 
     {

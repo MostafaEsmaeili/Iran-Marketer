@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Bargozideh.Framework.Infra.Helpers;
+using Bargozideh.Framework.Infra.Service;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Pikad.Framework.Infra.Helper;
-using Pikad.Framework.Infra.Service;
 
-namespace Pikad.Framework.Infra.IoC
+namespace Bargozideh.Framework.Infra.IoC
 {
     public class ServicesInstaller : IWindsorInstaller
     {

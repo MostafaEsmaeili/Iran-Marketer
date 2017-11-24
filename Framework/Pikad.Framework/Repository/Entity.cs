@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Bargozideh.Framework.Infra.Utility;
+using Bargozideh.Framework.UnitOfWork;
 using Dapper.FastCrud;
-using Pikad.Framework.Infra.Utility;
-using Pikad.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public abstract class Entity<TPk> :IEntity<TPk> where TPk : IComparable
     {
@@ -34,7 +34,6 @@ namespace Pikad.Framework.Repository
 
         [Column(@"Created", TypeName = "datetime")]
         [Display(Name = "Created")]
-        [Nullable]
         public DateTime? Created { get; set; }
 
         public string CreatedJalali => Created!=null && Created > new DateTime(1907, 1, 1)

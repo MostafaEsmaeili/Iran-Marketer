@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using Bargozideh.Framework.Repository.Helpers;
+using Bargozideh.Framework.UnitOfWork;
 using Dapper.FastCrud;
 using Dapper.FastCrud.Configuration.StatementOptions.Builders;
-using Pikad.Framework.Repository.Helpers;
-using Pikad.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Repository.Extensions
+namespace Bargozideh.Framework.Repository.Extensions
 {
     public static class SessionExtensions
     {

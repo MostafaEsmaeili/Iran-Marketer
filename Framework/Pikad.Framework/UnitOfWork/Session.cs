@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
-using Pikad.Framework.UnitOfWork.Helpers;
+using Bargozideh.Framework.UnitOfWork.Helpers;
 
 #pragma warning disable 618
 
-namespace Pikad.Framework.UnitOfWork
+namespace Bargozideh.Framework.UnitOfWork
 {
     public abstract class Session<TConnection> : DbConnection , ISession
         where TConnection : System.Data.Common.DbConnection

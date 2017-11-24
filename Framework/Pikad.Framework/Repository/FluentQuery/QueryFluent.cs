@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-
-namespace Pikad.Framework.Repository.FluentQuery
+﻿namespace Bargozideh.Framework.Repository.FluentQuery
 {
     //public sealed class QueryFluent<TEntity, TPK> : IQueryFluent<TEntity, TPK> 
     //    where TEntity : class

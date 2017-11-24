@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Bargozideh.Framework.Repository.Extensions;
+using Bargozideh.Framework.UnitOfWork;
 using Dapper;
-using Pikad.Framework.Repository.Extensions;
-using Pikad.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public abstract partial class Repository<TEntity, TPk>
         where TEntity : class

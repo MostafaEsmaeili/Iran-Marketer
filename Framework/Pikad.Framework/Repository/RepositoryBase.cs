@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Pikad.Framework.Repository.IoC;
-using Pikad.Framework.UnitOfWork;
+using Bargozideh.Framework.Infra.IoC;
+using Bargozideh.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public abstract class RepositoryBase : IRepositoryBase
     {

@@ -1,11 +1,11 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Bargozideh.Framework.Infra.Helpers;
+using Bargozideh.Framework.Repository;
+using Bargozideh.Framework.Repository.Mapper;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Pikad.Framework.Infra.Helper;
-using Pikad.Framework.Repository;
-using Pikad.Framework.Repository.Mapper;
 
-namespace Pikad.Framework.Infra.IoC
+namespace Bargozideh.Framework.Infra.IoC
 {
     public class RepositoriesInstaller : IWindsorInstaller
     {

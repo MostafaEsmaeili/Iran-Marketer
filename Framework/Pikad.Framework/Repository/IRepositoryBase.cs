@@ -1,4 +1,4 @@
-﻿namespace Pikad.Framework.Repository
+﻿namespace Bargozideh.Framework.Repository
 {
     public interface IRepositoryBase
     {

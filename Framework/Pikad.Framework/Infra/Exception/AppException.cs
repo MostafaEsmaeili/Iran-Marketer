@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Pikad.Framework.Infra.Exception
+namespace Bargozideh.Framework.Infra.Exception
 {
     public class AppException : System.Exception
     {

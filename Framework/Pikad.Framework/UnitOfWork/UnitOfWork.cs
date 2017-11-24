@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Pikad.Framework.UnitOfWork
+namespace Bargozideh.Framework.UnitOfWork
 {
     public class UnitOfWork : DbTransaction, IUnitOfWork
     {

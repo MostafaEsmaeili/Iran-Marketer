@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Pikad.Framework.Infra.Logging;
-using Pikad.Framework.Infra.Service;
-using Pikad.Framework.Repository;
-using Pikad.Framework.Repository.IoC;
-using Pikad.Framework.UnitOfWork;
+using Bargozideh.Framework.Infra.IoC;
+using Bargozideh.Framework.Infra.Logging;
+using Bargozideh.Framework.Infra.Service;
+using Bargozideh.Framework.Repository;
+using Bargozideh.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Infra.Provider
+namespace Bargozideh.Framework.Infra.Provider
 {
     public abstract class AbstractProvider  <TEntity, TService, TPk> : Provider<TEntity, TPk>
         where TEntity :Entity<TPk>

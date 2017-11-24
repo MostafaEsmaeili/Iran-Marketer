@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pikad.Framework.UnitOfWork.Helpers
+﻿namespace Bargozideh.Framework.UnitOfWork.Helpers
 {
     public static class ConnectionStringHelper
     {

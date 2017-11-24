@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 1591
-namespace Pikad.Framework.UnitOfWork
+namespace Bargozideh.Framework.UnitOfWork
 {
     public enum SqlDialect
     {

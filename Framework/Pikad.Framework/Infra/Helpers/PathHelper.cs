@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Hosting;
 
-namespace Pikad.Framework.Infra.Helper
+namespace Bargozideh.Framework.Infra.Helpers
 {
     public class PathHelper
     {

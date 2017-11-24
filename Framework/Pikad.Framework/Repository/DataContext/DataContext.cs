@@ -5,7 +5,7 @@
 //using System.Threading;
 //using System.Threading.Tasks;
 
-namespace Pikad.Framework.Repository.DataContext
+namespace Bargozideh.Framework.Repository.DataContext
 {
     //public class DataContext : DbContext, IDataContext
     //{

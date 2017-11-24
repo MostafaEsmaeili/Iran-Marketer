@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
-using Dapper;
-using Pikad.Framework.Repository.Command;
-using Pikad.Framework.Repository.FluentQuery;
-using Pikad.Framework.Repository.Mapper;
-using Pikad.Framework.Repository.Pagination;
-using Pikad.Framework.UnitOfWork;
+using Bargozideh.Framework.Repository.Command;
+using Bargozideh.Framework.Repository.Mapper;
+using Bargozideh.Framework.Repository.Pagination;
+using Bargozideh.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Repository
+namespace Bargozideh.Framework.Repository
 {
     public interface IRepository<TEntity, TPk> : IRepositoryBacic<TEntity>
         where TEntity : class

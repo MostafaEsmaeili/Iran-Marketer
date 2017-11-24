@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Pikad.Framework.Infra.Validation
+﻿namespace Bargozideh.Framework.Infra.Validation
 {
     public class BusinessRuleException<T> : BusinessRuleException
     {

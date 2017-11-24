@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Pikad.Framework.Repository.Mapper
+namespace Bargozideh.Framework.Repository.Mapper
 {
     public interface IResultSetMapper<TResult>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Pikad.Framework.Repository.Containers
+namespace Bargozideh.Framework.Repository.Containers
 {
     internal sealed class SqlDialectContainer
     {

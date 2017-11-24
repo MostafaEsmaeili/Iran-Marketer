@@ -1,8 +1,8 @@
-﻿using Dapper.FastCrud;
-using Pikad.Framework.Repository.Containers;
-using Pikad.Framework.UnitOfWork.Helpers;
+﻿using Bargozideh.Framework.Repository.Containers;
+using Bargozideh.Framework.UnitOfWork.Helpers;
+using Dapper.FastCrud;
 
-namespace Pikad.Framework.Repository.Helpers
+namespace Bargozideh.Framework.Repository.Helpers
 {
     public sealed class SqlDialectHelper
     {

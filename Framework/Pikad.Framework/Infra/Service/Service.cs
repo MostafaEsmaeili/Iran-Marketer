@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
-using Dapper;
-using Pikad.Framework.Infra.Utility;
-using Pikad.Framework.Repository;
-using Pikad.Framework.UnitOfWork;
+using Bargozideh.Framework.Repository;
+using Bargozideh.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Infra.Service
+namespace Bargozideh.Framework.Infra.Service
 {
     public abstract class Service<TEntity, TDao, TPk> : IService<TEntity,TPk>
         where TEntity : class

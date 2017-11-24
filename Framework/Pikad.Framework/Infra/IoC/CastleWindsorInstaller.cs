@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using Bargozideh.Framework.UnitOfWork;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Pikad.Framework.UnitOfWork;
 
-namespace Pikad.Framework.Repository.IoC
+namespace Bargozideh.Framework.Infra.IoC
 {
     public class CastleWindsorInstaller : IWindsorInstaller
     {
