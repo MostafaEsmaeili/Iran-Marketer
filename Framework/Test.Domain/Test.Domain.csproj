@@ -58,8 +58,8 @@
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pikad.Framework\Bargozideh.Framework.csproj">
-      <Project>{41ddff7d-33fb-4d2f-9582-ef553da2ebe8}</Project>
+    <ProjectReference Include="..\Bargozideh.Framework\Bargozideh.Framework.csproj">
+      <Project>{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}</Project>
       <Name>Bargozideh.Framework</Name>
     </ProjectReference>
   </ItemGroup>

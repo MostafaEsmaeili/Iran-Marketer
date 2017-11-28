@@ -83,8 +83,10 @@ namespace Bargozideh.Framework.UnitOfWork
 
         public string ConnectionString
         {
-            get => Connection?.ConnectionString;
-            set => Connection.ConnectionString = value;
+            get { return Connection?.ConnectionString; }
+            set { Connection.ConnectionString = value; }
+        //    get => Connection?.ConnectionString;
+        //    set => Connection.ConnectionString = value;
         }
 
         public int ConnectionTimeout => Connection?.ConnectionTimeout ?? 0;

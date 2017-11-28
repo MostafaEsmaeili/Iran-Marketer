@@ -84,6 +84,7 @@
     <Compile Include="DTO\CustomerPayment.cs" />
     <Compile Include="DTO\CustomerPaymentItem.cs" />
     <Compile Include="DTO\Evidence.cs" />
+    <Compile Include="DTO\JobPost.cs" />
     <Compile Include="DTO\JobPrefer.cs" />
     <Compile Include="DTO\LegalParty.cs" />
     <Compile Include="DTO\Party.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Entity\Industry.cs" />
     <Compile Include="Entity\IranMarketerContext.cs" />
     <Compile Include="Entity\JobCategory.cs" />
+    <Compile Include="Entity\JobPost.cs" />
     <Compile Include="Entity\JobPrefer.cs" />
     <Compile Include="Entity\LegalParty.cs" />
     <Compile Include="Entity\PartySkill.cs" />

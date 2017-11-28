@@ -30,6 +30,8 @@ namespace IranMarketer.Domain.Entity
         public System.Data.Entity.DbSet<Region> Regions { get; set; }
         public System.Data.Entity.DbSet<RetailParty> RetailParties { get; set; }
         public System.Data.Entity.DbSet<WorkExperience> WorkExperiences { get; set; }
+        public System.Data.Entity.DbSet<JobPost> JobPosts { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IranMarketerContext"/> class.

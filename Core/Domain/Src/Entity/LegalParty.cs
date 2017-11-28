@@ -84,5 +84,7 @@ namespace IranMarketer.Domain.Entity
         /// Parent Region pointed by [LegalParty].([LegalPartyCityId]) (FK_LegalParty_Region)
         /// </summary>
         [ForeignKey("LegalPartyCityId")] public Region Region { get; set; } // FK_LegalParty_Region
+
+
     }
 }

@@ -8,7 +8,7 @@ namespace FremaworkTest
     //{
     //}
 
-    public class TestSession : Session<SqlConnection>, ISession
+    public class TestSession : Session<SqlConnection>
     {
         public TestSession(IDbFactory session, IMyDatabaseSettings settings)
             : base(session, settings.ConnectionString)

@@ -251,6 +251,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminPanelController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\JobPostController.cs" />
     <Compile Include="Controllers\LegalPartiesController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PartyAccountController.cs" />
@@ -2876,6 +2877,8 @@
     <Content Include="Views\LegalParties\Edit.cshtml" />
     <Content Include="Views\LegalParties\Index.cshtml" />
     <Content Include="Views\LegalParties\_LegalPartyProfile.cshtml" />
+    <Content Include="Views\JobPost\Index.cshtml" />
+    <Content Include="Views\JobPost\_CreateJobPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

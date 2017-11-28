@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FremaworkTest", "FremaworkTest\FremaworkTest.csproj", "{179EFC2D-7F56-4B74-80C8-96F9A4366B47}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Domain", "Test.Domain\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A0652E26-9E1D-4232-AFAB-A69621137505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bargozideh.Framework", "Pikad.Framework\Bargozideh.Framework.csproj", "{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bargozideh.Framework", "Bargozideh.Framework\Bargozideh.Framework.csproj", "{41DDFF7D-33FB-4D2F-9582-EF553DA2EBE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
