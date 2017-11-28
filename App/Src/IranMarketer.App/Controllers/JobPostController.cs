@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IranMarketer.App.Helper;
 using IranMarketer.Domain.Entity;
+using IranMarketer.PartyManagement.Service;
+using IranMarketer.SharedData.Service;
+using IranMarketer.SharedData.Service.JobPrefer;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Pikad.Framework.Infra.Utility;
+using Pikad.Framework.Repository.IoC;
 
 namespace IranMarketer.App.Controllers
 {
     public class JobPostController : BaseController
     {
         // GET: JobPost
+        public IJobPostRepository JobPostRepository => CoreContainer.Container.Resolve<IJobPostRepository>();
         public ActionResult Index()
         {
             return View();
@@ -19,7 +28,7 @@ namespace IranMarketer.App.Controllers
         [HttpPost]
         public ActionResult SaveOrUpdate(Domain.DTO.JobPost JobPost)
         {
-
+            
             try
             {
 
@@ -29,7 +38,7 @@ namespace IranMarketer.App.Controllers
                         db.JobPosts.FirstOrDefault(x => x.PartyId == JobPost.PartyId && x.Id == JobPost.Id);
 
                     var entity = ObjectMapper.BaseConverter
-                                     .ConvertSourceToDest < (Domain.DTO.JobPost, IranMarketer.Domain.Entity.JobPost > (JobPost);
+                                     .ConvertSourceToDest<Domain.DTO.JobPost, IranMarketer.Domain.Entity.JobPost > (JobPost);
 
                     if (current != null)
                     {
@@ -38,10 +47,10 @@ namespace IranMarketer.App.Controllers
 
                     entity.Modified = DateTime.Now;
                     entity.Created = current?.Created ?? DateTime.Now;
-                    entity.CreatedBy = current?.CreatedBy ?? experience.UserName;
-                    entity.ModifiedBy = experience.UserName;
+                    entity.CreatedBy = current?.CreatedBy ?? JobPost.UserName;
+                    entity.ModifiedBy = JobPost.UserName;
 
-                    WorkExprienceService.SaveOrUpdate(entity);
+                    JobPostRepository.SaveOrUpdate(entity);
                     return this.Json(this.SuccessApiResponse, JsonRequestBehavior.AllowGet);
 
                 }
@@ -59,11 +68,10 @@ namespace IranMarketer.App.Controllers
         {
             try
             {
-                var all = WorkExprienceService.GetKey(experience.Id);
+                var all = JobPostRepository.GetKey(JobPost.Id);
                 var dto = ObjectMapper.BaseConverter
-                    .ConvertSourceToDest<IranMarketer.Domain.Entity.WorkExperience, WorkExperience>(all);
-                dto.FromDate = all.FromDateJalali;
-                dto.ToDate = all.ToDateJalali;//.ConvertMiladiToJalali();
+                    .ConvertSourceToDest<IranMarketer.Domain.Entity.JobPost, Domain.DTO.JobPost>(all);
+              
 
                 SuccessApiResponse.Result = dto;
                 return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
@@ -81,13 +89,15 @@ namespace IranMarketer.App.Controllers
             try
             {
 
-                List<Domain.Entity.WorkExperience> all;
+                List<Domain.Entity.JobPost> all;
                 using (var db = new IranMarketerContext())
                 {
                     try
                     {
                         db.Configuration.ProxyCreationEnabled = false;
-                        all = db.WorkExperiences.Where(x => x.PartyId == User.Identity.GetPartyId().SafeInt()).Include(x => x.Region).ToList(); //.Include(x => x.Region).ToList();
+                        all = db.JobPosts.Where(x => x.PartyId == User.Identity.GetPartyId().SafeInt())
+                            .Include(x => x.IndustryIndustry).Include(x => x.JobCategory)
+                            .ToList(); //.Include(x => x.Region).ToList();
                     }
                     finally
                     {
@@ -105,11 +115,14 @@ namespace IranMarketer.App.Controllers
                 var da = all.Select(x => new
                 {
                     x.Id,
-                    x.JobTitle,
-                    x.CompanyName,
-                    x.FromDateJalali,
-                    x.ToDateJalali,
-                    x.StillInThisWork,
+                    x.Tile,
+                    x.Description,
+                    Industryx.IndustryIndustry.TitleFa,
+                    x.JobCategory.TitleFa,
+                    x.Gender,
+                    x.MaxAge,
+                    x.MinAge,
+                    x.MinYearExperience
                     Region = new { Title = x.Region.Title }
                 });
                 return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);

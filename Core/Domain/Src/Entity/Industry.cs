@@ -39,6 +39,8 @@ namespace IranMarketer.Domain.Entity
         public virtual System.Collections.Generic.ICollection<WorkExperience> WorkExperiences { get; set; }
         [JsonIgnore]
         public System.Collections.Generic.ICollection<LegalParty> LegalParties { get; set; } = new System.Collections.Generic.List<LegalParty>(); // LegalParty.FK_LegalParty_Industries
+        public System.Collections.Generic.ICollection<JobPost> JobPosts { get; set; } = new System.Collections.Generic.List<JobPost>();
+
 
 
         public Industry()

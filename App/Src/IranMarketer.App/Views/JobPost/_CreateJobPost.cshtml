@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>عنوان شغل:</label>
-                    @Html.Kendo().TextBoxFor(x => x.Title).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @Html.Kendo().TextBoxFor(x => x.Tile).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
                 </div>
             </div>
 
@@ -158,8 +158,8 @@
                   {
 
 
-                      column.Bound(x => x.JobTitle).Title("عنوان شغل").Width(150);
-                      column.Bound(x => x.CompanyName).Title("نام شرکت").Width(150);
+                      column.Bound(x => x.Tile).Title("عنوان ").Width(150);
+                      column.Bound(x => x.Gender).Title("نام شرکت").Width(150);
                       column.Bound(x => x.Region.Title).Title("شهر").Width(100); ;
                       column.Bound(x => x.FromDateJalali).Title("از تاریخ");
                       column.Bound(x => x.ToDateJalali).Title("تا تاریخ");

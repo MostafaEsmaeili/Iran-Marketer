@@ -313,7 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Src\IranMarketer.Common.csproj">
-      <Project>{4adf8319-95d5-4352-ac2a-aa2bf6ffa984}</Project>
+      <Project>{4ADF8319-95D5-4352-AC2A-AA2BF6FFA984}</Project>
       <Name>IranMarketer.Common</Name>
     </ProjectReference>
   </ItemGroup>

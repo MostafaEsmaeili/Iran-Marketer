@@ -41,6 +41,8 @@ namespace IranMarketer.Domain.Entity
         [JsonIgnore]
 
         public virtual System.Collections.Generic.ICollection<WorkExperience> WorkExperiences { get; set; }
+        public System.Collections.Generic.ICollection<JobPost> JobPosts { get; set; } = new System.Collections.Generic.List<JobPost>();
+
 
         public JobCategory()
         {

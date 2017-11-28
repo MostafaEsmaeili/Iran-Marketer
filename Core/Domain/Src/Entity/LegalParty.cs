@@ -71,6 +71,8 @@ namespace IranMarketer.Domain.Entity
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
+        public System.Collections.Generic.ICollection<JobPost> JobPosts { get; set; } = new System.Collections.Generic.List<JobPost>();
+
 
 
         // Foreign keys

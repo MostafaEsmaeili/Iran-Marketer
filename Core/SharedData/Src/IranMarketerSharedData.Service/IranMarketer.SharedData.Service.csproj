@@ -85,6 +85,7 @@
     <Compile Include="Document\IDocumentRepository.cs" />
     <Compile Include="Holiday\HolidayService.cs" />
     <Compile Include="Holiday\IHolidayRepository.cs" />
+    <Compile Include="IJobPostRepository.cs" />
     <Compile Include="Industries\IIndustryRepository.cs" />
     <Compile Include="Industries\IndustryService.cs" />
     <Compile Include="JobCategory\IJobCategoryRepository.cs" />

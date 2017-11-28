@@ -265,7 +265,8 @@ namespace IranMarketer.App.Controllers
                     try
                     {
                         db.Configuration.ProxyCreationEnabled = false;
-                        all = db.WorkExperiences.Where(x=>x.PartyId==User.Identity.GetPartyId().SafeInt()).Include(x => x.Region).ToList(); //.Include(x => x.Region).ToList();
+                        var partyId = User.Identity.GetPartyId().SafeInt();
+                        all = db.WorkExperiences.Where(x=>x.PartyId== partyId).Include(x => x.Region).ToList(); //.Include(x => x.Region).ToList();
                     }
                     finally
                     {
