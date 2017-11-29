@@ -1,5 +1,6 @@
 ﻿@Html.Partial("_RegisterLastVersionOfKendo")
-@using LegalParty = IranMarketer.Domain.DTO.LegalParty
+@using IranMarketer.Domain.Entity
+
 
 @{
     Layout = "../Shared/_Layout.cshtml";
@@ -35,8 +36,8 @@
                 </div>
             </div>
 
-            <div class="panel-body">
-                @Html.Partial("_LegalPartyProfile", new LegalParty());
+            <div class="panel-body k-rtl">
+                @Html.Partial("_CreateJobPost", new JobPost());
 
             </div>
         </div>

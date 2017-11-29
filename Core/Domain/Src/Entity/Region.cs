@@ -59,6 +59,9 @@ namespace IranMarketer.Domain.Entity
 
         public virtual ICollection<RetailParty> NationalityPlace { get; set; } = new List<RetailParty>();
 
+        public virtual ICollection<JobPost> JobPost { get; set; } = new List<JobPost>();
+
+
         [InverseProperty("Region")]
         public virtual ICollection<WorkExperience> WorkExperiences { get; set; } = new List<WorkExperience>();
 

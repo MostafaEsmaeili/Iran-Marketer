@@ -1,9 +1,10 @@
 ﻿
-@using IranMarketer.App.Helper
 @using IranMarketer.Domain.Entity
 @using Kendo.Mvc.UI
 @model JobPost
-
+<script>
+    var workXPId = -1;
+</script>
 
 <form id="JobPostForm" class="form-validate-jquery" novalidate="novalidate">
     @Html.AntiForgeryToken()
@@ -16,23 +17,16 @@
 
 
 
-        <div class="row">
+        <div class="row ">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>عنوان شغل:</label>
-                    @Html.Kendo().TextBoxFor(x => x.Tile).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @(Html.Kendo().TextBoxFor(x => x.Title).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" }))
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div class="form-group">
-                    <label>جنسیت</label>
-                    @(Html.Kendo().DropDownListFor(x => x.Gender).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
-                          .DataTextField("GenderTypeTitleFa")
-                          .DataValueField("GenderTypeValue").Filter(FilterType.Contains)
-                          .AutoBind(true)
-                          .DataSource(source => source.Read(read => read.Action("GetGenderType", "UIComponent")).ServerFiltering(true)))
-                </div>
+  
             </div>
         </div>
         <div class="row">
@@ -51,13 +45,12 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>صنعت</label>
-                    @(Html.Kendo().ComboBoxFor(x => x.Industry).HtmlAttributes(new { @class = "form-control k-rtl",required = "required" })
-                          .DataTextField("TitleFa")
-                          .Filter(FilterType.Contains)
-                          .DataValueField("Id")
+                    <label>جنسیت</label>
+                    @(Html.Kendo().DropDownListFor(x => x.Gender).HtmlAttributes(new { @class = "k-rtl ", style = " width:100%;", required = "required" })
+                          .DataTextField("GenderTypeTitleFa")
+                          .DataValueField("GenderTypeValue").Filter(FilterType.Contains)
                           .AutoBind(true)
-                          .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+                          .DataSource(source => source.Read(read => read.Action("GetGenderType", "UIComponent")).ServerFiltering(true)))
                 </div>
             </div>
 
@@ -66,7 +59,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>صنعت</label>
-                    @(Html.Kendo().DropDownListFor(x => x.Category).HtmlAttributes(new { @class = "k-rtl form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                    @(Html.Kendo().ComboBoxFor(x => x.Industry).HtmlAttributes(new { @class = "k-rtl form-control ", style = " width:100%;", required = "required" })
                           .DataTextField("TitleFa")
                           .DataValueField("Id").Filter(FilterType.Contains)
                           .AutoBind(true)
@@ -78,7 +71,7 @@
                 <div class="form-group k-rtl">
                     <label>دسته شغلی</label>
                     @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
-                    @(Html.Kendo().ComboBoxFor(x => x.Category).HtmlAttributes(new { @class = "form-control k-rtl", required = "required" })
+                    @(Html.Kendo().ComboBoxFor(x => x.Category).HtmlAttributes(new { @class = "form-control k-rtl", style = " width:100%;", required = "required" })
                           .DataTextField("TitleFa")
                           .Filter(FilterType.Contains)
                           .DataValueField("Id")
@@ -90,19 +83,19 @@
             </div>
         </div>
         <div class="row">
-
+        <div class="col-md-6">
             <div class="form-group">
                 <label>حداقل سابقه شغلی</label>
                 @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
-                @Html.Kendo().NumericTextBoxFor(x => x.MinYearExperience).Min(0).Spinners(false).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
-
+                @(Html.Kendo().TextBoxFor(x => x.MinYearExperience).HtmlAttributes(new {type="number", required = "required", style = " width:100%;", @class = "form-control " }))
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>حداقل سن</label>
-                    @Html.Kendo().NumericTextBoxFor(x => x.MinAge).Min(0).Spinners(false).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @(Html.Kendo().TextBoxFor(x => x.MinAge).HtmlAttributes(new {type="number", required = "required", style = " width:100%;", @class = "form-control " }))
 
                 </div>
 
@@ -110,7 +103,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>حداکثر سن</label>
-                    @Html.Kendo().NumericTextBoxFor(x => x.MaxAge).Min(0).Spinners(false).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @(Html.Kendo().TextBoxFor(x => x.MaxAge).HtmlAttributes(new {type="number", required = "required", style = " width:100%;", @class = "form-control " }))
 
                 </div>
             </div>
@@ -122,7 +115,19 @@
                     <label> توضیح</label>
                     @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
 
-                    @Html.Kendo().TextBoxFor(x => x.MaxAge).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                    @Html.Kendo().EditorFor(x => x.Description).(false).Messages(x=>x.FontNameInherit("فونت پیش فرض").FontSizeInherit("اندازه پیش فرض")).Tools(x =>
+                    {
+                        x.Clear().FontName(items => items
+                            .Add("Tahoma", "Tahoma,Geneva,sans-serif")
+                            .Add("Arial", "Arial, serif")
+                            )
+                            
+                            .FontSize(items => items
+                                .Add("1 (8pt)", "xx-small")
+                                .Add("16px", "16px")
+                            )
+                            .Bold().JustifyCenter().JustifyRight().JustifyLeft();
+                    })
 
                 </div>
             </div>
@@ -158,15 +163,14 @@
                   {
 
 
-                      column.Bound(x => x.Tile).Title("عنوان ").Width(150);
-                      column.Bound(x => x.Gender).Title("نام شرکت").Width(150);
-                      column.Bound(x => x.Region.Title).Title("شهر").Width(100); ;
-                      column.Bound(x => x.FromDateJalali).Title("از تاریخ");
-                      column.Bound(x => x.ToDateJalali).Title("تا تاریخ");
-                      column.Bound(x => x.StillInThisWork).Title("هنوز مشغول به کار هستم").ClientTemplate("<#=StillInThisWork?'بله':'خیر'#>");
+                      column.Bound(x => x.Title).Title("عنوان ").Width(150);
+                      column.Bound(x => x.GenderTitle).Title("نام شرکت").Width(150);
+                      column.Bound(x => x.CityRegion.Title).Title("شهر").Width(100); ;
+                      column.Bound(x => x.JobCategory.TitleFa).Title("از تاریخ");
+                      column.Bound(x => x.IndustryIndustry.TitleFa).Title("تا تاریخ");
                       ;
-                      column.Command(command => command.Custom("ویرایش").Click("WorkExprienceShowDetails")).Width(100);
-                      column.Command(command => command.Custom("حذف").Click("WorkExpriencDelete")).Width(100);
+                      column.Command(command => command.Custom("ویرایش").Click("JobPostShowDetails")).Width(100);
+                      column.Command(command => command.Custom("حذف").Click("JobPostDeleteDelete")).Width(100);
 
                   })
                   .Excel(excel => excel
@@ -211,8 +215,8 @@
                   .Selectable()
                   .HtmlAttributes(new { style = "height:Auto;" })
                   .DataSource(dataSource => dataSource
-                      .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.JobTitle).Descending())
-                      .PageSize(20).Read(read => read.Action("GetAllWorkExprience", "Profile"))
+                      .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.Title).Descending())
+                      .PageSize(20).Read(read => read.Action("GetAllJobPosts", "JobPost"))
                   )
                   //.Resizable(resize => resize.Columns(true))
                   .Resizable(r => r.Columns(true))
@@ -331,7 +335,7 @@
         });
     }
 
-    functionJobPostDeleteDelete(e)
+    function JobPostDeleteDelete(e)
     {
         var grid = $("#JobPostGrid").data("kendoGrid");
 

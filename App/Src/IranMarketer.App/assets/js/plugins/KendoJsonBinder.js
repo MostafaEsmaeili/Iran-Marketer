@@ -42,7 +42,15 @@
                                 var multiselect = $(this).data("kendoMultiSelect");
                                 multiselect.value(fill);
                                 multiselect.trigger("change");
-                                break;
+								break;
+							case "editor":
+									debugger 
+									var editor = $(this).data("kendoEditor");
+								editor.value(fill);
+								var temp = editor.value();
+								editor.value(temp);
+
+	                            break;
                             default:
                                 break;
                             }

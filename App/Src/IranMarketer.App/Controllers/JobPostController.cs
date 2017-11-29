@@ -4,9 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IranMarketer.App.Attribute;
 using IranMarketer.App.Helper;
 using IranMarketer.Domain.Entity;
 using IranMarketer.PartyManagement.Service;
+using IranMarketer.SharedData.Interface;
 using IranMarketer.SharedData.Service;
 using IranMarketer.SharedData.Service.JobPrefer;
 using Kendo.Mvc.Extensions;
@@ -16,10 +18,12 @@ using Pikad.Framework.Repository.IoC;
 
 namespace IranMarketer.App.Controllers
 {
+    [CustomAuthorize]
+    [SetLoggedInUserInformation]
     public class JobPostController : BaseController
     {
         // GET: JobPost
-        public IJobPostRepository JobPostRepository => CoreContainer.Container.Resolve<IJobPostRepository>();
+        public IJobPostService JobPostRepository => CoreContainer.Container.Resolve<IJobPostService>();
         public ActionResult Index()
         {
             return View();
@@ -95,8 +99,9 @@ namespace IranMarketer.App.Controllers
                     try
                     {
                         db.Configuration.ProxyCreationEnabled = false;
-                        all = db.JobPosts.Where(x => x.PartyId == User.Identity.GetPartyId().SafeInt())
-                            .Include(x => x.IndustryIndustry).Include(x => x.JobCategory)
+                        var id = User.Identity.GetPartyId().SafeInt();
+                        all = db.JobPosts.Where(x => x.PartyId == id)
+                            .Include(x => x.IndustryIndustry).Include(x => x.JobCategory).Include(x=>x.CityRegion)
                             .ToList(); //.Include(x => x.Region).ToList();
                     }
                     finally
@@ -115,15 +120,15 @@ namespace IranMarketer.App.Controllers
                 var da = all.Select(x => new
                 {
                     x.Id,
-                    x.Tile,
+                    x.Title,
                     x.Description,
-                    Industryx.IndustryIndustry.TitleFa,
-                    x.JobCategory.TitleFa,
-                    x.Gender,
+                    IndustryIndustry=new{x.IndustryIndustry.TitleFa},
+                    JobCategory=new {x.JobCategory.TitleFa},
+                    x.GenderTitle,
                     x.MaxAge,
                     x.MinAge,
-                    x.MinYearExperience
-                    Region = new { Title = x.Region.Title }
+                    x.MinYearExperience,
+                    CityRegion = new { x.CityRegion.Title}
                 });
                 return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }

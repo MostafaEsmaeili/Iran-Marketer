@@ -85,11 +85,12 @@
     <Compile Include="Document\IDocumentRepository.cs" />
     <Compile Include="Holiday\HolidayService.cs" />
     <Compile Include="Holiday\IHolidayRepository.cs" />
-    <Compile Include="IJobPostRepository.cs" />
+    <Compile Include="JobPost\IJobPostRepository.cs" />
     <Compile Include="Industries\IIndustryRepository.cs" />
     <Compile Include="Industries\IndustryService.cs" />
     <Compile Include="JobCategory\IJobCategoryRepository.cs" />
     <Compile Include="JobCategory\JobCategoryService.cs" />
+    <Compile Include="JobPost\JobPostService.cs" />
     <Compile Include="JobPrefer\IJobPreferRepository.cs" />
     <Compile Include="JobPrefer\JobPreferService.cs" />
     <Compile Include="Product\IProductRepository.cs" />
