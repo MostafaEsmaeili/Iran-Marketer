@@ -115,7 +115,7 @@
                     <label> توضیح</label>
                     @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
 
-                    @Html.Kendo().EditorFor(x => x.Description).(false).Messages(x=>x.FontNameInherit("فونت پیش فرض").FontSizeInherit("اندازه پیش فرض")).Tools(x =>
+                    @Html.Kendo().EditorFor(x => x.Description).Encode(false).Messages(x=>x.FontNameInherit("فونت پیش فرض").FontSizeInherit("اندازه پیش فرض")).Tools(x =>
                     {
                         x.Clear().FontName(items => items
                             .Add("Tahoma", "Tahoma,Geneva,sans-serif")
@@ -243,6 +243,7 @@
             debugger;
 
             var data = $("#JobPostForm").serializeJSON({ checkboxUncheckedValue: "false" });
+            data['Id'] = workXPId;
 
             $.ajax({
                 url: '@Url.Action("SaveOrUpdate", "JobPost")',

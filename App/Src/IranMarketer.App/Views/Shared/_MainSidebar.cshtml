@@ -34,9 +34,19 @@
                     <li><a href="@Url.Action("Index", "Home")"><i class="icon-home4"></i> <span>داشبورد</span></a></li>
                     <li class="navigation-header"><span>مدیریت اطلاعات</span> <i class="icon-menu" title="profile"></i></li>
                     <li tname="profile">
-                        <a href="#"><i class="icon-stack2"></i> <span>مدیریت درخواست ها</span></a>
+                        <a href="#"><i class="icon-stack2"></i> <span>پنل کارجو</span></a>
                         <ul>
                             <li><a href="@Url.Action("EmployeeProfile", "Profile")">ویرایش رزومه</a></li>
+                        </ul>
+                    </li>
+                    <li class="navigation-header"><span>کارفرما</span> <i class="icon-menu" title="profile"></i></li>
+                    <li tname="Boss">
+                        <a href="#"><i class="icon-stack2"></i> <span>پنل کارفرما</span></a>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "LegalParties")">ویرایش اطلاعات کارفرما</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "JobPost")">فرصت های شغلی</a></li>
                         </ul>
                     </li>
                     <li class="navigation-header"><span>پنل ادمین</span> <i class="icon-menu" title="adminPanel"></i></li>
@@ -105,25 +115,6 @@
 
 </script>
 <script>
-    $.ajax({
-        url: "/Account/ValidateToken",
-        type: "Post",
-        dataType: "json",
-
-        contentType: "application/json; charset=utf-8",
-        401: function () {
-       //     var url = '@Url.Action("Login", "Account")';
-          //  window.location.href = url;
-        },
-        error: function (response) {
-       
-        },
-        success: function (response) {
-       
-            $("#NavBarBranchTitle").html(response.BranchTitle);
-            //  g.hideColumn(16);
-        }
-
-    });
+    
 
 </script>
