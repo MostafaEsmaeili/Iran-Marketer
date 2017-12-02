@@ -64,6 +64,9 @@ namespace IranMarketer.Domain.Entity
         [ForeignKey("Industry")] public Industry IndustryIndustry { get; set; }
 
         [ForeignKey("PartyId")] public LegalParty LegalParty { get; set; }
+
+        public System.Collections.Generic.ICollection<JobRequest> JobRequests { get; set; } = new System.Collections.Generic.List<JobRequest>();
+
     }
 
 }

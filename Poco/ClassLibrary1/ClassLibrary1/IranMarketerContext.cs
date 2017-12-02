@@ -35,6 +35,7 @@ namespace IranMarketer.Domain.Entity
         public System.Data.Entity.DbSet<JobPrefer> JobPrefers { get; set; }
         public System.Data.Entity.DbSet<JobPreferIndustry> JobPreferIndustries { get; set; }
         public System.Data.Entity.DbSet<JobPreferJobCategory> JobPreferJobCategories { get; set; }
+        public System.Data.Entity.DbSet<JobRequest> JobRequests { get; set; }
         public System.Data.Entity.DbSet<LegalParty> LegalParties { get; set; }
         public System.Data.Entity.DbSet<Log> Logs { get; set; }
         public System.Data.Entity.DbSet<PartyUniversity> PartyUniversities { get; set; }
@@ -123,6 +124,7 @@ namespace IranMarketer.Domain.Entity
             modelBuilder.Configurations.Add(new JobPreferMapper());
             modelBuilder.Configurations.Add(new JobPreferIndustryMapper());
             modelBuilder.Configurations.Add(new JobPreferJobCategoryMapper());
+            modelBuilder.Configurations.Add(new JobRequestMapper());
             modelBuilder.Configurations.Add(new LegalPartyMapper());
             modelBuilder.Configurations.Add(new LogMapper());
             modelBuilder.Configurations.Add(new PartyUniversityMapper());
@@ -166,6 +168,7 @@ namespace IranMarketer.Domain.Entity
             modelBuilder.Configurations.Add(new JobPreferMapper(schema));
             modelBuilder.Configurations.Add(new JobPreferIndustryMapper(schema));
             modelBuilder.Configurations.Add(new JobPreferJobCategoryMapper(schema));
+            modelBuilder.Configurations.Add(new JobRequestMapper(schema));
             modelBuilder.Configurations.Add(new LegalPartyMapper(schema));
             modelBuilder.Configurations.Add(new LogMapper(schema));
             modelBuilder.Configurations.Add(new PartyUniversityMapper(schema));

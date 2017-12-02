@@ -123,6 +123,7 @@
     <Compile Include="Entity\JobCategory.cs" />
     <Compile Include="Entity\JobPost.cs" />
     <Compile Include="Entity\JobPrefer.cs" />
+    <Compile Include="Entity\JobRequest.cs" />
     <Compile Include="Entity\LegalParty.cs" />
     <Compile Include="Entity\PartySkill.cs" />
     <Compile Include="Entity\PartyUniversity.cs" />

@@ -76,6 +76,7 @@ namespace IranMarketer.Domain.Entity
         [Display(Name = "Modified by")]
         public string ModifiedBy { get; set; }
 
+        public System.Collections.Generic.ICollection<JobPost> JobPosts { get; set; } = new System.Collections.Generic.List<JobPost>();
         public System.Collections.Generic.ICollection<LegalParty> LegalParties { get; set; } = new System.Collections.Generic.List<LegalParty>();
         public System.Collections.Generic.ICollection<PartyUniversity> PartyUniversities_CountryId { get; set; } = new System.Collections.Generic.List<PartyUniversity>();
         public System.Collections.Generic.ICollection<PartyUniversity> PartyUniversities_UniversityCityId { get; set; } = new System.Collections.Generic.List<PartyUniversity>();

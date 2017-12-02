@@ -139,5 +139,47 @@ namespace IranMarketer.App.Controllers
             }
 
         }
+        [HttpPost]
+        public ActionResult GetJobPostWithFilter(JobPost model)
+        {
+            IEnumerable<Domain.Entity.JobPost> all;
+            using (var db = new IranMarketerContext())
+            {
+                try
+                {
+                    db.Configuration.ProxyCreationEnabled = false;
+                    var id = User.Identity.GetPartyId().SafeInt();
+                    all = db.JobPosts.Where(x => x.PartyId == id)
+                        .Include(x => x.IndustryIndustry).Include(x => x.JobCategory).Include(x => x.CityRegion)
+                        .Where(x=>(x.Industry==model.Industry || model.Industry<=0) && (x.City==model.City || model.City<=0))
+                }
+                finally
+                {
+
+                    db.Configuration.ProxyCreationEnabled = true;
+                }
+            }
+            ////   all = WorkExprienceService.GetAllWorkExperiencesWithForeinKey();
+            //var result = JsonConvert.SerializeObject(all.ToDataSourceResult(request), Formatting.None,
+            //    new JsonSerializerSettings
+            //    {
+            //        //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            //        MaxDepth = 2
+            //    });
+            var da = all.Select(x => new
+            {
+                x.Id,
+                x.Title,
+                x.Description,
+                IndustryIndustry = new { x.IndustryIndustry.TitleFa },
+                JobCategory = new { x.JobCategory.TitleFa },
+                x.GenderTitle,
+                x.MaxAge,
+                x.MinAge,
+                x.MinYearExperience,
+                CityRegion = new { x.CityRegion.Title }
+            });
+            return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
     }
 }

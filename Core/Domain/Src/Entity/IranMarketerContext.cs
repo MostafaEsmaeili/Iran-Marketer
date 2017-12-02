@@ -31,6 +31,7 @@ namespace IranMarketer.Domain.Entity
         public System.Data.Entity.DbSet<RetailParty> RetailParties { get; set; }
         public System.Data.Entity.DbSet<WorkExperience> WorkExperiences { get; set; }
         public System.Data.Entity.DbSet<JobPost> JobPosts { get; set; }
+        public System.Data.Entity.DbSet<JobRequest> JobRequests { get; set; }
 
 
         /// <summary>

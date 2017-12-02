@@ -181,6 +181,7 @@ namespace IranMarketer.Domain.Entity
 
         public System.Collections.Generic.ICollection<Document> Documents { get; set; } = new System.Collections.Generic.List<Document>();
         public System.Collections.Generic.ICollection<JobPrefer> JobPrefers { get; set; } = new System.Collections.Generic.List<JobPrefer>();
+        public System.Collections.Generic.ICollection<JobRequest> JobRequests { get; set; } = new System.Collections.Generic.List<JobRequest>();
         public System.Collections.Generic.ICollection<PartyUniversity> PartyUniversities { get; set; } = new System.Collections.Generic.List<PartyUniversity>();
         public System.Collections.Generic.ICollection<WorkExperience> WorkExperiences { get; set; } = new System.Collections.Generic.List<WorkExperience>();
 

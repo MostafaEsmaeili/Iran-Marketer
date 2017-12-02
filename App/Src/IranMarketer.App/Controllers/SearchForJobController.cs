@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace IranMarketer.App.Controllers
 {
-    public class SearchForJobController : Controller
+    public class SearchForJobController : BaseController
     {
         // GET: SearchForJob
         public ActionResult Index()

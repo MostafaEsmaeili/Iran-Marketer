@@ -2848,10 +2848,10 @@
     <Content Include="Views\LegalParties\_LegalPartyProfile.cshtml" />
     <Content Include="Views\JobPost\Index.cshtml" />
     <Content Include="Views\JobPost\_CreateJobPost.cshtml" />
+    <Content Include="Views\SearchForJob\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SearchForJob\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />

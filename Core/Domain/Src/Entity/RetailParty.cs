@@ -158,6 +158,7 @@ namespace IranMarketer.Domain.Entity
         public virtual System.Collections.Generic.ICollection<PartyUniversity> PartyUniversities { get; set; }
         public virtual System.Collections.Generic.ICollection<WorkExperience> WorkExperiences { get; set; }
 
+        public System.Collections.Generic.ICollection<JobRequest> JobRequests { get; set; } = new System.Collections.Generic.List<JobRequest>();
 
         [ForeignKey("CityId")] public virtual Region City { get; set; }
 

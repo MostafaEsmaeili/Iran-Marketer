@@ -33,6 +33,7 @@ namespace IranMarketer.Domain.Entity
         System.Data.Entity.DbSet<JobPrefer> JobPrefers { get; set; }
         System.Data.Entity.DbSet<JobPreferIndustry> JobPreferIndustries { get; set; }
         System.Data.Entity.DbSet<JobPreferJobCategory> JobPreferJobCategories { get; set; }
+        System.Data.Entity.DbSet<JobRequest> JobRequests { get; set; }
         System.Data.Entity.DbSet<LegalParty> LegalParties { get; set; }
         System.Data.Entity.DbSet<Log> Logs { get; set; }
         System.Data.Entity.DbSet<PartyUniversity> PartyUniversities { get; set; }
