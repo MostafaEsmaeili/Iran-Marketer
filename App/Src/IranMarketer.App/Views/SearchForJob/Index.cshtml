@@ -2,13 +2,15 @@
 @using IranMarketer.Domain.Entity
 @model JobPost
 @using Kendo.Mvc.UI
-@using JobPost = IranMarketer.Domain.DTO.JobPost
+@using JobPost = IranMarketer.Domain.Entity.JobPost
 
 
 @{
     Layout = "../Shared/_Layout.cshtml";
     ViewBag.Title = "ویرایش اطلاعات کارفرما";
 }
+<link href="~/assets/css/TripX.css" rel="stylesheet" />
+<link href="~/assets/css/Site.css" rel="stylesheet" />
 <script type="text/javascript" src="~/assets/js/core/libraries/jquery_ui/core.min.js"></script>
 <script type="text/javascript" src="~/assets/js/plugins/forms/selects/select2.min.js"></script>
 <script type="text/javascript" src="~/assets/js/plugins/forms/styling/uniform.min.js"></script>
@@ -39,91 +41,107 @@
                 </div>
             </div>
             
-            <div id="jobSearchFilter">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>شهر</label>
-                            @(Html.Kendo().ComboBoxFor(x => x.City).HtmlAttributes(new { @class = " form-control ui-wizard-content", style = " width:100%;", required = "required" })
-                          .DataTextField("Title")
-                          .DataValueField("Id").Filter(FilterType.Contains)
-                          .AutoBind(true)
-                          .HighlightFirst(false)
-                          .SyncValueAndText(true)
-                          .MinLength(3)
-                          .DataSource(source => source.Read(read => read.Action("GetCities", "UIComponent", new { addAll = true }).Type(HttpVerbs.Get)).ServerFiltering(true)))
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>جنسیت</label>
-                            @(Html.Kendo().DropDownListFor(x => x.Gender).HtmlAttributes(new { @class = "k-rtl ", style = " width:100%;", required = "required" })
-                              .DataTextField("GenderTypeTitleFa")
-                              .DataValueField("GenderTypeValue").Filter(FilterType.Contains)
-                              .AutoBind(true)
-                              .DataSource(source => source.Read(read => read.Action("GetGenderType", "UIComponent")).ServerFiltering(true)))
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>صنعت</label>
-                            @(Html.Kendo().ComboBoxFor(x => x.Industry).HtmlAttributes(new { @class = "k-rtl form-control ", style = " width:100%;", required = "required" })
-                              .DataTextField("TitleFa")
-                              .DataValueField("Id").Filter(FilterType.Contains)
-                              .AutoBind(true)
-                              .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent")).ServerFiltering(true)))
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="form-group k-rtl">
-                            <label>دسته شغلی</label>
-                            @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
-                            @(Html.Kendo().ComboBoxFor(x => x.Category).HtmlAttributes(new { @class = "form-control k-rtl", style = " width:100%;", required = "required" })
-                          .DataTextField("TitleFa")
-                          .Filter(FilterType.Contains)
-                          .DataValueField("Id")
-                          .SyncValueAndText(true)
-                          .AutoBind(true)
-                          .DataSource(source => source.Read(read => read.Action("GetJobCategories", "UIComponent", new { addAll = false })).ServerFiltering(false)))
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>حداقل سابقه شغلی</label>
-                            @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
-                            @(Html.Kendo().TextBoxFor(x => x.MinYearExperience).HtmlAttributes(new { type = "number", required = "required", style = " width:100%;", @class = "form-control " }))
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>  
-
-            
-            
 
             <div class="panel-body k-rtl">
-                @(Html.Kendo().ListView<JobPost>()
-                      .Name("listView")
-                      .TagName("div")
-                      .ClientTemplateId("template")
-                      .DataSource(dataSource =>
-                      {
-                          dataSource.Read(read => read.Action("GetJobPostWithFilter", "JobPost").Data("getFilter"));
-                          dataSource.PageSize(21);
-                      })
-                      )
+                <form id="jobSearchFilter">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>شهر</label>
+                                @(Html.Kendo().ComboBoxFor(x => x.City).HtmlAttributes(new { @class = " form-control ui-wizard-content", style = " width:100%;", required = "required" })
+                                      .DataTextField("Title")
+                                      .DataValueField("Id").Filter(FilterType.Contains)
+                                      .AutoBind(true)
+                                      .HighlightFirst(false)
+                                      .SyncValueAndText(true)
+                                      .MinLength(3)
+                                      .DataSource(source => source.Read(read => read.Action("GetCities", "UIComponent", new { addAll = true }).Type(HttpVerbs.Get)).ServerFiltering(true)))
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>جنسیت</label>
+                                @(Html.Kendo().DropDownListFor(x => x.Gender).HtmlAttributes(new { @class = "k-rtl ", style = " width:100%;", required = "required" })
+                                      .DataTextField("GenderTypeTitleFa")
+                                      .DataValueField("GenderTypeValue").Filter(FilterType.Contains)
+                                      .AutoBind(true)
+                                      .DataSource(source => source.Read(read => read.Action("GetGenderType", "UIComponent")).ServerFiltering(true)))
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>صنعت</label>
+                                @(Html.Kendo().ComboBoxFor(x => x.Industry).HtmlAttributes(new { @class = "k-rtl form-control ", style = " width:100%;", required = "required" })
+                                      .DataTextField("TitleFa")
+                                      .DataValueField("Id").Filter(FilterType.Contains)
+                                      .AutoBind(true)
+                                      .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent")).ServerFiltering(true)))
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group k-rtl">
+                                <label>دسته شغلی</label>
+                                @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                                @(Html.Kendo().ComboBoxFor(x => x.Category).HtmlAttributes(new { @class = "form-control k-rtl", style = " width:100%;", required = "required" })
+                                      .DataTextField("TitleFa")
+                                      .Filter(FilterType.Contains)
+                                      .DataValueField("Id")
+                                      .SyncValueAndText(true)
+                                      .AutoBind(true)
+                                      .DataSource(source => source.Read(read => read.Action("GetJobCategories", "UIComponent", new { addAll = false })).ServerFiltering(false)))
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>حداقل سابقه شغلی</label>
+                                @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
+                                @(Html.Kendo().TextBoxFor(x => x.MinYearExperience).HtmlAttributes(new { type = "number", required = "required", style = " width:100%;", @class = "form-control " }))
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <button id="Search" type="button" class="btn btn-primary legitRipple">جست  و جو<i class="icon-arrow-left13 position-right"></i></button>
+
+
+                    </div>
+
+                </form>  
+
+                
+                
+     
+
+
+                
+
+         
             </div>
         </div>
 
+    </div>
+    <div class="content-wrapper">
+
+        <!-- Cards layout -->
+ 
+            @(Html.Kendo().ListView<IranMarketer.Domain.DTO.JobPost>()
+                  .Name("listView")
+                  .TagName("ul")
+                  .HtmlAttributes(new{@class= "media-list content-group" ,style= "background-color: transparent;" })
+                  .ClientTemplateId("template")
+                  .DataSource(dataSource =>
+                  {
+                      dataSource.Read(read => read.Action("GetJobPostWithFilter", "JobPost").Data("getFilter"));
+
+                  })
+                  )
 
     </div>
 </div>
@@ -187,9 +205,33 @@
 
         //});
     });
-    $("#clear").click(function(){
-        var forms = $(this).parents('form:first')[0].id;
-        $('#'+forms).ClearAll();
+    $("#Search").click(function(){
+        $("#listView").data("kendoListView").dataSource.read();
 
     });
 </script>
+<script type="text/x-kendo-tmpl" id="template">
+                    <li class="media panel panel-body stack-media-on-mobile">
+                        <div class="media-left">
+                            <a href="">
+                                <img src="" class="img-rounded img-lg" alt="pic">
+                            </a>
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-heading text-semibold">
+                                <a href="">#=data.Title#</a>
+                            </h6>
+
+                            <ul class="list-inline list-inline-separate text-muted mb-10">
+                                <li><a href="" class="text-muted">#=data.LegalParty.CompanyName#</a></li>
+                                <li>#=data.CityRegion.Title#</li>
+                            </ul>
+
+                            #=data.Description#                       </div>
+
+                        <div class="media-right text-nowrap">
+                            <span class="label bg-blue">New</span>
+                        </div>
+                    </li>
+                </script>

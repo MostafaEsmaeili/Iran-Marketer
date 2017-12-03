@@ -6,7 +6,11 @@ CREATE TABLE [dbo].[JobRequest]
 [UserName] [nvarchar] (256) COLLATE Persian_100_CI_AS NULL,
 [DateOfRequest] [datetime] NULL,
 [IsRequested] [bit] NULL,
-[RequestStatus] [nchar] (10) COLLATE Persian_100_CI_AS NULL
+[RequestStatus] [nchar] (10) COLLATE Persian_100_CI_AS NULL,
+[Created] [datetime] NULL,
+[CreatedBy] [nvarchar] (50) COLLATE Persian_100_CI_AS NULL,
+[Modified] [datetime] NULL,
+[ModifiedBy] [nchar] (10) COLLATE Persian_100_CI_AS NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[JobRequest] ADD CONSTRAINT [PK_JobRequest] PRIMARY KEY CLUSTERED  ([Id]) ON [PRIMARY]

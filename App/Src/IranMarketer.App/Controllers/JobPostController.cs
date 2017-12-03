@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using IranMarketer.App.Attribute;
 using IranMarketer.App.Helper;
+using IranMarketer.Domain.DTO;
 using IranMarketer.Domain.Entity;
 using IranMarketer.PartyManagement.Service;
 using IranMarketer.SharedData.Interface;
@@ -15,6 +16,7 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository.IoC;
+using JobPost = IranMarketer.Domain.DTO.JobPost;
 
 namespace IranMarketer.App.Controllers
 {
@@ -140,18 +142,24 @@ namespace IranMarketer.App.Controllers
 
         }
         [HttpPost]
-        public ActionResult GetJobPostWithFilter(JobPost model)
+        public ActionResult GetJobPostWithFilter([DataSourceRequest] DataSourceRequest request,JobPost model)
         {
-            IEnumerable<Domain.Entity.JobPost> all;
+            List<Domain.Entity.JobPost> all;
             using (var db = new IranMarketerContext())
             {
                 try
                 {
                     db.Configuration.ProxyCreationEnabled = false;
-                    var id = User.Identity.GetPartyId().SafeInt();
-                    all = db.JobPosts.Where(x => x.PartyId == id)
-                        .Include(x => x.IndustryIndustry).Include(x => x.JobCategory).Include(x => x.CityRegion)
-                        .Where(x=>(x.Industry==model.Industry || model.Industry<=0) && (x.City==model.City || model.City<=0))
+                    all = db.JobPosts.Where(x =>
+                            (model.Industry == null || model.Industry <= 0 || x.Industry == model.Industry)
+                            && (model.City == null || model.City <= 0 || x.City == model.City)
+                            && (model.Gender == null || model.Gender <= 0 || x.Gender == model.Gender)
+                            &&
+                            (model.MinYearExperience == null || model.MinYearExperience <= 0 ||
+                            x.MinYearExperience >= model.MinYearExperience))
+                        .Include(x => x.IndustryIndustry).Include(x => x.JobCategory).Include(x => x.CityRegion).Include(x=>x.LegalParty)
+                        .Include(x => x.JobRequests).ToList();
+
                 }
                 finally
                 {
@@ -166,20 +174,24 @@ namespace IranMarketer.App.Controllers
             //        //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             //        MaxDepth = 2
             //    });
-            var da = all.Select(x => new
+            var da = all.Select(x => new JobPost
             {
-                x.Id,
-                x.Title,
-                x.Description,
-                IndustryIndustry = new { x.IndustryIndustry.TitleFa },
-                JobCategory = new { x.JobCategory.TitleFa },
-                x.GenderTitle,
-                x.MaxAge,
-                x.MinAge,
-                x.MinYearExperience,
-                CityRegion = new { x.CityRegion.Title }
+               Id= x.Id,
+               Title = x.Title,
+               Description = x.Description,
+               Industry = x.Industry,
+               Category = x.Category,
+                Requested= x.JobRequests.FirstOrDefault(y=>y.PartyId== User.Identity.GetPartyId().SafeInt())!=null,
+                IndustryIndustry = new Industry{ TitleFa = x.IndustryIndustry.TitleFa },
+                JobCategory = new JobCategory{TitleFa = x.JobCategory.TitleFa },
+                Gender=x.Gender,
+                MaxAge = x.MaxAge,
+                MinAge = x.MinAge,
+              MinYearExperience  = x.MinYearExperience,
+              LegalParty = new Domain.DTO.LegalParty { CompanyName = x.LegalParty?.CompanyName},
+                CityRegion = new Region{ Title=x.CityRegion.Title }
             });
-            return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return Json(da.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -288,6 +288,8 @@
     <Content Include="assets\css\icons\icomoon\fonts\icomoon.svg" />
     <Content Include="assets\css\icons\icomoon\styles.css" />
     <Content Include="assets\css\pnotify.css" />
+    <Content Include="assets\css\Site.css" />
+    <Content Include="assets\css\TripX.css" />
     <Content Include="assets\demo_data\maps\vector\gdp_demo_data.js" />
     <Content Include="assets\demo_data\wizard\additional.html" />
     <Content Include="assets\demo_data\wizard\education.html" />
