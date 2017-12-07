@@ -35,11 +35,9 @@ namespace IranMarketer.Domain.Entity
         [Display(Name = "Is requested")]
         public bool? IsRequested { get; set; }
 
-        [Column(@"RequestStatus", Order = 7, TypeName = "nchar")]
-        [MaxLength(10)]
-        [StringLength(10)]
+        [Column(@"RequestStatus", Order = 7, TypeName = "int")]
         [Display(Name = "Request status")]
-        public string RequestStatus { get; set; }
+        public int RequestStatus { get; set; }
 
 
         [ForeignKey("JobPostId")] public JobPost JobPost { get; set; }

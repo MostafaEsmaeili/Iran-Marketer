@@ -79,6 +79,7 @@
     <Compile Include="IJobCategoryService.cs" />
     <Compile Include="IJobPostService.cs" />
     <Compile Include="IJobPreferService.cs" />
+    <Compile Include="IJobRequestService.cs" />
     <Compile Include="IPartySkillService.cs" />
     <Compile Include="ISettingService.cs" />
     <Compile Include="IProductService.cs" />

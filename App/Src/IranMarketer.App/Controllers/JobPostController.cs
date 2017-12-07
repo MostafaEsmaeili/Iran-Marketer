@@ -17,6 +17,7 @@ using Kendo.Mvc.UI;
 using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository.IoC;
 using JobPost = IranMarketer.Domain.DTO.JobPost;
+using JobRequest = IranMarketer.Domain.DTO.JobRequest;
 
 namespace IranMarketer.App.Controllers
 {
@@ -89,7 +90,7 @@ namespace IranMarketer.App.Controllers
             }
         }
 
-
+        
         public ActionResult GetAllJobPosts([DataSourceRequest] DataSourceRequest request)
         {
             try
@@ -141,6 +142,59 @@ namespace IranMarketer.App.Controllers
             }
 
         }
+
+        [HttpPost]
+        public ActionResult GetAllRequestForJobPost([DataSourceRequest] DataSourceRequest request, JobRequest model)
+        {
+            List<Domain.Entity.JobRequest> all;
+            using (var db = new IranMarketerContext())
+            {
+                try
+                {
+                    db.Configuration.ProxyCreationEnabled = false;
+                    var id = User.Identity.GetPartyId();
+                    all = db.JobRequests.Where(x =>
+                            x.JobPost.LegalParty.Id == id.SafeInt() &&
+                            (x.RequestStatus == model.RequestStatus || model.RequestStatus <= 0))
+                        .Include(x => x.RetailParty).Include(x => x.JobPost).ToList();
+
+                }
+                finally
+                {
+
+                    db.Configuration.ProxyCreationEnabled = true;
+                }
+            }
+            ////   all = WorkExprienceService.GetAllWorkExperiencesWithForeinKey();
+            //var result = JsonConvert.SerializeObject(all.ToDataSourceResult(request), Formatting.None,
+            //    new JsonSerializerSettings
+            //    {
+            //        //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            //        MaxDepth = 2
+            //    });
+            var da = all.Select(x => new JobPost
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                Industry = x.Industry,
+                Category = x.Category,
+                Requested = x.JobRequests.FirstOrDefault(y => y.PartyId == User.Identity.GetPartyId().SafeInt()) != null,
+                IndustryIndustry = new Industry { TitleFa = x.IndustryIndustry.TitleFa },
+                JobCategory = new JobCategory { TitleFa = x.JobCategory.TitleFa },
+                Gender = x.Gender,
+                MaxAge = x.MaxAge,
+                MinAge = x.MinAge,
+                MinYearExperience = x.MinYearExperience,
+                LegalParty = new Domain.DTO.LegalParty { CompanyName = x.LegalParty?.CompanyName },
+                CityRegion = new Region { Title = x.CityRegion.Title }
+            });
+            return Json(da.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
         [HttpPost]
         public ActionResult GetJobPostWithFilter([DataSourceRequest] DataSourceRequest request,JobPost model)
         {

@@ -90,6 +90,7 @@
     <Compile Include="DTO\Evidence.cs" />
     <Compile Include="DTO\JobPost.cs" />
     <Compile Include="DTO\JobPrefer.cs" />
+    <Compile Include="DTO\JobRequest.cs" />
     <Compile Include="DTO\LegalParty.cs" />
     <Compile Include="DTO\Party.cs" />
     <Compile Include="DTO\PartyBankAccount.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Enum\DocumentType.cs" />
     <Compile Include="Enum\FiscalYearStatue.cs" />
     <Compile Include="Enum\GuaranteeState.cs" />
+    <Compile Include="Enum\JobRequestStatus.cs" />
     <Compile Include="Enum\MaritalStatus.cs" />
     <Compile Include="Enum\MilitaryService.cs" />
     <Compile Include="Enum\ProductStatus.cs" />

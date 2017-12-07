@@ -93,6 +93,8 @@
     <Compile Include="JobPost\JobPostService.cs" />
     <Compile Include="JobPrefer\IJobPreferRepository.cs" />
     <Compile Include="JobPrefer\JobPreferService.cs" />
+    <Compile Include="JobRequest\IJobRequestRepository.cs" />
+    <Compile Include="JobRequest\JobRequestService.cs" />
     <Compile Include="Product\IProductRepository.cs" />
     <Compile Include="Product\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

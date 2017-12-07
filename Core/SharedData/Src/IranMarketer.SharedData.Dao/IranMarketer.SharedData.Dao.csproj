@@ -86,6 +86,7 @@
     <Compile Include="JobCategory\JobCategoryRepository.cs" />
     <Compile Include="JobPost\JobPostRepository.cs" />
     <Compile Include="JobPrefer\JobPreferRepository.cs" />
+    <Compile Include="JobRequest\JobRequestRepository.cs" />
     <Compile Include="Product\ProductRepository.cs" />
     <Compile Include="Product\ProductRowMapper.cs" />
     <Compile Include="Product\SimpleProductRowMapper.cs" />
