@@ -128,14 +128,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        @*<div class="row">
             >
             <div class="col-md-6">
                 <div class="form-group">
-                    <label> آپلود عکس</label>
+                    <label> آپلود عکس</label>*@
                     @*@Html.Kendo().TextBoxFor(x => x.LastName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })*@
 
-                    @(Html.Kendo().Upload()
+                    @*@(Html.Kendo().Upload()
                           .Name("files")
                           .Async(a => a
                               .Save("SaveProfilePicture", "Profile")
@@ -151,7 +151,7 @@
 
                 </div>
             </div>
-        </div>
+        </div>*@
 
     </fieldset>
 

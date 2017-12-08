@@ -8,6 +8,7 @@ using IranMarketer.App.Attribute;
 using IranMarketer.App.Helper;
 using IranMarketer.Domain.DTO;
 using IranMarketer.Domain.Entity;
+using IranMarketer.PartyManagement.Interface;
 using IranMarketer.PartyManagement.Service;
 using IranMarketer.SharedData.Interface;
 using IranMarketer.SharedData.Service;
@@ -27,6 +28,8 @@ namespace IranMarketer.App.Controllers
     {
         // GET: JobPost
         public IJobPostService JobPostRepository => CoreContainer.Container.Resolve<IJobPostService>();
+
+        public IRetailPartyService RetailPartyService => CoreContainer.Container.Resolve<IRetailPartyService>();
         public ActionResult Index()
         {
             return View();
@@ -143,6 +146,13 @@ namespace IranMarketer.App.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult GetAllRequestForJobPost()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult GetAllRequestForJobPost([DataSourceRequest] DataSourceRequest request, JobRequest model)
         {
@@ -152,42 +162,42 @@ namespace IranMarketer.App.Controllers
                 try
                 {
                     db.Configuration.ProxyCreationEnabled = false;
-                    var id = User.Identity.GetPartyId();
+                    
+                    var id = User.Identity.GetPartyId().SafeInt();
                     all = db.JobRequests.Where(x =>
-                            x.JobPost.LegalParty.Id == id.SafeInt() &&
+                            x.JobPost.LegalParty.Id == id &&
                             (x.RequestStatus == model.RequestStatus || model.RequestStatus <= 0))
-                        .Include(x => x.RetailParty).Include(x => x.JobPost).ToList();
-
-                }
+                   //     .Include(x => x.RetailParty)
+                        .Include(x => x.JobPost)
+                        .OrderByDescending(x=>x.DateOfRequest)
+                        .ToList();
+                    }
                 finally
                 {
 
                     db.Configuration.ProxyCreationEnabled = true;
                 }
             }
-            ////   all = WorkExprienceService.GetAllWorkExperiencesWithForeinKey();
-            //var result = JsonConvert.SerializeObject(all.ToDataSourceResult(request), Formatting.None,
-            //    new JsonSerializerSettings
-            //    {
-            //        //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            //        MaxDepth = 2
-            //    });
-            var da = all.Select(x => new JobPost
+            foreach (var jobRequest in all)
+            {
+                if (jobRequest.PartyId != null)
+                    jobRequest.RetailParty = RetailPartyService.GetKey(jobRequest.PartyId.Value);
+            }
+            //  var res = all.Select(ObjectMapper.BaseConverter.ConvertSourceToDest<Domain.Entity.JobRequest, JobRequest>).ToList();
+
+
+
+            var da = all.Select(x => new JobRequest
             {
                 Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                Industry = x.Industry,
-                Category = x.Category,
-                Requested = x.JobRequests.FirstOrDefault(y => y.PartyId == User.Identity.GetPartyId().SafeInt()) != null,
-                IndustryIndustry = new Industry { TitleFa = x.IndustryIndustry.TitleFa },
-                JobCategory = new JobCategory { TitleFa = x.JobCategory.TitleFa },
-                Gender = x.Gender,
-                MaxAge = x.MaxAge,
-                MinAge = x.MinAge,
-                MinYearExperience = x.MinYearExperience,
-                LegalParty = new Domain.DTO.LegalParty { CompanyName = x.LegalParty?.CompanyName },
-                CityRegion = new Region { Title = x.CityRegion.Title }
+                JobPost=new Domain.Entity.JobPost { Title = x.JobPost.Title},
+                RetailParty = new Domain.Entity.RetailParty
+                {
+                    FirstName = x.RetailParty.FirstName,
+                    LastName = x.RetailParty.LastName,
+                    Gender = x.RetailParty.Gender
+                },
+
             });
             return Json(da.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }

@@ -12,7 +12,10 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using IranMarketer.Common.Utility;
+using IranMarketer.Domain.Enum;
 using Newtonsoft.Json;
+using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository;
 
 namespace IranMarketer.Domain.Entity
@@ -152,6 +155,15 @@ namespace IranMarketer.Domain.Entity
         [Column(@"ValidUntil", Order = 25, TypeName = "date")]
         [Display(Name = "Valid until")]
         public System.DateTime? ValidUntil { get; set; }
+
+        [NotMapped]
+        public string FullTextName => $"{FirstName} {LastName}";
+
+        [NotMapped]
+        public string GenderTitle => Gender.SafeNullableEnum<Gender>().GetDescription();
+
+        [NotMapped]
+        public int? Age => BirthDate.CalculateAge();
 
         public virtual System.Collections.Generic.ICollection<Document> Documents { get; set; }
         public virtual System.Collections.Generic.ICollection<JobPrefer> JobPrefers { get; set; }

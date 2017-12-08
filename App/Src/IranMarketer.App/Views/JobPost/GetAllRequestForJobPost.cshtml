@@ -1,0 +1,138 @@
+﻿@Html.Partial("_RegisterLastVersionOfKendo")
+@using IranMarketer.Domain.Entity
+@using Kendo.Mvc.UI
+@using JobRequest = IranMarketer.Domain.DTO.JobRequest
+
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "درخواست ها برای موقعیت شغلی";
+}
+<link href="~/assets/css/TripX.css" rel="stylesheet" />
+<link href="~/assets/css/Site.css" rel="stylesheet" />
+<script type="text/javascript" src="~/assets/js/core/libraries/jquery_ui/core.min.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/selects/select2.min.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+<script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>
+
+<div>
+
+    <div id="JobResults" class="panel panel-flat " style="background-color: transparent !important">
+        <div class="panel-heading">
+            <h5 class="panel-title">تمامی فرصت های شغلی<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body" style="background-color: transparent !important">
+            <div class="content-wrapper" style="background-color: transparent !important">
+
+                <!-- Cards layout -->
+
+                @(Html.Kendo().ListView<JobRequest>()
+                      .Name("listView")
+                      .TagName("ul")
+                      .HtmlAttributes(new { @class = "media-list content-group", style = "background-color: transparent;" })
+                      .ClientTemplateId("template")
+                      .Pageable(x =>
+                      {
+                          x.Enabled(true);
+                          x.PageSizes(true);
+                          x.PreviousNext(true);
+
+                      })
+                      .DataSource(dataSource =>
+                      {
+                          dataSource.Read(read => read.Action("GetAllRequestForJobPost", "JobPost"));
+
+                      })
+                      )
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-horizontal .form-group {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .form-group-material > .control-label {
+        opacity: 1 !important;
+        filter: alpha(opacity=0);
+    }
+
+
+    .dropdown-header {
+        /*font-size: 1.2em;*/
+        padding: 0px 0px;
+        text-align: right;
+    }
+
+        .dropdown-header > span {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: right;
+            display: inline-block;
+            border-style: solid;
+            border-width: 0 0 1px 1px;
+            padding: .3em .6em;
+            width: 150px;
+        }
+
+            .dropdown-header > span:first-child {
+                width: 150px;
+                border-left-width: 0;
+            }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+
+        $(".k-textbox ").removeClass("k-textbox");
+    });
+
+</script>
+
+<script type="text/x-kendo-tmpl" id="template">
+    <li class="media panel panel-body stack-media-on-mobile">
+        <div class="media-left">
+            <a href="">
+                <img src="" class="img-rounded img-lg" alt="دانلود رزومه">
+            </a>
+        </div>
+
+        <div class="media-body">
+            <h6 class="media-heading text-semibold">
+                <a href="">#=data.RetailParty.FullTextName#</a>
+            </h6>
+
+            <ul class="list-inline list-inline-separate text-muted mb-10">
+                <li><a href="" class="text-muted">#=data.RetailParty.GenderTitle#</a></li>
+                <li>#=data.RetailParty.Age#</li>
+            </ul>
+
+        </div>
+
+        <div class="media-right text-nowrap">
+            <span class="label bg-blue">New</span>
+        </div>
+        
+        <button id="AddJobRequest" onClick="" style="float:left;" type="button" class="btn btn-primary legitRipple">رد درخواست<i class="icon-arrow-left13 position-left"></i></button>
+
+
+       
+
+    </li>
+</script>
+
+

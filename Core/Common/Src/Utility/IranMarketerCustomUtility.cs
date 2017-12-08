@@ -669,7 +669,19 @@ namespace IranMarketer.Common.Utility
         {
             return dailyProfit / 10000;
         }
-
+        public static int CalculateAge(this DateTime? birthDate)
+        {
+            if (birthDate == null || birthDate <= IranMarketerCustomUtility.MinDate)
+            {
+                return 0;
+            }
+            var today = DateTime.Today;
+            // Calculate the age.
+            var age = today.Year - birthDate.Value.Year;
+            // Go back to the year the person was born in case of a leap year
+            if (birthDate > today.AddYears(-age)) age--;
+            return age;
+        }
         public static string GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using IranMarketer.Common.Utility;
 using IranMarketer.Domain.DTO;
 using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository;
@@ -73,6 +74,7 @@ namespace IranMarketer.App.Helper
             }
             return false;
         }
+
 
         private static bool HasAnyInterfaces(Type parent, Type child)
         {

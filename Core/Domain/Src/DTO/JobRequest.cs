@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using IranMarketer.Domain.Enum;
+using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository;
 
 namespace IranMarketer.Domain.DTO
@@ -13,7 +14,7 @@ namespace IranMarketer.Domain.DTO
 
       
         public System.DateTime? DateOfRequest { get; set; }
-        public string ShamsiDate { get; set; }
+        public string ShamsiDate => DateOfRequest?.ConvertMiladiToJalali();
        
         public bool? IsRequested { get; set; }
 

@@ -105,7 +105,7 @@ namespace IranMarketer.App.Controllers
                             CompanyName = x.JobPost.LegalParty.CompanyName
                         }
                     },
-                    ShamsiDate = x.DateOfRequest.ConvertMiladiToJalali(),
+                    DateOfRequest = x.DateOfRequest,
                     RequestStatus = x.RequestStatus
                 });
                 return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
