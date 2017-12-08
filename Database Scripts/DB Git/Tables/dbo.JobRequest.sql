@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[JobRequest]
 [UserName] [nvarchar] (256) COLLATE Persian_100_CI_AS NULL,
 [DateOfRequest] [datetime] NULL,
 [IsRequested] [bit] NULL,
-[RequestStatus] [nchar] (10) COLLATE Persian_100_CI_AS NULL,
+[RequestStatus] [int] NULL,
 [Created] [datetime] NULL,
 [CreatedBy] [nvarchar] (50) COLLATE Persian_100_CI_AS NULL,
 [Modified] [datetime] NULL,
