@@ -8,6 +8,7 @@ using IranMarketer.App.Attribute;
 using IranMarketer.App.Helper;
 using IranMarketer.Domain.DTO;
 using IranMarketer.Domain.Entity;
+using IranMarketer.Domain.Enum;
 using IranMarketer.PartyManagement.Interface;
 using IranMarketer.PartyManagement.Service;
 using IranMarketer.SharedData.Interface;
@@ -256,6 +257,45 @@ namespace IranMarketer.App.Controllers
                 CityRegion = new Region{ Title=x.CityRegion.Title }
             });
             return Json(da.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChangeJobRequestStatus(int jobRequestId,int status)
+        {
+            try
+            {
+                using (var db=new IranMarketerContext())
+                {
+                    try
+                    {
+                        db.Configuration.ProxyCreationEnabled = false;
+                        var request = db.JobRequests.Where(x => x.Id == jobRequestId).Include(x => x.JobPost).Include(x => x.JobPost.LegalParty).FirstOrDefault();
+                        if (request?.JobPost.LegalParty.Id != User.Identity.GetPartyId().SafeInt())
+                        {
+                            ErrorApiResponse.Message = "خطای دسترسی";
+                            return Json(ErrorApiResponse);
+                        }
+                        var isvalidStaus = status.SafeNullableEnum<JobRequestStatus>();
+                        if (isvalidStaus == null)
+                            return Json(ErrorApiResponse);
+                        request.RequestStatus = status;
+                        request.ModifiedBy = User.Identity.GetUserName();
+                        request.Modified = DateTime.Now;
+
+                        db.SaveChanges();
+                    }
+                    finally
+                    {
+                        db.Configuration.ProxyCreationEnabled = true;
+                    }
+
+                    return Json(SuccessApiResponse);
+                }
+            }
+            catch (Exception )
+            {
+
+                return Json(ErrorApiResponse);
+            }
         }
     }
 }

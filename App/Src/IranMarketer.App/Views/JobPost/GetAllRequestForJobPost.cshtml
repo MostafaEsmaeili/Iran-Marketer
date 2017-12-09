@@ -1,5 +1,6 @@
 ﻿@Html.Partial("_RegisterLastVersionOfKendo")
 @using IranMarketer.Domain.Entity
+@using IranMarketer.Domain.Enum
 @using Kendo.Mvc.UI
 @using JobRequest = IranMarketer.Domain.DTO.JobRequest
 
@@ -127,12 +128,58 @@
             <span class="label bg-blue">New</span>
         </div>
         
-        <button id="AddJobRequest" onClick="" style="float:left;" type="button" class="btn btn-primary legitRipple">رد درخواست<i class="icon-arrow-left13 position-left"></i></button>
+        <button id="AddJobRequest" onClick="ChangeJobRequestStatus(#:data.Id#,@((int)JobRequestStatus.Rejected))" style="float:left;" type="button" class="btn btn-danger legitRipple">رد درخواست<i class="icon-arrow-left13 position-left"></i></button>
 
+        <button id="AddJobRequest" onClick="ChangeJobRequestStatus(#:data.Id#,@((int)JobRequestStatus.Accepted))" style="float:left;" type="button" class="btn btn-success legitRipple">درخواست مصاحبه<i class="icon-arrow-left13 position-left"></i></button>
+        
+        
 
        
 
     </li>
+</script>
+
+    <script>
+
+        function ChangeJobRequestStatus (id,status) {
+
+            if (id<=0) {
+                return;
+            } else {
+
+                debugger;
+
+                $.ajax({
+                    url: '@Url.Action("ChangeJobRequestStatus", "JobPost")',
+                    type: "GET",
+                    data: { JobRequestId:id , Status:status},
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    401: function() {
+                        var url = '@Url.Action("Login", "Account")';
+                        window.location.href = url;
+                    },
+                    error: function(response) {
+
+                        showNotification(response.Message, 'e');
+                    },
+
+                    success: function(response) {
+
+                        if (response != null && response.BRuleCode == '1000') {
+                            showNotification(response.Message, 's');
+                            //  clear();
+                            $("#listView").data("kendoListView").dataSource.read();
+
+
+                        } else {
+                            showNotification(response.Message, 'e');
+
+                        }
+                    }
+                });
+            }
+        };
 </script>
 
 
