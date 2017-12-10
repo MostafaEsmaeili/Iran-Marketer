@@ -146,11 +146,15 @@ namespace IranMarketer.App.Controllers
                     var id = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie,
                         ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
-
+                    id.AddClaim(new Claim(ClaimTypes.Role,
+                        party != null
+                            ? PartyType.Retail.ToString()
+                            : (legal != null ? PartyType.Institutional.ToString() : PartyType.Admin.ToString())));
                     id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party?.UserId??legal?.UserId, ClaimValueTypes.String));
                     id.AddClaim(new Claim(ClaimTypes.UserData, party?.Id.SafeString()?? legal?.Id.ToString(), ClaimValueTypes.String));
                     id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party?.UserName??legal?.UserName, ClaimValueTypes.String));
                     id.AddClaim(new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.String));
+                  
                     id.AddClaim(new Claim("Clinet", res.Data.Result.ClientId, ClaimValueTypes.String));
                     id.AddClaim(
                         new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider",

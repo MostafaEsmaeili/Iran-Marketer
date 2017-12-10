@@ -664,7 +664,10 @@ namespace IranMarketer.Common.Utility
             }
             return false;
         }
-
+        public static string ConvertToBase64String(this byte[] image)
+        {
+            return image==null ? string.Empty : Convert.ToBase64String(image);
+        }
         public static decimal CalculateDailyProfitPercentage(decimal dailyProfit)
         {
             return dailyProfit / 10000;

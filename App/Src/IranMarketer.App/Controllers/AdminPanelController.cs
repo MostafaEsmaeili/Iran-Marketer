@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IranMarketer.App.Attribute;
 using IranMarketer.App.Component.Helper;
 using IranMarketer.App.Component.Provider;
 using IranMarketer.Common.Utility;
@@ -17,6 +18,7 @@ using RestSharp;
 
 namespace IranMarketer.App.Controllers
 {
+    [AdminAuthenticationAttrebute]
     public class AdminPanelController : BaseController
     {
         // GET: AdminPanel

@@ -153,7 +153,7 @@
                   })
                   .DataSource(dataSource =>
                   {
-                      dataSource.Read(read => read.Action("GetJobPostWithFilter", "JobPost").Data("getFilter"));
+                      dataSource.Read(read => read.Action("GetJobPostWithFilter", "SearchForJob").Data("getFilter"));
 
                   })
                   )
@@ -289,19 +289,7 @@
     $(document).ready(function () {
 
         $(".k-textbox ").removeClass("k-textbox");
-        //$("#ajax-next").click(function() {
-        //    $(".error").addClass("validation-error-label");
-        //    $(".error").removeClass("error");
 
-
-        //});
-        //$("#ajax-back").click(function() {
-        //    $(".error").addClass("validation-error-label");
-        //    $(".error").removeClass("error");
-
-
-
-        //});
     });
     $("#Search").click(function(){
         $("#listView").data("kendoListView").dataSource.read();
@@ -313,7 +301,7 @@
                     <li class="media panel panel-body stack-media-on-mobile">
                         <div class="media-left">
                             <a href="">
-                                <img src="" class="img-rounded img-lg" alt="pic">
+                                <img src="data:image/jpeg;base64,#=data.Base64Logo#" class="img-rounded img-lg" alt="logo">
                             </a>
                         </div>
 
@@ -374,6 +362,7 @@
                         showNotification(response.Message, 's');
                       //  clear();
                         $("#listView").data("kendoListView").dataSource.read();
+                        $("#JobPostGrid").data("kendoGrid").dataSource.read();
 
 
                     } else {

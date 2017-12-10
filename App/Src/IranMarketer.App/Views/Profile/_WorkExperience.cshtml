@@ -29,14 +29,13 @@
 
             <div class="col-md-6">
                 <div class="form-group k-rtl">
-                    <label class="display-block text-semibold"> گروه شغلی</label>
-                    @(Html.Kendo().ComboBoxFor(x => x.JobCategoryId).HtmlAttributes(new { @class = "form-control k-rtl",required = "required" })
-                          .DataTextField("TitleFa")
-                          .Filter(FilterType.Contains)
-                          .DataValueField("Id")
-                          .SyncValueAndText(true)
-                          .AutoBind(true)
-                          .DataSource(source => source.Read(read => read.Action("GetJobCategories", "UIComponent", new { addAll = false })).ServerFiltering(false)))
+                    <div class="form-group">
+                        <label>نام شرکت</label>
+                        @Html.Kendo().TextBoxFor(x => x.CompanyName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+                    </div>
+                    
+
                 </div>
             </div>
 
@@ -45,23 +44,27 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label>نام شرکت</label>
-                    @Html.Kendo().TextBoxFor(x => x.CompanyName).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
-
-
-                </div>
+                <div class="form-group k-rtl">
+                <label class="display-block text-semibold"> گروه شغلی</label>
+                @(Html.Kendo().ComboBoxFor(x => x.JobCategoryId).HtmlAttributes(new {@class = "form-control k-rtl", style = "width:100%", required = "required"})
+                      .DataTextField("TitleFa")
+                      .Filter(FilterType.Contains)
+                      .DataValueField("Id")
+                      .SyncValueAndText(true)
+                      .AutoBind(true)
+                      .DataSource(source => source.Read(read => read.Action("GetJobCategories", "UIComponent", new {addAll = false})).ServerFiltering(false)))
+            </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group k-rtl">
                     <label class="display-block text-semibold">زمینه فعالیت شرکت</label>
-                    @(Html.Kendo().ComboBoxFor(x => x.IndustryId).HtmlAttributes(new { @class = "form-control k-rtl", required = "required" })
+                    @(Html.Kendo().ComboBoxFor(x => x.IndustryId).HtmlAttributes(new {@class = "form-control k-rtl",style="width:100%", required = "required"})
                           .DataTextField("TitleFa")
                           .Filter(FilterType.Contains)
                           .DataValueField("Id")
                           .SyncValueAndText(true)
                           .AutoBind(true)
-                          .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent", new { addAll = true })).ServerFiltering(false)))
+                          .DataSource(source => source.Read(read => read.Action("GetIndustries", "UIComponent", new {addAll = true})).ServerFiltering(false)))
 
                 </div>
             </div>
@@ -75,6 +78,7 @@
                           .DataTextField("Title")
                           .DataValueField("Id").Filter(FilterType.Contains)
                           .AutoBind(true)
+                          .SelectedIndex(1)
                           .HighlightFirst(false)
                           .SyncValueAndText(true)
                           .MinLength(3)
@@ -114,7 +118,7 @@
     <div class="text-left">
         <button id="addWorkExprince" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
 
-        <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+        <button id="WXclear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
 
     </div>
 </form>
@@ -247,9 +251,10 @@
 
                     if (response != null && response.BRuleCode == '1000') {
                         showNotification(response.Message, 's');
-                        clear();
+                        WXclear();
                         $("#WorkExperienceGrid").data("kendoGrid").dataSource.read();
                         data.Id = 0;
+                        workXPId = 0;
 
 
                     } else {
@@ -261,11 +266,19 @@
         }
     });
 
-    function clear() {
+    function WXclear() {
         $('#WorkExprienceForm').ClearAll();
-        
+        workXPId = 0;
+
 
     }
+
+    $("#WXclear").click(function() {
+
+        WXclear();
+
+    });
+
     $( document ).ready(function() {
         // LoadWorkExprience();
     });
@@ -341,6 +354,8 @@
                 if (response != null && response.BRuleCode == '1000') {
                     //   showNotification(response.Message, 's');
                     grid.dataSource.read();
+                    workXPId = 0;
+
                 } else {
                     showNotification(response.Message, 'e');
 

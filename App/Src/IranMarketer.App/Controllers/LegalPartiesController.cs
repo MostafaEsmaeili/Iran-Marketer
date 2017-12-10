@@ -26,7 +26,7 @@ using RetailParty = IranMarketer.Domain.DTO.RetailParty;
 
 namespace IranMarketer.App.Controllers
 {
-    [CustomAuthorize]
+    [LegalPartyAuthenticationAttrebute]
     [SetLoggedInUserInformation]
     public class LegalPartiesController : BaseController
     {

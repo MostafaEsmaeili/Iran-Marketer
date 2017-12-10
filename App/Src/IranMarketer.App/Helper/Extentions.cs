@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Web;
 using IranMarketer.Common.Utility;
 using IranMarketer.Domain.DTO;
+using IranMarketer.Domain.Enum;
 using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository;
 using Pikad.Framework.UnitOfWork;
@@ -19,6 +20,24 @@ namespace IranMarketer.App.Helper
             var claim = ((ClaimsIdentity) identity).Name;
             // Test for null to avoid issues during local testing
             return claim;
+        }
+
+        public static bool IsLegalParty(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst(ClaimTypes.Role);
+            return claim?.Value == PartyType.Institutional.ToString();
+
+
+        }
+        public static bool IsRetailParty(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst(ClaimTypes.Role);
+            return claim?.Value == PartyType.Retail.ToString();
+        }
+        public static bool IsAdmin(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst(ClaimTypes.Role);
+            return claim?.Value == PartyType.Admin.ToString();
         }
         public static string GetEmail(this IIdentity identity)
         {

@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProfileController.cs" company="">
-//   
-// </copyright>
-// <summary>
-//   Defines the ProfileController type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Net.Mime;
 using System.Web.Http.Results;
@@ -47,7 +38,7 @@ namespace IranMarketer.App.Controllers
     using RetailParty = IranMarketer.Domain.DTO.RetailParty;
     using WorkExperience = IranMarketer.Domain.DTO.WorkExperience;
 
-    [CustomAuthorize]
+    [RetailPartyAuthenticationAttrebute]
     [SetLoggedInUserInformation]
     public class ProfileController : BaseController
     {

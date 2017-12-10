@@ -107,8 +107,8 @@
 <script type="text/x-kendo-tmpl" id="template">
     <li class="media panel panel-body stack-media-on-mobile">
         <div class="media-left">
-            <a href="">
-                <img src="" class="img-rounded img-lg" alt="دانلود رزومه">
+            <a href="@Url.Action("Index","Resume")/#:data.RetailParty.UserId#">
+               دانلود رزومه
             </a>
         </div>
 
@@ -127,12 +127,16 @@
         <div class="media-right text-nowrap">
             <span class="label bg-blue">New</span>
         </div>
-        
+        # if ( data.RequestStatus <=1) { #
+
         <button id="AddJobRequest" onClick="ChangeJobRequestStatus(#:data.Id#,@((int)JobRequestStatus.Rejected))" style="float:left;" type="button" class="btn btn-danger legitRipple">رد درخواست<i class="icon-arrow-left13 position-left"></i></button>
 
         <button id="AddJobRequest" onClick="ChangeJobRequestStatus(#:data.Id#,@((int)JobRequestStatus.Accepted))" style="float:left;" type="button" class="btn btn-success legitRipple">درخواست مصاحبه<i class="icon-arrow-left13 position-left"></i></button>
         
-        
+        #} else { #
+        <button id="AddJobRequest" style="float:left;" type="button" class="btn btn-info legitRipple">#:data.RequestStatusTitle#<i class="icon-check2 position-left"></i></button>
+
+        #} #
 
        
 
@@ -151,8 +155,8 @@
 
                 $.ajax({
                     url: '@Url.Action("ChangeJobRequestStatus", "JobPost")',
-                    type: "GET",
-                    data: { JobRequestId:id , Status:status},
+                    type: "get",
+                    data: { jobRequestId:id , status:status},
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     401: function() {

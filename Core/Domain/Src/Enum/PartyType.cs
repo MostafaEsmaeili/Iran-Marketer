@@ -12,6 +12,8 @@ namespace IranMarketer.Domain.Enum
         [Description("حقیقی")]
         Retail = 1,
         [Description("حقوقی")]
-        Institutional = 2
+        Institutional = 2,
+        [Description("admin")]
+        Admin
     }
 }

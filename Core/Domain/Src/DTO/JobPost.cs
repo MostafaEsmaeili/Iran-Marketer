@@ -20,6 +20,7 @@ namespace IranMarketer.Domain.DTO
         public int? MinAge { get; set; }
         public bool Requested { get; set; }
         public int? MaxAge { get; set; }
+        public string Base64Logo { get; set; }
          public JobCategory JobCategory { get; set; }
 
         public Region CityRegion { get; set; }

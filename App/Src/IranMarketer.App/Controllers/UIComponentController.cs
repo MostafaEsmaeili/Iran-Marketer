@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using Castle.Core.Internal;
+using IranMarketer.App.Attribute;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Pikad.Framework.Infra.Utility;
@@ -30,6 +31,7 @@ using PersonalityRole = IranMarketer.Domain.Enum.PersonalityRole;
 namespace IranMarketer.App.Controllers
 {
 
+    [AllowAnonymous]
     public class UIComponentController : BaseController
     {
         public ApiHelper ApiHelper = new ApiHelper();

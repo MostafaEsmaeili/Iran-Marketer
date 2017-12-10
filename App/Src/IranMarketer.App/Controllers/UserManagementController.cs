@@ -23,25 +23,21 @@ using FlatServiceAccess = IranMarketer.Domain.Entity.FlatServiceAccess;
 
 namespace IranMarketer.App.Controllers
 {
-    
+
     public class UserManagementController : BaseController
     {
         public UserManagementProvider UserManagementProvider =>
             CoreContainer.Container.Resolve<UserManagementProvider>();
         // GET: UserManagement
-        public ActionResult AllUsers()
-        {
-            return View();
-        }
-        [HttpGet]
-        public ActionResult AddUser()
-        {
-            var model = new UserManagementAddFilter();
-          return View(model);
-        }
+
+
         [HttpGet]
         public ActionResult AddLegalUser()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("index", "Home");
+            }
             var model = new UserManagementAddFilter();
             return View(model);
         }
@@ -106,8 +102,8 @@ namespace IranMarketer.App.Controllers
             try
             {
                 model.PartyType = PartyType.Retail;
-               UserManagementProvider.AddUser(model);
-               
+                UserManagementProvider.AddUser(model);
+
                 return Json(new ApiResponse<object>
                 {
                     Result = RuleExceptionCodeCommon.ValidResult.GetEnumDescription(),
@@ -117,7 +113,7 @@ namespace IranMarketer.App.Controllers
             catch (Exception ex)
             {
 
-                return Json( new ApiResponse<object>
+                return Json(new ApiResponse<object>
                 {
                     Message = BusinessRuleHelper.GetException(ex),
                     BRuleCode = BusinessRuleHelper.GetExceptionCode(ex)
@@ -137,7 +133,7 @@ namespace IranMarketer.App.Controllers
                 {
                     Message = RuleExceptionCodeCommon.ValidResult.GetEnumDescription(),
                     BRuleCode = (int)RuleExceptionCodeCommon.ValidResult
-                     
+
                 });
             }
             catch (Exception ex)
@@ -153,7 +149,7 @@ namespace IranMarketer.App.Controllers
 
         public ActionResult GetUsersByFilter([DataSourceRequest] DataSourceRequest request)
         {
-            
+
             try
             {
                 var req = ApiHelper.Request(ApiAddressProvider.AccountApi + "GetAllUsers", Method.POST);
@@ -189,7 +185,7 @@ namespace IranMarketer.App.Controllers
                 });
                 var res = req.Exec<ApiPagedCollectionResponse<Domain.DTO.ServiceAcces.FlatServiceAccess>>(this);
 
-                return Json(res.Data.Result.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
+                return Json(res.Data.Result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -233,7 +229,7 @@ namespace IranMarketer.App.Controllers
             try
             {
                 var accesses = models as IList<FlatServiceAccess> ?? models.ToList();
-                foreach (var access in accesses.ToList().GroupBy(x=>x.RoleId))
+                foreach (var access in accesses.ToList().GroupBy(x => x.RoleId))
                 {
                     var req = ApiHelper.Request(ApiAddressProvider.ServiceAccessApi + "AddServiceAccessByRoleIdAndPage", Method.POST);
 
@@ -246,11 +242,11 @@ namespace IranMarketer.App.Controllers
                                 Id = access.Key,
                                 Name = access.FirstOrDefault()?.RoleName
                             },
-                            PageTypes = access.Select(x=>new PageAllow
+                            PageTypes = access.Select(x => new PageAllow
                             {
                                 PageId = x.PageType,
                                 Allow = x.Allow
-                                
+
                             }).ToList()
                         }
                     });
@@ -260,7 +256,7 @@ namespace IranMarketer.App.Controllers
 
                 return Json(accesses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }
-            catch (Exception )
+            catch (Exception)
             {
 
                 return Json(new ApiResponse<object>

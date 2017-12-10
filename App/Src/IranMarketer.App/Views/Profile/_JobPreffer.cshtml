@@ -93,7 +93,7 @@
     <div class="text-left">
         <button id="addJobPreffer" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
 
-        <button id="clear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+        <button id="JPclear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
 
     </div>
 </form>
@@ -137,7 +137,7 @@
 
                     if (response != null && response.BRuleCode == '1000') {
                         showNotification(response.Message, 's');
-                        clear();
+                        JPclear();
 
                     } else {
                         showNotification(response.Message, 'e');
@@ -148,9 +148,14 @@
         }
     });
 
-    function clear() {
-        $('#addJobPreffer').ClearAll();
+    function JPclear() {
+        $('#JobPrefferForm').ClearAll();
     }
+    $("#JPclear").click(function() {
+
+        JPclear();
+
+    });
     $( document ).ready(function() {
         LoadJobPreffer();
     });

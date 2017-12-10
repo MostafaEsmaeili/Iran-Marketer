@@ -1,4 +1,5 @@
-﻿@using IranMarketer.Domain.DTO
+﻿@using IranMarketer.App.Helper
+@using IranMarketer.Domain.DTO
 <div class="sidebar sidebar-main sidebar-default">
     <div class="sidebar-content">
         <!-- Main navigation -->
@@ -33,6 +34,8 @@
 
                     <li><a href="@Url.Action("Index", "Home")"><i class="icon-home4"></i> <span>داشبورد</span></a></li>
                     <li class="navigation-header"><span>مدیریت اطلاعات</span> <i class="icon-menu" title="profile"></i></li>
+                @if (User.Identity.IsRetailParty())
+                {
                     <li tname="profile">
                         <a href="#"><i class="icon-stack2"></i> <span>پنل کارجو</span></a>
                         <ul>
@@ -41,23 +44,41 @@
 
                         </ul>
                     </li>
-                    <li class="navigation-header"><span>کارفرما</span> <i class="icon-menu" title="profile"></i></li>
-                    <li tname="Boss">
-                        <a href="#"><i class="icon-stack2"></i> <span>پنل کارفرما</span></a>
-                        <ul>
-                            <li><a href="@Url.Action("Index", "LegalParties")">ویرایش اطلاعات کارفرما</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="@Url.Action("Index", "JobPost")">فرصت های شغلی</a></li>
-                        </ul>
-                    </li>
-                    <li class="navigation-header"><span>پنل ادمین</span> <i class="icon-menu" title="adminPanel"></i></li>
-                    <li tname="adminPanel">
-                        <a href="#"><i class="icon-stack2"></i> <span>پنل ادمین</span></a>
-                        <ul>
-                            <li><a href="@Url.Action("AdminArea", "AdminPanel")">تنظیمات</a></li>
-                        </ul>
-                    </li>
+                }
+
+
+                    @if (User.Identity.IsLegalParty())
+                    {
+                        <li class="navigation-header"><span>کارفرما</span> <i class="icon-menu" title="profile"></i></li>
+                        <li tname="Boss">
+                            <a href="#"><i class="icon-stack2"></i> <span>پنل کارفرما</span></a>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "LegalParties")">ویرایش اطلاعات کارفرما</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "JobPost")">فرصت های شغلی</a></li>
+
+                            </ul>
+                            <ul>
+                                <li><a href="@Url.Action("GetAllRequestForJobPost", "JobPost")">درخواست های مصاحبه</a></li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAdmin())
+                    {
+                        <li class="navigation-header"><span>پنل ادمین</span> <i class="icon-menu" title="adminPanel"></i></li>
+                        <li tname="adminPanel">
+                            <a href="#"><i class="icon-stack2"></i> <span>پنل ادمین</span></a>
+                            <ul>
+                                <li><a href="@Url.Action("AdminArea", "AdminPanel")">تنظیمات</a></li>
+                            </ul>
+                        </li>
+
+                    }
+
+ 
                 </ul>
             </div>
         </div>
