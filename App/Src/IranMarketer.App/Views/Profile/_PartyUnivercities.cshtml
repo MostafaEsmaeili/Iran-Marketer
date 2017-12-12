@@ -206,10 +206,9 @@
         if (!$("#PartyUniversityForm").valid()) {
             return;
         } else {
-
-            debugger;
-
+            //Load Data From Form and kendo components
             var data = $("#PartyUniversityForm").serializeJSON({ checkboxUncheckedValue: "true" });
+
             $("#PartyUniversityForm").KendoToJson(data);
             data['Id'] = workXPId;
 

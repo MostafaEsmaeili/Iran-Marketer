@@ -72,11 +72,10 @@
 <body class="navbar-bottom">
 
 <!-- Main navbar -->
-@if (User.Identity.IsAuthenticated)
-{
+
 @Html.Partial("_MainNavbar")
 
-}
+
 <!-- /main navbar -->
 <!-- Page header -->
 @Html.Partial("_Header")

@@ -6,14 +6,17 @@ using System.Web.Mvc;
 using IranMarketer.App.Attribute;
 using IranMarketer.App.Component.Helper;
 using IranMarketer.App.Component.Provider;
+using IranMarketer.App.Helper;
 using IranMarketer.Common.Utility;
 using IranMarketer.Domain.Entity;
 using IranMarketer.Domain.Enum;
 using IranMarketer.Domain.Filters;
+using IranMarketer.SharedData;
 using Kendo.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Pikad.Framework.Infra.Utility;
+using Pikad.Framework.Repository.IoC;
 using RestSharp;
 
 namespace IranMarketer.App.Controllers
@@ -26,6 +29,9 @@ namespace IranMarketer.App.Controllers
         //{
         //    return View();
         //}
+        public IndustryProvider IndustryProvider => CoreContainer.Container.Resolve<IndustryProvider>();
+        public AcademicFieldProvider AcademicFieldProvider => CoreContainer.Container.Resolve<AcademicFieldProvider>();
+        public JobCategoryProvider JobCategoryProvider => CoreContainer.Container.Resolve<JobCategoryProvider>();
         public ActionResult AdminArea()
         {
             return View();
@@ -34,9 +40,8 @@ namespace IranMarketer.App.Controllers
         {
             try
             {
-                var req = ApiHelper.Request(ApiAddressProvider.SharedDataApi + "GetAllIndausries", Method.POST);
-                var res = req.Exec<ApiResponse<List<Industry>>>(this);
-                return Json(res.Data.Result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+                var res = IndustryProvider.GetAll().ToList();
+                return Json(res.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -54,14 +59,22 @@ namespace IranMarketer.App.Controllers
         {
             try
             {
-                var req = ApiHelper.Request(ApiAddressProvider.SharedDataApi + "SaveOrUpdateIndustry", Method.POST);
-                var request=new ApiRequest<Industry>
+                if (model.Id > 0)
                 {
-                    Entity = model
-                };
-                req.AddJsonBody(request);
-                var res = req.Exec<ApiResponse<Industry>>(this);
-                return Json(res.Data);
+                    var current = IndustryProvider.GetKey(model.Id);
+                    model.Modified = DateTime.Now;
+                    model.ModifiedBy = User.Identity.GetUserName();
+                    model.Created = current.Created;
+                    model.CreatedBy = current.CreatedBy;
+                }
+                else
+                {
+                    model.Created = DateTime.Now;
+                    model.Modified = DateTime.Now;
+                    model.CreatedBy = User.Identity.GetUserName();
+                }
+                var result = IndustryProvider.SaveOrUpdate(model);
+                return Json(SuccessApiResponse);
             }
             catch (Exception)
             {
@@ -74,16 +87,12 @@ namespace IranMarketer.App.Controllers
                 });
             }
         }
-
-
-
         public ActionResult GetAcademicFields([DataSourceRequest] DataSourceRequest request)
         {
             try
             {
-                var req = ApiHelper.Request(ApiAddressProvider.SharedDataApi + "GetAllAcademicFiels", Method.POST);
-                var res = req.Exec<ApiResponse<List<AcademicField>>>(this);
-                return Json(res.Data.Result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+                var res = AcademicFieldProvider.GetAll();
+                return Json(res.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -101,14 +110,22 @@ namespace IranMarketer.App.Controllers
         {
             try
             {
-                var req = ApiHelper.Request(ApiAddressProvider.SharedDataApi + "SaveOrUpdateAcademicFiled", Method.POST);
-                var request = new ApiRequest<AcademicField>
+                if (model.Id > 0)
                 {
-                    Entity = model
-                };
-                req.AddJsonBody(request);
-                var res = req.Exec<ApiResponse<AcademicField>>(this);
-                return Json(res.Data);
+                    var current = AcademicFieldProvider.GetKey(model.Id);
+                    model.Modified = DateTime.Now;
+                    model.ModifiedBy = User.Identity.GetUserName();
+                    model.Created = current.Created;
+                    model.CreatedBy = current.CreatedBy;
+                }
+                else
+                {
+                    model.Created = DateTime.Now;
+                    model.Modified = DateTime.Now;
+                    model.CreatedBy = User.Identity.GetUserName();
+                }
+                var result = AcademicFieldProvider.SaveOrUpdate(model);
+                return Json(SuccessApiResponse);
             }
             catch (Exception)
             {
@@ -121,16 +138,12 @@ namespace IranMarketer.App.Controllers
                 });
             }
         }
-
-
-
         public ActionResult GetJobCategories([DataSourceRequest] DataSourceRequest request)
         {
             try
             {
-                var req = ApiHelper.Request(ApiAddressProvider.SharedDataApi + "GetAllJobCategories", Method.POST);
-                var res = req.Exec<ApiResponse<List<JobCategory>>>(this);
-                return Json(res.Data.Result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+                var res = JobCategoryProvider.GetAll();
+                return Json(res.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -148,14 +161,23 @@ namespace IranMarketer.App.Controllers
         {
             try
             {
-                var req = ApiHelper.Request(ApiAddressProvider.SharedDataApi + "SaveOrUpdateJobCategory", Method.POST);
-                var request = new ApiRequest<JobCategory>
+                if (model.Id > 0)
                 {
-                    Entity = model
-                };
-                req.AddJsonBody(request);
-                var res = req.Exec<ApiResponse<JobCategory>>(this);
-                return Json(res.Data);
+                    var current = JobCategoryProvider.GetKey(model.Id);
+                    model.Modified = DateTime.Now;
+                    model.ModifiedBy = User.Identity.GetUserName();
+                    model.Created = current.Created;
+                    model.CreatedBy = current.CreatedBy;
+                }
+                else
+                {
+                    model.Created = DateTime.Now;
+                    model.Modified = DateTime.Now;
+                    model.CreatedBy = User.Identity.GetUserName();
+                }
+                var result = JobCategoryProvider.SaveOrUpdate(model);
+                JobCategoryProvider.SaveOrUpdate(model);
+                return Json(SuccessApiResponse);
             }
             catch (Exception)
             {

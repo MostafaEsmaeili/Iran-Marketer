@@ -163,7 +163,7 @@
 
             debugger;
            
-            var data = $("#legalPartyForm").serializeJSON({ checkboxUncheckedValue: "false" });
+            var data = $("#legalPartyForm").serializeJSON({ checkboxUncheckedValue: "false" });  //load data from form
 
             $.ajax({
                 url: '@Url.Action("Create", "LegalParties")',

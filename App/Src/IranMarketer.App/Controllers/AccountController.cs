@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using AutoMapper.Internal;
 using Castle.Core.Internal;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -29,6 +30,8 @@ using IranMarketer.Domain.DTO;
 using IranMarketer.Domain.Enum;
 using IranMarketer.Domain.Filters;
 using IranMarketer.PartyManagement.Interface;
+using IranMarketer.UserManagement;
+using Kendo.Mvc.UI.Fluent;
 using Pikad.Framework.Infra.Utility;
 using Pikad.Framework.Repository.IoC;
 using ForgotPasswordViewModel = IranMarketer.App.Models.ForgotPasswordViewModel;
@@ -39,6 +42,8 @@ namespace IranMarketer.App.Controllers
     
     public class AccountController : BaseController
     {
+        private UserManagement.ApplicationSignInManager _signInManager;
+
         public AuthenticationProvider AuthenticationProvider =>
             CoreContainer.Container.Resolve<AuthenticationProvider>(); public static IdentityServerSettings IdentityServerSettings { get; set; }
 
@@ -72,39 +77,39 @@ namespace IranMarketer.App.Controllers
 
             return View();
         }
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult ResetPassword(ResetPasswordViewModel model)
-        {
-            try
-            {
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public ActionResult ResetPassword(ResetPasswordViewModel model)
+        //{
+        //    try
+        //    {
 
 
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-                var request = ApiHelper.Request(ApiAddressProvider.AccountApi + "ResetPassword", Method.POST);
-                request.AddJsonBody(new Domain.DTO.ResetPasswordViewModel()
-                {
-                    Email = model.Email,
-                    Code = model.Code,
-                    Password = model.Password,
-                    ConfirmPassword = model.ConfirmPassword
-                });
-                var res = request.Exec<ApiResponse<AuthenticationResponse>>();
+        //        // This doesn't count login failures towards account lockout
+        //        // To enable password failures to trigger account lockout, change to shouldLockout: true
+        //        var request = ApiHelper.Request(ApiAddressProvider.AccountApi + "ResetPassword", Method.POST);
+        //        request.AddJsonBody(new Domain.DTO.ResetPasswordViewModel()
+        //        {
+        //            Email = model.Email,
+        //            Code = model.Code,
+        //            Password = model.Password,
+        //            ConfirmPassword = model.ConfirmPassword
+        //        });
+        //        var res = request.Exec<ApiResponse<AuthenticationResponse>>();
 
-                return Json(res.Data);
-            }
-            catch (Exception ex)
-            {
+        //        return Json(res.Data);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return Json(new ApiResponse<object>
-                {
-                    BRuleCode = 1,
-                    Message = RuleExceptionCodeCommon.OtherError.GetEnumDescription()
+        //        return Json(new ApiResponse<object>
+        //        {
+        //            BRuleCode = 1,
+        //            Message = RuleExceptionCodeCommon.OtherError.GetEnumDescription()
 
-                });
-            }
-        }
+        //        });
+        //    }
+        //}
         //
         // POST: /Account/Login
         [HttpPost]
@@ -122,26 +127,34 @@ namespace IranMarketer.App.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, change to shouldLockout: true
 
+               // var request = ApiHelper.Request(ApiAddressProvider.AccountApi + "Login", Method.POST);
+               // request.AddJsonBody(new UserLoginRequest
+               // {
+               //     ClientId = "IranMarketer",
+               //     UserName = model.UserName,
+               //     Password = model.Password
+               // });
+               //     var res = request.Exec<ApiResponse<AuthenticationResponse>>();
+               //var a= UserManagement.AuthenticationManager.AuthenticationProvider.UserManager.CreateIdentity(
+               //     new IdentityModels.ApplicationUser
+               //     {
+               //         UserName = model.UserName,
+                        
+               //     }, DefaultAuthenticationTypes.ApplicationCookie);
+                var auth = UserManagement.AuthenticationManager.AuthenticationProvider.GetUserByName(model.UserName);
+                var result = false;
+                if (auth != null)
+                    result =
+                        UserManagement.AuthenticationManager.AuthenticationProvider.UserManager.CheckPassword(auth,
+                            model.Password);
 
-
-                var request = ApiHelper.Request(ApiAddressProvider.AccountApi + "Login", Method.POST);
-                request.AddJsonBody(new UserLoginRequest
+                if (result)
                 {
-                    ClientId = "IranMarketer",
-                    UserName = model.UserName,
-                    Password = model.Password
-                });
-                var res = request.Exec<ApiResponse<AuthenticationResponse>>();
 
 
-                if (!res?.Data?.Result?.AccessToken.IsNullOrEmpty() ?? false)
-                {
-
-
-                    var party = RetailPartyService.Get(x => x.UserName == res.Data.Result.ApplicationUser.UserName).FirstOrDefault();
-                    var legal= LegalPartyService.Get(x => x.UserName == res.Data.Result.ApplicationUser.UserName).FirstOrDefault();
-                    var user = UserManagement.AuthenticationManager.AuthenticationProvider.GetUserByName(res.Data.Result
-                        .ApplicationUser.UserName);
+                    var party = RetailPartyService.Get(x => x.UserName == auth.UserName).FirstOrDefault();
+                    var legal= LegalPartyService.Get(x => x.UserName == auth.UserName).FirstOrDefault();
+                    var user = UserManagement.AuthenticationManager.AuthenticationProvider.GetUserByName(auth.UserName);
 
                     var id = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie,
                         ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
@@ -150,16 +163,16 @@ namespace IranMarketer.App.Controllers
                         party != null
                             ? PartyType.Retail.ToString()
                             : (legal != null ? PartyType.Institutional.ToString() : PartyType.Admin.ToString())));
-                    id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party?.UserId??legal?.UserId, ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimTypes.UserData, party?.Id.SafeString()?? legal?.Id.ToString(), ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party?.UserName??legal?.UserName, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.NameIdentifier, party?.UserId??legal?.UserId??user.Id, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.UserData, party?.Id.SafeString()?? legal?.Id.ToString()??"0", ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, party?.UserName??legal?.UserName??user.UserName, ClaimValueTypes.String));
                     id.AddClaim(new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.String));
                   
-                    id.AddClaim(new Claim("Clinet", res.Data.Result.ClientId, ClaimValueTypes.String));
+                    id.AddClaim(new Claim("Clinet", "IranMarketer", ClaimValueTypes.String));
                     id.AddClaim(
                         new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider",
                             "ASP.NET Identity", ClaimValueTypes.String));
-                    id.AddClaim(new Claim(ClaimTypes.Authentication, res?.Data?.Result?.AccessToken, ClaimValueTypes.String));
+                    id.AddClaim(new Claim(ClaimTypes.Authentication,"", ClaimValueTypes.String));
                     AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie,
                         DefaultAuthenticationTypes.ApplicationCookie);
 
@@ -169,7 +182,7 @@ namespace IranMarketer.App.Controllers
                     return RedirectToLocal(returnUrl);
                 }
                 ModelState.AddModelError("", "نام کاربری و یا کلمه عبور اشتباه است");
-                ViewData["ErrorMessage"] = res?.Data?.Message ?? "نام کاربری و یا کلمه عبور اشتباه است";
+                ViewData["ErrorMessage"] = "نام کاربری و یا کلمه عبور اشتباه است";
                 return View(model);
             }
             catch (Exception ex)
@@ -203,37 +216,37 @@ namespace IranMarketer.App.Controllers
             return RedirectToAction("Login");
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult ForgetPassword(ForgotPasswordViewModel model)
-        {
-            try
-            {
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public ActionResult ForgetPassword(ForgotPasswordViewModel model)
+        //{
+        //    try
+        //    {
 
 
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-                var request = ApiHelper.Request(ApiAddressProvider.AccountApi + "ForgotPassword", Method.POST);
-                request.AddJsonBody(new Domain.DTO.ForgotPasswordViewModel()
-                {
-                    Email = model.Email,
-                    ResetPasswprdAddress = model.Address + "/Account/ResetPassword"
-                });
-                var res = request.Exec<ApiResponse<AuthenticationResponse>>();
+        //        // This doesn't count login failures towards account lockout
+        //        // To enable password failures to trigger account lockout, change to shouldLockout: true
+        //        var request = ApiHelper.Request(ApiAddressProvider.AccountApi + "ForgotPassword", Method.POST);
+        //        request.AddJsonBody(new Domain.DTO.ForgotPasswordViewModel()
+        //        {
+        //            Email = model.Email,
+        //            ResetPasswprdAddress = model.Address + "/Account/ResetPassword"
+        //        });
+        //        var res = request.Exec<ApiResponse<AuthenticationResponse>>();
 
-                return Json(res.Data);
-            }
-            catch (Exception ex)
-            {
+        //        return Json(res.Data);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return Json(new ApiResponse<object>
-                {
-                    BRuleCode = 1,
-                    Message = RuleExceptionCodeCommon.OtherError.GetEnumDescription()
+        //        return Json(new ApiResponse<object>
+        //        {
+        //            BRuleCode = 1,
+        //            Message = RuleExceptionCodeCommon.OtherError.GetEnumDescription()
 
-                });
-            }
-        }
+        //        });
+        //    }
+        //}
         [HttpPost]
         public ActionResult ValidateToken()
         {
@@ -255,7 +268,17 @@ namespace IranMarketer.App.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-
+        public UserManagement.ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<UserManagement.ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

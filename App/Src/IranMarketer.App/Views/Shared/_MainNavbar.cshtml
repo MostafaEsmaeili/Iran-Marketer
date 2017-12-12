@@ -3,18 +3,21 @@
 @model dynamic
 <div class="navbar navbar-inverse bg-indigo">
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">@*<img src="~/assets/images/logo_light.png" alt="">*@</a>
+        <a class="navbar-brand" href="@Url.Action("index","Home")"><img src="~/assets/Layout/image/logo.png" alt=""></a>
         <ul class="nav navbar-nav visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
             <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
         </ul>
     </div>
     <div class="navbar-collapse collapse" id="navbar-mobile">
+        <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+
         <ul class="nav navbar-nav">
             <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
-          
+            <li><a href="@Url.Action("EmployeeProfile","Profile")"> ایران مارکتر کارجو</a></li>
+            <li><a href="@Url.Action("Index","LegalParties")"> ایران مارکتر کارفرما</a></li>
+
         </ul>
-        <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
         <ul class="nav navbar-nav navbar-right">
             @*<li class="dropdown language-switch">
                 <a class="dropdown-toggle" data-toggle="dropdown">
@@ -30,55 +33,65 @@
                     <li><a class="russian"><img src="~/assets/images/flags/ru.png" alt=""> Русский</a></li>
                 </ul>
             </li>*@
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-bubbles4"></i>
-                    <span class="visible-xs-inline-block position-right">Messages</span>
-                    <span class="badge bg-warning-400"></span>
-                </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-bubbles4"></i>
+                        <span class="visible-xs-inline-block position-right">Messages</span>
+                        <span class="badge bg-warning-400"></span>
+                    </a>
 
-                <div class="dropdown-menu dropdown-content width-350">
-                    <div class="dropdown-content-heading">
-                        پیغام های من
-                        <ul class="icons-list">
-                            <li><a href="#"><i class="icon-compose"></i></a></li>
+                    <div class="dropdown-menu dropdown-content width-350">
+                        <div class="dropdown-content-heading">
+                            پیغام های من
+                            <ul class="icons-list">
+                                <li><a href="#"><i class="icon-compose"></i></a></li>
+                            </ul>
+                        </div>
+                        <ul class="media-list dropdown-content-body">
+                            @*<li class="media">
+                        <div class="media-left">
+                            <img src="~/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+                            <span class="badge bg-danger-400 media-badge">5</span>
+                        </div>
+                        <div class="media-body">
+                            <a href="#" class="media-heading">
+                                <span class="text-semibold">James Alexander</span>
+                                <span class="media-annotation pull-right">04:58</span>
+                            </a>
+                            <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
+                        </div>
+                    </li>*@
+
                         </ul>
+                        <div class="dropdown-content-footer">
+                            <a href="#" data-popup="tooltip" title="تمامی پیغام ها"><i class="icon-menu display-block"></i></a>
+                        </div>
                     </div>
-                    <ul class="media-list dropdown-content-body">
-                        @*<li class="media">
-                            <div class="media-left">
-                                <img src="~/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
-                                <span class="badge bg-danger-400 media-badge">5</span>
-                            </div>
-                            <div class="media-body">
-                                <a href="#" class="media-heading">
-                                    <span class="text-semibold">James Alexander</span>
-                                    <span class="media-annotation pull-right">04:58</span>
-                                </a>
-                                <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
-                            </div>
-                        </li>*@
-
+                </li>
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/assets/images/placeholder.jpg" alt="">
+                        <span id="NavBarUserName"></span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> پروفایل من</a></li>
+                        @*<li><a href="#"><i class="icon-coins"></i> My balance</a></li>*@
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-cog5"></i> تنظیمات کاربری</a></li>
+                        <li><a href="@Url.Action("LogOut", "Account")"><i class="icon-switch2"></i> خروج</a></li>
                     </ul>
-                    <div class="dropdown-content-footer">
-                        <a href="#" data-popup="tooltip" title="تمامی پیغام ها"><i class="icon-menu display-block"></i></a>
-                    </div>
-                </div>
-            </li>
-            <li class="dropdown dropdown-user">
-                <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="~/assets/images/placeholder.jpg" alt="">
-                    <span id="NavBarUserName"></span>
-                    <i class="caret"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-user-plus"></i> پروفایل من</a></li>
-                    @*<li><a href="#"><i class="icon-coins"></i> My balance</a></li>*@
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="icon-cog5"></i> تنظیمات کاربری</a></li>
-                    <li><a href="@Url.Action("LogOut","Account")"><i class="icon-switch2"></i> خروج</a></li>
-                </ul>
-            </li>
+                </li>
+
+            }
+            else
+            {
+                <li ><a href="@Url.Action("Login","Account")"> ورود-ثبت نام</a></li>
+
+            }
+
         </ul>
     </div>
 </div>

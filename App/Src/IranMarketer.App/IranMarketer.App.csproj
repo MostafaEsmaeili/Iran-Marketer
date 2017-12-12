@@ -265,6 +265,7 @@
     <Compile Include="Helper\DateTimePickerHelper.cs" />
     <Compile Include="Helper\Extentions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CompanyLogoViewModel.cs" />
     <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -303,6 +304,8 @@
     <Content Include="assets\Farsi\messages_fa.js" />
     <Content Include="assets\Farsi\New folder\kendo.culture.fa-IR.min.js" />
     <Content Include="assets\Farsi\New folder\kendo.messages.fa-IR.min.js" />
+    <Content Include="assets\host\jssor.slider-26.7.0.min.js" />
+    <Content Include="assets\host\spin.svg" />
     <Content Include="assets\images\ajax-loader.gif" />
     <Content Include="assets\images\backgrounds\boxed_bg.png" />
     <Content Include="assets\images\backgrounds\boxed_bg_retina.png" />

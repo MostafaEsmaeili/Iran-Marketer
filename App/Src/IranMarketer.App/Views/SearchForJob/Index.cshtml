@@ -289,10 +289,13 @@
     $(document).ready(function () {
 
         $(".k-textbox ").removeClass("k-textbox");
+        $("#JobPostGrid").data("kendoGrid").dataSource.read();
+
 
     });
     $("#Search").click(function(){
         $("#listView").data("kendoListView").dataSource.read();
+
         $('#JobResults [data-action=collapse]').click();
 
     });

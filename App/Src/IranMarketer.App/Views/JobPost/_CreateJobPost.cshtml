@@ -11,7 +11,6 @@
     <fieldset class="step ui-formwizard-content " id="ajax-step1" style="display: block;">
         <h6 class="form-wizard-title text-semibold">
             @*<span class="form-wizard-count">1</span>*@
-            اطلاعات کارفرما
             <small class="display-block">ثبت فرصت شغلی جدید</small>
         </h6>
 
@@ -21,7 +20,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>عنوان شغل:</label>
-                    @(Html.Kendo().TextBoxFor(x => x.Title).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" }))
+                    @Html.Kendo().TextBoxFor(x => x.Title).Value(String.Empty).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
                 </div>
             </div>
 
