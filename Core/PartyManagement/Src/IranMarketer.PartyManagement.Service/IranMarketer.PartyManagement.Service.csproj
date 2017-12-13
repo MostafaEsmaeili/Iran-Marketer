@@ -59,6 +59,8 @@
     <Compile Include="PartyBranch\PartyBranchService.cs" />
     <Compile Include="PartyCode\IPartyCodeRepository.cs" />
     <Compile Include="PartyCode\PartyCodeService.cs" />
+    <Compile Include="PartyProject\IPartyProjectRepository.cs" />
+    <Compile Include="PartyProject\PartyProjectService.cs" />
     <Compile Include="PartyRoles\IPartyRolesRepository.cs" />
     <Compile Include="PartyRoles\PartyRolesService.cs" />
     <Compile Include="PartyUniversity\IPartyUniversityRepository.cs" />

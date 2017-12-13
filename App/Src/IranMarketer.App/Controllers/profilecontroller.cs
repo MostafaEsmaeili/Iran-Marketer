@@ -47,6 +47,8 @@ namespace IranMarketer.App.Controllers
         public  IWorkExprienceService WorkExprienceService => CoreContainer.Container.Resolve<IWorkExprienceService>();
 
         public IJobPreferService JobPreferService => CoreContainer.Container.Resolve<IJobPreferService>();
+        public IPartyProjectService PartyProjectService => CoreContainer.Container.Resolve<IPartyProjectService>();
+
         public JobCategoryProvider JobCategoryProvider => CoreContainer.Container.Resolve<JobCategoryProvider>();
         public IndustryProvider IndustryProvider => CoreContainer.Container.Resolve<IndustryProvider>();
         public IPartyUniversityService PartyUniversityService=> CoreContainer.Container.Resolve<IPartyUniversityService>();
@@ -326,6 +328,9 @@ namespace IranMarketer.App.Controllers
             }
         }
 
+
+
+
         public ActionResult SavePartyUniversity(Domain.DTO.PartyUniversity partyUniversity)
         {
             try
@@ -496,5 +501,175 @@ namespace IranMarketer.App.Controllers
         }
 
 
+
+
+        public ActionResult SavePartyProject(Domain.DTO.PartyProject partyProject)
+        {
+            try
+            {
+                var current = PartyProjectService
+                    .Get(x => x.PartyId == partyProject.PartyId && x.Id == partyProject.Id).FirstOrDefault();
+
+
+                //partyUniversity.UniversityFromDate = partyUniversity.UniversityFromDate != null &&
+                //                                     partyUniversity.UniversityFromDate.PersianNumberToLatin()
+                //                                         .IsValidPersianDate()
+                //    ? partyUniversity.UniversityFromDate.PersianNumberToLatin().ConvertJalaliToMiladi()
+                //        .ToString()
+                //    : null;
+
+                //partyUniversity.UniversityToDate = partyUniversity.UniversityToDate != null &&
+                //                                   partyUniversity.UniversityToDate.PersianNumberToLatin()
+                //                                       .IsValidPersianDate()
+                //    ? partyUniversity.UniversityToDate.PersianNumberToLatin().ConvertJalaliToMiladi()
+                //        .ToString()
+                //    : null;
+
+                var entity = new PartyUniversity
+                {
+                    AcademicFieldId = partyUniversity.AcademicFieldId,
+                    Average = partyUniversity.Average,
+                    CountryId = partyUniversity.CountryId,
+                    DegreeLevel = partyUniversity.DegreeLevel,
+                    PartyId = partyUniversity.PartyId,
+                    UniversityCityId = partyUniversity.UniversityCityId,
+                    UniversityFromDate = partyUniversity.UniversityFromDate.IsValidPersianDate()
+                        ? partyUniversity.UniversityFromDate.ConvertJalaliToMiladi()
+                        : IranMarketerCustomUtility.MinDate,
+
+                    UniversityToDate = partyUniversity.UniversityToDate.IsValidPersianDate()
+                        ? partyUniversity.UniversityToDate.ConvertJalaliToMiladi()
+                        : IranMarketerCustomUtility.MinDate,
+                    University = partyUniversity.University,
+
+
+                };
+
+                //if (experience.FromDate.IsValidPersianDate())
+                //{
+                //    entity.FromDate = experience.FromDate.ConvertJalaliToMiladi();
+
+                //}
+
+                //if (experience.ToDate.IsValidPersianDate())
+                //{
+                //    entity.ToDate = experience.ToDate.ConvertJalaliToMiladi();
+                //}
+
+                if (current != null)
+                {
+                    entity.Id = current.Id;
+                }
+
+                entity.Modified = DateTime.Now;
+                entity.Created = current?.Created ?? DateTime.Now;
+                entity.CreatedBy = current?.CreatedBy ?? partyUniversity.UserName;
+                entity.ModifiedBy = partyUniversity.UserName;
+
+
+                using (var db = new IranMarketerContext())
+                {
+                    if (current == null)
+                    {
+                        db.PartyUniversities.Add(entity);
+                    }
+                    else
+                    {
+                        db.Entry(entity).State = EntityState.Modified;
+                    }
+                    db.SaveChanges();
+                }
+                return this.Json(this.SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        public ActionResult GetPartyUniversityById(Domain.DTO.PartyUniversity experience)
+        {
+            try
+            {
+                var all = PartyUniversityService.GetKey(experience.Id);
+                var dto = ObjectMapper.BaseConverter
+                    .ConvertSourceToDest<PartyUniversity, Domain.DTO.PartyUniversity>(all);
+                dto.UniversityFromDate = all.FromDateJalali;
+                dto.UniversityToDate = all.ToDateJalali;//.ConvertMiladiToJalali();
+
+                SuccessApiResponse.Result = dto;
+                return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        public ActionResult GetAllPArtyUniversities([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+
+                List<Domain.Entity.PartyUniversity> all;
+                using (var db = new IranMarketerContext())
+                {
+                    try
+                    {
+                        db.Configuration.ProxyCreationEnabled = false;
+                        var partyId = User.Identity.GetPartyId().SafeInt();
+                        all = db.PartyUniversities.Where(x => x.PartyId == partyId)
+                            .Include(x => x.City)
+                           .Include(x => x.AcademicField)
+                            .ToList(); //.Include(x => x.Region).ToList();
+                    }
+                    finally
+                    {
+
+                        db.Configuration.ProxyCreationEnabled = true;
+                    }
+                }
+                ////   all = WorkExprienceService.GetAllWorkExperiencesWithForeinKey();
+                //var result = JsonConvert.SerializeObject(all.ToDataSourceResult(request), Formatting.None,
+                //    new JsonSerializerSettings
+                //    {
+                //        //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                //        MaxDepth = 2
+                //    });
+                var da = all.Select(x => new
+                {
+                    x.Id,
+                    x.DegreeLevelTitle,
+                    AcademicField = new { x.AcademicField.TitleFa },
+                    x.FromDateJalali,
+                    x.ToDateJalali,
+                    City = new { x.City.Title },
+                    x.Average,
+                    x.University,
+                });
+                return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return this.Json(this.ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+        public ActionResult DeletePartyUniversities(PartyUniversity experience)
+        {
+            try
+            {
+
+                var todelete = PartyUniversityService.GetKey(experience.Id);
+                PartyUniversityService.Delete(todelete);
+                return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+        }
     }
 }

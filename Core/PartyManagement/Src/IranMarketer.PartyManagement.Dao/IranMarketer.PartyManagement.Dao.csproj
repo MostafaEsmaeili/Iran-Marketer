@@ -72,6 +72,7 @@
     <Compile Include="PartyBankAccount\PartyBankAccountRowMapper.cs" />
     <Compile Include="PartyBranch\PartyBranchRepository.cs" />
     <Compile Include="PartyCode\PartyCodeRepository.cs" />
+    <Compile Include="PartyProject\PartyProjectRepository.cs" />
     <Compile Include="PartyRoles\PartyRolesRepository.cs" />
     <Compile Include="PartyRoles\PartyRolesRowMapper.cs" />
     <Compile Include="PartyUniversity\PartyUniversityReoisitory.cs" />

@@ -12,21 +12,15 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Pikad.Framework.Repository;
 
 namespace IranMarketer.Domain.Entity
 {
 
     // PartySkills
     [Table("PartySkills", Schema = "dbo")]
-    public class PartySkill
+    public class PartySkill : Entity<int>
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(@"Id", Order = 1, TypeName = "int")]
-        //[Index(@"PK_PartySkills", 1, IsUnique = true, IsClustered = true)]
-        [Required]
-        [Key]
-        [Display(Name = "Id")]
-        public int Id { get; set; } // Id (Primary key)
 
         [Column(@"PartyId", Order = 2, TypeName = "int")]
         [Required]

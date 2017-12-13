@@ -68,6 +68,7 @@
     <Compile Include="IPartyBankAccountService.cs" />
     <Compile Include="IPartyBranchService.cs" />
     <Compile Include="IPartyCodeService.cs" />
+    <Compile Include="IPartyProjectService.cs" />
     <Compile Include="IPartyRolesService.cs" />
     <Compile Include="IPartyService.cs" />
     <Compile Include="IPartyUniversityService.cs" />

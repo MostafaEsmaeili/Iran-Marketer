@@ -94,6 +94,7 @@
     <Compile Include="DTO\LegalParty.cs" />
     <Compile Include="DTO\Party.cs" />
     <Compile Include="DTO\PartyBankAccount.cs" />
+    <Compile Include="DTO\PartyProject.cs" />
     <Compile Include="DTO\PartyRole.cs" />
     <Compile Include="DTO\PartyUniversity.cs" />
     <Compile Include="DTO\RedemptionRequest.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Entity\JobPrefer.cs" />
     <Compile Include="Entity\JobRequest.cs" />
     <Compile Include="Entity\LegalParty.cs" />
+    <Compile Include="Entity\PartyProject.cs" />
     <Compile Include="Entity\PartySkill.cs" />
     <Compile Include="Entity\PartyUniversity.cs" />
     <Compile Include="Entity\ProductCardex.cs" />
