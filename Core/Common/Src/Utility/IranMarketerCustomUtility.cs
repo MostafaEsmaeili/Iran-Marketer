@@ -18,6 +18,7 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using Microsoft.Owin;
 using Pikad.Framework.Infra.Utility;
+using Pikad.Framework.UnitOfWork;
 
 //using System.Web.Script.Serialization;
 
@@ -201,7 +202,6 @@ namespace IranMarketer.Common.Utility
 
         public static bool IsValidEmail(this string strIn)
         {
-            invalid = false;
             if (String.IsNullOrEmpty(strIn))
                 return false;
 
@@ -235,6 +235,8 @@ namespace IranMarketer.Common.Utility
         }
         // Mask the mobile.
         // Usage: MaskMobile("13456789876", 3, "****") => "134****9876"
+
+
         public static string MaskMobile(this string mobile, int startIndex, string mask)
         {
             if (mobile.StartsWith("+98"))
