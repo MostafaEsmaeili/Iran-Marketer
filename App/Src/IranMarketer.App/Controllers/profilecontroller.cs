@@ -525,24 +525,17 @@ namespace IranMarketer.App.Controllers
                 //        .ToString()
                 //    : null;
 
-                var entity = new PartyUniversity
+                var entity = new PartyProject
                 {
-                    AcademicFieldId = partyUniversity.AcademicFieldId,
-                    Average = partyUniversity.Average,
-                    CountryId = partyUniversity.CountryId,
-                    DegreeLevel = partyUniversity.DegreeLevel,
-                    PartyId = partyUniversity.PartyId,
-                    UniversityCityId = partyUniversity.UniversityCityId,
-                    UniversityFromDate = partyUniversity.UniversityFromDate.IsValidPersianDate()
-                        ? partyUniversity.UniversityFromDate.ConvertJalaliToMiladi()
-                        : IranMarketerCustomUtility.MinDate,
-
-                    UniversityToDate = partyUniversity.UniversityToDate.IsValidPersianDate()
-                        ? partyUniversity.UniversityToDate.ConvertJalaliToMiladi()
-                        : IranMarketerCustomUtility.MinDate,
-                    University = partyUniversity.University,
-
-
+                    PartyId = partyProject.PartyId,
+                    Created = DateTime.Now,
+                    CreatedBy = partyProject.UserName,
+                    FromDate =partyProject.FromDateJalali.ConvertJalaliToMiladi(),
+                    Todate = partyProject.ToDateJalali.ConvertJalaliToMiladi(),
+                    Modified = DateTime.Now,
+                    ModifiedBy = partyProject.UserName,
+                    ProjectDescription = partyProject.ProjectDescription,
+                    ProjectTitle = partyProject.ProjectTitle
                 };
 
                 //if (experience.FromDate.IsValidPersianDate())
@@ -563,15 +556,15 @@ namespace IranMarketer.App.Controllers
 
                 entity.Modified = DateTime.Now;
                 entity.Created = current?.Created ?? DateTime.Now;
-                entity.CreatedBy = current?.CreatedBy ?? partyUniversity.UserName;
-                entity.ModifiedBy = partyUniversity.UserName;
+                entity.CreatedBy = current?.CreatedBy ?? partyProject.UserName;
+                entity.ModifiedBy = partyProject.UserName;
 
 
                 using (var db = new IranMarketerContext())
                 {
                     if (current == null)
                     {
-                        db.PartyUniversities.Add(entity);
+                        db.PartyProjects.Add(entity);
                     }
                     else
                     {
@@ -587,15 +580,15 @@ namespace IranMarketer.App.Controllers
 
             }
         }
-        public ActionResult GetPartyUniversityById(Domain.DTO.PartyUniversity experience)
+        public ActionResult GetPartyProjectById(Domain.DTO.PartyProject project)
         {
             try
             {
-                var all = PartyUniversityService.GetKey(experience.Id);
+                var all = PartyProjectService.GetKey(project.Id);
                 var dto = ObjectMapper.BaseConverter
-                    .ConvertSourceToDest<PartyUniversity, Domain.DTO.PartyUniversity>(all);
-                dto.UniversityFromDate = all.FromDateJalali;
-                dto.UniversityToDate = all.ToDateJalali;//.ConvertMiladiToJalali();
+                    .ConvertSourceToDest<PartyProject, Domain.DTO.PartyProject>(all);
+                dto.FromDateJalali = all.FromDate.ConvertMiladiToJalali();
+                dto.ToDateJalali = all.Todate.ConvertMiladiToJalali();//.ConvertMiladiToJalali();
 
                 SuccessApiResponse.Result = dto;
                 return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
@@ -606,21 +599,20 @@ namespace IranMarketer.App.Controllers
 
             }
         }
-        public ActionResult GetAllPArtyUniversities([DataSourceRequest] DataSourceRequest request)
+        public ActionResult GetAllPArtyProjects([DataSourceRequest] DataSourceRequest request)
         {
             try
             {
 
-                List<Domain.Entity.PartyUniversity> all;
+                List<Domain.Entity.PartyProject> all;
                 using (var db = new IranMarketerContext())
                 {
                     try
                     {
                         db.Configuration.ProxyCreationEnabled = false;
                         var partyId = User.Identity.GetPartyId().SafeInt();
-                        all = db.PartyUniversities.Where(x => x.PartyId == partyId)
-                            .Include(x => x.City)
-                           .Include(x => x.AcademicField)
+                        all = db.PartyProjects.Where(x => x.PartyId == partyId)
+                 
                             .ToList(); //.Include(x => x.Region).ToList();
                     }
                     finally
@@ -639,13 +631,11 @@ namespace IranMarketer.App.Controllers
                 var da = all.Select(x => new
                 {
                     x.Id,
-                    x.DegreeLevelTitle,
-                    AcademicField = new { x.AcademicField.TitleFa },
-                    x.FromDateJalali,
-                    x.ToDateJalali,
-                    City = new { x.City.Title },
-                    x.Average,
-                    x.University,
+                    x.ProjectTitle,
+                    x.ProjectDescription, 
+                    x.FromDate,
+                    x.Todate,
+      
                 });
                 return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }
@@ -656,13 +646,13 @@ namespace IranMarketer.App.Controllers
             }
 
         }
-        public ActionResult DeletePartyUniversities(PartyUniversity experience)
+        public ActionResult DeletePartyProjects(PartyUniversity experience)
         {
             try
             {
 
-                var todelete = PartyUniversityService.GetKey(experience.Id);
-                PartyUniversityService.Delete(todelete);
+                var todelete = PartyProjectService.GetKey(experience.Id);
+                PartyProjectService.Delete(todelete);
                 return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
