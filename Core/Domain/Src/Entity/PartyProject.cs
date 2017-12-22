@@ -13,7 +13,6 @@ namespace IranMarketer.Domain.Entity
         public DateTime? FromDate { get; set; }
         public DateTime?  Todate { get; set; }
 
-        public 
 
     }
 }

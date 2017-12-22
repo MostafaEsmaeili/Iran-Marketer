@@ -1,0 +1,295 @@
+﻿@using IranMarketer.App.Helper
+@using IranMarketer.Domain.DTO
+@using Kendo.Mvc.UI
+@model IranMarketer.Domain.DTO.PartyProject
+<script>
+    var PartyProjectId = 0;
+
+</script>
+@*<script type="text/javascript" src="~/assets/js/pages/form_validation.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/forms/inputs/formatter.min.js"></script>*@
+<form id="PartyProjectForm" class="form-validate-jquery" novalidate="novalidate">
+    <fieldset class="step ui-formwizard-content " id="ajax-step1" style="display: block;">
+        <h6 class="form-wizard-title text-semibold">
+            <span class="form-wizard-count">4</span>
+            پروژه ها 
+            <small class="display-block">از پروژه ها و سوابق کاری  خود بنویسید...</small>
+        </h6>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>عنوان پروه</label>
+                    @Html.Kendo().TextBoxFor(x => x.ProjectTitle).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label class="display-block text-semibold"> شرح پروژه</label>
+                    @Html.Kendo().TextBoxFor(x => x.ProjectTitle).HtmlAttributes(new { required = "required", style = " width:100%;", @class = "form-control ui-wizard-content" })
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>از تاریخ</label>
+                    @Html.PersianDateTimePicker("FromDateJalali")
+
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group k-rtl">
+                    <label class="display-block text-semibold">شهر</label>
+                    @Html.PersianDateTimePicker("ToDateJalali")
+
+                </div>
+            </div>
+
+        </div>
+
+    </fieldset>
+
+    <div class="text-left">
+        <button id="addPartyProject" type="button" class="btn btn-primary legitRipple">ذخیره<i class="icon-arrow-left13 position-right"></i></button>
+
+        <button id="PartyProjectFormclear" type="button" class="btn btn-primary legitRipple">لغو/پاک کردن فرم<i class="icon-arrow-left13 position-right"></i></button>
+
+    </div>
+</form>
+<div class="panel panel-flat panel-collapsed">
+    <div class="panel-heading">
+        <h5 class="panel-title">تمام پروژه ها<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+                <li><a data-action="reload"></a></li>
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="k-rtl">
+            @(Html.Kendo().Grid<IranMarketer.Domain.Entity.PartyProject>().Mobile(MobileMode.Auto)
+                          .Name("PartyUniversityGrid")
+
+                          .Columns(column =>
+                          {
+
+
+                              column.Bound(x => x.DegreeLevelTitle).Title("مدرک").Width(150);
+                              column.Bound(x => x.AcademicField.TitleFa).Title("نام رشته تحصیلی").Width(150);
+                              column.Bound(x => x.University).Title("دانشگاه").Width(100);
+                              column.Bound(x => x.City.Title).Title("شهر");
+                              column.Bound(x => x.FromDateJalali).Title("از تاریخ");
+                              column.Bound(x => x.ToDateJalali).Title("تا تاریخ");
+                              column.Command(command => command.Custom("ویرایش").Click("PartyUniversityShowDetails")).Width(100);
+                              column.Command(command => command.Custom("حذف").Click("PartyUniversityDelete")).Width(100);
+
+                          })
+                          .Excel(excel => excel
+                              .FileName("PartyUniversityGrid.xlsx")
+                              .Filterable(true)
+                              .AllPages(true)
+
+                              .ForceProxy(true)
+
+                              .AllPages(true)
+                              .ProxyURL(Url.Action("CustomExcelReport", "Profile"))
+                          )
+                          .Sortable(sortable => sortable.AllowUnsort(false))
+                          .Pageable(pageable => pageable
+                              .Refresh(true)
+                              .PageSizes(true)
+                              .ButtonCount(5))
+                          .Selectable(x =>
+                          {
+                              x.Enabled(true).Mode(GridSelectionMode.Single).Type(GridSelectionType.Row);
+                          })//.Events(c => c.Change("AuditorSettingGridonChenge"))
+                          .ToolBar(toolbar =>
+                          {
+                              toolbar.Template(@<text>
+                                <div class="row toolbar" style="direction: rtl !important;">
+
+                                    <div class="pull-left ">
+                                        <div class="col-xs-6" style="display: inline-block;">
+                                            <a class="pull-left k-button k-button-icontext k-grid-excel" href="#"><span class="k-icon k-i-excel"></span>Excel</a>
+                                        </div>
+                                        <div class="col-xs-6" style=" display: inline-block;">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                                <input type="text" class="form-control" id='FieldFilter' placeholder="جست و جو..." style="direction: rtl">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </text>);
+                        })
+                        .AllowCopy(true)
+                        .Selectable()
+                        .HtmlAttributes(new { style = "height:Auto;" })
+                        .DataSource(dataSource => dataSource
+                            .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.UniversityToDate).Descending())
+                            .PageSize(20).Read(read => read.Action("GetAllPArtyUniversities", "Profile"))
+                        )
+                        //.Resizable(resize => resize.Columns(true))
+                        .Resizable(r => r.Columns(true))
+                        .Scrollable()
+
+                        .Reorderable(reorder => reorder.Columns(true)))
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+
+    $( "#PartyProjectForm" ).keyup(function() {
+        $("#PartyProjectForm").valid();
+    });
+
+    $("#addPartyProject").click(function () {
+
+        if (!$("#PartyProjectForm").valid()) {
+            return;
+        } else {
+            //Load Data From Form and kendo components
+            var data = $("#PartyProjectForm").serializeJSON({ checkboxUncheckedValue: "true" });
+
+            $("#PartyProjectForm").KendoToJson(data);
+            data['Id'] = workXPId;
+
+
+            $.ajax({
+                url: '@Url.Action("SavePartyUniversity", "Profile")',
+                type: "POST",
+                dataType: "json",
+
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                401: function() {
+                    var url = '@Url.Action("Login", "Account")';
+                    window.location.href = url;
+                },
+                error: function(response) {
+
+                    showNotification(response.Message, 'e');
+                },
+
+                success: function(response) {
+
+                    if (response != null && response.BRuleCode == '1000') {
+                        showNotification(response.Message, 's');
+                        clear();
+                        $("#PartyUniversityGrid").data("kendoGrid").dataSource.read();
+                        data.Id = 0;
+
+
+                    } else {
+                        showNotification(response.Message, 'e');
+
+                    }
+                }
+            });
+        }
+    });
+
+    function clear() {
+        $('#PartyProjectForm').ClearAll();
+
+
+    }
+    $( document ).ready(function() {
+        // LoadWorkExprience();
+    });
+    function PartyUniversityShowDetails(e)
+    {
+        var grid = $("#PartyUniversityGrid").data("kendoGrid");
+
+        var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+
+        $.ajax({
+            url: '@Url.Action("GetPartyUniversityById", "Profile")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(dataItem),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    //   showNotification(response.Message, 's');
+                    try {
+                        $('#PartyProjectForm').loadJSON(response.Result);
+                    } catch (e) {
+
+                    }
+                    try {
+                        $('#PartyProjectForm').BindJsonKendo(response.Result, '');
+
+                    } catch (e) {
+
+                    }
+                    workXPId = response.Result.Id;
+
+
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    }
+
+    function PartyUniversityDelete(e)
+    {
+        var grid = $("#PartyUniversityGrid").data("kendoGrid");
+
+        var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+        $.ajax({
+            url: '@Url.Action("DeletePartyUniversities", "Profile")',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(dataItem),
+            contentType: "application/json; charset=utf-8",
+            401: function() {
+                var url = '@Url.Action("Login", "Account")';
+                window.location.href = url;
+            },
+            error: function(response) {
+
+                showNotification(response.Message, 'e');
+            },
+
+            success: function(response) {
+
+                if (response != null && response.BRuleCode == '1000') {
+                    //   showNotification(response.Message, 's');
+                    grid.dataSource.read();
+                } else {
+                    showNotification(response.Message, 'e');
+
+                }
+            }
+        });
+    }
+</script>
