@@ -78,25 +78,23 @@
     </div>
     <div class="panel-body">
         <div class="k-rtl">
-            @(Html.Kendo().Grid<IranMarketer.Domain.Entity.PartyProject>().Mobile(MobileMode.Auto)
-                          .Name("PartyUniversityGrid")
+            @(Html.Kendo().Grid<IranMarketer.Domain.DTO.PartyProject>().Mobile(MobileMode.Auto)
+                          .Name("PartyProjectGrid")
 
                           .Columns(column =>
                           {
 
 
-                              column.Bound(x => x.DegreeLevelTitle).Title("مدرک").Width(150);
-                              column.Bound(x => x.AcademicField.TitleFa).Title("نام رشته تحصیلی").Width(150);
-                              column.Bound(x => x.University).Title("دانشگاه").Width(100);
-                              column.Bound(x => x.City.Title).Title("شهر");
+                              column.Bound(x => x.ProjectTitle).Title("عنوان پروژه").Width(150);
+                              column.Bound(x => x.FromDateJalali).Title("نام رشته تحصیلی").Width(150);
+                              column.Bound(x => x.ToDateJalali).Title("دانشگاه").Width(100);
                               column.Bound(x => x.FromDateJalali).Title("از تاریخ");
                               column.Bound(x => x.ToDateJalali).Title("تا تاریخ");
-                              column.Command(command => command.Custom("ویرایش").Click("PartyUniversityShowDetails")).Width(100);
-                              column.Command(command => command.Custom("حذف").Click("PartyUniversityDelete")).Width(100);
+                              column.Command(command => command.Custom("حذف").Click("PartyProjectDelete")).Width(100);
 
                           })
                           .Excel(excel => excel
-                              .FileName("PartyUniversityGrid.xlsx")
+                              .FileName("PartyProjectGrid.xlsx")
                               .Filterable(true)
                               .AllPages(true)
 
@@ -137,8 +135,8 @@
                         .Selectable()
                         .HtmlAttributes(new { style = "height:Auto;" })
                         .DataSource(dataSource => dataSource
-                            .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.UniversityToDate).Descending())
-                            .PageSize(20).Read(read => read.Action("GetAllPArtyUniversities", "Profile"))
+                            .Ajax().ServerOperation(false).Sort(x => x.Add(a => a.FromDate).Descending())
+                            .PageSize(20).Read(read => read.Action("GetAllPArtyProjects", "Profile"))
                         )
                         //.Resizable(resize => resize.Columns(true))
                         .Resizable(r => r.Columns(true))
@@ -168,11 +166,11 @@
             var data = $("#PartyProjectForm").serializeJSON({ checkboxUncheckedValue: "true" });
 
             $("#PartyProjectForm").KendoToJson(data);
-            data['Id'] = workXPId;
+            data['Id'] = PartyProjectId;
 
 
             $.ajax({
-                url: '@Url.Action("SavePartyUniversity", "Profile")',
+                url: '@Url.Action("SavePartyProject", "Profile")',
                 type: "POST",
                 dataType: "json",
 
@@ -192,7 +190,7 @@
                     if (response != null && response.BRuleCode == '1000') {
                         showNotification(response.Message, 's');
                         clear();
-                        $("#PartyUniversityGrid").data("kendoGrid").dataSource.read();
+                        $("#PartyProjectGrid").data("kendoGrid").dataSource.read();
                         data.Id = 0;
 
 
@@ -215,12 +213,12 @@
     });
     function PartyUniversityShowDetails(e)
     {
-        var grid = $("#PartyUniversityGrid").data("kendoGrid");
+        var grid = $("#PartyProjectGrid").data("kendoGrid");
 
         var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
 
         $.ajax({
-            url: '@Url.Action("GetPartyUniversityById", "Profile")',
+            url: '@Url.Action("GetPartyProjectById", "Profile")',
             type: "POST",
             dataType: "json",
             data: JSON.stringify(dataItem),
@@ -249,7 +247,7 @@
                     } catch (e) {
 
                     }
-                    workXPId = response.Result.Id;
+                    PartyProjectId = response.Result.Id;
 
 
                 } else {

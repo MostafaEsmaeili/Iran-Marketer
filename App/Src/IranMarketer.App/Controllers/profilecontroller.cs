@@ -47,6 +47,10 @@ namespace IranMarketer.App.Controllers
         public  IWorkExprienceService WorkExprienceService => CoreContainer.Container.Resolve<IWorkExprienceService>();
 
         public IJobPreferService JobPreferService => CoreContainer.Container.Resolve<IJobPreferService>();
+        public IPartySkillService PartySkillService => CoreContainer.Container.Resolve<IPartySkillService>();
+        
+
+
         public IPartyProjectService PartyProjectService => CoreContainer.Container.Resolve<IPartyProjectService>();
 
         public JobCategoryProvider JobCategoryProvider => CoreContainer.Container.Resolve<JobCategoryProvider>();
@@ -636,6 +640,177 @@ namespace IranMarketer.App.Controllers
                     x.FromDate,
                     x.Todate,
       
+                });
+                return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return this.Json(this.ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+        public ActionResult DeletePartyProjects(PartyUniversity experience)
+        {
+            try
+            {
+
+                var todelete = PartyProjectService.GetKey(experience.Id);
+                PartyProjectService.Delete(todelete);
+                return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+
+
+        public ActionResult SavePartySkill(PartySkill partySkill)
+        {
+            try
+            {
+
+                using (var db=new IranMarketerContext())
+                {
+                    db.Configuration.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+
+                    var current = PartyProjectService
+                        .Get(x => x.PartyId == partyProject.PartyId && x.Id == partyProject.Id).FirstOrDefault();
+                }
+
+
+
+
+
+                //partyUniversity.UniversityFromDate = partyUniversity.UniversityFromDate != null &&
+                //                                     partyUniversity.UniversityFromDate.PersianNumberToLatin()
+                //                                         .IsValidPersianDate()
+                //    ? partyUniversity.UniversityFromDate.PersianNumberToLatin().ConvertJalaliToMiladi()
+                //        .ToString()
+                //    : null;
+
+                //partyUniversity.UniversityToDate = partyUniversity.UniversityToDate != null &&
+                //                                   partyUniversity.UniversityToDate.PersianNumberToLatin()
+                //                                       .IsValidPersianDate()
+                //    ? partyUniversity.UniversityToDate.PersianNumberToLatin().ConvertJalaliToMiladi()
+                //        .ToString()
+                //    : null;
+
+                var entity = new PartyProject
+                {
+                    PartyId = partyProject.PartyId,
+                    Created = DateTime.Now,
+                    CreatedBy = partyProject.UserName,
+                    FromDate = partyProject.FromDateJalali.ConvertJalaliToMiladi(),
+                    Todate = partyProject.ToDateJalali.ConvertJalaliToMiladi(),
+                    Modified = DateTime.Now,
+                    ModifiedBy = partyProject.UserName,
+                    ProjectDescription = partyProject.ProjectDescription,
+                    ProjectTitle = partyProject.ProjectTitle
+                };
+
+                //if (experience.FromDate.IsValidPersianDate())
+                //{
+                //    entity.FromDate = experience.FromDate.ConvertJalaliToMiladi();
+
+                //}
+
+                //if (experience.ToDate.IsValidPersianDate())
+                //{
+                //    entity.ToDate = experience.ToDate.ConvertJalaliToMiladi();
+                //}
+
+                if (current != null)
+                {
+                    entity.Id = current.Id;
+                }
+
+                entity.Modified = DateTime.Now;
+                entity.Created = current?.Created ?? DateTime.Now;
+                entity.CreatedBy = current?.CreatedBy ?? partyProject.UserName;
+                entity.ModifiedBy = partyProject.UserName;
+
+
+                using (var db = new IranMarketerContext())
+                {
+                    if (current == null)
+                    {
+                        db.PartyProjects.Add(entity);
+                    }
+                    else
+                    {
+                        db.Entry(entity).State = EntityState.Modified;
+                    }
+                    db.SaveChanges();
+                }
+                return this.Json(this.SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        public ActionResult GetPartyProjectById(Domain.DTO.PartyProject project)
+        {
+            try
+            {
+                var all = PartyProjectService.GetKey(project.Id);
+                var dto = ObjectMapper.BaseConverter
+                    .ConvertSourceToDest<PartyProject, Domain.DTO.PartyProject>(all);
+                dto.FromDateJalali = all.FromDate.ConvertMiladiToJalali();
+                dto.ToDateJalali = all.Todate.ConvertMiladiToJalali();//.ConvertMiladiToJalali();
+
+                SuccessApiResponse.Result = dto;
+                return Json(SuccessApiResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(ErrorApiResponse, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        public ActionResult GetAllPArtyProjects([DataSourceRequest] DataSourceRequest request)
+        {
+            try
+            {
+
+                List<Domain.Entity.PartyProject> all;
+                using (var db = new IranMarketerContext())
+                {
+                    try
+                    {
+                        db.Configuration.ProxyCreationEnabled = false;
+                        var partyId = User.Identity.GetPartyId().SafeInt();
+                        all = db.PartyProjects.Where(x => x.PartyId == partyId)
+
+                            .ToList(); //.Include(x => x.Region).ToList();
+                    }
+                    finally
+                    {
+
+                        db.Configuration.ProxyCreationEnabled = true;
+                    }
+                }
+                ////   all = WorkExprienceService.GetAllWorkExperiencesWithForeinKey();
+                //var result = JsonConvert.SerializeObject(all.ToDataSourceResult(request), Formatting.None,
+                //    new JsonSerializerSettings
+                //    {
+                //        //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                //        MaxDepth = 2
+                //    });
+                var da = all.Select(x => new
+                {
+                    x.Id,
+                    x.ProjectTitle,
+                    x.ProjectDescription,
+                    x.FromDate,
+                    x.Todate,
+
                 });
                 return Json(da.ToList().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             }

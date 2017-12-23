@@ -28,6 +28,9 @@ namespace IranMarketer.Domain.Entity
        // public System.Data.Entity.DbSet<PageRepository> PageRepositories { get; set; }
         public System.Data.Entity.DbSet<PartyUniversity> PartyUniversities { get; set; }
         public System.Data.Entity.DbSet<Region> Regions { get; set; }
+        public System.Data.Entity.DbSet<PartySkill> PartySkills{ get; set; }
+        public System.Data.Entity.DbSet<Skill> Skills { get; set; }
+
         public System.Data.Entity.DbSet<RetailParty> RetailParties { get; set; }
         public System.Data.Entity.DbSet<WorkExperience> WorkExperiences { get; set; }
         public System.Data.Entity.DbSet<JobPost> JobPosts { get; set; }
