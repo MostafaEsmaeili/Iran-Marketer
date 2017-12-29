@@ -1,0 +1,474 @@
+@import url(fontiran.css);
+body{
+	background-color: #F5F5F5;
+	margin: 0px;
+	padding: 0px;
+}
+.formButton{
+	background: #7B0357;
+	border: none;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+.control-label{
+	font-family: IRANSans;
+	font-size: 14px;
+	text-decoration: none;
+}
+/*.MODAL{
+	/*width: 100%;
+	position: relative ;
+	height: 300px;	
+}
+.after_modal_appended
+{  
+  position:relative !important;
+}*/
+.cancle{
+	background-color: #7B0357 !important;
+	border: none;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	font-family: IRANSans;
+	font-size: 14px;
+	text-decoration: none;
+	float: left;
+	color: white;
+}
+.no_padding{
+	padding:0px;
+}
+.cancle:hover{
+	background-color: #A50374 !important;
+	color: white;
+}
+.modal-content{
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0);
+}
+h4.modal-title{
+	font-family: IRANSans;
+	font-size: 18px;
+	text-decoration: none;
+}/*
+.modal, .modal-backdrop {
+    position: absolute !important;
+}*/
+.form{
+	background: white !important ;
+	padding-top: 10px;
+}
+.formButton:hover{
+	background: #B3027E;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+button.formButton>a{
+	color: white;
+	font-family: IRANSans;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+
+.no_margin{
+	margin: 0px;
+	margin-top: 20px;
+	padding: 0px;
+}
+#wrapper{
+	padding: 0px;
+	margin: 0px;
+}
+.navbar-inverse{
+	padding: 10px 140px 0px 140px;
+	background:#29b0b6;
+	border:none;
+	margin: 0px;
+}
+.row1{
+	margin: 0px;
+}
+.nopaddingright{
+	padding-right: 0px;
+}
+.footerButton{
+	margin-top: 5px;
+	border:none;
+	background: #7B0357;	
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+button.footerButton>a{
+	text-decoration: none;
+	color: white;
+	font-family: IRANSans;
+	font-size: 16px;
+
+}
+.footerButton:hover{
+	background: #C9008C;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+a.navbar-brand {
+	
+	color: white !important;
+	font-size: 15.8px; 
+	font-weight: bold;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+a.navbar-brand:hover{
+	
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	color: #D70677 !important;
+
+	text-decoration: none;
+}
+.red{
+	color: red;
+}
+.checkbox{
+	font-family: IRANSans !important;
+	font-size: 16px;
+	display: inline-block;
+}
+.avatar{
+	max-height: 130px;
+	opacity: 0.9;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+.avatar:hover{
+	opacity: 1;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+.a2{
+
+margin-left: 0px !important;
+max-height: 10px;
+}
+a.a2:hover{
+color:#80035B !important;
+}
+.a1{
+
+	text-align:right;
+	margin-left: 0px !important;
+margin-right: 0px !important;
+}
+.navbar-inverse .navbar-nav > li > a{
+	
+	font-size: 16px;
+	color: white !important;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+.navbar-inverse .navbar-nav > li > a:hover{
+	
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	color: #FCAD02 !important;
+	text-decoration: none;
+}
+#myCarousel{
+	padding: 0;
+}
+.btn{
+	background:transparent;
+	margin-top: 8px;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	padding: 5px !important;
+}
+.btn:active{
+	background: transparent;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	box-shadow: none;
+}
+
+button.btn.navbar-btn>a{
+
+	font-family: IRANSans;
+	font-size: 13px;
+	color: white !important;
+	text-decoration: none;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+
+}
+button.btn.navbar-btn>a:hover{
+
+	text-decoration: none !important;
+	color: #C9008C !important;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+button.btn.navbar-btn>a:active{
+
+	text-decoration: none !important;
+	color: #8E266E !important;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+.signin:hover{
+	background-color: transparent !important;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	text-decoration: none;
+}
+button.btn.navbar-btn.signin>a{
+	font-size: 18px;
+	font-family: IRANSans;
+	color:#C9008C !important;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+}
+button.btn.navbar-btn.signin>a:hover{
+	color: white !important;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	text-decoration: none;
+}
+.main{
+	background: transparent;
+}
+.icons{
+	padding-right: 0px;
+	padding-left: 2px;
+}
+.icon{
+	width: 2.5vw; 
+	height: 2.5vw;
+	-webkit-filter: grayscale(30%); 
+    filter: grayscale(30%);
+    transition-delay: 0.2s ease-in-out;
+	-webkit-transition:0.2s ease-in-out;
+
+}
+.icon:hover{
+    -webkit-filter: grayscale(0%); 
+    filter: grayscale(0%);
+	transition-delay: 0.2s ease-in-out;
+	-webkit-transition:0.2s ease-in-out;
+}
+.karfarma:hover, .karjoo:hover{
+opacity: 1;
+}
+.karfarma, .karjoo{
+opacity: 0.95;
+max-height: 550px;
+}
+.l{
+	height: 150px;
+	font-size: 24px;
+	font-family: IRANSans;
+	color: white;
+	text-align: center;
+	width: 150px;
+	display: inline-block;
+	background-color: #5C024A;
+	padding-top: 60px;
+	margin: 20px 5px 20px 5px;
+		transition-delay: 0.2s ease-in-out;
+	-webkit-transition:0.2s ease-in-out;
+}
+.l:hover{
+	transition-delay: 0.2s ease-in-out;
+	-webkit-transition:0.2s ease-in-out;
+background-color: #7D0064;
+}
+.karfarma{
+	float: right !important;
+}
+.karjoo{
+	float: left !important;
+}
+.slide{
+	background: #68B2B5;
+}
+.footer{
+	padding-right: 0px;
+	background-color: transparent;
+	margin-top: 0 !important;
+	width:100%; 
+}
+.forsat>a{
+		text-decoration: none !important;
+}
+.forsat>a>h4{
+	font-family: IRANSans;
+	text-align: center;
+	background-color: #7B0357;
+	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+
+}
+.forsat>a>h4:hover{
+	background-color: #C9008C;
+	-webkit-transition:0.2s ease-in-out;
+	transition-delay:  0.2s ease-in-out;
+	text-decoration: none !important;
+}
+.navbar-left{
+	text-align: center;
+
+}
+.navbar-right, .signin{
+		padding-top: 15px;
+}
+@media (max-width: 1250px) {
+	
+	button.btn.navbar-btn>a{
+
+		font-size: 13px;
+	}
+	button.btn.navbar-btn.signin>a{
+	font-size: 14px;
+	}
+	a.navbar-brand {
+	font-size: 13.5px; 
+	}	
+	.navbar-right, .signin{
+		padding-top: 5px;
+	}
+	button.btn.navbar-btn.signin>a{
+		font-size: 18px;
+		margin-right: -20px;
+	}
+}
+@media (max-width: 1100px) {
+	
+	.navbar-inverse{
+	padding: 10px 110px 0px 110px;
+	border:none;
+	}	
+	.no_margin{
+		margin-top: 47px;
+	}
+	a.navbar-brand {
+	font-size: 11.5px; 
+	}
+	.slogan{
+		width: 4vw;
+		height: 4vw;
+	}
+	.navbar-right, .signin{
+		padding-top: 5px;
+	}
+}
+@media (max-width: 1000px) {
+
+	a.a1 {
+	margin-left: 4px !important;
+	}
+	a.navbar-brand {
+	font-size: 17px; 
+	}
+		.slogan{
+		width: 4vw;
+		margin-right: 40px;
+		height: 4vw;
+	}
+	.navbar-right, .signin{
+		padding-top: 0px;
+	}
+	button.signin{
+		margin-left: -45px;
+	}	
+		button.btn.navbar-btn.signin>a{
+
+		margin-right: 0px;
+	}
+	.control-label, .forsat>a>h4{
+		font-size: 10px;
+	}
+	.input{
+		width: 100px;
+	}
+}
+@media (max-width: 900px) {
+	
+	.navbar-inverse{
+	padding: 10px 80px 0px 80px;
+	border:none;
+	}	
+	.no_margin{
+		margin-top: 47px;
+	}
+	a.a1{
+	margin-left: -12px !important;
+	}
+	.icon{
+	width: 3vw; 
+	height: 3vw;
+	}
+	a.navbar-brand {
+	font-size: 17px; 
+	}
+	.slogan{
+		width: 4vw;
+		margin-right: 40px;
+		height: 4vw;
+	}
+	.navbar-right, .signin{
+		padding-top: 0px;
+	}
+	button.signin{
+		margin-left: -45px;
+	}
+			button.btn.navbar-btn.signin>a{
+
+		margin-right: 0px;
+	}
+		.control-label, .forsat>a>h4{
+		font-size: 8px;
+	}
+}
+@media (max-width: 700px) {
+
+	.navbar-inverse{
+	padding: 10px 0px 0px 0px;
+	border:none;
+	}	
+	.no_margin{
+		margin-top: 10px;
+	}
+	.btn{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding: 2px !important;
+		display: block;
+	}
+	.navbar-left{
+		display: none;
+	}
+	.icon{
+		width: 4vw; 
+		height: 4vw;
+	}
+	.nopaddingright{
+	padding-right: 15px;
+	}
+		a.navbar-brand {
+	font-size: 17px; 
+	}
+		.navbar-right, .signin{
+		padding-top: 0px;
+	}
+	.input{
+		width: initial;
+	}
+	.control-labe, .forsat>a>h4{
+		font-size: initial;
+	}
+}
