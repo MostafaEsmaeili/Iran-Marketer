@@ -1,67 +1,100 @@
 ﻿
-@Html.Partial("_RegisterLastVersionOfKendo")
+@*@Html.Partial("_RegisterLastVersionOfKendo")*@
 @using Kendo.Mvc.UI
 
 @{
-    Layout = "../Shared/_LoginPartial.cshtml";
+    Layout = "../Shared/_NewLayout.cshtml";
     ViewBag.Title = "ورود به سیستم";
 }
 @model IranMarketer.App.Models.LoginViewModel
 
-
-<div class="page-container pb-20">
-    <!-- Page content -->
-    <div class="page-content">
-        <!-- Main content -->
-        <div class="content-wrapper">
-            <form action="@Url.Action("Login")" method="post">
-                @Html.AntiForgeryToken()
-                <div class="panel panel-body login-form">
-                    <div class="text-center">
-                        <div class="icon-object border-slate-300 text-slate-300">
-                            <i class="icon-reading"></i>
-                        </div>
-                        <h5 class="content-group">سامانه ... <small class="display-block">ورود به سیستم</small></h5>
-                    </div>
-                    <div class="form-group has-feedback has-feedback-left">
-                        <input type="text" class="form-control" placeholder="نام کاربری" name="UserName">
-                        <div class="form-control-feedback">
-                            <i class="icon-user text-muted"></i>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback has-feedback-left">
-                        <input type="password" class="form-control" placeholder="رمز عبور" name="Password">
-                        <div class="form-control-feedback">
-                            <i class="icon-lock2 text-muted"></i>
-                        </div>
-                    </div>
-                    <div class="form-group login-options">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="@Url.Action("AddUser", "UserManagement")">ثبت نام کارجو</a>
-
-                            </div>
-                            <div class="col-sm-4">
-                                <a href="@Url.Action("AddLegalUser", "UserManagement")">ثبت نام کارفرما</a>
-
-                            </div>
-                            <div class="col-sm-4 text-right">
-                                <a href="@Url.Action("ForgetPassword")">فراموشی رمز عبور</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn bg-blue btn-block" style="font-weight: bold; font-size: 16px">ورود<i class="icon-arrow-left13 position-right"></i></button>
-                    </div>
-
-                    @*<span class="help-block text-center no-margin"><a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>*@
-                </div>
-            </form>
+<div class="col-sm-12 main">
+    <div class="no_margin col-sm-12">
+        <div class="col-md-12"><br><br><br></div>
+        <div class="no_margin col-sm-3 col-md-3 col-xs-3">
+            <a href="#"> <img src="~/assets/Layout/image/karfarma.png" class="karfarma img-responsive" style=" max-height: 300px;  "></a>
         </div>
-        <!-- /main content -->
+        <div class="no_margin col-sm-6 col-md-6 col-xs-6">
+            <div class="no_margin col-md-12 row">
+                <div class="col-md-2"></div>
+                <form class="form col-md-8 form-horizontal" action="@Url.Action("Login")" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class=" form-group col-sm-offset-2 col-md-10">
+                        <button type="button" class="formButton" id="signup" data-toggle="modal" data-target="#myModal" data-backdrop="false"><a> ثبت نام</a></button>
+
+                    </div>
+
+                    <div class="email form-group col-sm-offset-2 col-md-10">
+                        <label class="control-label col-sm-12" for="mil">پست الکترونیکی:</label>
+                        <div class="col-sm-12">
+                            <span class="glyphicon glyphicon-envelope"> </span>
+                            <input type="text" name="UserName" placeholder="Enter email"  id="mil" style="text-align: left; ">
+                        </div>
+                    </div>
+
+                    <div class="password form-group col-sm-offset-2 col-md-10">
+                        <label class="control-label col-sm-12" for="pwd">کلمه‌ی عبور:</label>
+                        <div class="col-sm-12">
+                            <span class="glyphicon glyphicon-lock"> </span>
+                            <input type="text" placeholder="Enter password" name="Password" id="pwd" style="text-align: left;">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-offset-2 col-md-10 ">
+                        <label>
+                            <input type="checkbox"> <h4 class="checkbox">مرا به خاطرت نگه دار</h4>
+                        </label>
+                    </div>
+
+                    <div class=" form-group col-sm-offset-2 col-md-10">
+                        <button type="submit" name="login" class="formButton">
+                            <a>ورود</a>
+                        </button>
+
+                        <button name="forgetPassword" class="formButton">
+                            <a href="#">بازیابی کلمه‌ی عبور</a>
+                        </button>
+                    </div>
+
+                </form>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+        <div class="no_margin col-sm-3 col-md-3 col-xs-3">
+            <a href="#"> <img src="~/assets/Layout/image/karjoo.png" class="karjoo img-responsive" style=" max-height: 300px;  "></a>
+        </div>
     </div>
-    <!-- /page content -->
+    <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="col-sm-2 col-md-2 col-xs-2 left"></div>
+        <div class="col-sm-8 col-md-8 col-xs-8">
+            <br><br><br><br><br><br>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                            <h4 class="modal-title ">ثبت نام</h4>
+                        </div>
+                        <div class="modal-body">
+                            <center>
+                                <a href="@Url.Action("AddUser","UserManagement")"><img class="avatar" src="~/assets/Layout/image/karjoohead.png"></a>
+                                <a href="@Url.Action("AddLegalUser","UserManagement")"><img class="avatar" src="~/assets/Layout/image/karfarmahead.png"></a>
+                            </center>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="cancle btn btn-default" data-dismiss="modal">بازگشت</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-2 col-xs-2 right"></div>
+    </div>
 </div>
+
+
+
 
 @if (@ViewData["ErrorMessage"] != null)
 {

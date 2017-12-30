@@ -3036,6 +3036,7 @@
     <Content Include="Views\UserManagement\AddLegalUser - Copy.cshtml" />
     <Content Include="Views\Profile\_PartyProject.cshtml" />
     <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\UserManagement\AddUser - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
